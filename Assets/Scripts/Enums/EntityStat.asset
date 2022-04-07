@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2e558badfb51c54d89576fcd20e1b7a, type: 3}
+  m_Name: EntityStat
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 0
+  defense: 0
+  baseMeleeDamage: 0
+  baseRangeDamage: 0
+  critChance: 0
+  missChance: 0
+  movementSpeed: 0
+  movementType: 1
