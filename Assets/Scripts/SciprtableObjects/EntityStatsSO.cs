@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(menuName = "ScriptableObjects/EntityStat", fileName = "EntityStat", order = 1)]
-public class EntityStatsSO : ScriptableObject
+public class EntityStatsSO : ScriptableObject       // Race / Objects
 {
     [Header("Combat")]
     public int currentHealth;
@@ -24,7 +24,7 @@ public class EntityStatsSO : ScriptableObject
 }
 
 [CreateAssetMenu(menuName = "ScriptableObjects/ClassStats", fileName = "ClassStats", order = 1)]
-public class ClassStats : ScriptableObject      // ?
+public class ClassStats : ScriptableObject              // Class
 {
     [Header("Combat")]
     public int bonusHealth;

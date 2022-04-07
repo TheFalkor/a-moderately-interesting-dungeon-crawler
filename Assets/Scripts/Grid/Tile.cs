@@ -27,6 +27,11 @@ public class Tile : MonoBehaviour
         return isWalkable;
     }
 
+    public bool IsOccupied()
+    {
+        return occupant != null;
+    }
+
     public Vector2Int GetPosition()
     {
         return gridPosition;
@@ -34,7 +39,7 @@ public class Tile : MonoBehaviour
 
     public bool SetOccupant(Occupant occ)
     {
-        if (occupant != null)
+        if (occupant)
             return false;
 
         occupant = occ;
@@ -47,4 +52,52 @@ public class Tile : MonoBehaviour
         neighborList.Add(tile);
     }
 
+    public bool AttackTile(Damage damage)
+    {
+        if (occupant)
+        {
+            occupant.TakeDamage(damage);
+
+            return true;
+        }
+
+        return false;
+    }
+
+}
+
+
+public struct Damage
+{
+
+    public int damage;
+    public DamageOrigin dealer;
+    public List<StatusEffect> statusList;
+
+    public Damage(int dmg, DamageOrigin dealer, List<StatusEffect> statusList)
+    {
+        damage = dmg;
+        this.dealer = dealer;
+        this.statusList = statusList;
+    }
+}
+
+public enum DamageOrigin
+{
+    NEUTRAL,
+    ENEMY,
+    FRIENDLY
+}
+
+public struct StatusEffect
+{
+    public StatusType type;
+    public int statusDuration;
+}
+
+public enum StatusType 
+{
+    FIRE,
+    DEATHMARK,
+    POISION
 }
