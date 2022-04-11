@@ -10,8 +10,6 @@ public class Tile : MonoBehaviour
     private Occupant occupant;
     private List<Tile> neighborList = new List<Tile>();
 
-    public class Test
-    { }
 
     public void Initialize(Vector2Int pos, bool walkable /*Sprite SO*/)
     {
@@ -66,39 +64,4 @@ public class Tile : MonoBehaviour
         return false;
     }
 
-}
-
-
-public struct Damage
-{
-    public int damage;
-    public DamageOrigin origin;
-    public List<StatusEffect> statusEffects;
-
-    public Damage(int damage, DamageOrigin origin, List<StatusEffect> statusEffects)
-    {
-        this.damage = damage;
-        this.origin = origin;
-        this.statusEffects = statusEffects;
-    }
-}
-
-public enum DamageOrigin
-{
-    NEUTRAL,
-    ENEMY,
-    FRIENDLY
-}
-
-public struct StatusEffect
-{
-    public StatusType type;
-    public int statusDuration;
-}
-
-public enum StatusType 
-{
-    FIRE,
-    DEATHMARK,
-    POISION
 }

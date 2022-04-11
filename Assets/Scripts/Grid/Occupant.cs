@@ -6,6 +6,7 @@ public class Occupant : MonoBehaviour
 {
     [SerializeField] protected EntityStatsSO raceStat;
     [SerializeField] protected ClassStats classStat;
+    
     private int maxhealth;
     private int currentHealth;
     private int defense;
