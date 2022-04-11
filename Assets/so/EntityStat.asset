@@ -17,7 +17,5 @@ MonoBehaviour:
   defense: 0
   baseMeleeDamage: 0
   baseRangeDamage: 0
-  critChance: 0
-  missChance: 0
   movementSpeed: 0
-  movementType: 1
+  movementType: 0

@@ -13,6 +13,7 @@ public class Occupant : MonoBehaviour
     private List<StatusEffect> statusList = new List<StatusEffect>();
     // StatusType immunity list
 
+
     private void Start()
     {
         maxhealth = raceStat.maxHealth;
@@ -22,7 +23,7 @@ public class Occupant : MonoBehaviour
 
     public void TakeDamage(Damage damage)
     {
-        if (occupantType == damage.dealer && damage.dealer != DamageOrigin.NEUTRAL)
+        if (occupantType == damage.origin && damage.origin != DamageOrigin.NEUTRAL)
             return; 
 
         currentHealth -= damage.damage;
@@ -36,7 +37,7 @@ public class Occupant : MonoBehaviour
             return;
         }
 
-        foreach (StatusEffect dse in damage.statusList)
+        foreach (StatusEffect dse in damage.statusEffects)
         {
             bool found = false;
             for (int i = 0; i < statusList.Count; i++)

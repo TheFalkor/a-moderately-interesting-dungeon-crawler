@@ -19,11 +19,11 @@ public class GridManager : MonoBehaviour
         for (int i = 0; i < 10 * 10; i++)
         {
             Tile temp = Instantiate(tilePrefab, new Vector2(-5 + i % 10 + 0.5f, 5 - i / 10), Quaternion.identity, parent.transform).GetComponentInParent<Tile>();
-
+            
             if (Random.Range(0, 100) < TEMP_WALL_CHANCE)
-                temp.Initialize(new Vector2Int(i % 10, i / 10), true);
-            else
                 temp.Initialize(new Vector2Int(i % 10, i / 10), false);
+            else
+                temp.Initialize(new Vector2Int(i % 10, i / 10), true);
 
             tileList.Add(temp);
         }
@@ -37,5 +37,4 @@ public class GridManager : MonoBehaviour
 
         return tileList[index];
     }
-
 }

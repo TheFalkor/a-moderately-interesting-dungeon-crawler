@@ -9,14 +9,16 @@ public class Tile : MonoBehaviour
     private bool isWalkable;
     private Occupant occupant;
     private List<Tile> neighborList = new List<Tile>();
-    
+
+    public class Test
+    { }
 
     public void Initialize(Vector2Int pos, bool walkable /*Sprite SO*/)
     {
         gridPosition = pos;
         isWalkable = walkable;
 
-        if (walkable)
+        if (!walkable)
             GetComponent<SpriteRenderer>().color = Color.black;
         // randomize sprite
         // GetComponent<SpriteRenderer>().sprite = null;
@@ -69,16 +71,15 @@ public class Tile : MonoBehaviour
 
 public struct Damage
 {
-
     public int damage;
-    public DamageOrigin dealer;
-    public List<StatusEffect> statusList;
+    public DamageOrigin origin;
+    public List<StatusEffect> statusEffects;
 
-    public Damage(int dmg, DamageOrigin dealer, List<StatusEffect> statusList)
+    public Damage(int damage, DamageOrigin origin, List<StatusEffect> statusEffects)
     {
-        damage = dmg;
-        this.dealer = dealer;
-        this.statusList = statusList;
+        this.damage = damage;
+        this.origin = origin;
+        this.statusEffects = statusEffects;
     }
 }
 

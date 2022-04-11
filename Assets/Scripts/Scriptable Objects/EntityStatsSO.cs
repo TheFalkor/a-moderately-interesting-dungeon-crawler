@@ -12,10 +12,6 @@ public class EntityStatsSO : ScriptableObject       // Race / Objects
     public int defense;
     public int baseMeleeDamage;
     public int baseRangeDamage;
-    [Range(0f, 1f)]
-    public float critChance;
-    [Range(0f, 1f)]
-    public float missChance;
 
 
     [Header("Movement")]
@@ -31,13 +27,4 @@ public class ClassStats : ScriptableObject              // Class
     public int bonusDefense;
     public int bonusMeleeDamage;
     public int bonusRangeDamage;
-    [Range(0f, 1f)]
-    public float critChance;
-    [Range(0f, 1f)]
-    public float missChance;
-
-
-    [Header("Movement")]
-    public int movementSpeed;
-    public MovementTypes movementType;
 }
