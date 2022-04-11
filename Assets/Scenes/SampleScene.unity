@@ -153,10 +153,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 4120879496890394740, guid: 3dde1f0872f17ad489879d72cccacbfd, type: 3}
-  test:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!4 &427302594
 Transform:
   m_ObjectHideFlags: 0
