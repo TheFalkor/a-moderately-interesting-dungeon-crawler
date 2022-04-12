@@ -51,7 +51,7 @@ public class Entity : Occupant
                 break;
 
             case Direction.EAST:
-                transform.localScale = new Vector3(-.7f, .7f);
+                transform.localScale = new Vector3(1f, 1f);
                 targetPosition += new Vector2(1, 0);
                 break;
 
@@ -60,7 +60,7 @@ public class Entity : Occupant
                 break;
 
             case Direction.WEST:
-                transform.localScale = new Vector3(.7f, .7f);
+                transform.localScale = new Vector3(-1, 1);
                 targetPosition += new Vector2(-1, 0);
                 break;
         }
