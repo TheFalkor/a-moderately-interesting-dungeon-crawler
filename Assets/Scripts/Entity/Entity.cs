@@ -4,43 +4,79 @@ using UnityEngine;
 
 public class Entity : Occupant
 {
-    
-    void Start()
+    [SerializeField] protected ClassStatsSO classStat;
+    private Vector2 targetPosition;
+    private bool isMoving = false;
+    private const float ANIMATED_MOVEMENT_SPEED = 3.5f;
+
+
+    new void Start()
     {
-        
+        // Load stats 1 time
+        targetPosition = transform.position;
+        base.Start();
     }
 
-    public void Update()
+    private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.W))
-            Move(Direction.NORTH);
-        if (Input.GetKeyUp(KeyCode.A))
-            Move(Direction.WEST);
-        if (Input.GetKeyUp(KeyCode.S))
-            Move(Direction.SOUTH);
-        if (Input.GetKeyUp(KeyCode.D))
-            Move(Direction.EAST);
+        if (isMoving)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * ANIMATED_MOVEMENT_SPEED);
+            transform.Rotate(new Vector3(0, 0, Time.deltaTime * 90));
+
+            if (targetPosition == (Vector2)transform.position)
+            {
+                isMoving = false;
+                transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+        }
+        else
+        {
+            if (Input.GetKeyUp(KeyCode.W))
+                Move(Direction.NORTH);
+            if (Input.GetKeyUp(KeyCode.A))
+                Move(Direction.WEST);
+            if (Input.GetKeyUp(KeyCode.S))
+                Move(Direction.SOUTH);
+            if (Input.GetKeyUp(KeyCode.D))
+                Move(Direction.EAST);
+        }
+    }
+
+    public bool IsBusy()
+    {
+        return isMoving;
     }
 
     public void Move(Direction direction)
     {
+        if (isMoving)
+            return;
+
+        isMoving = true;
         switch (direction)
         {
             case Direction.NORTH:
-                transform.position += new Vector3(0, 1);
+                targetPosition += new Vector2(0, 1);
                 break;
 
             case Direction.EAST:
-                transform.position += new Vector3(1, 0);
+                transform.localScale = new Vector3(-.7f, .7f);
+                targetPosition += new Vector2(1, 0);
                 break;
 
             case Direction.SOUTH:
-                transform.position += new Vector3(0, -1);
+                targetPosition += new Vector2(0, -1);
                 break;
 
             case Direction.WEST:
-                transform.position += new Vector3(-1, 0);
+                transform.localScale = new Vector3(.7f, .7f);
+                targetPosition += new Vector2(-1, 0);
                 break;
         }
+
+        currentTile.SetOccupant(null);
+        currentTile = GridManager.instance.GetTileWorld(targetPosition);
+        currentTile.SetOccupant(this);
     }
 }

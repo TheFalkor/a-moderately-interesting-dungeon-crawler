@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Occupant : MonoBehaviour
 {
-    [SerializeField] protected EntityStatsSO raceStat;
-    [SerializeField] protected ClassStats classStat;
-    
+    [Header("Stats Reference")]
+    [SerializeField] protected BaseStatsSO baseStat;
+
+
+    protected Tile currentTile;
     private int maxhealth;
     private int currentHealth;
     private int defense;
@@ -15,11 +17,13 @@ public class Occupant : MonoBehaviour
     // StatusType immunity list
 
 
-    private void Start()
+    public void Start()
     {
-        maxhealth = raceStat.maxHealth;
-        currentHealth = maxhealth;
-        defense = raceStat.defense;
+        //maxhealth = baseStat.maxHealth;
+        //currentHealth = maxhealth;
+        //defense = baseStat.defense;
+
+        currentTile = GridManager.instance.GetTileWorld(transform.position);
     }
 
     public void TakeDamage(Damage damage)

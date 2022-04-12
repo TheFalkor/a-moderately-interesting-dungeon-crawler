@@ -37,14 +37,9 @@ public class Tile : MonoBehaviour
         return gridPosition;
     }
 
-    public bool SetOccupant(Occupant occ)
+    public void SetOccupant(Occupant occ)
     {
-        if (occupant)
-            return false;
-
         occupant = occ;
-
-        return true;
     }
 
     public void AddNeighbor(Tile tile)

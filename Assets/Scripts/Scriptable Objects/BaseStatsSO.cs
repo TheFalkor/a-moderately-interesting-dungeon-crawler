@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(menuName = "ScriptableObjects/EntityStat", fileName = "EntityStat", order = 1)]
-public class EntityStatsSO : ScriptableObject       // Race / Objects
+[CreateAssetMenu(menuName = "ScriptableObjects/Base Stats", fileName = "Entity Base Stats", order = 1)]
+public class BaseStatsSO : ScriptableObject       // Race / Objects
 {
     [Header("Combat")]
     public int currentHealth;
@@ -19,8 +19,8 @@ public class EntityStatsSO : ScriptableObject       // Race / Objects
     public MovementTypes movementType;
 }
 
-[CreateAssetMenu(menuName = "ScriptableObjects/ClassStats", fileName = "ClassStats", order = 1)]
-public class ClassStats : ScriptableObject              // Class
+[CreateAssetMenu(menuName = "ScriptableObjects/Class Stats", fileName = "Class Stats", order = 1)]
+public class ClassStatsSO : ScriptableObject              // Class
 {
     [Header("Combat")]
     public int bonusHealth;
