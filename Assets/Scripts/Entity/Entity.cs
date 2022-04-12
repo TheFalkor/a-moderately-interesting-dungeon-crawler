@@ -6,7 +6,7 @@ public class Entity : Occupant
 {
     [SerializeField] protected ClassStatsSO classStat;
     private Vector2 targetPosition;
-    private bool isMoving = false;
+    protected bool isMoving = false;
     private const float ANIMATED_MOVEMENT_SPEED = 3.5f;
 
 
@@ -14,6 +14,7 @@ public class Entity : Occupant
     {
         // Load stats 1 time
         targetPosition = transform.position;
+        currentTile = GridManager.instance.GetTileWorld(targetPosition);
         base.Start();
     }
 
@@ -29,17 +30,6 @@ public class Entity : Occupant
                 isMoving = false;
                 transform.eulerAngles = new Vector3(0, 0, 0);
             }
-        }
-        else
-        {
-            if (Input.GetKeyUp(KeyCode.W))
-                Move(Direction.NORTH);
-            if (Input.GetKeyUp(KeyCode.A))
-                Move(Direction.WEST);
-            if (Input.GetKeyUp(KeyCode.S))
-                Move(Direction.SOUTH);
-            if (Input.GetKeyUp(KeyCode.D))
-                Move(Direction.EAST);
         }
     }
 

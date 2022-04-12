@@ -177,6 +177,7 @@ GameObject:
   m_Component:
   - component: {fileID: 475810868}
   - component: {fileID: 475810870}
+  - component: {fileID: 475810871}
   - component: {fileID: 475810869}
   m_Layer: 0
   m_Name: Player
@@ -208,11 +209,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 475810867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ec647c10ba3c3a449745b8b9fade672, type: 3}
+  m_Script: {fileID: 11500000, guid: d7e07c8faec6f894195acab1795ec6ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raceStat: {fileID: 0}
-  classStat: {fileID: 0}
 --- !u!212 &475810870
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -264,6 +263,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &475810871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475810867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec647c10ba3c3a449745b8b9fade672, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseStat: {fileID: 0}
+  classStat: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

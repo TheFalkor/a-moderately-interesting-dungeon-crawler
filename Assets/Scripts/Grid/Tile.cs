@@ -8,7 +8,8 @@ public class Tile : MonoBehaviour
     private Vector2Int gridPosition = Vector2Int.zero;
     private bool isWalkable;
     private Occupant occupant;
-    private List<Tile> neighborList = new List<Tile>();
+    [HideInInspector] public List<Tile> orthogonalNeighbors = new List<Tile>();
+    [HideInInspector] public List<Tile> diagonalNeighbors = new List<Tile>();
 
 
     public void Initialize(Vector2Int pos, bool walkable /*Sprite SO*/)
@@ -42,11 +43,6 @@ public class Tile : MonoBehaviour
         occupant = occ;
     }
 
-    public void AddNeighbor(Tile tile)
-    {
-        neighborList.Add(tile);
-    }
-
     public bool AttackTile(Damage damage)
     {
         if (occupant)
@@ -57,6 +53,30 @@ public class Tile : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void Highlight()
+    {
+        if (occupant)
+        {
+
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().color = new Color(0.75f, 0.75f, 0.75f);
+        }
+    }
+
+    public void ClearHighlight()
+    {
+        if (occupant)
+        {
+
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1);
+        }
     }
 
 }

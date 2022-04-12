@@ -35,13 +35,46 @@ public class GridManager : MonoBehaviour
         for (int i = 0; i < ROOM_WIDTH * ROOM_HEIGHT; i++)
         {
             Tile temp = Instantiate(tilePrefab, new Vector2(-ROOM_WIDTH / 2.0f + i % ROOM_WIDTH + 0.5f, ROOM_HEIGHT / 2.0f - i / ROOM_WIDTH), Quaternion.identity, parent.transform).GetComponentInParent<Tile>();
-            
+
             if (Random.Range(0, 100) < RANDOM_WALL_CHANCE)
                 temp.Initialize(new Vector2Int(i % 10, i / 10), false);
             else
                 temp.Initialize(new Vector2Int(i % 10, i / 10), true);
 
             tileList.Add(temp);
+        }
+
+        for (int i = 0; i < tileList.Count; i++)
+        {
+            Tile tile = tileList[i];
+
+            if (i / ROOM_WIDTH != 0)
+            {
+                if (i % ROOM_WIDTH != 0)
+                    tile.diagonalNeighbors.Add(tileList[i - ROOM_WIDTH - 1]);    // NW
+
+                tile.orthogonalNeighbors.Add(tileList[i - ROOM_WIDTH]);            // N
+
+                if (i % ROOM_WIDTH != ROOM_WIDTH - 1)
+                    tile.diagonalNeighbors.Add(tileList[i - ROOM_WIDTH + 1]);    // NE
+            }
+
+            if (i % ROOM_WIDTH != ROOM_WIDTH - 1)
+                tile.orthogonalNeighbors.Add(tileList[i + 1]);                    // E
+
+            if (i / ROOM_WIDTH != ROOM_HEIGHT - 1)
+            {
+                if (i % ROOM_WIDTH != ROOM_WIDTH - 1)
+                    tile.diagonalNeighbors.Add(tileList[i + ROOM_WIDTH + 1]);    // SE
+
+                tile.orthogonalNeighbors.Add(tileList[i + ROOM_WIDTH]);            //S
+
+                if (i % ROOM_WIDTH != 0)
+                    tile.diagonalNeighbors.Add(tileList[i + ROOM_WIDTH - 1]);    // SW
+            }
+
+            if (i % ROOM_WIDTH != 0)
+                tile.orthogonalNeighbors.Add(tileList[i - 1]);                    // W
         }
     }
 

@@ -8,7 +8,7 @@ public class Occupant : MonoBehaviour
     [SerializeField] protected BaseStatsSO baseStat;
 
 
-    protected Tile currentTile;
+    [HideInInspector] public Tile currentTile;
     private int maxhealth;
     private int currentHealth;
     private int defense;
