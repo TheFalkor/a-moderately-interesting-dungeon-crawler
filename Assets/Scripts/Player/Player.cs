@@ -2,25 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Entity))]
-public class Player : MonoBehaviour
-{
-    private Entity entity;
 
+public class Player : Entity
+{
     
     void Start()
     {
-        entity = GetComponent<Entity>();
+        base.Initialize();
     }
 
-    private void Update()   // TEMPORARY: GameManager will call Tick() later ye
+
+    private void Update()   // TEMPORARY: GameManager will call Tick() later.
     {
         Tick(Time.deltaTime);
     }
 
     public bool Tick(float deltaTime)
     {
-        if (entity.IsBusy())
+        if (IsBusy())
             return false;
 
 
@@ -63,10 +62,10 @@ public class Player : MonoBehaviour
         if (!tile || !tile.IsWalkable())
             return;
 
-        if (!entity.currentTile.orthogonalNeighbors.Contains(tile))
+        if (!currentTile.orthogonalNeighbors.Contains(tile))
             return;
 
-        Vector2Int deltaPosition = entity.currentTile.GetPosition() - tile.GetPosition();
+        Vector2Int deltaPosition = currentTile.GetPosition() - tile.GetPosition();
         Direction dir;
 
         if (deltaPosition.x < 0)
@@ -79,12 +78,12 @@ public class Player : MonoBehaviour
             dir = Direction.NORTH;
 
         ClearHightlight();
-        entity.Move(dir);
+        Move(dir);
     }
 
     private void HighlightDecision()
     {
-        foreach (Tile tile in entity.currentTile.orthogonalNeighbors)
+        foreach (Tile tile in currentTile.orthogonalNeighbors)
         {
             tile.Highlight(false);
         }
@@ -92,9 +91,15 @@ public class Player : MonoBehaviour
 
     private void ClearHightlight()
     {
-        foreach (Tile tile in entity.currentTile.orthogonalNeighbors)
+        foreach (Tile tile in currentTile.orthogonalNeighbors)
         {
             tile.ClearHighlight();
         }
+    }
+
+    protected override void Death()
+    {
+        Debug.Log("player died");
+        // End game
     }
 }

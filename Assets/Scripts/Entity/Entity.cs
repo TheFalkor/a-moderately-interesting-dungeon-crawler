@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Entity : Occupant
+public abstract class Entity : Occupant
 {
     [SerializeField] protected ClassStatsSO classStat;
 
@@ -14,8 +14,10 @@ public class Entity : Occupant
     protected bool isMoving = false;
 
 
-    new void Start()
+    public override void Initialize()
     {
+        base.Initialize();
+
         currentHealth += classStat.bonusHealth;
         maxhealth += classStat.bonusHealth;
         defense += classStat.bonusDefense;
@@ -23,7 +25,6 @@ public class Entity : Occupant
         baseRangeDamage += classStat.bonusRangeDamage;
         
         targetPosition = transform.position;
-        base.Start();
     }
 
     private void Update()
@@ -41,12 +42,12 @@ public class Entity : Occupant
         }
     }
 
-    public bool IsBusy()
+    protected bool IsBusy()
     {
         return isMoving;
     }
 
-    public void Move(Direction direction)
+    protected void Move(Direction direction)
     {
         if (isMoving)
             return;

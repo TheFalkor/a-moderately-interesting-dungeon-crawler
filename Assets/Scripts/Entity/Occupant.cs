@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Occupant : MonoBehaviour
+public abstract class Occupant : MonoBehaviour
 {
     [Header("Stats Reference")]
     [SerializeField] protected BaseStatsSO baseStat;
 
 
-    [HideInInspector] public Tile currentTile;
+    protected Tile currentTile;
     protected int currentHealth;
     protected int maxhealth;
     protected int defense;
@@ -19,7 +19,7 @@ public class Occupant : MonoBehaviour
     // StatusType immunity list
 
 
-    public void Start()
+    public virtual void Initialize()
     {
         currentHealth = maxhealth;
         maxhealth = baseStat.maxHealth;
@@ -40,10 +40,7 @@ public class Occupant : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            // Death screech
-            // if statusrefect == boom -> then boom
-            
-            Destroy(gameObject);
+            Death();
             return;
         }
 
@@ -67,9 +64,14 @@ public class Occupant : MonoBehaviour
         }
     }
 
-    public void Attack()
+    protected void Attack(Tile tile, Damage damage)
     {
+        tile.AttackTile(damage);
+    }
 
+    protected virtual void Death()
+    {
+        Destroy(gameObject);
     }
 
 }
