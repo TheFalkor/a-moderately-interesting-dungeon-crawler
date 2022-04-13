@@ -9,26 +9,31 @@ public class Occupant : MonoBehaviour
 
 
     [HideInInspector] public Tile currentTile;
-    private int maxhealth;
-    private int currentHealth;
-    private int defense;
-    private DamageOrigin occupantType;
-    private List<StatusEffect> statusList = new List<StatusEffect>();
+    protected int currentHealth;
+    protected int maxhealth;
+    protected int defense;
+    protected int baseMeleeDamage;
+    protected int baseRangeDamage;
+    protected DamageOrigin originType;
+    private readonly List<StatusEffect> activeStatusEffects = new List<StatusEffect>();
     // StatusType immunity list
 
 
     public void Start()
     {
-        //maxhealth = baseStat.maxHealth;
-        //currentHealth = maxhealth;
-        //defense = baseStat.defense;
+        currentHealth = maxhealth;
+        maxhealth = baseStat.maxHealth;
+        defense = baseStat.defense;
+        baseMeleeDamage = baseStat.baseMeleeDamage;
+        baseRangeDamage = baseStat.baseRangeDamage;
+        originType = baseStat.origin;
 
         currentTile = GridManager.instance.GetTileWorld(transform.position);
     }
 
     public void TakeDamage(Damage damage)
     {
-        if (occupantType == damage.origin && damage.origin != DamageOrigin.NEUTRAL)
+        if (originType == damage.origin && damage.origin != DamageOrigin.NEUTRAL)
             return; 
 
         currentHealth -= damage.damage;
@@ -45,12 +50,12 @@ public class Occupant : MonoBehaviour
         foreach (StatusEffect dse in damage.statusEffects)
         {
             bool found = false;
-            for (int i = 0; i < statusList.Count; i++)
+            for (int i = 0; i < activeStatusEffects.Count; i++)
             {
-                if (dse.type == statusList[i].type)
+                if (dse.type == activeStatusEffects[i].type)
                 {
-                    if (dse.statusDuration > statusList[i].statusDuration)
-                        statusList[i] = dse;
+                    if (dse.duration > activeStatusEffects[i].duration)
+                        activeStatusEffects[i] = dse;
 
                     found = true;
                     break;
@@ -58,8 +63,13 @@ public class Occupant : MonoBehaviour
             }
 
             if (!found)
-                statusList.Add(dse);
+                activeStatusEffects.Add(dse);
         }
+    }
+
+    public void Attack()
+    {
+
     }
 
 }

@@ -5,16 +5,24 @@ using UnityEngine;
 public class Entity : Occupant
 {
     [SerializeField] protected ClassStatsSO classStat;
+
+    [Header("Entity Settings")]
+    private const float ANIMATED_MOVEMENT_SPEED = 3.5f;
+
+    [Header("Runtime Variables")]
     private Vector2 targetPosition;
     protected bool isMoving = false;
-    private const float ANIMATED_MOVEMENT_SPEED = 3.5f;
 
 
     new void Start()
     {
-        // Load stats 1 time
+        currentHealth += classStat.bonusHealth;
+        maxhealth += classStat.bonusHealth;
+        defense += classStat.bonusDefense;
+        baseMeleeDamage += classStat.bonusMeleeDamage;
+        baseRangeDamage += classStat.bonusRangeDamage;
+        
         targetPosition = transform.position;
-        currentTile = GridManager.instance.GetTileWorld(targetPosition);
         base.Start();
     }
 

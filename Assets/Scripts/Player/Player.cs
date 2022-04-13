@@ -20,53 +20,49 @@ public class Player : MonoBehaviour
 
     public bool Tick(float deltaTime)
     {
-        if (!entity.IsBusy())
+        if (entity.IsBusy())
+            return false;
+
+
+        HighlightDecision();
+        if (Input.GetMouseButtonUp(0))
         {
-            HighlightDecision();
-            if (Input.GetMouseButtonUp(0))
-            {
-                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
 
-                if (hit)
-                {
-                    Tile tile = hit.transform.GetComponent<Tile>();
-
-                    if (tile && tile.IsWalkable())
-                    {
-                        MoveToTile(tile);
-                    }
-                }
-            }
-
-
-            if (Input.GetKeyUp(KeyCode.W))
+            if (hit)
             {
-                ClearHightlight();
-                entity.Move(Direction.NORTH);
-            }
-            if (Input.GetKeyUp(KeyCode.A))
-            {
-                ClearHightlight();
-                entity.Move(Direction.WEST);
-            }
-            if (Input.GetKeyUp(KeyCode.S))
-            {
-                ClearHightlight();
-                entity.Move(Direction.SOUTH);
-            }
-            if (Input.GetKeyUp(KeyCode.D))
-            {
-                ClearHightlight();
-                entity.Move(Direction.EAST);
+                MoveToTile(hit.transform.GetComponent<Tile>());
             }
         }
+
+
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.up));
+        }
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.left));
+        }
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.down));
+        }
+        if (Input.GetKeyUp(KeyCode.D))
+        {
+            MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.right));
+        }
+        
 
         return false;
     }
 
     private void MoveToTile(Tile tile)
     {
+        if (!tile || !tile.IsWalkable())
+            return;
+
         if (!entity.currentTile.orthogonalNeighbors.Contains(tile))
             return;
 

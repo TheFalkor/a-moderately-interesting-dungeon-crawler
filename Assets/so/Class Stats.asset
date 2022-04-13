@@ -9,13 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2e558badfb51c54d89576fcd20e1b7a, type: 3}
-  m_Name: EntityStat
+  m_Script: {fileID: 11500000, guid: 1878ed3d5d468bd4c852cd486b572d11, type: 3}
+  m_Name: Class Stats
   m_EditorClassIdentifier: 
-  currentHealth: 0
-  maxHealth: 0
-  defense: 0
-  baseMeleeDamage: 0
-  baseRangeDamage: 0
-  movementSpeed: 0
-  movementType: 0
+  bonusHealth: 0
+  bonusDefense: 0
+  bonusMeleeDamage: 0
+  bonusRangeDamage: 0

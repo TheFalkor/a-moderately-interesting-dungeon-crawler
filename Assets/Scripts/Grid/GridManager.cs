@@ -31,7 +31,7 @@ public class GridManager : MonoBehaviour
 
     private void CreateRoom()
     {
-        GameObject parent = new GameObject("Map");
+        GameObject parent = new GameObject("Room");
         for (int i = 0; i < ROOM_WIDTH * ROOM_HEIGHT; i++)
         {
             Tile temp = Instantiate(tilePrefab, new Vector2(-ROOM_WIDTH / 2.0f + i % ROOM_WIDTH + 0.5f, ROOM_HEIGHT / 2.0f - i / ROOM_WIDTH), Quaternion.identity, parent.transform).GetComponentInParent<Tile>();
@@ -94,12 +94,5 @@ public class GridManager : MonoBehaviour
 
         int index = (int)(ROOM_WIDTH / 2.0f + position.x + (ROOM_HEIGHT / 2.0f - position.y) * ROOM_WIDTH);
         return tileList[index];
-    }
-
-    public void Repalce(Tile s)
-    {
-        //s.gameObject
-
-
     }
 }
