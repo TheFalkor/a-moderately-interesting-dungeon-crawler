@@ -83,7 +83,7 @@ public class GridManager : MonoBehaviour
         if (position.x < 0 || position.x >= ROOM_WIDTH || position.y < 0 || position.y >= ROOM_HEIGHT)
             return null;
 
-        int index = position.x + position.y * ROOM_HEIGHT;
+        int index = position.x + position.y * ROOM_WIDTH;
         return tileList[index];
     }
 

@@ -5,52 +5,67 @@ using UnityEngine;
 
 public class Player : Entity
 {
-    
+
+    [Header("Turn variables")]
+    private int actionPoints = 2;
+    private int movementPoints = 1;
+    private bool attackMode = false;
+
+
     void Start()
     {
         base.Initialize();
     }
 
 
-    private void Update()   // TEMPORARY: GameManager will call Tick() later.
-    {
-        Tick(Time.deltaTime);
-    }
-
     public bool Tick(float deltaTime)
     {
         if (IsBusy())
             return false;
 
-
-        HighlightDecision();
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+            attackMode = !attackMode;
 
-            if (hit)
+            ClearHightlight();
+        }
+
+        if (attackMode)
+        {
+            HighlightDecision(HighlightType.ATTACKABLE, true);
+        }
+        else
+        {
+            HighlightDecision(HighlightType.WALKABLE);
+
+            if (Input.GetMouseButtonUp(0))
             {
-                MoveToTile(hit.transform.GetComponent<Tile>());
+                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+
+                if (hit)
+                {
+                    MoveToTile(hit.transform.GetComponent<Tile>());
+                }
             }
-        }
 
 
-        if (Input.GetKeyUp(KeyCode.W))
-        {
-            MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.up));
-        }
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.left));
-        }
-        if (Input.GetKeyUp(KeyCode.S))
-        {
-            MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.down));
-        }
-        if (Input.GetKeyUp(KeyCode.D))
-        {
-            MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.right));
+            if (Input.GetKeyUp(KeyCode.W))
+            {
+                MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.up));
+            }
+            if (Input.GetKeyUp(KeyCode.A))
+            {
+                MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.left));
+            }
+            if (Input.GetKeyUp(KeyCode.S))
+            {
+                MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.down));
+            }
+            if (Input.GetKeyUp(KeyCode.D))
+            {
+                MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.right));
+            }
         }
         
 
@@ -77,21 +92,39 @@ public class Player : Entity
         else
             dir = Direction.NORTH;
 
+        if (movementPoints > 0)
+            movementPoints--;
+        else
+            actionPoints--;
+
         ClearHightlight();
         Move(dir);
     }
 
-    private void HighlightDecision()
+    private void HighlightDecision(HighlightType type, bool corners = false)
     {
         foreach (Tile tile in currentTile.orthogonalNeighbors)
         {
-            tile.Highlight(false);
+            tile.Highlight(type);
+        }
+
+        if (!corners)
+            return;
+
+        foreach (Tile tile in currentTile.diagonalNeighbors)
+        {
+            tile.Highlight(type);
         }
     }
 
     private void ClearHightlight()
     {
         foreach (Tile tile in currentTile.orthogonalNeighbors)
+        {
+            tile.ClearHighlight();
+        }
+
+        foreach (Tile tile in currentTile.diagonalNeighbors)
         {
             tile.ClearHighlight();
         }

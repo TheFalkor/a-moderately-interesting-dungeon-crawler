@@ -12,6 +12,7 @@ public abstract class Entity : Occupant
     [Header("Runtime Variables")]
     private Vector2 targetPosition;
     protected bool isMoving = false;
+    protected readonly List<Tile> tilesInRange = new List<Tile>();
 
 
     public override void Initialize()
@@ -32,7 +33,10 @@ public abstract class Entity : Occupant
         if (isMoving)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * ANIMATED_MOVEMENT_SPEED);
-            transform.Rotate(new Vector3(0, 0, Time.deltaTime * 90));
+            if (targetPosition.y == transform.position.y)
+                transform.Rotate(new Vector3(0, 0, Time.deltaTime * 90 * -transform.localScale.x));
+            else
+                transform.Rotate(new Vector3(0, 0, Time.deltaTime * 9000 * -transform.localScale.x));
 
             if (targetPosition == (Vector2)transform.position)
             {

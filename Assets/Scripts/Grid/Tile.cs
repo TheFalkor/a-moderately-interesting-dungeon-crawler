@@ -55,16 +55,16 @@ public class Tile : MonoBehaviour
         return false;
     }
 
-    public void Highlight(bool onlyAttack)
+    public void Highlight(HighlightType type)
     {
         if (!isWalkable)
             return;
 
-        if (occupant)
+        if (type == HighlightType.ATTACKABLE)
         {
             GetComponent<SpriteRenderer>().color = new Color(0.75f, 0.5f, 0.5f);
         }
-        else if (!onlyAttack)
+        else if (type == HighlightType.WALKABLE)
         {
             GetComponent<SpriteRenderer>().color = new Color(0.75f, 0.75f, 0.75f);
         }

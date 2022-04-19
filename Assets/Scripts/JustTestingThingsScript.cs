@@ -20,7 +20,7 @@ public class JustTestingThingsScript : MonoBehaviour
         tock += Time.deltaTime;
         if (tock > 1) 
         {
-            mrGrid.GetTileWorld(new Vector2(0, 0)).Highlight(false);
+            mrGrid.GetTileWorld(new Vector2(0, 0)).Highlight(HighlightType.WALKABLE);
             tock = 0;
         }
     }
