@@ -29,6 +29,7 @@ public abstract class Occupant : MonoBehaviour
         originType = baseStat.origin;
 
         currentTile = GridManager.instance.GetTileWorld(transform.position);
+        currentTile.SetOccupant(this);
     }
 
     public void TakeDamage(Damage damage)

@@ -10,6 +10,7 @@ public class Player : Entity
     private int actionPoints = 2;
     private int movementPoints = 1;
     private bool attackMode = false;
+    private const bool tempAllowCorner = false;
 
 
     void Start()
@@ -32,7 +33,18 @@ public class Player : Entity
 
         if (attackMode)
         {
-            HighlightDecision(HighlightType.ATTACKABLE, true);
+            HighlightDecision(HighlightType.ATTACKABLE, tempAllowCorner);
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+
+                if (hit)
+                {
+                    TargetTile(hit.transform.GetComponent<Tile>(), tempAllowCorner);
+                }
+            }
         }
         else
         {
@@ -101,14 +113,29 @@ public class Player : Entity
         Move(dir);
     }
 
-    private void HighlightDecision(HighlightType type, bool corners = false)
+    private void TargetTile(Tile tile, bool allowCorners = false)
+    {
+        if (!tile || !tile.IsOccupied())
+            return;
+
+        if (!allowCorners && currentTile.diagonalNeighbors.Contains(tile))
+            return;
+
+        if (!currentTile.orthogonalNeighbors.Contains(tile))
+            return;
+
+        print("ATTACKED: " + tile.GetPosition());
+        tile.AttackTile(new Damage(999, DamageOrigin.FRIENDLY));
+    }
+
+    private void HighlightDecision(HighlightType type, bool allowCorners = false)
     {
         foreach (Tile tile in currentTile.orthogonalNeighbors)
         {
             tile.Highlight(type);
         }
 
-        if (!corners)
+        if (!allowCorners)
             return;
 
         foreach (Tile tile in currentTile.diagonalNeighbors)

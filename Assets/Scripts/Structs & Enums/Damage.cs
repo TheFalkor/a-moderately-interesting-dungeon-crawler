@@ -6,7 +6,7 @@ public struct Damage
     public DamageOrigin origin;
     public List<StatusEffect> statusEffects;
 
-    public Damage(int damage, DamageOrigin origin, List<StatusEffect> statusEffects)
+    public Damage(int damage, DamageOrigin origin, List<StatusEffect> statusEffects = null)
     {
         this.damage = damage;
         this.origin = origin;
