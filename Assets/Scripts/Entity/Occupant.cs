@@ -21,7 +21,7 @@ public abstract class Occupant : MonoBehaviour
 
     public virtual void Initialize()
     {
-        currentHealth = maxhealth;
+        currentHealth = baseStat.currentHealth;
         maxhealth = baseStat.maxHealth;
         defense = baseStat.defense;
         baseMeleeDamage = baseStat.baseMeleeDamage;
@@ -44,6 +44,9 @@ public abstract class Occupant : MonoBehaviour
             Death();
             return;
         }
+
+        if (damage.statusEffects == null)
+            return;
 
         foreach (StatusEffect dse in damage.statusEffects)
         {

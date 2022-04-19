@@ -77,7 +77,7 @@ public abstract class Entity : Occupant
                 targetPosition += new Vector2(-1, 0);
                 break;
         }
-
+        
         currentTile.SetOccupant(null);
         currentTile = GridManager.instance.GetTileWorld(targetPosition);
         currentTile.SetOccupant(this);

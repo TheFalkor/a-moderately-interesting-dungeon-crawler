@@ -10,6 +10,7 @@ public class ScriptableItem : ScriptableObject
     {
         InventoryItem newItem = new InventoryItem();
         newItem.SetName(itemName);
+        newItem.SetSprite(itemSprite);
         return newItem;
     }
 }

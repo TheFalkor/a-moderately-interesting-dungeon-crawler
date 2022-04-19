@@ -48,10 +48,8 @@ public class Tile : MonoBehaviour
         if (occupant)
         {
             occupant.TakeDamage(damage);
-
             return true;
         }
-
         return false;
     }
 

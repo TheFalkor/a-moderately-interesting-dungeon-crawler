@@ -6,6 +6,11 @@ using UnityEngine;
    public class Inventory
 {
     List<InventoryItem> inventory = new List<InventoryItem>();
+    Occupant owner = null;
+    public void SetOwner(Occupant newOwner) 
+    {
+        owner = newOwner;
+    }
     public void AddItem(InventoryItem itemToAdd) 
     {
         inventory.Add(itemToAdd);
@@ -14,14 +19,14 @@ using UnityEngine;
     {
         if (HasItem (itemToUse)) 
         {
-            itemToUse.UseItem();
+            itemToUse.UseItem(owner);
         }
     }
     public void UseItem(int index) 
     {
         if (index >= 0 && index < inventory.Count) 
         {
-            inventory[index].UseItem();
+            inventory[index].UseItem(owner);
         }
     }
     public bool HasItem(InventoryItem itemToCheck)

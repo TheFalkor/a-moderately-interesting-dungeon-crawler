@@ -10,7 +10,7 @@ using UnityEngine;
             SetType(ItemType.CONSUMABLE);
             SetName("unnamed potion");
         }
-        public override void UseItem()
+    public override void UseItem(Occupant user)
         {
             Debug.Log("drank a "+GetName());
         }

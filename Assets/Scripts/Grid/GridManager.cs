@@ -6,6 +6,9 @@ public class GridManager : MonoBehaviour
 {
     [Header("Prefabs")]
     public GameObject tilePrefab;
+    [Space]
+    public bool useRoomPreset;
+    public CombatRoomSO room;
 
     [Header("Grid Settings")]
     private const int RANDOM_WALL_CHANCE = 10;
@@ -36,10 +39,18 @@ public class GridManager : MonoBehaviour
         {
             Tile temp = Instantiate(tilePrefab, new Vector2(-ROOM_WIDTH / 2.0f + i % ROOM_WIDTH + 0.5f, ROOM_HEIGHT / 2.0f - i / ROOM_WIDTH), Quaternion.identity, parent.transform).GetComponentInParent<Tile>();
 
-            if (Random.Range(0, 100) < RANDOM_WALL_CHANCE)
-                temp.Initialize(new Vector2Int(i % 10, i / 10), false);
+            if (useRoomPreset)
+            {
+                temp.Initialize(new Vector2Int(i % ROOM_WIDTH, i / ROOM_WIDTH), !room.tiles[i].wall);
+            }
             else
-                temp.Initialize(new Vector2Int(i % 10, i / 10), true);
+            {
+                if (Random.Range(0, 100) < RANDOM_WALL_CHANCE)
+                    temp.Initialize(new Vector2Int(i % 10, i / 10), false);
+                else
+                    temp.Initialize(new Vector2Int(i % 10, i / 10), true);
+
+            }
 
             tileList.Add(temp);
         }
@@ -94,5 +105,17 @@ public class GridManager : MonoBehaviour
 
         int index = (int)(ROOM_WIDTH / 2.0f + position.x + (ROOM_HEIGHT / 2.0f - position.y) * ROOM_WIDTH);
         return tileList[index];
+    }
+    public Tile GetTileWorldFuzzy(Vector2 position) 
+    {
+        const float widthOffset = 0.5f;
+        const float hightOffset = 0;
+        const float tileWidth = 1;
+        const float tileHeight = 1;
+        Vector2 startOfGrid = new Vector2(-(ROOM_WIDTH / 2f +tileWidth/2f)+widthOffset, (ROOM_HEIGHT / 2f  + tileHeight / 2f) +hightOffset);
+        Vector2 diffrence = position - startOfGrid;
+        Vector2Int gridPosition = new Vector2Int((int)(diffrence.x/tileWidth), -(int)(diffrence.y/tileHeight));
+        //need to invert y because top left is  X negative : Y positive in world and X negative :Y negative in get tile
+        return GetTile(gridPosition);
     }
 }

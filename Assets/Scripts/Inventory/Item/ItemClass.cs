@@ -10,10 +10,15 @@ public class InventoryItem //: ScriptableObject
     //varibles
     string itemName;
     ItemType typeOfItem;
+    Sprite sprite;
     public InventoryItem()
     {
         SetName("This item is buged");
         SetType(ItemType.UNASIGNED);
+    }
+    public void SetSprite(Sprite newSprite) 
+    {
+        sprite = newSprite;
     }
     public void SetName(string newName)
     {
@@ -43,7 +48,7 @@ public class InventoryItem //: ScriptableObject
         typeOfItem = itemToCopyFrom.typeOfItem;
     }
 
-    public virtual void UseItem()
+    public virtual void UseItem(Occupant user)
     {
         Debug.Log("that item does not have a use");
     }
