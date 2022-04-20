@@ -32,7 +32,7 @@ public abstract class Occupant : MonoBehaviour
         currentTile.SetOccupant(this);
     }
 
-    public void TakeDamage(Damage damage)
+    public virtual void TakeDamage(Damage damage)
     {
         if (originType == damage.origin && damage.origin != DamageOrigin.NEUTRAL)
             return; 
@@ -66,6 +66,12 @@ public abstract class Occupant : MonoBehaviour
             if (!found)
                 activeStatusEffects.Add(dse);
         }
+    }
+
+    public virtual void Heal(int health)
+    {
+        currentHealth += health;
+        currentHealth = Mathf.Min(currentHealth, maxhealth);
     }
 
     protected void Attack(Tile tile, Damage damage)

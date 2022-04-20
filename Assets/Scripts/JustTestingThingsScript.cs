@@ -5,23 +5,52 @@ using UnityEngine;
 
 public class JustTestingThingsScript : MonoBehaviour
 {
-    public GridManager mrGrid;
-    float tock;
+   
+    SkillTree tree = new SkillTree();
     // Start is called before the first frame update
     void Start()
     {
        
-        tock = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        tock += Time.deltaTime;
-        if (tock > 1) 
+        if (Input.GetKeyUp(KeyCode.Alpha1)) 
         {
-            mrGrid.GetTileWorld(new Vector2(0, 0)).Highlight(HighlightType.WALKABLE);
-            tock = 0;
+            tree.UnlockSkill(SkillId.DASH);
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha2))
+        {
+            tree.RefundSkill(SkillId.DASH);
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha3))
+        {
+            tree.UnlockSkill(SkillId.TIME_BUBBLE);
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha4)) 
+        {
+            tree.RefundSkill(SkillId.TIME_BUBBLE);
+        }
+
+        if (Input.GetKeyUp(KeyCode.Alpha8))
+        {
+            tree.TakeSkillPoints(1);
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha9))
+        {
+            tree.GiveSkillPoints(1);
+        }
+        
+
+        if (Input.GetKeyUp(KeyCode.Alpha0)) 
+        {
+            for(int i = 0; i < SkillTree.numberOfSkills; i++) 
+            {
+                SkillId currentSkill = (SkillId)i;
+                Debug.Log(currentSkill.ToString() + ":" + tree.HasSkill(currentSkill));
+            }
+            Debug.Log("Skillpoints left:" + tree.GetSkillPoints());
         }
     }
 }

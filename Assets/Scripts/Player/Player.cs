@@ -16,6 +16,10 @@ public class Player : Entity
     void Start()
     {
         base.Initialize();
+
+        CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
+        CombatUI.instance.UpdateAttack(baseMeleeDamage);    // no
+        CombatUI.instance.UpdateDefense(defense);
     }
 
 
@@ -24,12 +28,6 @@ public class Player : Entity
         if (IsBusy())
             return false;
 
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            attackMode = !attackMode;
-
-            ClearHightlight();
-        }
 
         if (attackMode)
         {
@@ -82,6 +80,13 @@ public class Player : Entity
         
 
         return false;
+    }
+
+    public void SetAttackMode(bool attackActive /*, Weapon weapon*/)
+    {
+        attackMode = attackActive;
+
+        ClearHightlight();
     }
 
     private void MoveToTile(Tile tile)
@@ -155,6 +160,20 @@ public class Player : Entity
         {
             tile.ClearHighlight();
         }
+    }
+
+    public override void TakeDamage(Damage damage)
+    {
+        base.TakeDamage(damage);
+
+        CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
+    }
+
+    public override void Heal(int health)
+    {
+        base.Heal(health);
+
+        CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
     }
 
     protected override void Death()
