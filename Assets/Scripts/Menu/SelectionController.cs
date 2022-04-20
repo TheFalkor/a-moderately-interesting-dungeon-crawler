@@ -21,6 +21,7 @@ public class SelectionController : MonoBehaviour
     private int currentRaceIndex = 0;
     private int currentClassIndex = 0;
 
+
     private void Start()
     {
         UpdateUI();
