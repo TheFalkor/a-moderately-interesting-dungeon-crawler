@@ -13,6 +13,7 @@ using UnityEngine;
     }
     public void AddItem(InventoryItem itemToAdd) 
     {
+        itemToAdd.SetWhereItemIsStored(this);
         inventory.Add(itemToAdd);
     }
     public void UseItem(InventoryItem itemToUse) 

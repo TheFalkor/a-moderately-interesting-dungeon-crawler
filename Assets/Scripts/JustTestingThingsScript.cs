@@ -5,12 +5,16 @@ using UnityEngine;
 
 public class JustTestingThingsScript : MonoBehaviour
 {
-   
+   // remember to test health potion(Potato)
     SkillTree tree = new SkillTree();
+    public ScriptableItem healtpotion;
+    Inventory myInventory = new Inventory();
+    public Occupant player;
     // Start is called before the first frame update
     void Start()
     {
-       
+        myInventory.SetOwner(player);
+        myInventory.AddItem(healtpotion.CreateItem());
     }
 
     // Update is called once per frame
@@ -31,6 +35,11 @@ public class JustTestingThingsScript : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Alpha4)) 
         {
             tree.RefundSkill(SkillId.TIME_BUBBLE);
+        }
+
+        if (Input.GetKeyUp(KeyCode.Alpha6))
+        {
+            myInventory.UseItem(0);
         }
 
         if (Input.GetKeyUp(KeyCode.Alpha8))

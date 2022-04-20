@@ -34,9 +34,9 @@ public abstract class Entity : Occupant
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * ANIMATED_MOVEMENT_SPEED);
             if (targetPosition.y == transform.position.y)
-                transform.Rotate(new Vector3(0, 0, Time.deltaTime * 90 * -transform.localScale.x));
+                transform.Rotate(new Vector3(0, 0, Time.deltaTime * 90 * transform.localScale.x));
             else
-                transform.Rotate(new Vector3(0, 0, Time.deltaTime * 9000 * -transform.localScale.x));
+                transform.Rotate(new Vector3(0, 0, Time.deltaTime * 9000 * transform.localScale.x));
 
             if (targetPosition == (Vector2)transform.position)
             {
@@ -64,7 +64,7 @@ public abstract class Entity : Occupant
                 break;
 
             case Direction.EAST:
-                transform.localScale = new Vector3(1f, 1f);
+                transform.localScale = new Vector3(-1f, 1f);
                 targetPosition += new Vector2(1, 0);
                 break;
 
@@ -73,7 +73,7 @@ public abstract class Entity : Occupant
                 break;
 
             case Direction.WEST:
-                transform.localScale = new Vector3(-1, 1);
+                transform.localScale = new Vector3(1, 1);
                 targetPosition += new Vector2(-1, 0);
                 break;
         }

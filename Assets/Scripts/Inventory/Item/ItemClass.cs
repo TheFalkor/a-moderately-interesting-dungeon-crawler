@@ -11,6 +11,7 @@ public class InventoryItem //: ScriptableObject
     string itemName;
     ItemType typeOfItem;
     Sprite sprite;
+    Inventory wherItemIsStored;
     public InventoryItem()
     {
         SetName("This item is buged");
@@ -51,6 +52,18 @@ public class InventoryItem //: ScriptableObject
     public virtual void UseItem(Occupant user)
     {
         Debug.Log("that item does not have a use");
+    }
+    public void SetWhereItemIsStored(Inventory inventory) 
+    {
+        wherItemIsStored = inventory;
+    }
+    public void RemoveFromInventory() 
+    {
+        wherItemIsStored.RemoveItem(this);
+    }
+    public void MoveToInventory(Inventory inventoryToMoveTo) 
+    {
+        wherItemIsStored.MoveItemToOtherInventory(inventoryToMoveTo, this);
     }
 }
  
