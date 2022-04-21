@@ -35,7 +35,7 @@ public class GridManager : MonoBehaviour
     private void CreateRoom()
     {
         GameObject parent = new GameObject("Room");
-        parent.transform.parent = GameObject.Find("Combat Room").transform;
+        parent.transform.parent = GameObject.Find("Combat Parent").transform;
         for (int i = 0; i < ROOM_WIDTH * ROOM_HEIGHT; i++)
         {
             Tile temp = Instantiate(tilePrefab, new Vector2(-ROOM_WIDTH / 2.0f + i % ROOM_WIDTH + 0.5f, ROOM_HEIGHT / 2.0f - i / ROOM_WIDTH), Quaternion.identity, parent.transform).GetComponentInParent<Tile>();
@@ -101,10 +101,11 @@ public class GridManager : MonoBehaviour
 
     public Tile GetTileWorld(Vector2 position)
     {
-        if (position.x < -ROOM_WIDTH / 2.0f || position.x > ROOM_WIDTH / 2.0f || position.y < -ROOM_HEIGHT / 2.0f || position.y > ROOM_HEIGHT / 2.0f)
+        if (position.x < -ROOM_WIDTH / 2.0f || position.x > ROOM_WIDTH / 2.0f || position.y <= -ROOM_HEIGHT / 2.0f || position.y > ROOM_HEIGHT / 2.0f)
             return null;
 
         int index = (int)(ROOM_WIDTH / 2.0f + position.x + (ROOM_HEIGHT / 2.0f - position.y) * ROOM_WIDTH);
+        Debug.Log(index + " : " + position);
         return tileList[index];
     }
     public Tile GetTileWorldFuzzy(Vector2 position) 

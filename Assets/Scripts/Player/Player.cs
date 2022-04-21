@@ -94,6 +94,8 @@ public class Player : Entity
         if (!tile || !tile.IsWalkable())
             return;
 
+        Debug.Log("A: " + tile.transform.position);
+
         if (!currentTile.orthogonalNeighbors.Contains(tile))
             return;
 
