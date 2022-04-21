@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class DungeonManager : MonoBehaviour
 {
+    [SerializeField] private GameObject dungeonParent;
 
-    void Start()
+
+    [Header("Singleton")]
+    public static DungeonManager instance;
+
+    void Awake()
     {
-        
+        if (instance)
+            return;
+
+        instance = this;
     }
 
     void Update()
@@ -19,8 +27,14 @@ public class DungeonManager : MonoBehaviour
 
             if (hit)
             {
-                hit.transform.GetComponent<DungeonNode>().EnterNode();
+                if (hit.transform.GetComponent<DungeonNode>())  // tmp
+                    hit.transform.GetComponent<DungeonNode>().EnterNode();
             }
         }
+    }
+
+    public void ToggleDungeonVisibility(bool active)
+    {
+        dungeonParent.SetActive(active);
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e1abec32d62953409dee2ebcae7439c, type: 3}
   m_Name: Combat Room
   m_EditorClassIdentifier: 
-  roomName: Nice
+  roomName: BARREL
   roomDescription: ye
   tiles:
   - wall: 0

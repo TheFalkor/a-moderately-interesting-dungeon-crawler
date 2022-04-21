@@ -39,6 +39,7 @@ public abstract class Occupant : MonoBehaviour
 
     public virtual void TakeDamage(Damage damage)
     {
+        Debug.Log(damage.damage + transform.name);
         if (originType == damage.origin && damage.origin != DamageOrigin.NEUTRAL)
             return; 
 

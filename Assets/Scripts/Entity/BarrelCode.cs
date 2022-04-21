@@ -80,6 +80,7 @@ public class BarrelCode : Occupant
                     }
                 }
             }
+            
             foreach (Tile t in allHitTiles)
             {
                 t.AttackTile(barrelDamage);

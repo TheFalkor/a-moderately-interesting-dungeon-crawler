@@ -13,7 +13,7 @@ public class Player : Entity
     private const bool tempAllowCorner = false;
 
 
-    void Start()
+    public void Setup()
     {
         base.Initialize();
 
@@ -94,8 +94,6 @@ public class Player : Entity
         if (!tile || !tile.IsWalkable())
             return;
 
-        Debug.Log("A: " + tile.transform.position);
-
         if (!currentTile.orthogonalNeighbors.Contains(tile))
             return;
 
@@ -132,7 +130,7 @@ public class Player : Entity
             return;
 
         print("ATTACKED: " + tile.GetPosition());
-        tile.AttackTile(new Damage(999, DamageOrigin.FRIENDLY));
+        tile.AttackTile(new Damage(baseMeleeDamage, DamageOrigin.FRIENDLY));
     }
 
     private void HighlightDecision(HighlightType type, bool allowCorners = false)

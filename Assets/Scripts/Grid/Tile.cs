@@ -6,21 +6,27 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     private Vector2Int gridPosition = Vector2Int.zero;
-    private bool isWalkable;
+    private bool isWalkable = true;
     private Occupant occupant;
     [HideInInspector] public List<Tile> orthogonalNeighbors = new List<Tile>();
     [HideInInspector] public List<Tile> diagonalNeighbors = new List<Tile>();
 
 
-    public void Initialize(Vector2Int pos, bool walkable /*Sprite SO*/)
+    public void Initialize(Vector2Int pos)
     {
         gridPosition = pos;
-        isWalkable = walkable;
+    }
 
-        if (!walkable)
+    public void Setup(bool wall)
+    {
+        isWalkable = !wall;
+
+        if (isWalkable)
+            GetComponent<SpriteRenderer>().color = Color.white;
+        else
             GetComponent<SpriteRenderer>().color = Color.black;
-        // randomize sprite
-        // GetComponent<SpriteRenderer>().sprite = null;
+
+        occupant = null;
     }
     
     public bool IsWalkable()

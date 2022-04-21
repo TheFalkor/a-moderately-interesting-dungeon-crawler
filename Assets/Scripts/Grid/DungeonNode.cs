@@ -28,10 +28,11 @@ public class DungeonNode : MonoBehaviour
     {
         if (completed)
             return;
-        Debug.Log("START DUNGEON: " + room.roomName);
-        // CombatManager.StartCombat();
 
-        MarkCompleted();    // tmp
+        CombatManager.instance.StartCombat(room);
+        DungeonManager.instance.ToggleDungeonVisibility(false);
+
+        //MarkCompleted();    // tmp
     }
 
     public void MarkCompleted()
