@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AudioKor</name>
+    </assembly>
+    <members>
+        <member name="T:AudioKorLib.Enums.Track">
+            <summary>
+            Used to specify which Audio Track to affect.
+            </summary>
+        </member>
+        <member name="M:AudioKorLib.Interfaces.IAudioKor.PlayMusic(System.String)">
+            <summary>
+            Starts a track that plays music.
+            </summary>
+            <param name="musicName">The music asset to be played.</param>
+        </member>
+        <member name="M:AudioKorLib.Interfaces.IAudioKor.PlayMusic(System.String,AudioKorLib.Enums.Track)">
+            <summary>
+            Starts a track that plays music.
+            </summary>
+            <param name="musicName">The music asset to be played.</param>
+            <param name="track">The track that will be used.</param>
+        </member>
+        <member name="M:AudioKorLib.Interfaces.IAudioKor.PauseMusic">
+            <summary>
+            Pauses music and ambience playing from all tracks.
+            </summary>
+        </member>
+        <member name="M:AudioKorLib.Interfaces.IAudioKor.PauseMusic(AudioKorLib.Enums.Track)">
+            <summary>
+            Pauses music and ambience playing from one track.
+            </summary>
+            <param name="track">The track that will be paused.</param>
+        </member>
+    </members>
+</doc>
