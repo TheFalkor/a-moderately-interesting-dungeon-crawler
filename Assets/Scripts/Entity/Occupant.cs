@@ -18,6 +18,8 @@ public abstract class Occupant : MonoBehaviour
     private readonly List<StatusEffect> activeStatusEffects = new List<StatusEffect>();
     // StatusType immunity list
 
+    protected SpriteRenderer render;
+
 
     public virtual void Initialize()
     {
@@ -30,6 +32,9 @@ public abstract class Occupant : MonoBehaviour
 
         currentTile = GridManager.instance.GetTileWorld(transform.position);
         currentTile.SetOccupant(this);
+
+        render = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        render.sortingOrder = currentTile.GetPosition().y + 2;
     }
 
     public virtual void TakeDamage(Damage damage)

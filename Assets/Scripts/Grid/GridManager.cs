@@ -35,6 +35,7 @@ public class GridManager : MonoBehaviour
     private void CreateRoom()
     {
         GameObject parent = new GameObject("Room");
+        parent.transform.parent = GameObject.Find("Combat Room").transform;
         for (int i = 0; i < ROOM_WIDTH * ROOM_HEIGHT; i++)
         {
             Tile temp = Instantiate(tilePrefab, new Vector2(-ROOM_WIDTH / 2.0f + i % ROOM_WIDTH + 0.5f, ROOM_HEIGHT / 2.0f - i / ROOM_WIDTH), Quaternion.identity, parent.transform).GetComponentInParent<Tile>();
