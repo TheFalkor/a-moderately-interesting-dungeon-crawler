@@ -20,7 +20,7 @@ public abstract class Occupant : MonoBehaviour
     protected SpriteRenderer render;
     protected Tile currentTile;
     private readonly List<StatusEffect> activeStatusEffects = new List<StatusEffect>();
-    //protected Inventory inventory = new Inventory(); //curently only player use inventory. Will move things here later.
+    protected Inventory inventory;  //curently only player use inventory. 
     // StatusType immunity list
 
 
@@ -94,5 +94,37 @@ public abstract class Occupant : MonoBehaviour
     {
         Destroy(gameObject);
     }
+    public void GiveItem(InventoryItem item)
+    {
+        if (inventory != null)
+        {
+            inventory.AddItem(item);
+        }
+    }
 
+    public virtual void UseItem(int index)
+    {
+        if (inventory != null)
+        {
+            inventory.UseItem(index);
+        }
+
+    }
+    protected virtual void UpdateStats() 
+    {
+        
+        maxhealth = baseStat.maxHealth;
+        defense = baseStat.defense;
+        baseMeleeDamage = baseStat.baseMeleeDamage;
+        if (inventory != null) 
+        {
+            if (inventory.HasEquipmentInventory()) 
+            {
+                maxhealth += inventory.EquipedItemsStatValue(StatType.MAX_HEALTH);
+                defense += inventory.EquipedItemsStatValue(StatType.DEFENSE);
+                baseMeleeDamage += inventory.EquipedItemsStatValue(StatType.ATTACK);
+            }
+        }
+        //baseRangeDamage = baseStat.baseRangeDamage;
+    }
 }

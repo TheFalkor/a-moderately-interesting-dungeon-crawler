@@ -10,24 +10,29 @@ public class Player : Entity
     private int movementPoints = 1;
     private bool attackMode = false;
     private const bool tempAllowCorner = false;
+    
+    protected Inventory inventory=new Inventory();
 
     [Header("Inventory")]
-    protected Inventory inventory=new Inventory();
+    //protected Inventory inventory=new Inventory();
     private NonFinalInventoryInterface face;//temporary and needs to be reworked
     public List<ScriptableItem> startingInventory;
 
 
     public void Setup()
     {
+        
         base.Initialize();
 
         CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
         CombatUI.instance.UpdateAttack(baseMeleeDamage);    // no
         CombatUI.instance.UpdateDefense(defense);
+        inventory = new Inventory();//only player is currently using inventory. can be moved to a parent class
 
         inventory.SetOwner(this);
         inventory.CreateEquipmentInventory();
         GiveStartingItems();
+        
         face = gameObject.GetComponent<NonFinalInventoryInterface>();
         face.UpdateSprites();
     }
@@ -89,7 +94,7 @@ public class Player : Entity
                 MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.right));
             }
         }
-        
+
 
         return false;
     }
@@ -201,37 +206,42 @@ public class Player : Entity
         // End game
     }
 
-    public void UseItem(int index) 
+    public override void UseItem(int index)
     {
-        inventory.UseItem(index);
-        if (face) 
+        base.UseItem(index);
+        UpdateStats();
+        if (face)
         {
             face.UpdateSprites();
         }
     }
-    public Sprite GetItemImage(int index) 
+    public Sprite GetItemImage(int index)
     {
-        InventoryItem item = inventory.GetItem(index);
-        if (item != null) 
+        if (inventory != null) 
         {
-            return item.GetSprite();
+            InventoryItem item = inventory.GetItem(index);
+            if (item != null)
+            {
+                return item.GetSprite();
+            }
         }
-        
         return null;
-        
+
     }
-    public void GiveItem(InventoryItem item) 
-    {
-        inventory.AddItem(item);
-    }
+   
     public void GiveStartingItems()
     {
-
         foreach (ScriptableItem item in startingInventory)
         {
             GiveItem(item.CreateItem());
         }
 
     }
-
+    protected override void UpdateStats()
+    {
+        base.UpdateStats();
+        CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
+        CombatUI.instance.UpdateAttack(baseMeleeDamage);
+        CombatUI.instance.UpdateDefense(defense);
+    }
 }

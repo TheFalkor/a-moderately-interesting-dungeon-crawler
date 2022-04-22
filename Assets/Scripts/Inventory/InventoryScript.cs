@@ -87,5 +87,13 @@ using UnityEngine;
         }
         return 0;
     }
+    public bool HasEquipmentInventory() 
+    {
+        if (myEquipedItems != null) 
+        {
+            return true;
+        }
+        return false;
+    }
 }
 

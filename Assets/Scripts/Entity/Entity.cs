@@ -84,4 +84,12 @@ public abstract class Entity : Occupant
         currentTile = GridManager.instance.GetTileWorld(targetPosition);
         currentTile.SetOccupant(this);
     }
+
+    protected override void UpdateStats()
+    {
+        base.UpdateStats();
+        maxhealth += classStat.bonusHealth;
+        defense += classStat.bonusDefense;
+        baseMeleeDamage += classStat.bonusMeleeDamage;
+    }
 }

@@ -94,6 +94,6 @@ public class CombatUI : MonoBehaviour
 
     public void RotatePortrait(RectTransform transform)
     {
-        transform.eulerAngles += new Vector3(0, 0, 90);
+        transform.eulerAngles += new Vector3(0, 0, -90);
     }
 }
