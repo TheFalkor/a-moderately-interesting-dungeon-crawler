@@ -5,12 +5,16 @@ using UnityEngine;
 
 public class Player : Entity
 {
-
     [Header("Turn variables")]
     private int actionPoints = 2;
     private int movementPoints = 1;
     private bool attackMode = false;
     private const bool tempAllowCorner = false;
+
+    [Header("Inventory")]
+    protected Inventory inventory=new Inventory();
+    private NonFinalInventoryInterface face;//temporary and needs to be reworked
+    public List<ScriptableItem> startingInventory;
 
 
     public void Setup()
@@ -20,6 +24,12 @@ public class Player : Entity
         CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
         CombatUI.instance.UpdateAttack(baseMeleeDamage);    // no
         CombatUI.instance.UpdateDefense(defense);
+
+        inventory.SetOwner(this);
+        inventory.CreateEquipmentInventory();
+        GiveStartingItems();
+        face = gameObject.GetComponent<NonFinalInventoryInterface>();
+        face.UpdateSprites();
     }
 
 
@@ -96,6 +106,12 @@ public class Player : Entity
         if (!tile || !tile.IsWalkable())
             return;
 
+        if (tile.IsOccupied())
+        {
+            TargetTile(tile, true);
+            return;
+        }
+
         if (!currentTile.orthogonalNeighbors.Contains(tile))
             return;
 
@@ -132,6 +148,7 @@ public class Player : Entity
             return;
 
         print("ATTACKED: " + tile.GetPosition());
+        actionPoints--;
         tile.AttackTile(new Damage(baseMeleeDamage, DamageOrigin.FRIENDLY));
     }
 
@@ -183,4 +200,38 @@ public class Player : Entity
         Debug.Log("player died");
         // End game
     }
+
+    public void UseItem(int index) 
+    {
+        inventory.UseItem(index);
+        if (face) 
+        {
+            face.UpdateSprites();
+        }
+    }
+    public Sprite GetItemImage(int index) 
+    {
+        InventoryItem item = inventory.GetItem(index);
+        if (item != null) 
+        {
+            return item.GetSprite();
+        }
+        
+        return null;
+        
+    }
+    public void GiveItem(InventoryItem item) 
+    {
+        inventory.AddItem(item);
+    }
+    public void GiveStartingItems()
+    {
+
+        foreach (ScriptableItem item in startingInventory)
+        {
+            GiveItem(item.CreateItem());
+        }
+
+    }
+
 }

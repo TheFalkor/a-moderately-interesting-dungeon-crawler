@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class JustTestingThingsScript : MonoBehaviour
+public class JustTestingThingsScript : MonoBehaviour// script is just for testing and is not suposed to be implimented.
 {
-   // remember to test health potion(Potato)
-    SkillTree tree = new SkillTree();
-    public ScriptableItem healtpotion;
+   
+    
+    public List<ScriptableItem> itemsToAdd;
     Inventory myInventory = new Inventory();
     public Occupant player;
+    int nr=0;
     // Start is called before the first frame update
     void Start()
     {
         myInventory.SetOwner(player);
-        myInventory.AddItem(healtpotion.CreateItem());
+        myInventory.CreateEquipmentInventory();
+        foreach (ScriptableItem s in itemsToAdd) 
+        {
+            myInventory.AddItem(s.CreateItem());
+        }
     }
 
     // Update is called once per frame
@@ -22,44 +27,54 @@ public class JustTestingThingsScript : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Alpha1)) 
         {
-            tree.UnlockSkill(SkillId.DASH);
+           myInventory.UseItem(0);
         }
         if (Input.GetKeyUp(KeyCode.Alpha2))
         {
-            tree.RefundSkill(SkillId.DASH);
+            myInventory.UseItem(1);
         }
         if (Input.GetKeyUp(KeyCode.Alpha3))
         {
-            tree.UnlockSkill(SkillId.TIME_BUBBLE);
+            myInventory.UseItem(2);
         }
         if (Input.GetKeyUp(KeyCode.Alpha4)) 
         {
-            tree.RefundSkill(SkillId.TIME_BUBBLE);
+            myInventory.UseItem(3);
         }
 
+        if (Input.GetKeyUp(KeyCode.Alpha5))
+        {
+            myInventory.UseItem(4);
+        }
         if (Input.GetKeyUp(KeyCode.Alpha6))
         {
-            myInventory.UseItem(0);
+            myInventory.UseItem(5);
         }
-
+        if (Input.GetKeyUp(KeyCode.Alpha7))
+        {
+            myInventory.UseItem(6);
+        }
         if (Input.GetKeyUp(KeyCode.Alpha8))
         {
-            tree.TakeSkillPoints(1);
+            
         }
         if (Input.GetKeyUp(KeyCode.Alpha9))
         {
-            tree.GiveSkillPoints(1);
+            
         }
         
 
         if (Input.GetKeyUp(KeyCode.Alpha0)) 
         {
-            for(int i = 0; i < SkillTree.numberOfSkills; i++) 
+            
+            for (int i=0;i<myInventory.GetAmountOfItems();i++) 
             {
-                SkillId currentSkill = (SkillId)i;
-                Debug.Log(currentSkill.ToString() + ":" + tree.HasSkill(currentSkill));
+                Debug.Log("test:"+nr+" Slot " + i + ":" + myInventory.GetItem(i).GetName());
             }
-            Debug.Log("Skillpoints left:" + tree.GetSkillPoints());
+            Debug.Log("test:" + nr + " attack:"+myInventory.EquipedItemsStatValue(StatType.ATTACK)+
+                " defense:"+myInventory.EquipedItemsStatValue(StatType.DEFENSE)+" max health:"+
+                myInventory.EquipedItemsStatValue(StatType.MAX_HEALTH)); 
+            nr++;
         }
     }
 }

@@ -41,8 +41,25 @@ public class Consumable : InventoryItem
     public override InventoryItem Copy()
     {
     Consumable copy = new Consumable();
-        copy.CopyValues(this);
+        copy.CopyValuesConsumable(this);
         return copy;
     }
 
+    public void CopyValuesConsumable(Consumable itemToCopyFrom)
+    {
+       base.CopyValues(itemToCopyFrom);
+       itemToCopyFrom.CopyEffectsTo(this);
+    }
+    public void CopyEffectsTo(Consumable itemToCopyTo)
+    {
+        itemToCopyTo.ClearEffectList();
+        foreach (ConsumableEffectStruct effect in effects)
+        {
+            itemToCopyTo.AddEffectToConsumable(effect);
+        }
+    }
+    public void ClearEffectList() 
+    {
+        effects.Clear();
+    }
 }

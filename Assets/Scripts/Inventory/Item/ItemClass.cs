@@ -11,7 +11,7 @@ public class InventoryItem //: ScriptableObject
     string itemName;
     ItemType typeOfItem;
     Sprite sprite;
-    Inventory wherItemIsStored;
+    protected Inventory wherItemIsStored;
     public InventoryItem()
     {
         SetName("This item is buged");
@@ -20,6 +20,14 @@ public class InventoryItem //: ScriptableObject
     public void SetSprite(Sprite newSprite) 
     {
         sprite = newSprite;
+    }
+    public Sprite GetSprite() 
+    {
+        if (sprite == null) 
+        {
+            Debug.Log("nill");
+        }
+        return sprite;
     }
     public void SetName(string newName)
     {
@@ -47,6 +55,7 @@ public class InventoryItem //: ScriptableObject
     {
         itemName = itemToCopyFrom.itemName;
         typeOfItem = itemToCopyFrom.typeOfItem;
+        sprite = itemToCopyFrom.GetSprite();
     }
 
     public virtual void UseItem(Occupant user)

@@ -8,18 +8,21 @@ public abstract class Occupant : MonoBehaviour
     [SerializeField] protected BaseStatsSO baseStat;
     [SerializeField] private GameObject damagePopup;
 
-
-    protected Tile currentTile;
+    [Header("Occupant Stats")]
     protected int currentHealth;
     protected int maxhealth;
     protected int defense;
     protected int baseMeleeDamage;
     protected int baseRangeDamage;
     protected DamageOrigin originType;
+
+    [Header("Runtime Variables")]
+    protected SpriteRenderer render;
+    protected Tile currentTile;
     private readonly List<StatusEffect> activeStatusEffects = new List<StatusEffect>();
+    //protected Inventory inventory = new Inventory(); //curently only player use inventory. Will move things here later.
     // StatusType immunity list
 
-    protected SpriteRenderer render;
 
 
     public virtual void Initialize()

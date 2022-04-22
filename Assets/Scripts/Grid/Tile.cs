@@ -31,7 +31,7 @@ public class Tile : MonoBehaviour
     
     public bool IsWalkable()
     {
-        return isWalkable && !occupant;
+        return isWalkable;
     }
 
     public bool IsOccupied()
@@ -68,9 +68,12 @@ public class Tile : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().color = new Color(0.75f, 0.5f, 0.5f);
         }
-        else if (!IsOccupied() && type == HighlightType.WALKABLE)
+        else if (type == HighlightType.WALKABLE)
         {
-            GetComponent<SpriteRenderer>().color = new Color(0.75f, 0.75f, 0.75f);
+            if (IsOccupied())
+                GetComponent<SpriteRenderer>().color = new Color(0.75f, 0.5f, 0.5f);
+            else
+                GetComponent<SpriteRenderer>().color = new Color(0.75f, 0.75f, 0.75f);
         }
     }
 

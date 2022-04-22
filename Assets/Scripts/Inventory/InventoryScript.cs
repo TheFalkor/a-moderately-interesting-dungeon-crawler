@@ -7,6 +7,7 @@ using UnityEngine;
 {
     List<InventoryItem> inventory = new List<InventoryItem>();
     Occupant owner = null;
+    EquipmentInventory myEquipedItems;
     public void SetOwner(Occupant newOwner) 
     {
         owner = newOwner;
@@ -42,10 +43,49 @@ using UnityEngine;
     {
         if (RemoveItem(itemToMove)) 
         {
-            AddItem(itemToMove);
+            inventoryToMoveTo.AddItem(itemToMove);
             return true;
         }
         return false;
+    }
+    public bool CreateEquipmentInventory() 
+    {
+        if (myEquipedItems == null) 
+        {
+            myEquipedItems = new EquipmentInventory(this);
+            return true;
+        }
+        return false;
+    }
+
+    public bool Equip(Equipment equipment) 
+    {
+        if (myEquipedItems != null) 
+        {
+            return myEquipedItems.Equip(equipment);
+        }
+        return false;
+    }
+    public int GetAmountOfItems() 
+    {
+        return inventory.Count;
+    }
+    public InventoryItem GetItem(int index) 
+    {
+        if (index >= 0 && index < inventory.Count) 
+        {
+            return inventory[index];
+        }
+        return null;
+    }
+
+    public int EquipedItemsStatValue(StatType stat) 
+    {
+        if (myEquipedItems != null) 
+        {
+            return myEquipedItems.GetStatModifier(stat);
+        }
+        return 0;
     }
 }
 
