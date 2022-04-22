@@ -6,14 +6,20 @@ public class DamagePopup : MonoBehaviour
 {
     public void Setup(int damage, bool isPlayer)
     {
-        int factor = Random.Range(0, 2) == 1 ? -1 : 1;
-        GetComponent<Rigidbody2D>().AddForce(new Vector2(150 * factor, 600));
-        Destroy(gameObject, 0.75f);
+        float factor = Random.Range(-1.0f, 1.0f);
 
+        if (factor < 0)
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(-25 + 100 * factor, 600));
+        else
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(25 + 100 * factor, 600));
+
+        TextMesh mesh = transform.GetChild(0).GetComponent<TextMesh>();
         if (isPlayer)
-            GetComponent<TextMesh>().color = new Color(0, 185, 0);
+            mesh.color = new Color(0, 185 / 255f, 0);
 
-        GetComponent<TextMesh>().text = "" + damage;
+        mesh.text = "-" + damage;
+
+        Destroy(gameObject, 0.75f);
     }
 
 }

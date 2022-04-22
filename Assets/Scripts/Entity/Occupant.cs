@@ -35,7 +35,7 @@ public abstract class Occupant : MonoBehaviour
         currentTile.SetOccupant(this);
 
         render = transform.GetChild(0).GetComponent<SpriteRenderer>();
-        render.sortingOrder = currentTile.GetPosition().y + 2;
+        render.sortingOrder = currentTile.GetPosition().y - 10;
     }
 
     public virtual void TakeDamage(Damage damage)
@@ -44,8 +44,8 @@ public abstract class Occupant : MonoBehaviour
             return; 
 
         currentHealth -= damage.damage;
-        print("took damage " + transform.name);
-        Instantiate(damagePopup, transform.position + new Vector3(0, 1), Quaternion.identity).GetComponent<DamagePopup>().Setup(damage.damage, false);
+
+        Instantiate(damagePopup, transform.position + new Vector3(0, 0.5f), Quaternion.identity).GetComponent<DamagePopup>().Setup(damage.damage, damage.origin == DamageOrigin.FRIENDLY);
 
         if (currentHealth <= 0)
         {
