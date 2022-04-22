@@ -84,7 +84,12 @@ public class GridManager : MonoBehaviour
         {
             tileList[i].Setup(room.tiles[i].wall);
 
-            // Spawn entities from room.tiles
+            if (!room.tiles[i].wall && room.tiles[i].occupantPrefab)
+            {
+                GameObject temp = Instantiate(room.tiles[i].occupantPrefab, tileList[i].transform.position, Quaternion.identity);
+
+                // CombatManager.AddEnemy(temp.GetComponent<Occupant>());
+            }
         }
 
     }

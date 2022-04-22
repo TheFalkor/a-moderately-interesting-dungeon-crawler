@@ -6,6 +6,7 @@ public abstract class Occupant : MonoBehaviour
 {
     [Header("Stats Reference")]
     [SerializeField] protected BaseStatsSO baseStat;
+    [SerializeField] private GameObject damagePopup;
 
 
     protected Tile currentTile;
@@ -23,8 +24,8 @@ public abstract class Occupant : MonoBehaviour
 
     public virtual void Initialize()
     {
-        currentHealth = baseStat.currentHealth;
         maxhealth = baseStat.maxHealth;
+        currentHealth = maxhealth;
         defense = baseStat.defense;
         baseMeleeDamage = baseStat.baseMeleeDamage;
         baseRangeDamage = baseStat.baseRangeDamage;
@@ -39,11 +40,12 @@ public abstract class Occupant : MonoBehaviour
 
     public virtual void TakeDamage(Damage damage)
     {
-        Debug.Log(damage.damage + transform.name);
         if (originType == damage.origin && damage.origin != DamageOrigin.NEUTRAL)
             return; 
 
         currentHealth -= damage.damage;
+        print("took damage " + transform.name);
+        Instantiate(damagePopup, transform.position + new Vector3(0, 1), Quaternion.identity).GetComponent<DamagePopup>().Setup(damage.damage, false);
 
         if (currentHealth <= 0)
         {

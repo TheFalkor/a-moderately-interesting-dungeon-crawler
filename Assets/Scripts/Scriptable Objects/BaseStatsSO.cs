@@ -10,7 +10,6 @@ public class BaseStatsSO : ScriptableObject       // Race / Objects
     public Sprite entitySprite;
 
     [Header("Combat")]
-    public int currentHealth;
     public int maxHealth;
     public int defense;
     public int baseMeleeDamage;

@@ -28,6 +28,8 @@ public class Player : Entity
         if (IsBusy())
             return false;
 
+        if (Input.GetKeyUp(KeyCode.Space))
+            TakeDamage(new Damage(10, DamageOrigin.ENEMY, null));
 
         if (attackMode)
         {
