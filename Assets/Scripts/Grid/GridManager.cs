@@ -90,6 +90,8 @@ public class GridManager : MonoBehaviour
 
                 if (temp.GetComponent<Entity>())
                     CombatManager.instance.AddEntity(temp.GetComponent<Entity>());
+                else
+                    CombatManager.instance.AddOccupant(temp.GetComponent<Occupant>());
             }
         }
 

@@ -10,6 +10,10 @@ public class BarrelCode : Occupant
         DIAMOND,
         CIRCLE
     }
+
+    [Header("Audio")]
+    private AudioKor audioKor;
+
     //public int damageAmount= 10;//this is temporary. Should use the barrels damage stat.
     public int range=1;//in tiles
     public bool timeBomb = false;// temporary
@@ -50,6 +54,8 @@ public class BarrelCode : Occupant
         currentTile = theGrid.GetTileWorldFuzzy(transform.position);
         transform.position = new Vector3(currentTile.transform.position.x, currentTile.transform.position.y);
         currentTile.SetOccupant(this);
+
+        audioKor = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioKor>();
     }
     public void Explode()
     {
@@ -59,6 +65,8 @@ public class BarrelCode : Occupant
             Damage barrelDamage = new Damage();
             barrelDamage.damage = baseMeleeDamage;
             barrelDamage.origin = originType;
+
+            audioKor.PlaySFX("EXPLOSION");
             //no status effects
             List<Tile> allHitTiles = new List<Tile>();
             Vector2 myPosition = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);

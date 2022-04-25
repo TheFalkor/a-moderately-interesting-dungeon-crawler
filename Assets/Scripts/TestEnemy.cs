@@ -7,7 +7,7 @@ public class TestEnemy : Entity
     private bool turnEnded = false;
     private float timer = 0;
 
-    public override void ResetTurn()
+    public override void PreTurn()
     {
         currentMovementPoints = maxActionPoints;
         currentActionPoints = maxActionPoints;
@@ -24,8 +24,13 @@ public class TestEnemy : Entity
 
         timer += deltaTime;
 
-        if (timer > 5)
+        transform.Rotate(new Vector3(0, 0, Time.deltaTime * 450 * transform.localScale.x));
+
+        if (timer > 2.5f)
+        {
             turnEnded = true;
+            transform.eulerAngles = Vector3.zero;
+        }
 
         return false;
     }

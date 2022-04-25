@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Player : Entity
 {
+    [Header("Audio")]
+    private AudioKor audioKor;
+
     [Header("Turn variables")]
     private bool turnEnded = false;
     private bool attackMode = false;
@@ -32,12 +35,14 @@ public class Player : Entity
         
         face = gameObject.GetComponent<NonFinalInventoryInterface>();
         face.UpdateSprites();
+
+        audioKor = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioKor>();
     }
 
-    public override void ResetTurn()
+    public override void PreTurn()
     {
-        currentMovementPoints = maxMovementPoints;
-        currentActionPoints = maxActionPoints;
+        base.PreTurn();
+
         turnEnded = false;
 
         CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
@@ -65,10 +70,8 @@ public class Player : Entity
                     default: cornerAttack = false;break;
                 }
             }
-			if (currentActionPoints > 0) 
-            {
+            if (currentActionPoints > 0)
                 HighlightDecision(HighlightType.ATTACKABLE, cornerAttack);
-            }
             
 
             if (Input.GetMouseButtonUp(0))
@@ -101,19 +104,19 @@ public class Player : Entity
 
             if (Input.GetKeyUp(KeyCode.W))
             {
-                MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.up));
+                MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.up)); 
             }
             if (Input.GetKeyUp(KeyCode.A))
             {
-                MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.left));
+                MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.left)); 
             }
             if (Input.GetKeyUp(KeyCode.S))
             {
-                MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.down));
+                MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.down)); 
             }
             if (Input.GetKeyUp(KeyCode.D))
             {
-                MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.right));
+                MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.right)); 
             }
         }
 
@@ -129,6 +132,7 @@ public class Player : Entity
 
     public void EndTurn()
     {
+        ClearHightlight();
         turnEnded = true;
     }
 
@@ -151,6 +155,8 @@ public class Player : Entity
 
         Vector2Int deltaPosition = currentTile.GetPosition() - tile.GetPosition();
         Direction dir;
+
+        audioKor.PlaySFX("MOVE");
 
         if (deltaPosition.x < 0)
             dir = Direction.EAST;
@@ -186,11 +192,19 @@ public class Player : Entity
         if (!(currentTile.orthogonalNeighbors.Contains(tile)|| (allowCorners&& currentTile.diagonalNeighbors.Contains(tile))))
             return;
 
+        ClearHightlight();
+
         //currentActionPoints--;//moved to attack with weapon
         AttackWithWeapon(tile);
         CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
         
         //tile.AttackTile(new Damage(baseMeleeDamage, DamageOrigin.FRIENDLY));//also moved to attack with weapon
+
+        audioKor.PlaySFX("SLASH");
+
+        /*print("ATTACKED: " + tile.GetPosition());
+        actionPoints--;
+        tile.AttackTile(new Damage(baseMeleeDamage, DamageOrigin.FRIENDLY));*/
     }
 
     private void HighlightDecision(HighlightType type, bool allowCorners = false)

@@ -9,7 +9,7 @@ public class DungeonNode : MonoBehaviour
 
 
     [Header("Runtime Variables")]
-    private bool completed = true;
+    [HideInInspector] public bool completed = true;
 
 
     void Start()
@@ -24,14 +24,15 @@ public class DungeonNode : MonoBehaviour
         }
     }
 
-    public void EnterNode()
+    public bool EnterNode()
     {
         if (completed)
-            return;
+            return false;
 
         CombatManager.instance.StartCombat(room);
         DungeonManager.instance.ToggleDungeonVisibility(false);
 
+        return true;
         //MarkCompleted();    // tmp
     }
 

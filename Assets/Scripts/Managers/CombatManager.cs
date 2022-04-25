@@ -6,12 +6,14 @@ public class CombatManager : MonoBehaviour
 {
 
     [SerializeField] private GameObject combatParent;
+    [SerializeField] private Animator transitionAnimator;
 
     private Player player;
     private bool combatActive = false;
 
     private float combatIntroTimer = 0;
 
+    private List<Occupant> occupantList = new List<Occupant>();
     private List<Entity> entityList = new List<Entity>();
     private Queue<Entity> turnQueue = new Queue<Entity>();
 
@@ -44,15 +46,22 @@ public class CombatManager : MonoBehaviour
 
         if (turnQueue.Count == 0)
         {
+            foreach (Occupant occ in occupantList)
+                occ.UpdateStatusEffects();
+
+            player.PreTurn();
+
             foreach (Entity entity in entityList)
             {
                 turnQueue.Enqueue(entity);
-                entity.ResetTurn();
             }
         }
 
         if (turnQueue.Peek().Tick(Time.deltaTime))
+        {
             turnQueue.Dequeue();
+            turnQueue.Peek().PreTurn();
+        }
     }
 
     public void StartCombat(CombatRoomSO room)
@@ -68,8 +77,10 @@ public class CombatManager : MonoBehaviour
 
         player.Setup();
 
-        combatIntroTimer = 1.5f;
+        combatIntroTimer = 0.5f;
         combatActive = true;
+
+        transitionAnimator.SetBool("Closed", false);
 
         // Setup turns and other preparations
     }
@@ -92,5 +103,15 @@ public class CombatManager : MonoBehaviour
         }
 
         turnQueue = newQueue;
+    }
+
+    public void AddOccupant(Occupant occupant)
+    {
+        occupantList.Add(occupant);
+    }
+
+    public void RemoveOccupant(Occupant occupant)
+    {
+        occupantList.Remove(occupant);
     }
 }

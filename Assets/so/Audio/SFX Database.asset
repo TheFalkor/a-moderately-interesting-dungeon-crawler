@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2138287151, guid: 9d5f5acdd76bd694394d48216ebc699f, type: 3}
+  m_Name: SFX Database
+  m_EditorClassIdentifier: 
+  soundEffectDatabase:
+  - soundEffectName: MOVE
+    audioClip: {fileID: 8300000, guid: db7145ebf3b2640d199b86db21f5ba52, type: 3}
+    volume: 0.8
+    pitch: 0.8
+  - soundEffectName: SLASH
+    audioClip: {fileID: 8300000, guid: edac14f988ce749c0b7a0bef72987fce, type: 3}
+    volume: 1
+    pitch: 1
+  - soundEffectName: EXPLOSION
+    audioClip: {fileID: 8300000, guid: d5719438194774db182c1af55b6cea20, type: 3}
+    volume: 1
+    pitch: 1
+  - soundEffectName: DEATH
+    audioClip: {fileID: 8300000, guid: 7020dd2811638411d9e693e9c2e9cae9, type: 3}
+    volume: 1
+    pitch: 1

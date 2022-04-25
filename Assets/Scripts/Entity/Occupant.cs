@@ -42,6 +42,11 @@ public abstract class Occupant : MonoBehaviour
         render.sortingOrder = currentTile.GetPosition().y - 10;
     }
 
+    public void UpdateStatusEffects()
+    {
+        // Tick all status effects
+    }
+
     public virtual void TakeDamage(Damage damage)
     {
         if (originType == damage.origin && damage.origin != DamageOrigin.NEUTRAL)
