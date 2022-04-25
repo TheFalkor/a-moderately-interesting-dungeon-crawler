@@ -6,27 +6,24 @@ using UnityEngine;
 public class Player : Entity
 {
     [Header("Turn variables")]
-    private int actionPoints = 2;
-    private int movementPoints = 1;
+    private bool turnEnded = false;
     private bool attackMode = false;
     private const bool tempAllowCorner = false;
     
-    protected Inventory inventory=new Inventory();
-
     [Header("Inventory")]
-    //protected Inventory inventory=new Inventory();
+    
     private NonFinalInventoryInterface face;//temporary and needs to be reworked
     public List<ScriptableItem> startingInventory;
 
 
     public void Setup()
     {
-        
         base.Initialize();
 
         CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
         CombatUI.instance.UpdateAttack(baseMeleeDamage);    // no
         CombatUI.instance.UpdateDefense(defense);
+        CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
         inventory = new Inventory();//only player is currently using inventory. can be moved to a parent class
 
         inventory.SetOwner(this);
@@ -37,9 +34,20 @@ public class Player : Entity
         face.UpdateSprites();
     }
 
-
-    public bool Tick(float deltaTime)
+    public override void ResetTurn()
     {
+        currentMovementPoints = maxMovementPoints;
+        currentActionPoints = maxActionPoints;
+        turnEnded = false;
+
+        CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
+    }
+
+    public override bool Tick(float deltaTime)
+    {
+        if (turnEnded)
+            return true;
+
         if (IsBusy())
             return false;
 
@@ -48,7 +56,20 @@ public class Player : Entity
 
         if (attackMode)
         {
-            HighlightDecision(HighlightType.ATTACKABLE, tempAllowCorner);
+            bool cornerAttack=false;
+            if (inventory != null) 
+            {
+                switch (inventory.GetEquipedWeaponType()) 
+                {
+                    case WeaponType.SWORD:cornerAttack = true; break;
+                    default: cornerAttack = false;break;
+                }
+            }
+			if (currentActionPoints > 0) 
+            {
+                HighlightDecision(HighlightType.ATTACKABLE, cornerAttack);
+            }
+            
 
             if (Input.GetMouseButtonUp(0))
             {
@@ -57,13 +78,14 @@ public class Player : Entity
 
                 if (hit)
                 {
-                    TargetTile(hit.transform.GetComponent<Tile>(), tempAllowCorner);
+                    TargetTile(hit.transform.GetComponent<Tile>(), cornerAttack);
                 }
             }
         }
         else
         {
-            HighlightDecision(HighlightType.WALKABLE);
+            if (currentActionPoints > 0 || currentMovementPoints > 0)
+                HighlightDecision(HighlightType.WALKABLE);
 
             if (Input.GetMouseButtonUp(0))
             {
@@ -95,7 +117,6 @@ public class Player : Entity
             }
         }
 
-
         return false;
     }
 
@@ -106,8 +127,16 @@ public class Player : Entity
         ClearHightlight();
     }
 
+    public void EndTurn()
+    {
+        turnEnded = true;
+    }
+
     private void MoveToTile(Tile tile)
     {
+        if (currentActionPoints == 0 && currentMovementPoints == 0)
+            return;
+
         if (!tile || !tile.IsWalkable())
             return;
 
@@ -132,10 +161,12 @@ public class Player : Entity
         else
             dir = Direction.NORTH;
 
-        if (movementPoints > 0)
-            movementPoints--;
+        if (currentMovementPoints > 0)
+            currentMovementPoints--;
         else
-            actionPoints--;
+            currentActionPoints--;
+
+        CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
 
         ClearHightlight();
         Move(dir);
@@ -143,18 +174,23 @@ public class Player : Entity
 
     private void TargetTile(Tile tile, bool allowCorners = false)
     {
+        if (currentActionPoints == 0)
+            return;
+
         if (!tile || !tile.IsOccupied())
             return;
 
-        if (!allowCorners && currentTile.diagonalNeighbors.Contains(tile))
+        //if (!allowCorners && currentTile.diagonalNeighbors.Contains(tile)) //had to move down to next if statment, otherwise corners do not work.
+        //    return;
+
+        if (!(currentTile.orthogonalNeighbors.Contains(tile)|| (allowCorners&& currentTile.diagonalNeighbors.Contains(tile))))
             return;
 
-        if (!currentTile.orthogonalNeighbors.Contains(tile))
-            return;
-
-        print("ATTACKED: " + tile.GetPosition());
-        actionPoints--;
-        tile.AttackTile(new Damage(baseMeleeDamage, DamageOrigin.FRIENDLY));
+        //currentActionPoints--;//moved to attack with weapon
+        AttackWithWeapon(tile);
+        CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
+        
+        //tile.AttackTile(new Damage(baseMeleeDamage, DamageOrigin.FRIENDLY));//also moved to attack with weapon
     }
 
     private void HighlightDecision(HighlightType type, bool allowCorners = false)
@@ -208,6 +244,7 @@ public class Player : Entity
 
     public override void UseItem(int index)
     {
+        
         base.UseItem(index);
         UpdateStats();
         if (face)

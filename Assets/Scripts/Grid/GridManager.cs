@@ -88,7 +88,8 @@ public class GridManager : MonoBehaviour
             {
                 GameObject temp = Instantiate(room.tiles[i].occupantPrefab, tileList[i].transform.position, Quaternion.identity);
 
-                // CombatManager.AddEnemy(temp.GetComponent<Occupant>());
+                if (temp.GetComponent<Entity>())
+                    CombatManager.instance.AddEntity(temp.GetComponent<Entity>());
             }
         }
 

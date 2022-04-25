@@ -95,5 +95,10 @@ using UnityEngine;
         }
         return false;
     }
+
+    public WeaponType GetEquipedWeaponType() 
+    {
+        return myEquipedItems.GetEquipedWeaponType();
+    }
 }
 

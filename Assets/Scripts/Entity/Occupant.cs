@@ -4,9 +4,11 @@ using UnityEngine;
 
 public abstract class Occupant : MonoBehaviour
 {
+    [Header("Combat Effects")]
+    [SerializeField] private GameObject damagePopup;
+
     [Header("Stats Reference")]
     [SerializeField] protected BaseStatsSO baseStat;
-    [SerializeField] private GameObject damagePopup;
 
     [Header("Occupant Stats")]
     protected int currentHealth;
@@ -15,14 +17,13 @@ public abstract class Occupant : MonoBehaviour
     protected int baseMeleeDamage;
     protected int baseRangeDamage;
     protected DamageOrigin originType;
-
+    
     [Header("Runtime Variables")]
     protected SpriteRenderer render;
     protected Tile currentTile;
     private readonly List<StatusEffect> activeStatusEffects = new List<StatusEffect>();
     protected Inventory inventory;  //curently only player use inventory. 
     // StatusType immunity list
-
 
 
     public virtual void Initialize()
@@ -33,7 +34,7 @@ public abstract class Occupant : MonoBehaviour
         baseMeleeDamage = baseStat.baseMeleeDamage;
         baseRangeDamage = baseStat.baseRangeDamage;
         originType = baseStat.origin;
-
+        
         currentTile = GridManager.instance.GetTileWorld(transform.position);
         currentTile.SetOccupant(this);
 
@@ -94,6 +95,7 @@ public abstract class Occupant : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
     public void GiveItem(InventoryItem item)
     {
         if (inventory != null)
@@ -110,9 +112,9 @@ public abstract class Occupant : MonoBehaviour
         }
 
     }
+
     protected virtual void UpdateStats() 
     {
-        
         maxhealth = baseStat.maxHealth;
         defense = baseStat.defense;
         baseMeleeDamage = baseStat.baseMeleeDamage;

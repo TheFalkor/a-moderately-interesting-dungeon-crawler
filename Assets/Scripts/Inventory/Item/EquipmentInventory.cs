@@ -149,4 +149,13 @@ public class EquipmentInventory
     {
         target.CombineStats(combinedStatModifier);
     }
+
+    public WeaponType GetEquipedWeaponType()
+    {
+        if (weaponSlot != null) 
+        {
+            return weaponSlot.GetWeaponType();
+        }
+        return WeaponType.NONE;
+    }
 }

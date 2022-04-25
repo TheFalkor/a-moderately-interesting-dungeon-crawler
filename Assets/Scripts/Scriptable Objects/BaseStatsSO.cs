@@ -9,6 +9,11 @@ public class BaseStatsSO : ScriptableObject       // Race / Objects
     public string entityDescription;
     public Sprite entitySprite;
 
+    [Header("Stamina")]
+    public int actionPoints;
+    public int movementPoints;
+    public MovementTypes movementType;
+
     [Header("Combat")]
     public int maxHealth;
     public int defense;
@@ -16,9 +21,4 @@ public class BaseStatsSO : ScriptableObject       // Race / Objects
     public int baseRangeDamage;
     [Space]
     public DamageOrigin origin;
-
-
-    [Header("Movement")]
-    public int movementSpeed;
-    public MovementTypes movementType;
 }

@@ -6,6 +6,12 @@ public abstract class Entity : Occupant
 {
     [SerializeField] protected ClassStatsSO classStat;
 
+    [Header("Entity Stats")]
+    protected int maxMovementPoints;
+    protected int currentMovementPoints;
+    protected int maxActionPoints;
+    protected int currentActionPoints;
+
     [Header("Entity Settings")]
     private const float ANIMATED_MOVEMENT_SPEED = 3.5f;
 
@@ -24,9 +30,17 @@ public abstract class Entity : Occupant
         defense += classStat.bonusDefense;
         baseMeleeDamage += classStat.bonusMeleeDamage;
         baseRangeDamage += classStat.bonusRangeDamage;
-        
+
+        maxMovementPoints = baseStat.movementPoints;
+        currentMovementPoints = maxMovementPoints;
+        maxActionPoints = baseStat.actionPoints;
+        currentActionPoints = maxActionPoints;
+
         targetPosition = transform.position;
     }
+
+    public abstract bool Tick(float deltaTime);
+    public abstract void ResetTurn();
 
     private void Update()
     {
@@ -85,11 +99,66 @@ public abstract class Entity : Occupant
         currentTile.SetOccupant(this);
     }
 
+    protected override void Death()
+    {
+        CombatManager.instance.RemoveEntity(this);
+
+        base.Death();
+    }
+
     protected override void UpdateStats()
     {
         base.UpdateStats();
         maxhealth += classStat.bonusHealth;
         defense += classStat.bonusDefense;
         baseMeleeDamage += classStat.bonusMeleeDamage;
+        maxActionPoints = baseStat.actionPoints;
+        if (inventory != null ) 
+        {
+            if (inventory.GetEquipedWeaponType()==WeaponType.SWORD) 
+            {
+                maxActionPoints++;
+            }
+        }
+
+    }
+
+    protected void AttackWithWeapon(Tile tile)
+    {
+        if (inventory != null && inventory.HasEquipmentInventory())
+        {
+            switch (inventory.GetEquipedWeaponType())
+            {
+                case WeaponType.SWORD:AttackWithSword(tile); break;
+                default: AttackWithNone(tile); break;
+            }
+        }
+        else
+        {
+            AttackWithNone(tile);
+        }
+    }
+    protected void AttackWithNone(Tile tile) 
+    {
+        if (currentActionPoints > 0&& currentTile.orthogonalNeighbors.Contains(tile)) 
+        {
+            currentActionPoints--;
+            Attack(tile, new Damage(baseMeleeDamage, originType));
+        }
+    }
+
+    protected void AttackWithSword(Tile tile)
+    {
+        Debug.Log(1);
+        if (currentActionPoints>0)
+        {
+            Debug.Log(2);
+            if (currentTile.orthogonalNeighbors.Contains(tile) ||currentTile.diagonalNeighbors.Contains(tile) ) 
+            {
+                Debug.Log(3);
+                Attack(tile, new Damage(baseMeleeDamage, originType));
+                currentActionPoints--;
+            }
+        }
     }
 }

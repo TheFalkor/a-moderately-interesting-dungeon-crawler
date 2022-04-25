@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CoolestSword
   m_EditorClassIdentifier: 
   itemName: ULTRA MEGA ULTIMATE COOL SWORD
-  itemSprite: {fileID: 21300000, guid: b828eaaee8eb6444dbd5a02598bc3a25, type: 3}
+  itemSprite: {fileID: 21300000, guid: 92d9fa7d0faee584789ee94f0b02adbe, type: 3}
   typeOfEquipment: 0
   typeOfWeapon: 1
   bonusHealth: 200

@@ -10,6 +10,7 @@ public class CombatUI : MonoBehaviour
     private Text healthText;
     private Text attackText;
     private Text defenseText;
+    private Text actionPointText;
     [Space]
     [SerializeField] private Text weaponButtonText;
 
@@ -37,6 +38,7 @@ public class CombatUI : MonoBehaviour
         healthText = statsBox.transform.Find("Health Text").GetComponent<Text>();
         attackText = statsBox.transform.Find("Attack Text").GetComponent<Text>();
         defenseText = statsBox.transform.Find("Defense Text").GetComponent<Text>();
+        actionPointText = statsBox.transform.Find("Action Points Temp").GetComponent<Text>();
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
@@ -44,7 +46,7 @@ public class CombatUI : MonoBehaviour
     public void ToggleAttackMode()
     {
         attackMode = !attackMode;
-        UpdateAttacKButton();
+        UpdateAttackButton();
      
         player.SetAttackMode(attackMode);
     }
@@ -56,13 +58,18 @@ public class CombatUI : MonoBehaviour
         else
             attackMode = !attackMode;
 
-        UpdateAttacKButton();
+        UpdateAttackButton();
 
         selectedAbilityIndex = index;
         // Select
     }
 
-    private void UpdateAttacKButton()
+    public void EndPlayerTurn()
+    {
+        player.EndTurn();
+    }
+
+    private void UpdateAttackButton()
     {
         if (attackMode)
         {
@@ -88,6 +95,11 @@ public class CombatUI : MonoBehaviour
     public void UpdateDefense(int defense)
     {
         defenseText.text = "DEF: " + defense.ToString();
+    }
+
+    public void UpdateActionPoints(int movementPoints, int actionPoints)
+    {
+        actionPointText.text = "AP: " + actionPoints + "   MP: " + movementPoints;
     }
 
 
