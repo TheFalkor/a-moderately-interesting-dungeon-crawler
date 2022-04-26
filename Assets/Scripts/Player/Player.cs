@@ -8,31 +8,40 @@ public class Player : Entity
     [Header("Audio")]
     private AudioKor audioKor;
 
+    [SerializeField] protected ClassStatsSO classStat;
+
     [Header("Turn variables")]
     private bool turnEnded = false;
     private bool attackMode = false;
     private bool allowCorner = false;
     
+
     [Header("Inventory")]
     
     private NonFinalInventoryInterface face;//temporary and needs to be reworked
     public List<ScriptableItem> startingInventory;
 
-
-    public void Setup(BaseStatsSO baseStat = null, ClassStatsSO classStat = null)
+    List<InventoryItem> CombatUsableItems=new List<InventoryItem>();
+    public void Setup(BaseStatsSO newBaseStat = null, ClassStatsSO newClassStat = null)
     {
-        if (baseStat)
+        if (newBaseStat)
         {
-            this.baseStat = baseStat;
-            this.classStat = classStat;
-        }
+            baseStat = newBaseStat;
+            classStat = newClassStat;
+        }   
 
 
         // Temporary
-        transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = this.baseStat.entitySprite;
+        transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = baseStat.entitySprite;
         // !Temporary
 
         base.Initialize();
+
+        currentHealth += classStat.bonusHealth;
+        maxhealth += classStat.bonusHealth;
+        defense += classStat.bonusDefense;
+        baseMeleeDamage += classStat.bonusMeleeDamage;
+        baseRangeDamage += classStat.bonusRangeDamage;
 
         CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
         CombatUI.instance.UpdateAttack(baseMeleeDamage);    // no
@@ -41,7 +50,7 @@ public class Player : Entity
 
         face = gameObject.GetComponent<NonFinalInventoryInterface>();
         face.UpdateSprites();
-
+        
         audioKor = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioKor>();
     }
 
@@ -71,7 +80,11 @@ public class Player : Entity
             return false;
 
         if (Input.GetKeyUp(KeyCode.Space))
-            TakeDamage(new Damage(10, DamageOrigin.ENEMY, null));
+        {
+            DashAbility da = new DashAbility();
+
+            da.HighlightDecisions(currentTile);
+        }
 
         if (attackMode)
         {
@@ -278,16 +291,58 @@ public class Player : Entity
     public override void UseItem(int index)
     {
         base.UseItem(index);
-        UpdateStats();
+        UpdateCombatItems();
+        //UpdateStats();
         if (face)
         {
             face.UpdateSprites();
         }
     }
+    public override void UseItem(InventoryItem item)
+    {
+        base.UseItem(item);
+        UpdateCombatItems();
+        if (face) 
+        {
+            face.UpdateSprites();
+        }
+        
+    }
+    public override void GiveItem(InventoryItem item)
+    {
+        base.GiveItem(item);
+        UpdateCombatItems();
+        if (face != null) 
+        {
+            face.UpdateSprites();
+        }
+        
+    }
+
+    public void UseCombatItem(int index) 
+    {
+        if (index >= 0 && index < CombatUsableItems.Count) 
+        {
+            UseItem(CombatUsableItems[index]);
+        }
+        
+    }
+    private void UpdateCombatItems() 
+    {
+        CombatUsableItems.Clear();
+        for(int i=0;i<inventory.GetAmountOfItems(); i++) 
+        {
+            InventoryItem item = inventory.GetItem(i);
+            if (item.GetItemType() != ItemType.EQUIPMENT) 
+            {
+                CombatUsableItems.Add(item);
+            }
+        }
+    }
 
     public Sprite GetItemImage(int index)
     {
-        if (inventory != null) 
+        if (inventory!=null) 
         {
             InventoryItem item = inventory.GetItem(index);
             if (item != null)
@@ -295,29 +350,47 @@ public class Player : Entity
                 return item.GetSprite();
             }
         }
+        
+        
         return null;
     }
-   
+    public Sprite GetItemImageCombat(int index)
+    {
+
+        if (index >= 0 && index < CombatUsableItems.Count)
+        {
+            InventoryItem item = CombatUsableItems[index];//inventory.GetItem(index);
+            if (item != null)
+            {
+                return item.GetSprite();
+            }
+        }
+
+
+        return null;
+    }
+
     public void GiveStartingItems()
     {
         foreach (ScriptableItem item in startingInventory)
         {
             GiveItem(item.CreateItem());
         }
-
     }
 
     protected override void UpdateStats()
     {
         base.UpdateStats();
 
+		maxhealth += classStat.bonusHealth;
+        defense += classStat.bonusDefense;
+        baseMeleeDamage += classStat.bonusMeleeDamage;
+		
         if (CombatUI.instance!=null) 
         {
-
             CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
             CombatUI.instance.UpdateAttack(baseMeleeDamage);
             CombatUI.instance.UpdateDefense(defense);
         }
-        
     }
 }

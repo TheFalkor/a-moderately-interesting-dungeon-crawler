@@ -32,7 +32,6 @@ public class SetUpDungeonInventory : MonoBehaviour
     private void CreateButton(int index) 
     {
         Rect rectangle = gameObject.GetComponent<RectTransform>().rect;
-        Debug.Log("run");
         GameObject theButton = Instantiate(buttonPrefab, gameObject.transform);
         Rect buttonRect = theButton.GetComponent<RectTransform>().rect;
         int widthInButtons = (int)(rectangle.width/buttonRect.width);

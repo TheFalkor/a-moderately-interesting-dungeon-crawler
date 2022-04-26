@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class Entity : Occupant
 {
-    [SerializeField] protected ClassStatsSO classStat;
 
     [Header("Entity Stats")]
     protected int maxMovementPoints;
@@ -19,24 +18,19 @@ public abstract class Entity : Occupant
     private Vector2 targetPosition;
     protected bool isMoving = false;
     protected readonly List<Tile> tilesInRange = new List<Tile>();
-
+    protected Inventory inventory;  //curently only player use inventory. 
 
     public override void Initialize()
     {
         base.Initialize();
-
-        currentHealth += classStat.bonusHealth;
-        maxhealth += classStat.bonusHealth;
-        defense += classStat.bonusDefense;
-        baseMeleeDamage += classStat.bonusMeleeDamage;
-        baseRangeDamage += classStat.bonusRangeDamage;
+        currentHealth = maxhealth;
 
         maxMovementPoints = baseStat.movementPoints;
         currentMovementPoints = maxMovementPoints;
-        maxActionPoints = baseStat.actionPoints;
+        //maxActionPoints = baseStat.actionPoints;//moved to update stats
         currentActionPoints = maxActionPoints;
 
-        targetPosition = transform.position;
+        targetPosition = transform.position;       
     }
 
     public abstract bool Tick(float deltaTime);
@@ -115,12 +109,17 @@ public abstract class Entity : Occupant
     protected override void UpdateStats()
     {
         base.UpdateStats();
-        maxhealth += classStat.bonusHealth;
-        defense += classStat.bonusDefense;
-        baseMeleeDamage += classStat.bonusMeleeDamage;
         maxActionPoints = baseStat.actionPoints;
         if (inventory != null ) 
         {
+            
+            if (inventory.HasEquipmentInventory())
+            {
+                maxhealth += inventory.EquipedItemsStatValue(StatType.MAX_HEALTH);
+                defense += inventory.EquipedItemsStatValue(StatType.DEFENSE);
+                baseMeleeDamage += inventory.EquipedItemsStatValue(StatType.ATTACK);
+            }
+
             if (inventory.GetEquipedWeaponType()==WeaponType.SWORD) 
             {
                 maxActionPoints++;
@@ -155,16 +154,41 @@ public abstract class Entity : Occupant
 
     protected void AttackWithSword(Tile tile)
     {
-        Debug.Log(1);
         if (currentActionPoints>0)
         {
-            Debug.Log(2);
             if (currentTile.orthogonalNeighbors.Contains(tile) ||currentTile.diagonalNeighbors.Contains(tile) ) 
             {
-                Debug.Log(3);
                 Attack(tile, new Damage(baseMeleeDamage, originType));
                 currentActionPoints--;
             }
+        }
+    }
+
+    public virtual void GiveItem(InventoryItem item)
+    {
+        if (inventory != null)
+        {
+            inventory.AddItem(item);
+
+        }
+    }
+
+    public virtual void UseItem(int index)
+    {
+        if (inventory != null)
+        {
+            inventory.UseItem(index);
+            UpdateStats();
+        }
+
+    }
+
+    public virtual void UseItem(InventoryItem item)
+    {
+        if (inventory != null)
+        {
+            inventory.UseItem(item);
+            UpdateStats();
         }
     }
 }

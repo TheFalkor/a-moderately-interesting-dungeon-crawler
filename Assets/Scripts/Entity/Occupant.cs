@@ -22,16 +22,17 @@ public abstract class Occupant : MonoBehaviour
     protected SpriteRenderer render;
     protected Tile currentTile;
     private readonly List<StatusEffect> activeStatusEffects = new List<StatusEffect>();
-    protected Inventory inventory;  //curently only player use inventory. 
+    
     // StatusType immunity list
 
 
     public virtual void Initialize()
-    {
-        maxhealth = baseStat.maxHealth;
+    { 
+        UpdateStats();
+        //maxhealth = baseStat.maxHealth; //moved to update stats
         currentHealth = maxhealth;
-        defense = baseStat.defense;
-        baseMeleeDamage = baseStat.baseMeleeDamage;
+        //defense = baseStat.defense;//moved to update stats
+        //baseMeleeDamage = baseStat.baseMeleeDamage;//moved to update stats
         baseRangeDamage = baseStat.baseRangeDamage;
         originType = baseStat.origin;
         
@@ -40,6 +41,7 @@ public abstract class Occupant : MonoBehaviour
 
         render = transform.GetChild(0).GetComponent<SpriteRenderer>();
         render.sortingOrder = currentTile.GetPosition().y - 10;
+       
     }
 
     public void UpdateStatusEffects()
@@ -89,6 +91,12 @@ public abstract class Occupant : MonoBehaviour
     {
         currentHealth += health;
         currentHealth = Mathf.Min(currentHealth, maxhealth);
+        
+    }
+
+    public Tile GetTile()
+    {
+        return currentTile;
     }
 
     protected void Attack(Tile tile, Damage damage)
@@ -100,38 +108,11 @@ public abstract class Occupant : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
-    public void GiveItem(InventoryItem item)
-    {
-        if (inventory != null)
-        {
-            inventory.AddItem(item);
-        }
-    }
-
-    public virtual void UseItem(int index)
-    {
-        if (inventory != null)
-        {
-            inventory.UseItem(index);
-        }
-
-    }
-
     protected virtual void UpdateStats() 
     {
         maxhealth = baseStat.maxHealth;
         defense = baseStat.defense;
         baseMeleeDamage = baseStat.baseMeleeDamage;
-        if (inventory != null) 
-        {
-            if (inventory.HasEquipmentInventory()) 
-            {
-                maxhealth += inventory.EquipedItemsStatValue(StatType.MAX_HEALTH);
-                defense += inventory.EquipedItemsStatValue(StatType.DEFENSE);
-                baseMeleeDamage += inventory.EquipedItemsStatValue(StatType.ATTACK);
-            }
-        }
         //baseRangeDamage = baseStat.baseRangeDamage;
     }
 }

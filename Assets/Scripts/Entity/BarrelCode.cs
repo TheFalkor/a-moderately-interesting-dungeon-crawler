@@ -36,15 +36,18 @@ public class BarrelCode : Occupant
 
     // Update is called once per frame
     void Update()
-    {
-        timer += Time.deltaTime;
-        if (timeBomb&&timer > 1) 
+    {if (timeBomb) 
         {
-            Damage selfHit=new Damage();
-            selfHit.damage = 5;
-            selfHit.origin = originType;
-            TakeDamage(selfHit);
+            timer += Time.deltaTime;
+            if(timer > 1) 
+            {
+                Damage selfHit=new Damage();
+                selfHit.damage = 5;
+                selfHit.origin = originType;
+                TakeDamage(selfHit);
+            }
         }
+        
     }
 
     public override void Initialize()
@@ -78,13 +81,17 @@ public class BarrelCode : Occupant
                 {
                     for (int j = -range; j <= range; j++)
                     {
-                        positionToCheck.x = myPosition.x + i * widthOfTile;
-                        positionToCheck.y = myPosition.y + j * heightOfTile;
-                        Tile tileAtPositionToCheck = theGrid.GetTileWorldFuzzy(positionToCheck);//getTileWorldIsBugged
-                        if (tileAtPositionToCheck != null)
+                        if (!(i==0&&j==0)) 
                         {
-                            allHitTiles.Add(tileAtPositionToCheck);
+                            positionToCheck.x = myPosition.x + i * widthOfTile;
+                            positionToCheck.y = myPosition.y + j * heightOfTile;
+                            Tile tileAtPositionToCheck = theGrid.GetTileWorldFuzzy(positionToCheck);//getTileWorldIsBugged
+                            if (tileAtPositionToCheck != null)
+                            {
+                                allHitTiles.Add(tileAtPositionToCheck);
+                            }
                         }
+                        
                     }
                 }
             }

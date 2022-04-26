@@ -463,7 +463,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7884553394471630109, guid: e4b738f767af3494080dbc5d24c7eb13, type: 3}
+  m_Sprite: {fileID: -7884553394471630109, guid: e4b738f767af3494080dbc5d24c7eb13,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -503,8 +504,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1339141035}
+  m_Children: [{fileID: 1339141035}]
   m_Father: {fileID: 1495429578}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -678,7 +678,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13, type: 3}
+  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13,
+    type: 3}
   m_Color: {r: 1, g: 0.41037738, b: 0.41037738, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1595,7 +1596,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7884553394471630109, guid: e4b738f767af3494080dbc5d24c7eb13, type: 3}
+  m_Sprite: {fileID: -7884553394471630109, guid: e4b738f767af3494080dbc5d24c7eb13,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1640,7 +1642,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -479.99994, y: -270}
+  m_AnchoredPosition: {x: -480, y: -270}
   m_SizeDelta: {x: 960, y: 540}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &415238306
@@ -1760,7 +1762,8 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 --- !u!4 &475810868 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4352417484911600, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4352417484911600, guid: d9730ff86bc10ed4ba842a2282e1b715,
+    type: 3}
   m_PrefabInstance: {fileID: 4352417689141188}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &483482138
@@ -1848,7 +1851,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1790761485}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: UseItem
+        m_MethodName: UseCombatItem
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1981,7 +1984,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1790761485}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: UseItem
+        m_MethodName: UseCombatItem
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2100,7 +2103,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13, type: 3}
+  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13,
+    type: 3}
   m_Color: {r: 1, g: 0.41037738, b: 0.41037738, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2317,7 +2321,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1790761485}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: UseItem
+        m_MethodName: UseCombatItem
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2770,7 +2774,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1790761485}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: UseItem
+        m_MethodName: UseCombatItem
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3388,7 +3392,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1790761485}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: UseItem
+        m_MethodName: UseCombatItem
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4200,7 +4204,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1790761485}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: UseItem
+        m_MethodName: UseCombatItem
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4799,7 +4803,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 479.99994, y: 270}
+  m_AnchoredPosition: {x: 480, y: 270}
   m_SizeDelta: {x: 960, y: 540}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1400146469
@@ -4990,7 +4994,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13, type: 3}
+  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13,
+    type: 3}
   m_Color: {r: 1, g: 0.41037738, b: 0.41037738, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5112,7 +5117,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7884553394471630109, guid: e4b738f767af3494080dbc5d24c7eb13, type: 3}
+  m_Sprite: {fileID: -7884553394471630109, guid: e4b738f767af3494080dbc5d24c7eb13,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5419,7 +5425,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13, type: 3}
+  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13,
+    type: 3}
   m_Color: {r: 1, g: 0.41037738, b: 0.41037738, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5476,7 +5483,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050f32a4b2b868344b0459604d61ca10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 4120879496890394740, guid: 3dde1f0872f17ad489879d72cccacbfd, type: 3}
+  tilePrefab: {fileID: 4120879496890394740, guid: 3dde1f0872f17ad489879d72cccacbfd,
+    type: 3}
 --- !u!114 &1596778536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5742,7 +5750,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1790761485}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: UseItem
+        m_MethodName: UseCombatItem
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5820,7 +5828,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 479.99994, y: -270}
+  m_AnchoredPosition: {x: 480, y: -270}
   m_SizeDelta: {x: 960, y: 540}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1690677570
@@ -6016,7 +6024,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1790761485}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: UseItem
+        m_MethodName: UseCombatItem
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6129,7 +6137,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13, type: 3}
+  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13,
+    type: 3}
   m_Color: {r: 1, g: 0.41037738, b: 0.41037738, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6201,7 +6210,8 @@ Animator:
   m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1790761485 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4352417484911601, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4352417484911601, guid: d9730ff86bc10ed4ba842a2282e1b715,
+    type: 3}
   m_PrefabInstance: {fileID: 4352417689141188}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -6344,7 +6354,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -479.99994, y: 270}
+  m_AnchoredPosition: {x: -480, y: 270}
   m_SizeDelta: {x: 960, y: 540}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1917017486
@@ -6745,7 +6755,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8828a59790fcc747b415f2cece2d3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonPrefab: {fileID: 252682334109540267, guid: 5613c21abfc547b4dbb8191dd6517d85, type: 3}
+  buttonPrefab: {fileID: 252682334109540267, guid: 5613c21abfc547b4dbb8191dd6517d85,
+    type: 3}
   playerScript: {fileID: 1790761485}
   amountOfItemslots: 48
 --- !u!1 &2047979129
@@ -6855,7 +6866,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7884553394471630109, guid: e4b738f767af3494080dbc5d24c7eb13, type: 3}
+  m_Sprite: {fileID: -7884553394471630109, guid: e4b738f767af3494080dbc5d24c7eb13,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

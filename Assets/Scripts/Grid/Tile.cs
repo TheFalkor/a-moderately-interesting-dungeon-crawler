@@ -64,7 +64,11 @@ public class Tile : MonoBehaviour
         if (!isWalkable)
             return;
 
-        if (type == HighlightType.ATTACKABLE)
+        if (type == HighlightType.ABILITY_TARGET)
+        {
+            GetComponent<SpriteRenderer>().color = new Color(1, 0.75f, 1);
+        }
+        else if (type == HighlightType.ATTACKABLE)
         {
             GetComponent<SpriteRenderer>().color = new Color(0.75f, 0.5f, 0.5f);
         }

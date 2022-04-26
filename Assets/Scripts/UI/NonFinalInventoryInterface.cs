@@ -32,7 +32,7 @@ public class NonFinalInventoryInterface : MonoBehaviour
             int i = 0;
             foreach(Image image in inventoryImages) 
             {
-                image.sprite = player.GetItemImage(i);
+                image.sprite = player.GetItemImageCombat(i);
                 image.gameObject.SetActive(image.sprite); 
                 i++;
             }
