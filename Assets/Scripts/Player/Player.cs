@@ -11,7 +11,7 @@ public class Player : Entity
     [Header("Turn variables")]
     private bool turnEnded = false;
     private bool attackMode = false;
-    private const bool tempAllowCorner = false;
+    private bool allowCorner = false;
     
     [Header("Inventory")]
     
@@ -19,24 +19,38 @@ public class Player : Entity
     public List<ScriptableItem> startingInventory;
 
 
-    public void Setup()
+    public void Setup(BaseStatsSO baseStat, ClassStatsSO classStat)
     {
+        if (baseStat)
+        {
+        this.baseStat = baseStat;
+        this.classStat = classStat;
+        }
+
+
+        // Temporary
+        transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = this.baseStat.entitySprite;
+        // !Temporary
+
         base.Initialize();
 
         CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
         CombatUI.instance.UpdateAttack(baseMeleeDamage);    // no
         CombatUI.instance.UpdateDefense(defense);
         CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
-        inventory = new Inventory();//only player is currently using inventory. can be moved to a parent class
 
-        inventory.SetOwner(this);
-        inventory.CreateEquipmentInventory();
-        GiveStartingItems();
-        
         face = gameObject.GetComponent<NonFinalInventoryInterface>();
         face.UpdateSprites();
 
         audioKor = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioKor>();
+    }
+
+    public void SetUpInventory() 
+    {
+        inventory = new Inventory();//only player is currently using inventory. can be moved to a parent class
+        inventory.SetOwner(this);
+        inventory.CreateEquipmentInventory();
+        GiveStartingItems();
     }
 
     public override void PreTurn()
@@ -61,17 +75,16 @@ public class Player : Entity
 
         if (attackMode)
         {
-            bool cornerAttack=false;
             if (inventory != null) 
             {
                 switch (inventory.GetEquipedWeaponType()) 
                 {
-                    case WeaponType.SWORD:cornerAttack = true; break;
-                    default: cornerAttack = false;break;
+                    case WeaponType.SWORD:allowCorner = true; break;
+                    default: allowCorner = false;break;
                 }
             }
             if (currentActionPoints > 0)
-                HighlightDecision(HighlightType.ATTACKABLE, cornerAttack);
+                HighlightDecision(HighlightType.ATTACKABLE, allowCorner);
             
 
             if (Input.GetMouseButtonUp(0))
@@ -81,14 +94,14 @@ public class Player : Entity
 
                 if (hit)
                 {
-                    TargetTile(hit.transform.GetComponent<Tile>(), cornerAttack);
+                    TargetTile(hit.transform.GetComponent<Tile>(), allowCorner);
                 }
             }
         }
         else
         {
             if (currentActionPoints > 0 || currentMovementPoints > 0)
-                HighlightDecision(HighlightType.WALKABLE);
+                HighlightDecision(HighlightType.WALKABLE, allowCorner);
 
             if (Input.GetMouseButtonUp(0))
             {
@@ -146,7 +159,7 @@ public class Player : Entity
 
         if (tile.IsOccupied())
         {
-            TargetTile(tile, true);
+            TargetTile(tile, allowCorner);
             return;
         }
 
@@ -186,10 +199,10 @@ public class Player : Entity
         if (!tile || !tile.IsOccupied())
             return;
 
-        //if (!allowCorners && currentTile.diagonalNeighbors.Contains(tile)) //had to move down to next if statment, otherwise corners do not work.
-        //    return;
+        if (!allowCorners && currentTile.diagonalNeighbors.Contains(tile))
+            return;
 
-        if (!(currentTile.orthogonalNeighbors.Contains(tile)|| (allowCorners&& currentTile.diagonalNeighbors.Contains(tile))))
+        if (!currentTile.orthogonalNeighbors.Contains(tile) && !currentTile.diagonalNeighbors.Contains(tile))
             return;
 
         ClearHightlight();
@@ -219,7 +232,10 @@ public class Player : Entity
 
         foreach (Tile tile in currentTile.diagonalNeighbors)
         {
-            tile.Highlight(type);
+            if (type == HighlightType.WALKABLE && !tile.IsOccupied())
+                continue;
+
+            tile.Highlight(HighlightType.ATTACKABLE);
         }
     }
 
@@ -246,8 +262,11 @@ public class Player : Entity
     public override void Heal(int health)
     {
         base.Heal(health);
-
-        CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
+        if (CombatUI.instance != null) 
+        {
+            CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
+        }
+        
     }
 
     protected override void Death()
@@ -258,7 +277,6 @@ public class Player : Entity
 
     public override void UseItem(int index)
     {
-        
         base.UseItem(index);
         UpdateStats();
         if (face)
@@ -266,6 +284,7 @@ public class Player : Entity
             face.UpdateSprites();
         }
     }
+
     public Sprite GetItemImage(int index)
     {
         if (inventory != null) 
@@ -277,7 +296,6 @@ public class Player : Entity
             }
         }
         return null;
-
     }
    
     public void GiveStartingItems()
@@ -288,11 +306,18 @@ public class Player : Entity
         }
 
     }
+
     protected override void UpdateStats()
     {
         base.UpdateStats();
-        CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
-        CombatUI.instance.UpdateAttack(baseMeleeDamage);
-        CombatUI.instance.UpdateDefense(defense);
+
+        if (CombatUI.instance!=null) 
+        {
+
+            CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
+            CombatUI.instance.UpdateAttack(baseMeleeDamage);
+            CombatUI.instance.UpdateDefense(defense);
+        }
+        
     }
 }

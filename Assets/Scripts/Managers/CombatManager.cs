@@ -29,9 +29,6 @@ public class CombatManager : MonoBehaviour
         instance = this;
     }
 
-    void Start()
-    {
-    }
 
     void Update()
     {
@@ -60,7 +57,9 @@ public class CombatManager : MonoBehaviour
         if (turnQueue.Peek().Tick(Time.deltaTime))
         {
             turnQueue.Dequeue();
-            turnQueue.Peek().PreTurn();
+
+            if (turnQueue.Count > 0)
+                turnQueue.Peek().PreTurn();
         }
     }
 
@@ -75,7 +74,13 @@ public class CombatManager : MonoBehaviour
 
         GridManager.instance.GenerateCombat(room);
 
-        player.Setup();
+        if (ConsistentData.initialized)
+        {
+            player.Setup(ConsistentData.playerBaseStat, ConsistentData.playerClassStat);
+            CombatUI.instance.SetPortrait(ConsistentData.playerBaseStat.entitySprite);
+        }
+        else
+            player.Setup(null, null);
 
         combatIntroTimer = 0.5f;
         combatActive = true;

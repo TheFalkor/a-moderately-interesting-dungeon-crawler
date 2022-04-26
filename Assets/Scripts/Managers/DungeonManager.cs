@@ -63,5 +63,6 @@ public class DungeonManager : MonoBehaviour
     public void ToggleDungeonVisibility(bool active)
     {
         dungeonParent.SetActive(active);
+
     }
 }

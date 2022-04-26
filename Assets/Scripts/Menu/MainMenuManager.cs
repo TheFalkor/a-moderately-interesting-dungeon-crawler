@@ -7,8 +7,11 @@ public class MainMenuManager : MonoBehaviour
 {
     public void StartGame()
     {
-        // Load selected race, class and store it in local storage
-        // Load cutscene or some shit like that
+        SelectionController selection = GetComponent<SelectionController>();
+        ConsistentData.SetBaseStat(selection.GetBaseStat());
+        ConsistentData.SetClassStat(selection.GetClassStat());
+
+        SceneManager.LoadScene("main");
     }
 
     public void QuitGame()

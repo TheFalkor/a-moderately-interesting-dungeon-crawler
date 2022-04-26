@@ -49,6 +49,16 @@ public class SelectionController : MonoBehaviour
         UpdateUI();
     }
 
+    public BaseStatsSO GetBaseStat()
+    {
+        return raceList[currentRaceIndex];
+    }
+
+    public ClassStatsSO GetClassStat()
+    {
+        return classList[currentClassIndex];
+    }
+
     private void UpdateUI()
     {
         playerImage.sprite = raceList[currentRaceIndex].entitySprite;

@@ -13,6 +13,8 @@ public class CombatUI : MonoBehaviour
     private Text actionPointText;
     [Space]
     [SerializeField] private Text weaponButtonText;
+    [Space]
+    [SerializeField] private Image playerPortrait;
 
 
     [Header("Game Variables")]
@@ -103,9 +105,13 @@ public class CombatUI : MonoBehaviour
     }
 
 
-
-    public void RotatePortrait(RectTransform transform)
+    public void SetPortrait(Sprite sprite)
     {
-        transform.eulerAngles += new Vector3(0, 0, -90);
+        playerPortrait.sprite = sprite;
+    }
+
+    public void RotatePortrait()
+    {
+        playerPortrait.rectTransform.eulerAngles += new Vector3(0, 0, -90);
     }
 }
