@@ -34,7 +34,6 @@ public class SelectionController : MonoBehaviour
 
         if (currentRaceIndex < 0)
             currentRaceIndex = raceList.Count - 1;
-
         UpdateUI();
     }
 

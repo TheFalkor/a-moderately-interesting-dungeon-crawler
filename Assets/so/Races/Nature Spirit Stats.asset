@@ -20,6 +20,6 @@ MonoBehaviour:
   movementType: 0
   maxHealth: 100
   defense: 0
-  baseMeleeDamage: 0
-  baseRangeDamage: 0
+  baseMeleeDamage: 999
+  baseRangeDamage: 999
   origin: 0

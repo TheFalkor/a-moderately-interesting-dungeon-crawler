@@ -19,12 +19,12 @@ public class Player : Entity
     public List<ScriptableItem> startingInventory;
 
 
-    public void Setup(BaseStatsSO baseStat, ClassStatsSO classStat)
+    public void Setup(BaseStatsSO baseStat = null, ClassStatsSO classStat = null)
     {
         if (baseStat)
         {
-        this.baseStat = baseStat;
-        this.classStat = classStat;
+            this.baseStat = baseStat;
+            this.classStat = classStat;
         }
 
 
@@ -84,7 +84,7 @@ public class Player : Entity
                 }
             }
             if (currentActionPoints > 0)
-                HighlightDecision(HighlightType.ATTACKABLE, allowCorner);
+                HighlightDecisions(HighlightType.ATTACKABLE, allowCorner);
             
 
             if (Input.GetMouseButtonUp(0))
@@ -101,7 +101,7 @@ public class Player : Entity
         else
         {
             if (currentActionPoints > 0 || currentMovementPoints > 0)
-                HighlightDecision(HighlightType.WALKABLE, allowCorner);
+                HighlightDecisions(HighlightType.WALKABLE, allowCorner);
 
             if (Input.GetMouseButtonUp(0))
             {
@@ -220,7 +220,7 @@ public class Player : Entity
         tile.AttackTile(new Damage(baseMeleeDamage, DamageOrigin.FRIENDLY));*/
     }
 
-    private void HighlightDecision(HighlightType type, bool allowCorners = false)
+    private void HighlightDecisions(HighlightType type, bool allowCorners = false)
     {
         foreach (Tile tile in currentTile.orthogonalNeighbors)
         {

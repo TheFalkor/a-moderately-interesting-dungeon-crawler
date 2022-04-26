@@ -34,14 +34,4 @@ public class TestEnemy : Entity
 
         return false;
     }
-
-    void Start()
-    {
-        base.Initialize();
-    }
-
-    void Update()
-    {
-        
-    }
 }

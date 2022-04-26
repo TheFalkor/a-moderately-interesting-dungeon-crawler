@@ -80,7 +80,7 @@ public class CombatManager : MonoBehaviour
             CombatUI.instance.SetPortrait(ConsistentData.playerBaseStat.entitySprite);
         }
         else
-            player.Setup(null, null);
+            player.Setup();
 
         combatIntroTimer = 0.5f;
         combatActive = true;

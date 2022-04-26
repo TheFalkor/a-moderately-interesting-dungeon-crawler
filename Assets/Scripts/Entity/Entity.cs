@@ -42,10 +42,10 @@ public abstract class Entity : Occupant
     public abstract bool Tick(float deltaTime);
     public virtual void PreTurn()
     {
-        UpdateStatusEffects();
-
         currentMovementPoints = maxMovementPoints;
         currentActionPoints = maxActionPoints;
+
+        UpdateStatusEffects();
     }
 
     private void Update()
