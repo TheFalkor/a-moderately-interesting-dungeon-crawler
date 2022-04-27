@@ -5,9 +5,9 @@ using UnityEngine;
 public class EnemySimpleMeleeBehaviour : EnemyBehaviour
 {
     private int actionPointMaximum;
-    [SerializeField]
     private int actionPoints;
     private int freeMoves;
+    private int freeMovesMaximum;
     private EnemySensing Senses;
     [SerializeField]
     private int pebbleRange = 3;
@@ -22,8 +22,9 @@ public class EnemySimpleMeleeBehaviour : EnemyBehaviour
     public override void Initialize()
     {
         actionPointMaximum = 2;
+        freeMovesMaximum = 1;
         actionPoints = actionPointMaximum;
-        freeMoves = 1;
+        freeMoves = freeMovesMaximum;
         actionQueue = new Queue<Action>();
     }
 
@@ -38,50 +39,24 @@ public class EnemySimpleMeleeBehaviour : EnemyBehaviour
         ClearTurn();
 
         Queue<Direction> pathToPlayer = Senses.GetPathToPlayer();
-        int distanceFromPlayer = pathToPlayer.Count;
-        int maximumMoves = actionPoints + freeMoves;
 
-        if (distanceFromPlayer < maximumMoves)
+        while (actionPoints > 0)
         {
-            for (int i = 0; i < distanceFromPlayer; i++)
-            {
-                actionQueue.Enqueue(new Action(ActionType.MOVE, pathToPlayer.Dequeue()));
+            int distance = pathToPlayer.Count;
 
-                if (freeMoves > 0)
-                    freeMoves--;
-                else
-                    actionPoints--;
+            if (distance == 1)
+            {
+                actionQueue.Enqueue(new Action(ActionType.MELEE_ATTACK, pathToPlayer.Peek()));
+                actionPoints--;
             }
 
-            Direction AttackDirection = pathToPlayer.Dequeue();
-
-            for (int i = 0; i < actionPoints; i++)
+            else if (actionPoints == 1 && distance <= pebbleRange)
             {
-                actionQueue.Enqueue(new Action(ActionType.MELEEATTACK, AttackDirection));
+                actionQueue.Enqueue(new Action(ActionType.PEBBLE, pathToPlayer.Peek()));
+                actionPoints--;
             }
 
-            actionPoints = 0;
-        }
-
-        else if (distanceFromPlayer >= maximumMoves && distanceFromPlayer < (maximumMoves + pebbleRange))
-        {
-            for (int i = 0; i < (maximumMoves - 1); i++)
-            {
-                actionQueue.Enqueue(new Action(ActionType.MOVE, pathToPlayer.Dequeue()));
-
-                if (freeMoves > 0)
-                    freeMoves--;
-                else
-                    actionPoints--;
-            }
-
-            actionQueue.Enqueue(new Action(ActionType.PEBBLE, pathToPlayer.Dequeue()));
-            actionPoints--;
-        }
-
-        else
-        {
-            for (int i = 0; i < maximumMoves; i++)
+            else
             {
                 actionQueue.Enqueue(new Action(ActionType.MOVE, pathToPlayer.Dequeue()));
 
@@ -98,6 +73,7 @@ public class EnemySimpleMeleeBehaviour : EnemyBehaviour
     private void ClearTurn()
     {
         actionPoints = actionPointMaximum;
+        freeMoves = freeMovesMaximum;
         actionQueue.Clear();
         return;
     }

@@ -15,12 +15,6 @@ public class NonFinalInventoryInterface : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void UpdateSprites() 
     {
         if (player == null) 

@@ -16,18 +16,13 @@ public class SetUpDungeonInventory : MonoBehaviour
         defaultSprite = buttonPrefab.GetComponent<Image>().sprite;
         playerScript.SetUpInventory();
         for(int i = 0; i < amountOfItemslots; i++) 
-
         {
             CreateButton(i);
         }
         UpdateSprites();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 
     private void CreateButton(int index) 
     {

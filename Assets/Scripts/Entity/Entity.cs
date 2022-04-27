@@ -169,7 +169,6 @@ public abstract class Entity : Occupant
         if (inventory != null)
         {
             inventory.AddItem(item);
-
         }
     }
 
@@ -179,6 +178,7 @@ public abstract class Entity : Occupant
         {
             inventory.UseItem(index);
             UpdateStats();
+            CapHealth();
         }
 
     }
@@ -189,6 +189,7 @@ public abstract class Entity : Occupant
         {
             inventory.UseItem(item);
             UpdateStats();
+            CapHealth();
         }
     }
 }

@@ -64,11 +64,11 @@ public class Enemy : Entity
                 Move(currentAction.direction);
                 break;
 
-            case ActionType.MELEEATTACK:
-                Debug.Log("Super Cool Melee Attack!");
+            case ActionType.MELEE_ATTACK:
+                MeleeAttack(currentAction);
                 break;
 
-            case ActionType.RANGEDATTACK:
+            case ActionType.RANGED_ATTACK:
                 Debug.Log("Insanely Amazing Ranged Attack!");
                 break;
 
@@ -78,5 +78,28 @@ public class Enemy : Entity
         }
 
         return false;
+    }
+
+    private void MeleeAttack(Action action)
+    {
+        // TO DO : check the weapon of the enemy
+
+        switch(action.direction)
+        {
+            case Direction.NORTH:
+                AttackWithNone(GridManager.instance.GetTile(currentTile.GetPosition() + Vector2Int.down));
+                break;
+            case Direction.EAST:
+                AttackWithNone(GridManager.instance.GetTile(currentTile.GetPosition() + Vector2Int.right));
+                break;
+            case Direction.SOUTH:
+                AttackWithNone(GridManager.instance.GetTile(currentTile.GetPosition() + Vector2Int.up));
+                break;
+            case Direction.WEST:
+                AttackWithNone(GridManager.instance.GetTile(currentTile.GetPosition() + Vector2Int.left));
+                break;
+        }
+
+        return;
     }
 }

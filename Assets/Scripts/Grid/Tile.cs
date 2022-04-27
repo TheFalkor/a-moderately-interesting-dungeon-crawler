@@ -22,9 +22,15 @@ public class Tile : MonoBehaviour
         isWalkable = !wall;
 
         if (isWalkable)
+        {
+            gameObject.layer = 6;
             GetComponent<SpriteRenderer>().color = Color.white;
+        }
         else
+        {
+            gameObject.layer = 7;
             GetComponent<SpriteRenderer>().color = Color.black;
+        }
 
         occupant = null;
     }
@@ -47,6 +53,11 @@ public class Tile : MonoBehaviour
     public void SetOccupant(Occupant occ)
     {
         occupant = occ;
+    }
+
+    public Occupant GetOccupant()
+    {
+        return occupant;
     }
 
     public bool AttackTile(Damage damage)

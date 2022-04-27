@@ -10,7 +10,6 @@ public class TilePathfinding
     public Queue<Direction> path = new Queue<Direction>();
     private List<Cell> cellsToCheck = new List<Cell>();
     private List<Cell> cellsChecked = new List<Cell>();
-    private List<Cell> gizmoPath = new List<Cell>();
 
 
     private class Cell
@@ -177,12 +176,6 @@ public class TilePathfinding
         {
             recursiveCreatePath(targetCell.parent);
             path.Enqueue(GetDirection(targetCell));
-            gizmoPath.Add(targetCell);
-        }
-
-        else
-        {
-            gizmoPath.Add(targetCell);
         }
 
         return;
@@ -191,8 +184,6 @@ public class TilePathfinding
     private Direction GetDirection(Cell c)
     {
         Vector2 input = c.gridPosition - c.parent.gridPosition;
-
-        Debug.Log(c.gridPosition);
 
         if (input == Vector2.up)
             return Direction.SOUTH;
@@ -211,45 +202,5 @@ public class TilePathfinding
             Debug.LogError("getDirection of TilePathfinding broke send help");
             return Direction.NORTH;
         }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.green;
-
-        foreach (Cell c in cellsToCheck)
-        {
-            Gizmos.DrawSphere(c.tileReference.transform.position, 0.2f);
-
-            if (c.parent != null)
-            {
-                Gizmos.DrawLine(c.tileReference.transform.position, c.parent.tileReference.transform.position);
-            }
-        }
-
-        Gizmos.color = Color.blue;
-
-        foreach (Cell c in cellsChecked)
-        {
-            Gizmos.DrawSphere(c.tileReference.transform.position, 0.2f);
-
-            if (c.parent != null)
-            {
-                Gizmos.DrawLine(c.tileReference.transform.position, c.parent.tileReference.transform.position);
-            }
-        }
-
-        Gizmos.color = Color.magenta;
-
-        foreach (Cell c in gizmoPath)
-        {
-            Gizmos.DrawSphere(c.tileReference.transform.position, 0.2f);
-
-            if (c.parent != null)
-            {
-                Gizmos.DrawLine(c.tileReference.transform.position, c.parent.tileReference.transform.position);
-            }
-        }
-
     }
 }

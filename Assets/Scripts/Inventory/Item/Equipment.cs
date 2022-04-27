@@ -7,6 +7,7 @@ public class Equipment : InventoryItem
     EquipmentType typeOfEquipment;
     WeaponType typeOfWeapon;
     StatCollection statModifiers = new StatCollection();
+
     public Equipment() 
     {
         SetType(ItemType.EQUIPMENT);
@@ -14,6 +15,8 @@ public class Equipment : InventoryItem
         typeOfEquipment = EquipmentType.UNASIGNED;
         typeOfWeapon = WeaponType.NONE;
     }
+    
+
     public override void UseItem(Occupant user)
     {
         wherItemIsStored.Equip(this);

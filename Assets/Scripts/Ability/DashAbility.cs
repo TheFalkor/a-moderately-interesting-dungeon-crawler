@@ -5,47 +5,62 @@ using UnityEngine;
 public class DashAbility : Ability
 {
     [Header("Runtime Variables")]
+    private List<Tile> dashableTiles = new List<Tile>();
     private Tile targetTile;
+    private Player player;
 
 
     public override bool UseAbility(Tile tile)
     {
-        // if tile is not attackble for any reason
-        // return false
+        if (!dashableTiles.Contains(tile))
+            return false;
+
+        player.transform.position = tile.transform.position;
 
         targetTile = tile;
 
-        // Do attackie
-        // return true
-
-        return false;
+        return true;
     }
 
     public override void HighlightDecisions(Tile currentTile)
     {
-        Queue<Tile> tileQueue = new Queue<Tile>();
-        List<Tile> jumpableTiles = new List<Tile>();
+        player = (Player)currentTile.GetOccupant();
 
-        tileQueue.Enqueue(GridManager.instance.GetTile(currentTile.GetPosition() + new Vector2Int(0, -3)));
-        tileQueue.Enqueue(GridManager.instance.GetTile(currentTile.GetPosition() + new Vector2Int(3, 0)));
-        tileQueue.Enqueue(GridManager.instance.GetTile(currentTile.GetPosition() + new Vector2Int(0, 3)));
-        tileQueue.Enqueue(GridManager.instance.GetTile(currentTile.GetPosition() + new Vector2Int(-3, 0)));
+        Queue<Vector2Int> directionQueue = new Queue<Vector2Int>();
 
-        while (tileQueue.Count != 0)
+        directionQueue.Enqueue(new Vector2Int(0, -1));
+        directionQueue.Enqueue(new Vector2Int(1, 0));
+        directionQueue.Enqueue(new Vector2Int(0, 1));
+        directionQueue.Enqueue(new Vector2Int(-1, 0));
+
+        while (directionQueue.Count != 0)
         {
-            if (!tileQueue.Peek() || !tileQueue.Peek().IsWalkable() || tileQueue.Peek().IsOccupied())
+            Tile tile = GridManager.instance.GetTile(currentTile.GetPosition() + directionQueue.Peek());
+            if (!tile || !tile.IsWalkable())
             {
-                tileQueue.Dequeue();
+                directionQueue.Dequeue();
                 continue;
             }
 
-            jumpableTiles.Add(tileQueue.Peek());
-            tileQueue.Peek().Highlight(HighlightType.ABILITY_TARGET);
-            tileQueue.Dequeue();
-        }
+            tile = GridManager.instance.GetTile(currentTile.GetPosition() + directionQueue.Peek() * 2);
+            if (!tile || !tile.IsWalkable())
+            {
+                directionQueue.Dequeue();
+                continue;
+            }
 
-        Debug.Log(jumpableTiles.Count);
-        
+            tile = GridManager.instance.GetTile(currentTile.GetPosition() + directionQueue.Peek() * 3);
+            if (!tile || !tile.IsWalkable() || tile.IsOccupied())
+            {
+                directionQueue.Dequeue();
+                continue;
+            }
+
+            directionQueue.Dequeue();
+            dashableTiles.Add(tile);
+
+            tile.Highlight(HighlightType.ABILITY_TARGET);
+        }
     }
 
     public override bool Tick(float deltaTime)

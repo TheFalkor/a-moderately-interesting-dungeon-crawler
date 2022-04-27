@@ -62,8 +62,15 @@ public class CombatUI : MonoBehaviour
 
         UpdateAttackButton();
 
-        selectedAbilityIndex = index;
-        // Select
+        // deselect ability -1
+
+        if (attackMode)
+        {
+            selectedAbilityIndex = index;
+            player.SelectAbility(index);
+        }
+        else
+            player.SelectAbility(-1);
     }
 
     public void EndPlayerTurn()

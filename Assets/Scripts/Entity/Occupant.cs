@@ -114,5 +114,14 @@ public abstract class Occupant : MonoBehaviour
         defense = baseStat.defense;
         baseMeleeDamage = baseStat.baseMeleeDamage;
         //baseRangeDamage = baseStat.baseRangeDamage;
+
+    }
+
+    protected void CapHealth() 
+    {
+        if (currentHealth > maxhealth)
+        {
+            currentHealth = maxhealth;
+        }
     }
 }

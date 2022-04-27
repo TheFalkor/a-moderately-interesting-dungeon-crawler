@@ -11,6 +11,8 @@ public class Consumable : InventoryItem
         SetType(ItemType.CONSUMABLE);
         SetName("unnamed potion");
     }
+
+
     public void AddEffectToConsumable(ConsumableEffectStruct effect) 
     {
         effects.Add(effect);

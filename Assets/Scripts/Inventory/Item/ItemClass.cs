@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class InventoryItem //: ScriptableObject
+public class InventoryItem 
 {
     
 
@@ -17,6 +17,7 @@ public class InventoryItem //: ScriptableObject
         SetName("This item is buged");
         SetType(ItemType.UNASIGNED);
     }
+
     public void SetSprite(Sprite newSprite) 
     {
         sprite = newSprite;
@@ -25,7 +26,7 @@ public class InventoryItem //: ScriptableObject
     {
         if (sprite == null) 
         {
-            Debug.Log("nill");
+            Debug.Log("sprite is null");
         }
         return sprite;
     }
@@ -37,9 +38,10 @@ public class InventoryItem //: ScriptableObject
     {
         return itemName;
     }
-    public void SetType(ItemType type)
+    protected void SetType(ItemType type)
     {
         typeOfItem = type;
+        
     }
     public ItemType GetItemType() 
     {
@@ -54,7 +56,7 @@ public class InventoryItem //: ScriptableObject
     public void CopyValues(InventoryItem itemToCopyFrom) 
     {
         itemName = itemToCopyFrom.itemName;
-        typeOfItem = itemToCopyFrom.typeOfItem;
+        //typeOfItem = itemToCopyFrom.GetItemType(); we only want to change type of item in constructor
         sprite = itemToCopyFrom.GetSprite();
     }
 
@@ -74,5 +76,6 @@ public class InventoryItem //: ScriptableObject
     {
         wherItemIsStored.MoveItemToOtherInventory(inventoryToMoveTo, this);
     }
+    
 }
  

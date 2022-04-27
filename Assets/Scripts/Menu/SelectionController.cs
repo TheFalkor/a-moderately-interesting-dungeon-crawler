@@ -37,6 +37,21 @@ public class SelectionController : MonoBehaviour
         UpdateUI();
     }
 
+    public void SwitchRace(Slider slider)
+    {
+        int direction;
+        if (slider.value == -1)
+            direction = -1;
+        else if (slider.value == 1)
+            direction = 1;
+        else
+            return;
+
+        slider.value = 0;
+
+        SwitchRace(direction);
+    }
+
     public void SwitchClass(int direction)
     {
         currentClassIndex += direction;
@@ -46,6 +61,21 @@ public class SelectionController : MonoBehaviour
             currentClassIndex = classList.Count - 1;
 
         UpdateUI();
+    }
+
+    public void SwitchClass(Slider slider)
+    {
+        int direction;
+        if (slider.value == -1)
+            direction = -1;
+        else if (slider.value == 1)
+            direction = 1;
+        else
+            return;
+
+        slider.value = 0;
+
+        SwitchClass(direction);
     }
 
     public BaseStatsSO GetBaseStat()

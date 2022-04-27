@@ -65,9 +65,7 @@ public class BarrelCode : Occupant
         if (!hasExploded)
         {
             hasExploded = true;
-            Damage barrelDamage = new Damage();
-            barrelDamage.damage = baseMeleeDamage;
-            barrelDamage.origin = originType;
+            Damage barrelDamage = new Damage(baseMeleeDamage,originType);
 
             audioKor.PlaySFX("EXPLOSION");
             //no status effects

@@ -11,19 +11,25 @@ public class Player : Entity
     [SerializeField] protected ClassStatsSO classStat;
 
     [Header("Turn variables")]
+    private PlayerState state = PlayerState.MOVE_STATE;
     private bool turnEnded = false;
-    private bool attackMode = false;
     private bool allowCorner = false;
-    
+    private Ability selectedAbility;
+
+    [Header("Runtime Variables")]
+    private LayerMask tileMask;
 
     [Header("Inventory")]
-    
-    private NonFinalInventoryInterface face;//temporary and needs to be reworked
+    private NonFinalInventoryInterface face;
     public List<ScriptableItem> startingInventory;
-
+    public bool canEquipInCombat = false;
     List<InventoryItem> CombatUsableItems=new List<InventoryItem>();
+
+
     public void Setup(BaseStatsSO newBaseStat = null, ClassStatsSO newClassStat = null)
     {
+        tileMask = LayerMask.GetMask("Tile");
+
         if (newBaseStat)
         {
             baseStat = newBaseStat;
@@ -56,7 +62,7 @@ public class Player : Entity
 
     public void SetUpInventory() 
     {
-        inventory = new Inventory();//only player is currently using inventory. can be moved to a parent class
+        inventory = new Inventory();
         inventory.SetOwner(this);
         inventory.CreateEquipmentInventory();
         GiveStartingItems();
@@ -86,74 +92,118 @@ public class Player : Entity
             da.HighlightDecisions(currentTile);
         }
 
-        if (attackMode)
+        switch (state)
         {
-            if (inventory != null) 
-            {
-                switch (inventory.GetEquipedWeaponType()) 
-                {
-                    case WeaponType.SWORD:allowCorner = true; break;
-                    default: allowCorner = false;break;
-                }
-            }
-            if (currentActionPoints > 0)
-                HighlightDecisions(HighlightType.ATTACKABLE, allowCorner);
-            
+            case PlayerState.MOVE_STATE:
+                if (currentActionPoints > 0 || currentMovementPoints > 0)
+                    HighlightDecisions(HighlightType.WALKABLE, allowCorner);
 
-            if (Input.GetMouseButtonUp(0))
-            {
-                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
-
-                if (hit)
+                if (Input.GetMouseButtonUp(0))
                 {
-                    TargetTile(hit.transform.GetComponent<Tile>(), allowCorner);
+                    Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, tileMask);
+
+                    if (hit)
+                    {
+                        MoveToTile(hit.transform.GetComponent<Tile>());
+                    }
                 }
-            }
+
+
+                if (Input.GetKeyUp(KeyCode.W))
+                {
+                    MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.up));
+                }
+                if (Input.GetKeyUp(KeyCode.A))
+                {
+                    MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.left));
+                }
+                if (Input.GetKeyUp(KeyCode.S))
+                {
+                    MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.down));
+                }
+                if (Input.GetKeyUp(KeyCode.D))
+                {
+                    MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.right));
+                }
+                break;
+
+            case PlayerState.ATTACK_STATE:
+                // Should not be in update
+                if (inventory != null)
+                {
+                    switch (inventory.GetEquipedWeaponType())
+                    {
+                        case WeaponType.SWORD: allowCorner = true; break;
+                        default: allowCorner = false; break;
+                    }
+                }
+                // !Should not be in update
+
+                if (currentActionPoints > 0)
+                    HighlightDecisions(HighlightType.ATTACKABLE, allowCorner);
+
+
+                if (Input.GetMouseButtonUp(0))
+                {
+                    Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+
+                    if (hit)
+                    {
+                        TargetTile(hit.transform.GetComponent<Tile>(), allowCorner);
+                    }
+                }
+                break;
+
+            case PlayerState.ABILITY_STATE:
+                if (Input.GetMouseButtonUp(0))
+                {
+                    Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+
+                    if (hit)
+                    {
+                        Tile tile = hit.transform.GetComponent<Tile>();
+                        
+                        if (selectedAbility.UseAbility(tile))
+                        {
+                            // Lose action point
+                        }
+                    }
+                }
+                break;
         }
-        else
-        {
-            if (currentActionPoints > 0 || currentMovementPoints > 0)
-                HighlightDecisions(HighlightType.WALKABLE, allowCorner);
 
-            if (Input.GetMouseButtonUp(0))
-            {
-                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
-
-                if (hit)
-                {
-                    MoveToTile(hit.transform.GetComponent<Tile>());
-                }
-            }
-
-
-            if (Input.GetKeyUp(KeyCode.W))
-            {
-                MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.up)); 
-            }
-            if (Input.GetKeyUp(KeyCode.A))
-            {
-                MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.left)); 
-            }
-            if (Input.GetKeyUp(KeyCode.S))
-            {
-                MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.down)); 
-            }
-            if (Input.GetKeyUp(KeyCode.D))
-            {
-                MoveToTile(GridManager.instance.GetTileWorld(transform.position + Vector3.right)); 
-            }
-        }
 
         return false;
     }
 
     public void SetAttackMode(bool attackActive /*, Weapon weapon*/)
     {
-        attackMode = attackActive;
+        if (attackActive)
+            state = PlayerState.ATTACK_STATE;
+        else
+            state = PlayerState.MOVE_STATE;
+
+        GridManager.instance.ClearAllHighlights();
+    }
+
+    public void SelectAbility(int index)
+    {
+        selectedAbility = AbilityManager.instance.GetAbility(index);
+
+        if (selectedAbility == null)
+        {
+            GridManager.instance.ClearAllHighlights();
+            state = PlayerState.MOVE_STATE;
+            selectedAbility = null;
+            return;
+        }
 
         ClearHightlight();
+        state = PlayerState.ABILITY_STATE;
+        selectedAbility.HighlightDecisions(currentTile);
     }
 
     public void EndTurn()
@@ -292,7 +342,7 @@ public class Player : Entity
     {
         base.UseItem(index);
         UpdateCombatItems();
-        //UpdateStats();
+        UpdateCombatUI();
         if (face)
         {
             face.UpdateSprites();
@@ -300,8 +350,10 @@ public class Player : Entity
     }
     public override void UseItem(InventoryItem item)
     {
+        
         base.UseItem(item);
         UpdateCombatItems();
+        UpdateCombatUI();
         if (face) 
         {
             face.UpdateSprites();
@@ -333,7 +385,7 @@ public class Player : Entity
         for(int i=0;i<inventory.GetAmountOfItems(); i++) 
         {
             InventoryItem item = inventory.GetItem(i);
-            if (item.GetItemType() != ItemType.EQUIPMENT) 
+            if (item.GetItemType() != ItemType.EQUIPMENT||canEquipInCombat) 
             {
                 CombatUsableItems.Add(item);
             }
@@ -386,11 +438,27 @@ public class Player : Entity
         defense += classStat.bonusDefense;
         baseMeleeDamage += classStat.bonusMeleeDamage;
 		
+        UpdateCombatUI();
+
         if (CombatUI.instance!=null) 
         {
             CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
             CombatUI.instance.UpdateAttack(baseMeleeDamage);
             CombatUI.instance.UpdateDefense(defense);
         }
+        
+        UpdateCombatUI();
     }
+    private void UpdateCombatUI() 
+    {
+        if (CombatUI.instance != null)
+        {
+            CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
+            CombatUI.instance.UpdateAttack(baseMeleeDamage);
+            CombatUI.instance.UpdateDefense(defense);
+
+            CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
+        }
+    }
+
 }

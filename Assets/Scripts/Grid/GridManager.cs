@@ -100,6 +100,12 @@ public class GridManager : MonoBehaviour
 
     }
 
+    public void ClearAllHighlights()
+    {
+        foreach (Tile tile in tileList)
+            tile.ClearHighlight();
+    }
+
     public Tile GetTile(Vector2Int position)
     {
         if (position.x < 0 || position.x >= ROOM_WIDTH || position.y < 0 || position.y >= ROOM_HEIGHT)
