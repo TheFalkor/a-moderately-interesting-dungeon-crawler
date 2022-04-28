@@ -45,7 +45,7 @@ public class EnemySimpleMeleeBehaviour : EnemyBehaviour
                 actionPoints--;
             }
 
-            else if (actionPoints == 1 && distance <= pebbleRange && Senses.IsPlayerInLineOfSight(futurePlayerPosition))
+            else if (actionPoints == 1 && distance <= pebbleRange && Senses.CheckLineOfSight(GridManager.instance.GetTile(futurePlayerPosition).transform.position))
             {
                 actionQueue.Enqueue(new Action(ActionType.PEBBLE, pathToPlayer.Peek()));
                 actionPoints--;

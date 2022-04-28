@@ -11,7 +11,8 @@ public class DungeonManager : MonoBehaviour
     private DungeonNode currentNode;
     private bool roomSelected = false;
     private float transitionTimer = 0;
-
+    private bool start = false;
+    
 
     [Header("Singleton")]
     public static DungeonManager instance;
@@ -26,6 +27,12 @@ public class DungeonManager : MonoBehaviour
 
     void Update()
     {
+        if (!start)
+        {
+            ChangeMusic("MENU");
+            start = true;
+        }
+
         if (!roomSelected && Input.GetMouseButtonUp(0))
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -56,6 +63,7 @@ public class DungeonManager : MonoBehaviour
                 roomSelected = false;
 
                 currentNode.EnterNode();
+                ChangeMusic("COMBAT_2");
             }
         }
     }
@@ -64,6 +72,11 @@ public class DungeonManager : MonoBehaviour
     {
         dungeonParent.SetActive(active);
 
+    }
+
+    private void ChangeMusic(string name)
+    {
+        gameObject.GetComponent<AudioKor>().PlayMusic(name, AudioKorLib.Enums.Track.A);
     }
 
     public void WonRoom()

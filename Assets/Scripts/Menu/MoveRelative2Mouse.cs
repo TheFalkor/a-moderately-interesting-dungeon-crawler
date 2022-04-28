@@ -7,17 +7,16 @@ public class MoveRelative2Mouse : MonoBehaviour
 {
 
     public Vector3 pz;
-    public Vector3 StartPos;
+    public Vector3 startPos;
 
     public int moveModifier;
 
-    // Use this for initialization
     void Start()
     {
-        StartPos = transform.position;
+        startPos = transform.position;
+        
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector3 pz = Camera.main.ScreenToViewportPoint(Input.mousePosition);
@@ -25,7 +24,7 @@ public class MoveRelative2Mouse : MonoBehaviour
         gameObject.transform.position = pz;
         //Debug.Log("Mouse Position: " + pz);
 
-        transform.position = new Vector3(StartPos.x + (pz.x * moveModifier), StartPos.y + (pz.y * moveModifier), 0);
+        transform.position = new Vector3(startPos.x + (pz.x * moveModifier), startPos.y + (pz.y * moveModifier), 0);
         //move based on the starting position and its modified value.
     }
 

@@ -9,6 +9,16 @@ public class MainMenuManager : MonoBehaviour
     //To keep track of buttons to select when changing canvas when not using mouse
     [Header("Standard Selected Buttons")]
     private GameObject lastSelected;
+    private bool isMusicOn = false;//Just test
+
+    private void Update()
+    {
+        if (!isMusicOn)
+        {
+            gameObject.GetComponent<AudioKor>().PlayMusic("MENU");
+            isMusicOn = true;
+        }
+    }
 
     public void StartGame()
     {

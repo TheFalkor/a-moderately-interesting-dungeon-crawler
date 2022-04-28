@@ -6,7 +6,7 @@ public class Parallax2 : MonoBehaviour
 {
 
     [SerializeField] private float parallaxEffectMultiplier;
-    private SpriteRenderer spriteRenderer;
+    //private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite[] alternativeSprites;
     private int index;
     private Transform cameraTransform;
@@ -24,11 +24,11 @@ public class Parallax2 : MonoBehaviour
         textureUnitSizeX = (texture.width / sprite.pixelsPerUnit) * transform.localScale.x;
 
 
-        if (alternativeSprites.Length > 0)
-        {
-            index = Random.Range(0, (alternativeSprites.Length));
-            GetComponent<SpriteRenderer>().sprite = alternativeSprites[index];
-        }
+        //if (alternativeSprites.Length > 0)
+        //{
+        //    index = Random.Range(0, (alternativeSprites.Length));
+        //    GetComponent<SpriteRenderer>().sprite = alternativeSprites[index];
+        //}
 
 
     }
@@ -40,7 +40,7 @@ public class Parallax2 : MonoBehaviour
         {
             if (!instantiated)
             {
-                Instantiate(gameObject, new Vector3((transform.position.x + textureUnitSizeX), transform.position.y, transform.position.z), Quaternion.identity);
+                //Instantiate(gameObject, new Vector3((transform.position.x + textureUnitSizeX), transform.position.y, transform.position.z), Quaternion.identity);
 
                 instantiated = true;
             }
@@ -58,12 +58,12 @@ public class Parallax2 : MonoBehaviour
 
         lastCameraPosition = cameraTransform.position;
 
-        if (Mathf.Abs(cameraTransform.position.x - transform.position.x) >= textureUnitSizeX)
-        {
+        //if (Mathf.Abs(cameraTransform.position.x - transform.position.x) >= textureUnitSizeX)
+        //{
 
-            Destroy(this.gameObject);
+          //  Destroy(this.gameObject);
 
-        }
+        //S}
 
 
     }

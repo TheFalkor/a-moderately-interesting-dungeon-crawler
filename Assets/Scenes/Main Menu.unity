@@ -1205,7 +1205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.26666668, g: 0.227451, b: 0.25882354, a: 1}
+  m_Color: {r: 0.745283, g: 0.6609113, b: 0.65669274, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2461,7 +2461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.26666668, g: 0.227451, b: 0.25882354, a: 1}
+  m_Color: {r: 0.745283, g: 0.6609113, b: 0.65669274, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3472,7 +3472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.25490198, g: 0.21960786, b: 0.24705884, a: 1}
+  m_Color: {r: 0.745283, g: 0.6609113, b: 0.65669274, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4029,7 +4029,7 @@ GameObject:
   - component: {fileID: 1702972931}
   m_Layer: 0
   m_Name: Manager
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4054,7 +4054,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1702972927}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 350, y: 196.99998, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4093,7 +4093,7 @@ MonoBehaviour:
   m_Script: {fileID: -1802875013, guid: 9d5f5acdd76bd694394d48216ebc699f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicDatabase: {fileID: 0}
+  musicDatabase: {fileID: 11400000, guid: 8e64bceec6736462b9cee38f9d58f7c4, type: 2}
   sfxDatabase: {fileID: 11400000, guid: a74731b1949394d7aade000e52a24b0c, type: 2}
 --- !u!1 &1729170407
 GameObject:

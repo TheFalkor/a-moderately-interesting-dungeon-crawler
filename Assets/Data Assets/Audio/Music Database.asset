@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 850357297, guid: 9d5f5acdd76bd694394d48216ebc699f, type: 3}
+  m_Name: Music Database
+  m_EditorClassIdentifier: 
+  musicDatabase:
+  - musicName: COMBAT
+    audioClip: {fileID: 8300000, guid: 7248bd73e658b4a1185a337c9e14c96f, type: 3}
+    loop: 1
+    volume: 1
+    pitch: 1
+  - musicName: COMBAT_2
+    audioClip: {fileID: 8300000, guid: b5d2683357f3643ca95f7e5863c88a54, type: 3}
+    loop: 1
+    volume: 0.8
+    pitch: 1
+  - musicName: MENU
+    audioClip: {fileID: 8300000, guid: eb720e951d0de4d0591a506e086774a0, type: 3}
+    loop: 1
+    volume: 0.8
+    pitch: 1
+  - musicName: DUNGEON
+    audioClip: {fileID: 8300000, guid: 0d0744bc75eb24117bd169764fde2a92, type: 3}
+    loop: 1
+    volume: 0.8
+    pitch: 1

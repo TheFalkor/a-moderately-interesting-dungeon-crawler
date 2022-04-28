@@ -14,12 +14,13 @@ public class Enemy : Entity
     private EnemyBehaviourType behaviourType;
     private EnemyBehaviour Behaviour;
     private EnemySensing Sensing;
+    public GameObject PebblePrefab;
 
     private Action currentAction;
     private Queue<Action> actionsQueue;
 
     private float waitTimer = 0;
-    private const float ACTION_WAIT_TIME = 0.3f;
+    private const float ACTION_WAIT_TIME = 0.2f;
 
     public override void Initialize()
     {
@@ -122,6 +123,12 @@ public class Enemy : Entity
     IEnumerator Pebble()
     {
         bool waitHappened = false;
+
+        GameObject pebble = Instantiate(PebblePrefab);
+        pebble.transform.position = transform.position;
+        pebble.transform.position += new Vector3(0, 0.5f, 0);
+        pebble.GetComponent<Projectile>().setTarget(Sensing.player.transform.position);
+
 
         while (!waitHappened)
         {

@@ -128,4 +128,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damagePopup: {fileID: 7620306153505864841, guid: f08a4a53d0af0124db00bdeb9ddcee2f, type: 3}
   baseStat: {fileID: 11400000, guid: b095bc3c6b5d4f145b96b484b87f0b7c, type: 2}
+  currentTile: {fileID: 0}
   behaviourType: 0
+  PebblePrefab: {fileID: 2972202281912503759, guid: 5747daf6bb24efd45b06d0d7da33b35a, type: 3}

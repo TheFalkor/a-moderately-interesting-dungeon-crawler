@@ -23,7 +23,7 @@ public class EnemySensing
         return pathfinder.CreatePath(myself.currentTile, player.currentTile);
     }
 
-    public bool IsPlayerInLineOfSight(Vector2Int position)
+    public bool CheckLineOfSight(Vector3 position)
     {
 
         if (Physics2D.Linecast(position, player.transform.position, wallsMask))
