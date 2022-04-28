@@ -34,7 +34,7 @@ public class Consumable : InventoryItem
     public override void UseItem(Occupant user)
     {
         ApplyAllEffects(user);
-        RemoveFromInventory();
+        DecreaseStack(1);
     }
     public void CopyValues(Consumable itemToCopyFrom)
     {

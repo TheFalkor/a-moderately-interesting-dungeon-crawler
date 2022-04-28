@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-   public class Inventory
+public class Inventory
 {
     List<InventoryItem> inventory = new List<InventoryItem>();
     Occupant owner = null;
@@ -14,8 +14,16 @@ using UnityEngine;
     }
     public void AddItem(InventoryItem itemToAdd) 
     {
-        itemToAdd.SetWhereItemIsStored(this);
-        inventory.Add(itemToAdd);
+        if (itemToAdd != null) 
+        {
+            CheckForStacks(itemToAdd);
+            if (itemToAdd.GetStackAmount() > 0) 
+            {
+                itemToAdd.SetWhereItemIsStored(this);
+                inventory.Add(itemToAdd);
+            }
+        }
+        
     }
     public void UseItem(InventoryItem itemToUse) 
     {
@@ -78,7 +86,14 @@ using UnityEngine;
         }
         return null;
     }
-
+    public InventoryItem GetEquipedItem(EquipmentType slot,int slotNr) 
+    {
+        if (myEquipedItems != null) 
+        {
+            return myEquipedItems.GetEquipedInSlot(slot,slotNr);
+        }
+        return null;
+    }
     public int EquipedItemsStatValue(StatType stat) 
     {
         if (myEquipedItems != null) 
@@ -99,6 +114,23 @@ using UnityEngine;
     public WeaponType GetEquipedWeaponType() 
     {
         return myEquipedItems.GetEquipedWeaponType();
+    }
+    public void UnequipItem(EquipmentType slot, int slotNr) 
+    {
+        if (myEquipedItems!=null) 
+        {
+            myEquipedItems.Unequip(slot, slotNr);
+        }
+    }
+    private void CheckForStacks(InventoryItem itemToCheck) 
+    {
+        foreach(InventoryItem item in inventory) 
+        {
+            if (item.IsSameItem(itemToCheck)) 
+            {
+                item.CombineStacks(itemToCheck);
+            }
+        }
     }
 }
 

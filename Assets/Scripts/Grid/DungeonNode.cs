@@ -38,6 +38,7 @@ public class DungeonNode : MonoBehaviour
 
     public void MarkCompleted()
     {
+        completed = true;
         transform.GetChild(0).gameObject.SetActive(false);
     }
 }

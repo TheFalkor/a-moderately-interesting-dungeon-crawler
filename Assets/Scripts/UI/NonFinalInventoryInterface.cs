@@ -7,7 +7,7 @@ public class NonFinalInventoryInterface : MonoBehaviour
 {
     private Player player;
     public List<Image> inventoryImages = new List<Image>();
-    
+    public List<Text> inventoryText = new List<Text>();
     // Start is called before the first frame update
     void Start()
     {
@@ -24,12 +24,26 @@ public class NonFinalInventoryInterface : MonoBehaviour
         if (player != null) 
         {
             int i = 0;
-            foreach(Image image in inventoryImages) 
+            foreach (Image image in inventoryImages)
             {
                 image.sprite = player.GetItemImageCombat(i);
-                image.gameObject.SetActive(image.sprite); 
+                image.gameObject.SetActive(image.sprite);
                 i++;
             }
+            i = 0;
+            foreach(Text text in inventoryText)
+            {
+                string tempString = "";
+                int size=player.GetStackSizeCombat(i);
+                if (size != 1 && size != 0) 
+                {
+                    tempString = size.ToString();
+                }
+                text.text = tempString;
+                i++;
+            }
+
+           
         }
         
     }

@@ -48,6 +48,8 @@ public class DashAbility : Ability
                 directionQueue.Dequeue();
                 continue;
             }
+            else if (tile.IsOccupied())
+                victimList.Add(tile.GetOccupant());
 
             tile = GridManager.instance.GetTile(currentTile.GetPosition() + directionQueue.Peek() * 2);
             if (!tile || !tile.IsWalkable())
@@ -64,8 +66,6 @@ public class DashAbility : Ability
                 directionQueue.Dequeue();
                 continue;
             }
-            else if (tile.IsOccupied())
-                victimList.Add(tile.GetOccupant());
 
             directionQueue.Dequeue();
             dashableTiles.Add(tile);
@@ -88,9 +88,11 @@ public class DashAbility : Ability
 
             player.UpdateLayerIndex();
 
+            Debug.Log(victimList.Count);
             foreach (Occupant occupant in victimList)
             {
-                occupant.AddStatusEffect(new StatusEffect(StatusType.FLUTTER, 1));
+                occupant.TakeDamage(new Damage(2, DamageOrigin.FRIENDLY, null));
+                //occupant.AddStatusEffect(new StatusEffect(StatusType.FLUTTER, 1));
             }
 
             CombatUI.instance.SelectAbility(-1);

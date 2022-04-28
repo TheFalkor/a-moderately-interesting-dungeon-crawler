@@ -65,4 +65,9 @@ public class DungeonManager : MonoBehaviour
         dungeonParent.SetActive(active);
 
     }
+
+    public void WonRoom()
+    {
+        currentNode.MarkCompleted();
+    }
 }

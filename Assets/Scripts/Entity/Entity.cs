@@ -15,7 +15,7 @@ public abstract class Entity : Occupant
     private const float ANIMATED_MOVEMENT_SPEED = 3.5f;
 
     [Header("Runtime Variables")]
-    private Vector2 targetPosition;
+    protected Vector2 targetPosition;
     protected bool isMoving = false;
     protected readonly List<Tile> tilesInRange = new List<Tile>();
     protected Inventory inventory;  //curently only player use inventory. 
@@ -134,7 +134,7 @@ public abstract class Entity : Occupant
             switch (inventory.GetEquipedWeaponType())
             {
                 case WeaponType.SWORD:AttackWithSword(tile); break;
-                default: AttackWithNone(tile); break;
+                default: AttackWithSword(tile); break; // tmp
             }
         }
         else
@@ -189,6 +189,13 @@ public abstract class Entity : Occupant
             inventory.UseItem(item);
             UpdateStats();
             CapHealth();
+        }
+    }
+    public virtual void UnequipItem(EquipmentType slot, int slotNr)
+    {
+        if (inventory != null)
+        {
+            inventory.UnequipItem(slot, slotNr);
         }
     }
 }

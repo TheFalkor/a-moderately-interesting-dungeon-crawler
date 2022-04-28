@@ -6,41 +6,77 @@ using UnityEngine.UI;
 public class SetUpDungeonInventory : MonoBehaviour
 {
     public GameObject buttonPrefab;
-    Sprite defaultSprite;
+    protected Sprite defaultSprite;
     public Player playerScript;
     public int amountOfItemslots=48;
-    List<Image> buttonImages=new List<Image>();
+    protected List<Image> buttonImages=new List<Image>();
+    protected List<Text> buttonTexts = new List<Text>();
+    protected float buttonWidth;
+    protected float buttonHeight;
+    protected float containerWidth;
+    protected float containerHeight;
+    public  DungeonEquipmentBar equipmentBar;
     // Start is called before the first frame update
     void Start()
     {
-        defaultSprite = buttonPrefab.GetComponent<Image>().sprite;
+        OnStart();
+    }
+
+    protected virtual void OnStart() 
+    {
+        defaultSprite = buttonPrefab.GetComponentInChildren<Image>().sprite;
         playerScript.SetUpInventory();
-        for(int i = 0; i < amountOfItemslots; i++) 
+        Rect rectangle = buttonPrefab.GetComponent<RectTransform>().rect;
+        buttonWidth = rectangle.width;
+        buttonHeight = rectangle.height;
+        Rect containerRectangle = gameObject.GetComponent<RectTransform>().rect;
+        containerHeight = containerRectangle.height;
+        containerWidth = containerRectangle.width;
+        for (int i = 0; i < amountOfItemslots; i++)
         {
             CreateButton(i);
         }
         UpdateSprites();
     }
-
    
 
-    private void CreateButton(int index) 
+    protected virtual void CreateButton(int index) 
     {
-        Rect rectangle = gameObject.GetComponent<RectTransform>().rect;
-        GameObject theButton = Instantiate(buttonPrefab, gameObject.transform);
-        Rect buttonRect = theButton.GetComponent<RectTransform>().rect;
-        int widthInButtons = (int)(rectangle.width/buttonRect.width);
-        float xPos = -(rectangle.width / 2 - buttonRect.width / 2 -buttonRect.width*(index%widthInButtons));
-        float yPos = (rectangle.height / 2 - buttonRect.height / 2-buttonRect.height*Mathf.Floor((index/widthInButtons)));
-        theButton.transform.localPosition =new Vector2(xPos,yPos);
-        Button buttonCoponent = theButton.GetComponent<Button>();
-        buttonCoponent.onClick.AddListener(delegate { playerScript.UseItem(index); });
-        buttonCoponent.onClick.AddListener(delegate { UpdateSprites(); });
         
-        buttonImages.Add(theButton.GetComponent<Image>());
-
+        int widthInButtons = (int)(containerWidth/buttonWidth);
+        if (widthInButtons < 1)
+        {
+            widthInButtons = 1;
+        }
+        float xPos = -(containerWidth / 2 - buttonWidth / 2 - buttonWidth * (index%widthInButtons));
+        float yPos = (containerHeight / 2 - buttonHeight/2  -buttonHeight*Mathf.Floor((index/widthInButtons)));
+        CreateButtonAtPos(xPos, yPos, index);
     }
-    public void UpdateSprites() 
+    protected void CreateButtonAtPos(float xPos,float yPos,int index) 
+    {
+        GameObject theButton = Instantiate(buttonPrefab, gameObject.transform);
+        theButton.transform.localPosition = new Vector2(xPos, yPos);
+        Button buttonCoponent = theButton.GetComponent<Button>();
+        WireUpButton(buttonCoponent,index);
+        
+        for(int i = 0; i < theButton.transform.childCount;i++) 
+        {
+            GameObject childOfButton = theButton.transform.GetChild(i).gameObject;
+            switch (childOfButton.name) 
+            {
+                case "Icon":buttonImages.Add(childOfButton.GetComponent<Image>());break;
+                case "Stack Text": buttonTexts.Add(childOfButton.GetComponent<Text>());break;
+                default:Debug.LogError("Check if "+childOfButton.name+ " is named correctly"); break;
+            }
+        }
+    }
+    protected virtual void WireUpButton(Button button,int index) 
+    {
+        button.onClick.AddListener(delegate { playerScript.UseItem(index); });
+        button.onClick.AddListener(delegate { UpdateSprites(); });
+    }
+
+    public virtual void UpdateSprites() 
     {
         for(int i = 0; i < buttonImages.Count; i++) 
         {
@@ -50,6 +86,19 @@ public class SetUpDungeonInventory : MonoBehaviour
                 spr = defaultSprite;
             }
             buttonImages[i].sprite =spr ;
+
+            int stackSize = playerScript.GetStackSize(i);
+            string tempText = "";
+            if (stackSize != 0&&stackSize!=1) 
+            {
+                tempText = stackSize.ToString();
+            }
+            buttonTexts[i].text = tempText;
+        }
+
+        if (equipmentBar != null) 
+        {
+            equipmentBar.UpdateSprites();
         }
     }
 }

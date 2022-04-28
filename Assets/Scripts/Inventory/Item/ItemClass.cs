@@ -11,6 +11,8 @@ public class InventoryItem
     string itemName;
     ItemType typeOfItem;
     Sprite sprite;
+    int maxStack = 1;
+    int stackAmount = 1;
     protected Inventory wherItemIsStored;
     public InventoryItem()
     {
@@ -58,6 +60,8 @@ public class InventoryItem
         itemName = itemToCopyFrom.itemName;
         //typeOfItem = itemToCopyFrom.GetItemType(); we only want to change type of item in constructor
         sprite = itemToCopyFrom.GetSprite();
+        maxStack = itemToCopyFrom.maxStack;
+        stackAmount = itemToCopyFrom.stackAmount;
     }
 
     public virtual void UseItem(Occupant user)
@@ -75,6 +79,67 @@ public class InventoryItem
     public void MoveToInventory(Inventory inventoryToMoveTo) 
     {
         wherItemIsStored.MoveItemToOtherInventory(inventoryToMoveTo, this);
+    }
+
+    public bool IsSameItem(InventoryItem other) 
+    {
+        if (itemName == other.GetName())
+        {
+            return true;
+        }
+        return false;
+    }
+    public void SetMaxStack(int stackSize) 
+    {
+        maxStack = stackSize;
+        if (maxStack < 1) 
+        {
+            maxStack = 1;
+        }
+    }
+    public int GetStackAmount() 
+    {
+        return stackAmount;
+    }
+    public void SetStackAmount(int amount) 
+    {
+        stackAmount = amount;
+    }
+    public void CombineStacks(InventoryItem otherStack) 
+    {
+        
+        if (!(stackAmount>=maxStack) && IsSameItem(otherStack)&&this!=otherStack) 
+        {
+            stackAmount += otherStack.GetStackAmount();
+            int leftover = 0;
+            if (stackAmount > maxStack) 
+            {
+               leftover = stackAmount - maxStack;
+               stackAmount = maxStack;
+            }
+            otherStack.SetStackAmount(leftover);
+        }
+    }
+    public  InventoryItem SplitStack(int sizeOfSplit) 
+    {
+        InventoryItem otherStack=Copy();
+        int itemsLeft = stackAmount - sizeOfSplit;
+        if (itemsLeft < 0) 
+        {
+            itemsLeft = 0;
+        }
+        otherStack.SetStackAmount(stackAmount - itemsLeft);
+        stackAmount = itemsLeft;
+        return otherStack;
+    }
+
+    public void DecreaseStack(int amount) 
+    {
+        SetStackAmount(stackAmount - amount);
+        if (stackAmount <= 0) 
+        {
+            RemoveFromInventory();
+        }
     }
     
 }

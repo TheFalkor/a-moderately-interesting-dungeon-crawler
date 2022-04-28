@@ -7,13 +7,14 @@ public class Player : Entity
 {
     [Header("Audio")]
     private AudioKor audioKor;
+    public Animator temporaryAnimatorDeath;
 
     [SerializeField] protected ClassStatsSO classStat;
 
     [Header("Turn variables")]
     private PlayerState state = PlayerState.MOVE_STATE;
     private bool turnEnded = false;
-    private bool allowCorner = false;
+    private bool allowCorner = true;
     [Space]
     private Ability selectedAbility;
     private bool abilityActive = false;
@@ -30,6 +31,9 @@ public class Player : Entity
 
     public void Setup(BaseStatsSO newBaseStat = null, ClassStatsSO newClassStat = null)
     {
+        if (audioKor != null)
+            return;
+
         tileMask = LayerMask.GetMask("Tile");
 
         if (newBaseStat)
@@ -45,11 +49,11 @@ public class Player : Entity
 
         base.Initialize();
 
-        currentHealth += classStat.bonusHealth;
+        /*currentHealth += classStat.bonusHealth;
         maxhealth += classStat.bonusHealth;
         defense += classStat.bonusDefense;
         baseMeleeDamage += classStat.bonusMeleeDamage;
-        baseRangeDamage += classStat.bonusRangeDamage;
+        baseRangeDamage += classStat.bonusRangeDamage;*/
 
         CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
         CombatUI.instance.UpdateAttack(baseMeleeDamage);    // no
@@ -60,6 +64,17 @@ public class Player : Entity
         face.UpdateSprites();
         
         audioKor = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioKor>();
+    }
+
+    public void ResestPosition(Vector2 position)
+    {
+        currentTile.SetOccupant(null);
+        transform.position = position;
+        currentTile = GridManager.instance.GetTileWorld(transform.position);
+        currentTile.SetOccupant(this);
+
+        UpdateLayerIndex();
+        targetPosition = transform.position;
     }
 
     public void SetUpInventory() 
@@ -132,14 +147,14 @@ public class Player : Entity
 
             case PlayerState.ATTACK_STATE:
                 // Should not be in update
-                if (inventory != null)
+                /*if (inventory != null)
                 {
                     switch (inventory.GetEquipedWeaponType())
                     {
                         case WeaponType.SWORD: allowCorner = true; break;
                         default: allowCorner = false; break;
                     }
-                }
+                }*/
                 // !Should not be in update
 
                 if (currentActionPoints > 0)
@@ -203,8 +218,11 @@ public class Player : Entity
         GridManager.instance.ClearAllHighlights();
     }
 
-    public void SelectAbility(Ability ability)
+    public bool SelectAbility(Ability ability)
     {
+        if (currentActionPoints == 0)
+            return false;
+
         selectedAbility = ability;
 
         if (selectedAbility == null)
@@ -212,12 +230,13 @@ public class Player : Entity
             GridManager.instance.ClearAllHighlights();
             state = PlayerState.MOVE_STATE;
             selectedAbility = null;
-            return;
+            return false;
         }
 
         ClearHightlight();
         state = PlayerState.ABILITY_STATE;
         selectedAbility.HighlightDecisions(currentTile);
+        return true;
     }
 
     public void EndTurn()
@@ -348,6 +367,7 @@ public class Player : Entity
 
     protected override void Death()
     {
+        temporaryAnimatorDeath.SetBool("Closed", true);
         Debug.Log("player died");
         // End game
     }
@@ -357,10 +377,7 @@ public class Player : Entity
         base.UseItem(index);
         UpdateCombatItems();
         UpdateCombatUI();
-        if (face)
-        {
-            face.UpdateSprites();
-        }
+        UpdateInventoryInterface();
     }
     public override void UseItem(InventoryItem item)
     {
@@ -368,21 +385,15 @@ public class Player : Entity
         base.UseItem(item);
         UpdateCombatItems();
         UpdateCombatUI();
-        if (face) 
-        {
-            face.UpdateSprites();
-        }
-        
+        UpdateInventoryInterface();
+
+
     }
     public override void GiveItem(InventoryItem item)
     {
         base.GiveItem(item);
         UpdateCombatItems();
-        if (face != null) 
-        {
-            face.UpdateSprites();
-        }
-        
+        UpdateInventoryInterface();
     }
 
     public void UseCombatItem(int index) 
@@ -416,8 +427,6 @@ public class Player : Entity
                 return item.GetSprite();
             }
         }
-        
-        
         return null;
     }
     public Sprite GetItemImageCombat(int index)
@@ -425,7 +434,7 @@ public class Player : Entity
 
         if (index >= 0 && index < CombatUsableItems.Count)
         {
-            InventoryItem item = CombatUsableItems[index];//inventory.GetItem(index);
+            InventoryItem item = CombatUsableItems[index];
             if (item != null)
             {
                 return item.GetSprite();
@@ -435,6 +444,45 @@ public class Player : Entity
 
         return null;
     }
+    public Sprite GetEquipedItemImage(EquipmentType equipment,int slot) 
+    {
+        if (inventory != null) 
+        {
+            InventoryItem item=inventory.GetEquipedItem(equipment,slot);
+            if (item != null) 
+            {
+                return item.GetSprite();
+            }
+        }
+        return null;
+    }
+
+    public int GetStackSize(int index) 
+    {
+        if (inventory != null)
+        {
+            InventoryItem item = inventory.GetItem(index);
+            if (item != null)
+            {
+                return item.GetStackAmount();
+            }
+        }
+        return 0;
+    }
+
+    public int GetStackSizeCombat(int index)
+    {
+        if (index >= 0 && index < CombatUsableItems.Count)
+        {
+            InventoryItem item = CombatUsableItems[index];
+            if (item != null)
+            {
+                return item.GetStackAmount();
+            }
+        }
+        return 0;
+    }
+
 
     public void GiveStartingItems()
     {
@@ -474,5 +522,13 @@ public class Player : Entity
             CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
         }
     }
+    private void UpdateInventoryInterface() 
+    {
+        if (face != null)
+        {
+            face.UpdateSprites();
+        }
+    }
 
+    
 }

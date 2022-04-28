@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BasicHealingEffect
   m_EditorClassIdentifier: 
   effect: 0
-  value: 100
+  value: 5

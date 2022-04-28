@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e558badfb51c54d89576fcd20e1b7a, type: 3}
   m_Name: Barrel
   m_EditorClassIdentifier: 
-  currentHealth: 10
-  maxHealth: 10
+  entityName: 
+  entityDescription: 
+  entitySprite: {fileID: 0}
+  actionPoints: 0
+  movementPoints: 0
+  movementType: 0
+  maxHealth: 1
   defense: 0
-  baseMeleeDamage: 10
+  baseMeleeDamage: 5
   baseRangeDamage: 0
   origin: 0
-  movementSpeed: 0
-  movementType: 0

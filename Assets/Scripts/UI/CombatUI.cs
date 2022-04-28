@@ -67,7 +67,9 @@ public class CombatUI : MonoBehaviour
         if (attackMode)
         {
             selectedAbilityIndex = index;
-            player.SelectAbility(ability);
+
+            if (!player.SelectAbility(ability))
+                SelectAbility(index);
         }
         else
             player.SelectAbility(null);

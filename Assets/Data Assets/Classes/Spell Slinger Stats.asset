@@ -16,5 +16,5 @@ MonoBehaviour:
   classDescription: 
   bonusHealth: 0
   bonusDefense: 0
-  bonusMeleeDamage: 0
+  bonusMeleeDamage: 2
   bonusRangeDamage: 0

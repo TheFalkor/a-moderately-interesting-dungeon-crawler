@@ -65,6 +65,9 @@ public class CombatManager : MonoBehaviour
 
     public void StartCombat(CombatRoomSO room)
     {
+        entityList.Clear();
+        turnQueue.Clear();
+
         combatParent.SetActive(true);
 
         if (!player)
@@ -82,12 +85,24 @@ public class CombatManager : MonoBehaviour
         else
             player.Setup();
 
+        player.ResestPosition(new Vector2(4.5f, 1.5f));
+
         combatIntroTimer = 0.5f;
         combatActive = true;
 
         transitionAnimator.SetBool("Closed", false);
 
         // Setup turns and other preparations
+    }
+
+    public void HideRoom()
+    {
+        combatParent.SetActive(false);
+
+        foreach (Occupant occ in occupantList)
+            Destroy(occ.gameObject);
+
+        occupantList.Clear();
     }
 
     public void AddEntity(Entity entity)
@@ -105,6 +120,12 @@ public class CombatManager : MonoBehaviour
         {
             if (turnQueue.Contains(e))
                 newQueue.Enqueue(e);
+        }
+
+        if (entityList.Count == 1)
+        {
+            combatActive = false;
+            VictoryManager.instance.ShowPopup();
         }
 
         turnQueue = newQueue;

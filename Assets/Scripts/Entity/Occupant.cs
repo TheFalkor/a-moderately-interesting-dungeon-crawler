@@ -51,11 +51,12 @@ public abstract class Occupant : MonoBehaviour
     public virtual void TakeDamage(Damage damage)
     {
         if (originType == damage.origin && damage.origin != DamageOrigin.NEUTRAL)
-            return; 
+            return;
+        int damageTaken = CalculateDamageTaken(damage.damage);
 
-        currentHealth -= damage.damage;
+        currentHealth -= damageTaken;
 
-        Instantiate(damagePopup, transform.position + new Vector3(0, 0.5f), Quaternion.identity).GetComponent<DamagePopup>().Setup(damage.damage, damage.origin == DamageOrigin.FRIENDLY);
+        Instantiate(damagePopup, transform.position + new Vector3(0, 0.5f), Quaternion.identity).GetComponent<DamagePopup>().Setup(damageTaken, damage.origin == DamageOrigin.FRIENDLY);
 
         if (currentHealth <= 0)
         {
@@ -109,6 +110,7 @@ public abstract class Occupant : MonoBehaviour
 
     protected virtual void Death()
     {
+        CombatManager.instance.RemoveOccupant(this);
         Destroy(gameObject);
     }
     protected virtual void UpdateStats() 
@@ -126,5 +128,16 @@ public abstract class Occupant : MonoBehaviour
         {
             currentHealth = maxhealth;
         }
+    }
+
+    protected int CalculateDamageTaken(int damage) 
+    {
+        const int minDamage = 1;
+        int damageTaken = damage - defense;
+        if (damageTaken < minDamage)
+        {
+            damageTaken = minDamage;
+        }
+        return damageTaken;
     }
 }
