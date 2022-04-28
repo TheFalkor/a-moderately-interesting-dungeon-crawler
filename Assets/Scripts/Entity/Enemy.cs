@@ -18,6 +18,9 @@ public class Enemy : Entity
     private Action currentAction;
     private Queue<Action> actionsQueue;
 
+    private float waitTimer = 0;
+    private const float ACTION_WAIT_TIME = 0.3f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -56,6 +59,20 @@ public class Enemy : Entity
         if (actionsQueue.Count == 0)
             return true;
 
+        if (waitTimer >= ACTION_WAIT_TIME)
+        {
+            waitTimer = 0;
+            QueueAction();
+        }
+
+        else
+            waitTimer += deltaTime;
+
+        return false;
+    }
+
+    private void QueueAction()
+    {
         currentAction = actionsQueue.Dequeue();
 
         switch (currentAction.action)
@@ -73,11 +90,10 @@ public class Enemy : Entity
                 break;
 
             case ActionType.PEBBLE:
+                StartCoroutine(Pebble());
                 Debug.Log("PEBBLE!!!!!!!!!!!!!!");
                 break;
         }
-
-        return false;
     }
 
     private void MeleeAttack(Action action)
@@ -101,5 +117,20 @@ public class Enemy : Entity
         }
 
         return;
+    }
+
+    IEnumerator Pebble()
+    {
+        bool waitHappened = false;
+
+        while (!waitHappened)
+        {
+            Debug.Log("Waiting for Pebble");
+            waitHappened = true;
+            yield return new WaitForSeconds(0.15f);
+        }
+
+        Debug.Log("FIRING PEBBLE LESS GOOOO");
+        Attack(Sensing.player.currentTile, new Damage(baseRangeDamage, originType));
     }
 }

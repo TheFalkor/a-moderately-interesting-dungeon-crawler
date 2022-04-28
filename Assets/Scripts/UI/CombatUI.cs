@@ -55,22 +55,22 @@ public class CombatUI : MonoBehaviour
 
     public void SelectAbility(int index)
     {
-        if (index != selectedAbilityIndex)
+        Ability ability = AbilityManager.instance.GetAbility(index);
+
+        if (ability != null && index != selectedAbilityIndex)
             attackMode = true;
         else
-            attackMode = !attackMode;
+            attackMode = false;
 
         UpdateAttackButton();
-
-        // deselect ability -1
 
         if (attackMode)
         {
             selectedAbilityIndex = index;
-            player.SelectAbility(index);
+            player.SelectAbility(ability);
         }
         else
-            player.SelectAbility(-1);
+            player.SelectAbility(null);
     }
 
     public void EndPlayerTurn()

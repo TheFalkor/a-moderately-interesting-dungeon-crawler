@@ -11,6 +11,7 @@ public class EnemySimpleMeleeBehaviour : EnemyBehaviour
     private EnemySensing Senses;
     [SerializeField]
     private int pebbleRange = 3;
+    private Vector2Int futurePlayerPosition;
 
     private Queue<Action> actionQueue;
 
@@ -26,12 +27,6 @@ public class EnemySimpleMeleeBehaviour : EnemyBehaviour
         actionPoints = actionPointMaximum;
         freeMoves = freeMovesMaximum;
         actionQueue = new Queue<Action>();
-    }
-
-    public void DoAction()
-    {
-        // stuff
-        return;
     }
 
     public override Queue<Action> DecideTurn()
@@ -50,7 +45,7 @@ public class EnemySimpleMeleeBehaviour : EnemyBehaviour
                 actionPoints--;
             }
 
-            else if (actionPoints == 1 && distance <= pebbleRange)
+            else if (actionPoints == 1 && distance <= pebbleRange && Senses.IsPlayerInLineOfSight(futurePlayerPosition))
             {
                 actionQueue.Enqueue(new Action(ActionType.PEBBLE, pathToPlayer.Peek()));
                 actionPoints--;
@@ -58,6 +53,7 @@ public class EnemySimpleMeleeBehaviour : EnemyBehaviour
 
             else
             {
+                updateFuturePosition(pathToPlayer.Peek());
                 actionQueue.Enqueue(new Action(ActionType.MOVE, pathToPlayer.Dequeue()));
 
                 if (freeMoves > 0)
@@ -74,7 +70,28 @@ public class EnemySimpleMeleeBehaviour : EnemyBehaviour
     {
         actionPoints = actionPointMaximum;
         freeMoves = freeMovesMaximum;
+        futurePlayerPosition = Senses.myself.currentTile.GetPosition();
         actionQueue.Clear();
+        return;
+    }
+    private void updateFuturePosition(Direction direction)
+    {
+        switch(direction)
+        {
+            case Direction.NORTH:
+                futurePlayerPosition += Vector2Int.down;
+                break;
+            case Direction.EAST:
+                futurePlayerPosition += Vector2Int.right;
+                break;
+            case Direction.SOUTH:
+                futurePlayerPosition += Vector2Int.up;
+                break;
+            case Direction.WEST:
+                futurePlayerPosition += Vector2Int.left;
+                break;
+        }
+
         return;
     }
 }

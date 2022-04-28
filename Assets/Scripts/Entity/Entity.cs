@@ -49,8 +49,6 @@ public abstract class Entity : Occupant
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * ANIMATED_MOVEMENT_SPEED);
             if (targetPosition.y == transform.position.y)
                 transform.Rotate(new Vector3(0, 0, Time.deltaTime * 90 * transform.localScale.x));
-            // else
-            //    transform.Rotate(new Vector3(0, 0, Time.deltaTime * 90 * transform.localScale.x));
 
             if (targetPosition == (Vector2)transform.position)
             {
@@ -70,6 +68,7 @@ public abstract class Entity : Occupant
         if (isMoving)
             return;
 
+        targetPosition = currentTile.transform.position;
         isMoving = true;
         switch (direction)
         {

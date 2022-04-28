@@ -20,7 +20,7 @@ public abstract class Occupant : MonoBehaviour
     
     [Header("Runtime Variables")]
     protected SpriteRenderer render;
-    protected Tile currentTile;
+    [HideInInspector] public Tile currentTile;
     private readonly List<StatusEffect> activeStatusEffects = new List<StatusEffect>();
     
     // StatusType immunity list
@@ -40,8 +40,7 @@ public abstract class Occupant : MonoBehaviour
         currentTile.SetOccupant(this);
 
         render = transform.GetChild(0).GetComponent<SpriteRenderer>();
-        render.sortingOrder = currentTile.GetPosition().y - 10;
-       
+        UpdateLayerIndex();
     }
 
     public void UpdateStatusEffects()
@@ -69,34 +68,38 @@ public abstract class Occupant : MonoBehaviour
 
         foreach (StatusEffect dse in damage.statusEffects)
         {
-            bool found = false;
-            for (int i = 0; i < activeStatusEffects.Count; i++)
-            {
-                if (dse.type == activeStatusEffects[i].type)
-                {
-                    if (dse.duration > activeStatusEffects[i].duration)
-                        activeStatusEffects[i] = dse;
-
-                    found = true;
-                    break;
-                }
-            }
-
-            if (!found)
-                activeStatusEffects.Add(dse);
+            AddStatusEffect(dse);
         }
+    }
+
+    public void AddStatusEffect(StatusEffect statusEffect)
+    {
+        bool found = false;
+        for (int i = 0; i < activeStatusEffects.Count; i++)
+        {
+            if (statusEffect.type == activeStatusEffects[i].type)
+            {
+                if (statusEffect.duration > activeStatusEffects[i].duration)
+                    activeStatusEffects[i] = statusEffect;
+
+                found = true;
+                break;
+            }
+        }
+
+        if (!found)
+            activeStatusEffects.Add(statusEffect);
+    }
+
+    public void UpdateLayerIndex()
+    {
+        render.sortingOrder = currentTile.GetPosition().y - 10;
     }
 
     public virtual void Heal(int health)
     {
         currentHealth += health;
         currentHealth = Mathf.Min(currentHealth, maxhealth);
-        
-    }
-
-    public Tile GetTile()
-    {
-        return currentTile;
     }
 
     protected void Attack(Tile tile, Damage damage)

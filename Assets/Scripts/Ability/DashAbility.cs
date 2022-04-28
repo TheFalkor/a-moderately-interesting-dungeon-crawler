@@ -7,6 +7,9 @@ public class DashAbility : Ability
     [Header("Runtime Variables")]
     private List<Tile> dashableTiles = new List<Tile>();
     private Tile targetTile;
+    private List<Occupant> victimList = new List<Occupant>();
+
+    [Header("References")]
     private Player player;
 
 
@@ -15,7 +18,10 @@ public class DashAbility : Ability
         if (!dashableTiles.Contains(tile))
             return false;
 
-        player.transform.position = tile.transform.position;
+        if (tile.transform.position.x > player.transform.position.x)
+            player.transform.localScale = new Vector3(-1, 1);
+        else
+            player.transform.localScale = new Vector3(1, 1);
 
         targetTile = tile;
 
@@ -27,6 +33,7 @@ public class DashAbility : Ability
         player = (Player)currentTile.GetOccupant();
 
         Queue<Vector2Int> directionQueue = new Queue<Vector2Int>();
+        victimList.Clear();
 
         directionQueue.Enqueue(new Vector2Int(0, -1));
         directionQueue.Enqueue(new Vector2Int(1, 0));
@@ -48,6 +55,8 @@ public class DashAbility : Ability
                 directionQueue.Dequeue();
                 continue;
             }
+            else if (tile.IsOccupied())
+                victimList.Add(tile.GetOccupant());
 
             tile = GridManager.instance.GetTile(currentTile.GetPosition() + directionQueue.Peek() * 3);
             if (!tile || !tile.IsWalkable() || tile.IsOccupied())
@@ -55,6 +64,8 @@ public class DashAbility : Ability
                 directionQueue.Dequeue();
                 continue;
             }
+            else if (tile.IsOccupied())
+                victimList.Add(tile.GetOccupant());
 
             directionQueue.Dequeue();
             dashableTiles.Add(tile);
@@ -65,6 +76,27 @@ public class DashAbility : Ability
 
     public override bool Tick(float deltaTime)
     {
-        throw new System.NotImplementedException();
+        if (targetTile.transform.position != player.transform.position)
+        {
+            player.transform.position = Vector3.MoveTowards(player.transform.position, targetTile.transform.position, deltaTime * 8);
+        }
+        else
+        {
+            player.currentTile.SetOccupant(null);
+            player.currentTile = targetTile;
+            player.currentTile.SetOccupant(player);
+
+            player.UpdateLayerIndex();
+
+            foreach (Occupant occupant in victimList)
+            {
+                occupant.AddStatusEffect(new StatusEffect(StatusType.FLUTTER, 1));
+            }
+
+            CombatUI.instance.SelectAbility(-1);
+
+            return true;
+        }
+        return false;
     }
 }

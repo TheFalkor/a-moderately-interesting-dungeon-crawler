@@ -29,10 +29,16 @@ public class Tile : MonoBehaviour
         else
         {
             gameObject.layer = 7;
-            GetComponent<SpriteRenderer>().color = Color.black;
+            //GetComponent<SpriteRenderer>().color = Color.black;
         }
 
         occupant = null;
+    }
+
+    public void UpdateTileset()
+    {
+        if (!isWalkable)
+            TilesetManager.instance.CalculateWallTile(this);
     }
     
     public bool IsWalkable()

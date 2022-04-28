@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damagePopup: {fileID: 7620306153505864841, guid: f08a4a53d0af0124db00bdeb9ddcee2f, type: 3}
   baseStat: {fileID: 11400000, guid: 4b0e4542de4f4bb448aba4eb67d8a879, type: 2}
+  currentTile: {fileID: 0}
   classStat: {fileID: 11400000, guid: e0fc08491a4a9984e9d116e650541901, type: 2}
   startingInventory:
   - {fileID: 11400000, guid: 0187f8cef564498498311955643a18ce, type: 2}
@@ -55,7 +56,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 061f7df432d58394ba2233ae5d631517, type: 2}
   - {fileID: 11400000, guid: 0f79479edabacb24c93f135d2f3e3059, type: 2}
   - {fileID: 11400000, guid: bb540f6708a37114bbf4471d4547ea2d, type: 2}
-  canEquipInCombat: 1
+  canEquipInCombat: 0
 --- !u!114 &1790761486
 MonoBehaviour:
   m_ObjectHideFlags: 0

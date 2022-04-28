@@ -14,7 +14,9 @@ public class Player : Entity
     private PlayerState state = PlayerState.MOVE_STATE;
     private bool turnEnded = false;
     private bool allowCorner = false;
+    [Space]
     private Ability selectedAbility;
+    private bool abilityActive = false;
 
     [Header("Runtime Variables")]
     private LayerMask tileMask;
@@ -157,7 +159,16 @@ public class Player : Entity
                 break;
 
             case PlayerState.ABILITY_STATE:
-                if (Input.GetMouseButtonUp(0))
+                if (abilityActive)
+                {
+                    if (selectedAbility.Tick(deltaTime))
+                    {
+                        SelectAbility(null);
+                        abilityActive = false;
+                        state = PlayerState.MOVE_STATE;
+                    }
+                }
+                else if (Input.GetMouseButtonUp(0))
                 {
                     Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
@@ -168,7 +179,10 @@ public class Player : Entity
                         
                         if (selectedAbility.UseAbility(tile))
                         {
-                            // Lose action point
+                            abilityActive = true;
+                            currentActionPoints--;  // Dash tmp cost
+
+                            CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
                         }
                     }
                 }
@@ -189,9 +203,9 @@ public class Player : Entity
         GridManager.instance.ClearAllHighlights();
     }
 
-    public void SelectAbility(int index)
+    public void SelectAbility(Ability ability)
     {
-        selectedAbility = AbilityManager.instance.GetAbility(index);
+        selectedAbility = ability;
 
         if (selectedAbility == null)
         {

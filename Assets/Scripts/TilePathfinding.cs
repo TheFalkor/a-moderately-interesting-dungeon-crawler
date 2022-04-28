@@ -146,28 +146,32 @@ public class TilePathfinding
 
     private Cell GetCellToCheck()
     {
-        Cell lowestCell = cellsToCheck[0];
-
-        foreach (Cell c in cellsToCheck)
+        if (cellsToCheck.Count > 0)
         {
-            float cCost = c.GetTotalCost();
-            float lowestCost = lowestCell.GetTotalCost();
+            Cell lowestCell = cellsToCheck[0];
 
-            if (cCost < lowestCost)
-                lowestCell = c;
-
-            else if (cCost == lowestCost)
+            foreach (Cell c in cellsToCheck)
             {
-                if (c.fCost < lowestCell.fCost)
+                float cCost = c.GetTotalCost();
+                float lowestCost = lowestCell.GetTotalCost();
+
+                if (cCost < lowestCost)
                     lowestCell = c;
 
-                else if (c.fCost == lowestCell.fCost)
-                    if (c.gCost < lowestCell.gCost)
+                else if (cCost == lowestCost)
+                {
+                    if (c.fCost < lowestCell.fCost)
                         lowestCell = c;
+
+                    else if (c.fCost == lowestCell.fCost)
+                        if (c.gCost < lowestCell.gCost)
+                            lowestCell = c;
+                }
             }
+            return lowestCell;
         }
 
-        return lowestCell;
+        return null;
     }
 
     private void recursiveCreatePath(Cell targetCell)

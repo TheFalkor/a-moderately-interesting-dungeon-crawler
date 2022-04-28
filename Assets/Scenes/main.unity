@@ -3054,7 +3054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dfd863e784a2bc42b8363cf51683931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  room: {fileID: 11400000, guid: f67272dacf1265d41b41b4954c385c89, type: 2}
+  room: {fileID: 11400000, guid: 0fb4dc31ecfdebe4186af1ea06004148, type: 2}
   completed: 1
 --- !u!61 &766738326
 BoxCollider2D:
@@ -5593,6 +5593,7 @@ GameObject:
   - component: {fileID: 1596778536}
   - component: {fileID: 1596778538}
   - component: {fileID: 1596778539}
+  - component: {fileID: 1596778540}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Manager
@@ -5681,6 +5682,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e3678a6975eea44951630cf2a703c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1596778540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596778533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f17e5b3037caa554fa0f0af6fe5016e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileset: {fileID: 2800000, guid: e49470f14ce993b4b80e16ec60a560a8, type: 3}
 --- !u!1 &1640209118
 GameObject:
   m_ObjectHideFlags: 0

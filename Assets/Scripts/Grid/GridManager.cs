@@ -98,6 +98,11 @@ public class GridManager : MonoBehaviour
             }
         }
 
+        foreach (Tile tile in tileList)
+        {
+            tile.UpdateTileset();
+        }
+
     }
 
     public void ClearAllHighlights()

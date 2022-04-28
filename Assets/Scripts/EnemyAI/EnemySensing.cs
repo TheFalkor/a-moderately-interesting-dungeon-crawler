@@ -5,12 +5,14 @@ using UnityEngine;
 public class EnemySensing
 {
     [Header("References")]
-    Entity myself;
-    Player player;
-    TilePathfinding pathfinder;
+    public Entity myself;
+    public Player player;
+    private TilePathfinding pathfinder;
+    private LayerMask wallsMask;
 
     public EnemySensing(Entity myEntity)
     {
+        wallsMask = LayerMask.GetMask("Wall");
         myself = myEntity;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         pathfinder = new TilePathfinding();
@@ -18,18 +20,17 @@ public class EnemySensing
 
     public Queue<Direction> GetPathToPlayer()
     {
-        return pathfinder.CreatePath(myself.GetTile(), player.GetTile());
+        return pathfinder.CreatePath(myself.currentTile, player.currentTile);
     }
 
-    public bool IsPlayerInLineOfSight()
+    public bool IsPlayerInLineOfSight(Vector2Int position)
     {
-        RaycastHit2D hit = Physics2D.Raycast(myself.transform.position, player.transform.position);
 
-        if (hit.transform.CompareTag("Player"))
+        if (Physics2D.Linecast(position, player.transform.position, wallsMask))
         {
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
     }
 }
