@@ -39,6 +39,8 @@ public class Tile : MonoBehaviour
     {
         if (!isWalkable)
             TilesetManager.instance.CalculateWallTile(this);
+        else
+            TilesetManager.instance.CalculateFloorTile(this);
     }
     
     public bool IsWalkable()

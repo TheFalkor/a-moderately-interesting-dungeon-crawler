@@ -14,6 +14,7 @@ public class GridManager : MonoBehaviour
 
     [Header("Runtime Variables")]
     private readonly List<Tile> tileList = new List<Tile>();
+    private readonly List<SpriteRenderer> backdropRenders= new List<SpriteRenderer>();
 
     [Header("Singleton")]
     public static GridManager instance;
@@ -73,10 +74,74 @@ public class GridManager : MonoBehaviour
         }
     }
 
+    private void CreateBorder()
+    {
+        GameObject parent = new GameObject("Room Border");
+        parent.transform.parent = GameObject.Find("Combat Parent").transform;
+
+        for (int i = 0; i < ROOM_HEIGHT + 3; i++)
+        {
+            GameObject border = new GameObject("Left Border");
+            border.transform.parent = parent.transform;
+            border.transform.position = new Vector3(-ROOM_WIDTH / 2 - 0.5f, ROOM_HEIGHT / 2 - i + 2.5f);
+
+            SpriteRenderer render = border.AddComponent<SpriteRenderer>();
+            if (i == 0)
+                render.sprite = TilesetManager.instance.GetBorderSprite(Direction.NORTH_WEST);
+            else if (i == ROOM_HEIGHT + 2)
+                render.sprite = TilesetManager.instance.GetBorderSprite(Direction.SOUTH_WEST);
+            else
+                render.sprite = TilesetManager.instance.GetBorderSprite(Direction.WEST);
+            render.sortingOrder = -10;
+        }
+
+        for (int i = 0; i < ROOM_HEIGHT + 3; i++)
+        {
+            GameObject border = new GameObject("Right Border");
+            border.transform.parent = parent.transform;
+            border.transform.position = new Vector3(ROOM_WIDTH / 2 + 0.5f, ROOM_HEIGHT / 2 - i + 2.5f);
+
+            SpriteRenderer render = border.AddComponent<SpriteRenderer>();
+            if (i == 0)
+                render.sprite = TilesetManager.instance.GetBorderSprite(Direction.NORTH_EAST);
+            else if (i == ROOM_HEIGHT + 2)
+                render.sprite = TilesetManager.instance.GetBorderSprite(Direction.SOUTH_EAST);
+            else
+                render.sprite = TilesetManager.instance.GetBorderSprite(Direction.EAST);
+            render.sortingOrder = -10;
+        }
+
+        for (int i = 0; i < ROOM_WIDTH; i++)
+        {
+            GameObject border = new GameObject("Bottom Border");
+            border.transform.parent = parent.transform;
+            border.transform.position = new Vector3(-ROOM_WIDTH / 2 + 0.5f + i, -ROOM_HEIGHT / 2 - 0.5f);
+
+            SpriteRenderer render = border.AddComponent<SpriteRenderer>();
+            render.sprite = TilesetManager.instance.GetBorderSprite(Direction.SOUTH);
+            render.sortingOrder = -10;
+        }
+
+        for (int i = 0; i < ROOM_WIDTH * 2; i++)
+        {
+            GameObject border = new GameObject("Backdrop");
+            border.transform.parent = parent.transform;
+            border.transform.position = new Vector3(-ROOM_WIDTH / 2 + 0.5f + i / 2, ROOM_HEIGHT / 2 + 2.5f - i % 2);
+
+            SpriteRenderer render = border.AddComponent<SpriteRenderer>();
+            render.sortingOrder = -10;
+
+            backdropRenders.Add(render);
+        }
+    }
+
     public void GenerateCombat(CombatRoomSO room)
     {
         if (tileList.Count == 0)
+        {
+            CreateBorder();
             CreateRoom();
+        }
 
         // Destroy all existing occupants
 
@@ -103,12 +168,68 @@ public class GridManager : MonoBehaviour
             tile.UpdateTileset();
         }
 
+        return;
+        
+        // WIP
+        for (int i = 0; i < ROOM_WIDTH; i++)
+        {
+            Tile tile = GetTile(i);
+            bool wall0 = !tile || !tile.IsWalkable();
+
+            tile = GetTile(i + ROOM_WIDTH);
+            bool wall1 = !tile || !tile.IsWalkable();
+
+            tile = GetTile(i - 1);
+            bool wallLeft = !tile || !tile.IsWalkable();
+
+            tile = GetTile(i - 1);
+            bool wallRight = !tile || !tile.IsWalkable();
+
+            Sprite topRow = null;
+            Sprite bottomRow = null;
+
+            if (wall0 && !wall1)
+            {
+                if (wallLeft && wallRight)
+                    backdropRenders[i].sprite = TilesetManager.instance.GetTileSprite(1);
+                else if (wallLeft)
+                    backdropRenders[i].sprite = TilesetManager.instance.GetTileSprite(30);
+                else if (wallRight)
+                    backdropRenders[i].sprite = TilesetManager.instance.GetTileSprite(28);
+                else
+                    backdropRenders[i].sprite = TilesetManager.instance.GetTileSprite(31);
+            }
+            else if (wall0 && wall1)
+            {
+                if (wallLeft && wallRight)
+                    backdropRenders[i].sprite = TilesetManager.instance.GetTileSprite(25);
+                else if (wallLeft)
+                    backdropRenders[i].sprite = TilesetManager.instance.GetTileSprite(26);
+                else if (wallRight)
+                    backdropRenders[i].sprite = TilesetManager.instance.GetTileSprite(24);
+                else
+                    backdropRenders[i].sprite = TilesetManager.instance.GetTileSprite(27);
+            }
+            else
+            {
+
+            }
+
+        }
     }
 
     public void ClearAllHighlights()
     {
         foreach (Tile tile in tileList)
             tile.ClearHighlight();
+    }
+
+    public Tile GetTile(int index)
+    {
+        if (index < 0 || index >= tileList.Count)
+            return null;
+
+        return tileList[index];
     }
 
     public Tile GetTile(Vector2Int position)
@@ -128,6 +249,7 @@ public class GridManager : MonoBehaviour
         int index = (int)(ROOM_WIDTH / 2.0f + position.x + (ROOM_HEIGHT / 2.0f - position.y) * ROOM_WIDTH);
         return tileList[index];
     }
+
     public Tile GetTileWorldFuzzy(Vector2 position) 
     {
         const float widthOffset = 0.5f;
