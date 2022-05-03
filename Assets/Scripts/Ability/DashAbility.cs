@@ -58,8 +58,11 @@ public class DashAbility : Ability
                 continue;
             }
 
-            dashableTiles.Add(tile);
-            tile.Highlight(HighlightType.ABILITY_TARGET);
+            if (!tile.IsOccupied())
+            {
+                dashableTiles.Add(tile);
+                tile.Highlight(HighlightType.ABILITY_TARGET);
+            }
 
             tile = GridManager.instance.GetTile(currentTile.GetPosition() + directionQueue.Peek() * 3);
             if (!tile || !tile.IsWalkable() || tile.IsOccupied())

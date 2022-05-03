@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
     private void Awake()
     {
         Item t = CreateItem(potionTest);
-        items[0] = t;
+        items[0] = t; // Temporary to test
     }
 
     void Start()

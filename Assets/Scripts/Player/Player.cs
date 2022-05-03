@@ -194,7 +194,6 @@ public class Player : Entity
                     RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, 1, tileMask);
                     if (hit)
                     {
-                    Debug.Log(hit.transform.name);
                         Tile tile = hit.transform.GetComponent<Tile>();
 
                         if (selectedItem.UseItem(tile))
