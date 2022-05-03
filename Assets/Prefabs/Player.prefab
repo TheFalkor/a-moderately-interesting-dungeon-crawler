@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4352417484911600}
   - component: {fileID: 4352417484911601}
-  - component: {fileID: 1790761486}
   - component: {fileID: 1863439721}
   m_Layer: 8
   m_Name: Player
@@ -49,35 +48,8 @@ MonoBehaviour:
   damagePopup: {fileID: 7620306153505864841, guid: f08a4a53d0af0124db00bdeb9ddcee2f, type: 3}
   baseStat: {fileID: 11400000, guid: 4b0e4542de4f4bb448aba4eb67d8a879, type: 2}
   currentTile: {fileID: 0}
+  temporaryAnimatorDeath: {fileID: 0}
   classStat: {fileID: 11400000, guid: e0fc08491a4a9984e9d116e650541901, type: 2}
-  startingInventory:
-  - {fileID: 11400000, guid: 0187f8cef564498498311955643a18ce, type: 2}
-  - {fileID: 11400000, guid: 0187f8cef564498498311955643a18ce, type: 2}
-  - {fileID: 11400000, guid: 061f7df432d58394ba2233ae5d631517, type: 2}
-  - {fileID: 11400000, guid: 0f79479edabacb24c93f135d2f3e3059, type: 2}
-  - {fileID: 11400000, guid: bb540f6708a37114bbf4471d4547ea2d, type: 2}
-  canEquipInCombat: 0
---- !u!114 &1790761486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4352417484911607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4482fa584762ed743a620ddd7a494716, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventoryImages:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!61 &1863439721
 BoxCollider2D:
   m_ObjectHideFlags: 0

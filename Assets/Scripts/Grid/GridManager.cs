@@ -159,7 +159,10 @@ public class GridManager : MonoBehaviour
                     temp.GetComponent<Entity>().Initialize();
                 }
                 else
+                {
                     CombatManager.instance.AddOccupant(temp.GetComponent<Occupant>());
+                    temp.GetComponent<Occupant>().Initialize();
+                }
             }
         }
 

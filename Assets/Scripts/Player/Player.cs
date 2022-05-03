@@ -18,9 +18,12 @@ public class Player : Entity
     [Space]
     private Ability selectedAbility;
     private bool abilityActive = false;
+    [Space]
+    private Item selectedItem;
 
     [Header("Runtime Variables")]
     private LayerMask tileMask;
+    private Inventory inventory;
 
 
     public void Setup(BaseStatsSO newBaseStat = null, ClassStatsSO newClassStat = null)
@@ -28,6 +31,7 @@ public class Player : Entity
         if (audioKor != null)
             return;
 
+        inventory = GameObject.FindGameObjectWithTag("Manager").GetComponent<Inventory>();
         tileMask = LayerMask.GetMask("Tile");
 
         if (newBaseStat)
@@ -72,8 +76,13 @@ public class Player : Entity
     {
         base.PreTurn();
 
+        SelectAbility(null);
+        HotbarUI.instance.SelectItem(-1);
+
+        state = PlayerState.MOVE_STATE;
         turnEnded = false;
 
+        CombatUI.instance.SetAttackButton(false);
         CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
     }
 
@@ -101,7 +110,7 @@ public class Player : Entity
                 if (Input.GetMouseButtonUp(0))
                 {
                     Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, tileMask);
+                    RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, 1, tileMask);
 
                     if (hit)
                     {
@@ -136,7 +145,7 @@ public class Player : Entity
                 if (Input.GetMouseButtonUp(0))
                 {
                     Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+                    RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, 1, tileMask);
 
                     if (hit)
                     {
@@ -153,12 +162,15 @@ public class Player : Entity
                         SelectAbility(null);
                         abilityActive = false;
                         state = PlayerState.MOVE_STATE;
+
+                        CombatUI.instance.SelectAbility(-1);
+                        GridManager.instance.ClearAllHighlights();
                     }
                 }
                 else if (Input.GetMouseButtonUp(0))
                 {
                     Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+                    RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, 1, tileMask);
 
                     if (hit)
                     {
@@ -170,6 +182,28 @@ public class Player : Entity
                             currentActionPoints--;  // Dash tmp cost
 
                             CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
+                        }
+                    }
+                }
+                break;
+
+            case PlayerState.ITEM_STATE:
+                if (Input.GetMouseButtonUp(0))
+                {
+                    Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, 1, tileMask);
+                    if (hit)
+                    {
+                    Debug.Log(hit.transform.name);
+                        Tile tile = hit.transform.GetComponent<Tile>();
+
+                        if (selectedItem.UseItem(tile))
+                        {
+                            SelectItem(-1);
+                            state = PlayerState.MOVE_STATE;
+
+                            HotbarUI.instance.SelectItem(-1);
+                            GridManager.instance.ClearAllHighlights();
                         }
                     }
                 }
@@ -201,7 +235,6 @@ public class Player : Entity
         {
             GridManager.instance.ClearAllHighlights();
             state = PlayerState.MOVE_STATE;
-            selectedAbility = null;
             return false;
         }
 
@@ -211,9 +244,26 @@ public class Player : Entity
         return true;
     }
 
+    public bool SelectItem(int inventoryIndex)
+    {
+        if (inventoryIndex == -1)
+        {
+            GridManager.instance.ClearAllHighlights();
+            state = PlayerState.MOVE_STATE;
+            return false;
+        }
+
+        selectedItem = inventory.items[inventoryIndex];
+
+        ClearHightlight();
+        state = PlayerState.ITEM_STATE;
+        selectedItem.HighlightDecision(currentTile);
+        return true;
+    }
+
     public void EndTurn()
     {
-        ClearHightlight();
+        GridManager.instance.ClearAllHighlights();
         turnEnded = true;
     }
 

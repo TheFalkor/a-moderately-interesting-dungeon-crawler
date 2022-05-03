@@ -47,8 +47,7 @@ public class CombatUI : MonoBehaviour
 
     public void ToggleAttackMode()
     {
-        attackMode = !attackMode;
-        UpdateAttackButton();
+        SetAttackButton(!attackMode);
      
         player.SetAttackMode(attackMode);
     }
@@ -58,11 +57,9 @@ public class CombatUI : MonoBehaviour
         Ability ability = AbilityManager.instance.GetAbility(index);
 
         if (ability != null && index != selectedAbilityIndex)
-            attackMode = true;
+            SetAttackButton(true);
         else
-            attackMode = false;
-
-        UpdateAttackButton();
+            SetAttackButton(false);
 
         if (attackMode)
         {
@@ -80,9 +77,11 @@ public class CombatUI : MonoBehaviour
         player.EndTurn();
     }
 
-    private void UpdateAttackButton()
+    public void SetAttackButton(bool active)
     {
-        if (attackMode)
+        attackMode = active;
+
+        if (active)
         {
             weaponButtonText.text = "MOVE AGANE";
         }

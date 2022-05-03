@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 109910}
+  - component: {fileID: 109911}
   m_Layer: 5
   m_Name: Item Box
   m_TagString: Untagged
@@ -167,6 +168,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -820}
   m_SizeDelta: {x: 0, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &109911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da002cab21e8f2b438acb5e0d32d9660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &17426167
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,8 +555,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7884553394471630109, guid: e4b738f767af3494080dbc5d24c7eb13,
-    type: 3}
+  m_Sprite: {fileID: -7884553394471630109, guid: e4b738f767af3494080dbc5d24c7eb13, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -652,7 +664,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 5a3e0c30bf5014442ad2b590b35edabb, type: 3}
-    m_FontSize: 40
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -860,8 +872,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13,
-    type: 3}
+  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13, type: 3}
   m_Color: {r: 1, g: 0.41037738, b: 0.41037738, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1076,8 +1087,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13,
-    type: 3}
+  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13, type: 3}
   m_Color: {r: 1, g: 0.41037738, b: 0.41037738, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1526,8 +1536,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13,
-    type: 3}
+  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13, type: 3}
   m_Color: {r: 1, g: 0.41037738, b: 0.41037738, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2279,8 +2288,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7884553394471630109, guid: e4b738f767af3494080dbc5d24c7eb13,
-    type: 3}
+  m_Sprite: {fileID: -7884553394471630109, guid: e4b738f767af3494080dbc5d24c7eb13, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2520,8 +2528,7 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 --- !u!4 &475810868 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4352417484911600, guid: d9730ff86bc10ed4ba842a2282e1b715,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 4352417484911600, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
   m_PrefabInstance: {fileID: 4352417689141188}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &483482138
@@ -2608,9 +2615,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1790761485}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: UseCombatItem
+      - m_Target: {fileID: 109911}
+        m_TargetAssemblyTypeName: HotbarUI, Assembly-CSharp
+        m_MethodName: SelectItem
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2742,9 +2749,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1790761485}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: UseCombatItem
+      - m_Target: {fileID: 109911}
+        m_TargetAssemblyTypeName: HotbarUI, Assembly-CSharp
+        m_MethodName: SelectItem
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2863,8 +2870,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13,
-    type: 3}
+  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13, type: 3}
   m_Color: {r: 1, g: 0.41037738, b: 0.41037738, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3397,9 +3403,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1790761485}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: UseCombatItem
+      - m_Target: {fileID: 109911}
+        m_TargetAssemblyTypeName: HotbarUI, Assembly-CSharp
+        m_MethodName: SelectItem
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3519,7 +3525,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 5a3e0c30bf5014442ad2b590b35edabb, type: 3}
-    m_FontSize: 40
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -3571,7 +3577,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 5a3e0c30bf5014442ad2b590b35edabb, type: 3}
-    m_FontSize: 40
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -4089,9 +4095,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1790761485}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: UseCombatItem
+      - m_Target: {fileID: 109911}
+        m_TargetAssemblyTypeName: HotbarUI, Assembly-CSharp
+        m_MethodName: SelectItem
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4247,8 +4253,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7884553394471630109, guid: e4b738f767af3494080dbc5d24c7eb13,
-    type: 3}
+  m_Sprite: {fileID: -7884553394471630109, guid: e4b738f767af3494080dbc5d24c7eb13, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4815,8 +4820,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7884553394471630109, guid: e4b738f767af3494080dbc5d24c7eb13,
-    type: 3}
+  m_Sprite: {fileID: -7884553394471630109, guid: e4b738f767af3494080dbc5d24c7eb13, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4949,9 +4953,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1790761485}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: UseCombatItem
+      - m_Target: {fileID: 109911}
+        m_TargetAssemblyTypeName: HotbarUI, Assembly-CSharp
+        m_MethodName: SelectItem
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5028,7 +5032,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 5a3e0c30bf5014442ad2b590b35edabb, type: 3}
-    m_FontSize: 40
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -5071,8 +5075,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 342782789}
-  - {fileID: 1962519808}
-  - {fileID: 1736885783}
   m_Father: {fileID: 1719227992}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5837,8 +5839,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7884553394471630109, guid: e4b738f767af3494080dbc5d24c7eb13,
-    type: 3}
+  m_Sprite: {fileID: -7884553394471630109, guid: e4b738f767af3494080dbc5d24c7eb13, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6062,9 +6063,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1790761485}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: UseCombatItem
+      - m_Target: {fileID: 109911}
+        m_TargetAssemblyTypeName: HotbarUI, Assembly-CSharp
+        m_MethodName: SelectItem
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6616,7 +6617,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 5a3e0c30bf5014442ad2b590b35edabb, type: 3}
-    m_FontSize: 40
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -6932,8 +6933,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13,
-    type: 3}
+  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13, type: 3}
   m_Color: {r: 1, g: 0.41037738, b: 0.41037738, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7130,8 +7130,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7884553394471630109, guid: e4b738f767af3494080dbc5d24c7eb13,
-    type: 3}
+  m_Sprite: {fileID: -7884553394471630109, guid: e4b738f767af3494080dbc5d24c7eb13, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7438,8 +7437,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13,
-    type: 3}
+  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13, type: 3}
   m_Color: {r: 1, g: 0.41037738, b: 0.41037738, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7466,6 +7464,7 @@ GameObject:
   - component: {fileID: 1596778539}
   - component: {fileID: 1596778540}
   - component: {fileID: 1596778541}
+  - component: {fileID: 1596778542}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Manager
@@ -7499,8 +7498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050f32a4b2b868344b0459604d61ca10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 4120879496890394740, guid: 3dde1f0872f17ad489879d72cccacbfd,
-    type: 3}
+  tilePrefab: {fileID: 4120879496890394740, guid: 3dde1f0872f17ad489879d72cccacbfd, type: 3}
 --- !u!114 &1596778536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7582,6 +7580,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionAnimator: {fileID: 1779923666}
   victoryPopup: {fileID: 89828506}
+--- !u!114 &1596778542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596778533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecfc9246aa8626d4385f1523f1710804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  potionTest: {fileID: 11400000, guid: 3f88c8a18172f404b8a71730f9a4e845, type: 2}
 --- !u!1 &1640209118
 GameObject:
   m_ObjectHideFlags: 0
@@ -7883,9 +7894,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1790761485}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: UseCombatItem
+      - m_Target: {fileID: 109911}
+        m_TargetAssemblyTypeName: HotbarUI, Assembly-CSharp
+        m_MethodName: SelectItem
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8161,9 +8172,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1790761485}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: UseCombatItem
+      - m_Target: {fileID: 109911}
+        m_TargetAssemblyTypeName: HotbarUI, Assembly-CSharp
+        m_MethodName: SelectItem
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8173,61 +8184,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1 &1736885782
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1736885783}
-  - component: {fileID: 1736885784}
-  m_Layer: 5
-  m_Name: Equpment Bar
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1736885783
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1736885782}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 944852183}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 328.28, y: 0.000046969}
-  m_SizeDelta: {x: 76.56, y: 441.34}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1736885784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1736885782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f1a3e40c78de9a4b8f3a89a986a8ff0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonPrefab: {fileID: 252682334109540267, guid: 5613c21abfc547b4dbb8191dd6517d85,
-    type: 3}
-  playerScript: {fileID: 1790761485}
-  amountOfItemslots: 4
-  equipmentBar: {fileID: 0}
-  gapSizeMultiplier: 0.5
-  parent: {fileID: 1962519809}
 --- !u!1 &1743024313
 GameObject:
   m_ObjectHideFlags: 0
@@ -8331,8 +8287,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13,
-    type: 3}
+  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13, type: 3}
   m_Color: {r: 1, g: 0.41037738, b: 0.41037738, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8402,18 +8357,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1790761485 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4352417484911601, guid: d9730ff86bc10ed4ba842a2282e1b715,
-    type: 3}
-  m_PrefabInstance: {fileID: 4352417689141188}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7e07c8faec6f894195acab1795ec6ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1832216618
 GameObject:
   m_ObjectHideFlags: 0
@@ -8481,7 +8424,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 5a3e0c30bf5014442ad2b590b35edabb, type: 3}
-    m_FontSize: 40
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -9136,59 +9079,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1954744875}
   m_CullTransparentMesh: 1
---- !u!1 &1962519807
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1962519808}
-  - component: {fileID: 1962519809}
-  m_Layer: 5
-  m_Name: Inventory
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &1962519808
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1962519807}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 944852183}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 739.54, y: 0}
-  m_SizeDelta: {x: 440.91, y: 441.34}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1962519809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1962519807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8828a59790fcc747b415f2cece2d3f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonPrefab: {fileID: 252682334109540267, guid: 5613c21abfc547b4dbb8191dd6517d85,
-    type: 3}
-  playerScript: {fileID: 1790761485}
-  amountOfItemslots: 36
-  equipmentBar: {fileID: 1736885784}
 --- !u!1 &1969634323
 GameObject:
   m_ObjectHideFlags: 0
@@ -9508,8 +9398,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13,
-    type: 3}
+  m_Sprite: {fileID: -7992825317925926488, guid: e4b738f767af3494080dbc5d24c7eb13, type: 3}
   m_Color: {r: 1, g: 0.41037738, b: 0.41037738, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9682,8 +9571,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7884553394471630109, guid: e4b738f767af3494080dbc5d24c7eb13,
-    type: 3}
+  m_Sprite: {fileID: -7884553394471630109, guid: e4b738f767af3494080dbc5d24c7eb13, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9761,7 +9649,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 5a3e0c30bf5014442ad2b590b35edabb, type: 3}
-    m_FontSize: 40
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -9832,7 +9720,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 5a3e0c30bf5014442ad2b590b35edabb, type: 3}
-    m_FontSize: 40
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -10140,74 +10028,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1743024314}
     m_Modifications:
-    - target: {fileID: 1790761486, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
-      propertyPath: inventoryText.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1790761486, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
-      propertyPath: inventoryText.Array.data[0]
-      value: 
-      objectReference: {fileID: 2109005317}
-    - target: {fileID: 1790761486, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
-      propertyPath: inventoryText.Array.data[1]
-      value: 
-      objectReference: {fileID: 1378426267}
-    - target: {fileID: 1790761486, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
-      propertyPath: inventoryText.Array.data[2]
-      value: 
-      objectReference: {fileID: 102075873}
-    - target: {fileID: 1790761486, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
-      propertyPath: inventoryText.Array.data[3]
-      value: 
-      objectReference: {fileID: 2089744317}
-    - target: {fileID: 1790761486, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
-      propertyPath: inventoryText.Array.data[4]
-      value: 
-      objectReference: {fileID: 553083117}
-    - target: {fileID: 1790761486, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
-      propertyPath: inventoryText.Array.data[5]
-      value: 
-      objectReference: {fileID: 1832216621}
-    - target: {fileID: 1790761486, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
-      propertyPath: inventoryText.Array.data[6]
-      value: 
-      objectReference: {fileID: 938921224}
-    - target: {fileID: 1790761486, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
-      propertyPath: inventoryText.Array.data[7]
-      value: 
-      objectReference: {fileID: 565396616}
-    - target: {fileID: 1790761486, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
-      propertyPath: inventoryImages.Array.data[0]
-      value: 
-      objectReference: {fileID: 756800581}
-    - target: {fileID: 1790761486, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
-      propertyPath: inventoryImages.Array.data[1]
-      value: 
-      objectReference: {fileID: 1928009615}
-    - target: {fileID: 1790761486, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
-      propertyPath: inventoryImages.Array.data[2]
-      value: 
-      objectReference: {fileID: 1563255519}
-    - target: {fileID: 1790761486, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
-      propertyPath: inventoryImages.Array.data[3]
-      value: 
-      objectReference: {fileID: 335794535}
-    - target: {fileID: 1790761486, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
-      propertyPath: inventoryImages.Array.data[4]
-      value: 
-      objectReference: {fileID: 1570391138}
-    - target: {fileID: 1790761486, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
-      propertyPath: inventoryImages.Array.data[5]
-      value: 
-      objectReference: {fileID: 202846644}
-    - target: {fileID: 1790761486, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
-      propertyPath: inventoryImages.Array.data[6]
-      value: 
-      objectReference: {fileID: 1548505877}
-    - target: {fileID: 1790761486, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
-      propertyPath: inventoryImages.Array.data[7]
-      value: 
-      objectReference: {fileID: 1954744877}
     - target: {fileID: 4352417484911600, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
       propertyPath: m_RootOrder
       value: 1

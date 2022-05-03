@@ -52,9 +52,12 @@ public abstract class Occupant : MonoBehaviour
         if (originType == damage.origin && damage.origin != DamageOrigin.NEUTRAL)
             return;
 
+        if (currentHealth <= 0)
+            return;
+
         currentHealth -= damage.damage;
 
-        Instantiate(damagePopup, transform.position + new Vector3(0, 0.5f), Quaternion.identity).GetComponent<DamagePopup>().Setup(damage.damage, damage.origin == DamageOrigin.FRIENDLY);
+        Instantiate(damagePopup, transform.position + new Vector3(0, 0.5f), Quaternion.identity).GetComponent<DamagePopup>().Setup(damage.damage, damage.origin);
 
         if (currentHealth <= 0)
         {

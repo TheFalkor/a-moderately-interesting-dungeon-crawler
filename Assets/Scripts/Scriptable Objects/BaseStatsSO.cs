@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-[CreateAssetMenu(menuName = "ScriptableObjects/Base Stats", fileName = "Entity Base Stats", order = 1)]
+[CreateAssetMenu(menuName = "Scriptable Objects/Base Stats", fileName = "Entity Base Stats", order = 1)]
 public class BaseStatsSO : ScriptableObject       // Race / Objects
 {
     [Header("Information")]

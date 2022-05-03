@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58e9d5ec17214874eb59279aea58b129, type: 3}
-  m_Name: BasicHealthPotion
+  m_Script: {fileID: 11500000, guid: 6017eadf07e670d45ac268e322699842, type: 3}
+  m_Name: potion testing
   m_EditorClassIdentifier: 
-  itemName: Health Potion
+  itemName: HEALTH POTION
+  itemDescription: is heal
   itemSprite: {fileID: 21300000, guid: 1dd887667d0b6c94981c197ce0935981, type: 3}
-  maxStackSize: 5
-  stackSize: 1
-  effects:
-  - {fileID: 11400000, guid: e2bcb505d0525a841af8d33850057900, type: 2}
+  maxStack: 99
+  itemType: 4
+  consumableValue: 5
+  consumableType: 1

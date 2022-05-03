@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DamagePopup : MonoBehaviour
 {
-    public void Setup(int damage, bool isPlayer)
+    public void Setup(int damage, DamageOrigin origin)
     {
         float factor = Random.Range(-1.0f, 1.0f);
 
@@ -14,8 +14,13 @@ public class DamagePopup : MonoBehaviour
             GetComponent<Rigidbody2D>().AddForce(new Vector2(25 + 100 * factor, 600));
 
         TextMesh mesh = transform.GetChild(0).GetComponent<TextMesh>();
-        if (isPlayer)
-            mesh.color = new Color(0, 185 / 255f, 0);
+        if (origin == DamageOrigin.ENEMY)
+            mesh.color = new Color(125 / 255f, 75 / 255f, 200 / 255f);
+        else if (origin == DamageOrigin.FRIENDLY)
+            mesh.color = new Color(1, 75 / 255f, 75 / 255f);
+       else
+            mesh.color = new Color(1, 1, 1);
+
 
         mesh.text = "-" + damage;
 

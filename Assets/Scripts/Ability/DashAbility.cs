@@ -95,9 +95,6 @@ public class DashAbility : Ability
                 //occupant.AddStatusEffect(new StatusEffect(StatusType.FLUTTER, 1));
             }
 
-            GridManager.instance.ClearAllHighlights();
-            CombatUI.instance.SelectAbility(-1);
-
             return true;
         }
         return false;

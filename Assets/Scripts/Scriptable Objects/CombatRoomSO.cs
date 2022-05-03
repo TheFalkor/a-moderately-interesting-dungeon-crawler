@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-[CreateAssetMenu(menuName = "ScriptableObjects/Combat Room", fileName = "Combat Room", order = 1)]
+[CreateAssetMenu(menuName = "Scriptable Objects/Combat Room", fileName = "Combat Room", order = 1)]
 public class CombatRoomSO : ScriptableObject
 {
     [Header("Information")]
