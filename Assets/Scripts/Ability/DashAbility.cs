@@ -30,10 +30,12 @@ public class DashAbility : Ability
 
     public override void HighlightDecisions(Tile currentTile)
     {
+        dashableTiles.Clear();
+        victimList.Clear();
+
         player = (Player)currentTile.GetOccupant();
 
         Queue<Vector2Int> directionQueue = new Queue<Vector2Int>();
-        victimList.Clear();
 
         directionQueue.Enqueue(new Vector2Int(0, -1));
         directionQueue.Enqueue(new Vector2Int(1, 0));
@@ -48,8 +50,6 @@ public class DashAbility : Ability
                 directionQueue.Dequeue();
                 continue;
             }
-            else if (tile.IsOccupied())
-                victimList.Add(tile.GetOccupant());
 
             tile = GridManager.instance.GetTile(currentTile.GetPosition() + directionQueue.Peek() * 2);
             if (!tile || !tile.IsWalkable())
@@ -57,8 +57,9 @@ public class DashAbility : Ability
                 directionQueue.Dequeue();
                 continue;
             }
-            else if (tile.IsOccupied())
-                victimList.Add(tile.GetOccupant());
+
+            dashableTiles.Add(tile);
+            tile.Highlight(HighlightType.ABILITY_TARGET);
 
             tile = GridManager.instance.GetTile(currentTile.GetPosition() + directionQueue.Peek() * 3);
             if (!tile || !tile.IsWalkable() || tile.IsOccupied())
@@ -88,13 +89,13 @@ public class DashAbility : Ability
 
             player.UpdateLayerIndex();
 
-            Debug.Log(victimList.Count);
             foreach (Occupant occupant in victimList)
             {
                 occupant.TakeDamage(new Damage(2, DamageOrigin.FRIENDLY, null));
                 //occupant.AddStatusEffect(new StatusEffect(StatusType.FLUTTER, 1));
             }
 
+            GridManager.instance.ClearAllHighlights();
             CombatUI.instance.SelectAbility(-1);
 
             return true;

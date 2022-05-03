@@ -92,7 +92,7 @@ public class GridManager : MonoBehaviour
                 render.sprite = TilesetManager.instance.GetBorderSprite(Direction.SOUTH_WEST);
             else
                 render.sprite = TilesetManager.instance.GetBorderSprite(Direction.WEST);
-            render.sortingOrder = -10;
+            render.sortingOrder = -16;
         }
 
         for (int i = 0; i < ROOM_HEIGHT + 3; i++)
@@ -108,7 +108,7 @@ public class GridManager : MonoBehaviour
                 render.sprite = TilesetManager.instance.GetBorderSprite(Direction.SOUTH_EAST);
             else
                 render.sprite = TilesetManager.instance.GetBorderSprite(Direction.EAST);
-            render.sortingOrder = -10;
+            render.sortingOrder = -16;
         }
 
         for (int i = 0; i < ROOM_WIDTH; i++)
@@ -119,7 +119,7 @@ public class GridManager : MonoBehaviour
 
             SpriteRenderer render = border.AddComponent<SpriteRenderer>();
             render.sprite = TilesetManager.instance.GetBorderSprite(Direction.SOUTH);
-            render.sortingOrder = -10;
+            render.sortingOrder = -16;
         }
 
         for (int i = 0; i < ROOM_WIDTH * 2; i++)
@@ -129,7 +129,7 @@ public class GridManager : MonoBehaviour
             border.transform.position = new Vector3(-ROOM_WIDTH / 2 + 0.5f + i / 2, ROOM_HEIGHT / 2 + 2.5f - i % 2);
 
             SpriteRenderer render = border.AddComponent<SpriteRenderer>();
-            render.sortingOrder = -10;
+            render.sortingOrder = -16;
 
             backdropRenders.Add(render);
         }
@@ -168,54 +168,7 @@ public class GridManager : MonoBehaviour
             tile.UpdateTileset();
         }
 
-        return;
-        
-        // WIP
-        for (int i = 0; i < ROOM_WIDTH; i++)
-        {
-            Tile tile = GetTile(i);
-            bool wall0 = !tile || !tile.IsWalkable();
-
-            tile = GetTile(i + ROOM_WIDTH);
-            bool wall1 = !tile || !tile.IsWalkable();
-
-            tile = GetTile(i - 1);
-            bool wallLeft = !tile || !tile.IsWalkable();
-
-            tile = GetTile(i - 1);
-            bool wallRight = !tile || !tile.IsWalkable();
-
-            Sprite topRow = null;
-            Sprite bottomRow = null;
-
-            if (wall0 && !wall1)
-            {
-                if (wallLeft && wallRight)
-                    backdropRenders[i].sprite = TilesetManager.instance.GetTileSprite(1);
-                else if (wallLeft)
-                    backdropRenders[i].sprite = TilesetManager.instance.GetTileSprite(30);
-                else if (wallRight)
-                    backdropRenders[i].sprite = TilesetManager.instance.GetTileSprite(28);
-                else
-                    backdropRenders[i].sprite = TilesetManager.instance.GetTileSprite(31);
-            }
-            else if (wall0 && wall1)
-            {
-                if (wallLeft && wallRight)
-                    backdropRenders[i].sprite = TilesetManager.instance.GetTileSprite(25);
-                else if (wallLeft)
-                    backdropRenders[i].sprite = TilesetManager.instance.GetTileSprite(26);
-                else if (wallRight)
-                    backdropRenders[i].sprite = TilesetManager.instance.GetTileSprite(24);
-                else
-                    backdropRenders[i].sprite = TilesetManager.instance.GetTileSprite(27);
-            }
-            else
-            {
-
-            }
-
-        }
+        UpdateBackdrop();
     }
 
     public void ClearAllHighlights()
@@ -261,5 +214,14 @@ public class GridManager : MonoBehaviour
         Vector2Int gridPosition = new Vector2Int((int)(diffrence.x/tileWidth), -(int)(diffrence.y/tileHeight));
         //need to invert y because top left is  X negative : Y positive in world and X negative :Y negative in get tile
         return GetTile(gridPosition);
+    }
+
+    private void UpdateBackdrop()
+    {
+        for (int i = 0; i < ROOM_WIDTH; i++)
+        {
+            backdropRenders[i * 2].sprite = TilesetManager.instance.GetTileSprite(1);
+            backdropRenders[i * 2 + 1].sprite = TilesetManager.instance.GetTileSprite(5);
+        }
     }
 }

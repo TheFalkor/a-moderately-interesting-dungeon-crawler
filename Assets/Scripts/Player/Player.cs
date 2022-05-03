@@ -22,12 +22,6 @@ public class Player : Entity
     [Header("Runtime Variables")]
     private LayerMask tileMask;
 
-    [Header("Inventory")]
-    private NonFinalInventoryInterface face;
-    public List<ScriptableItem> startingInventory;
-    public bool canEquipInCombat = false;
-    List<InventoryItem> CombatUsableItems=new List<InventoryItem>();
-
 
     public void Setup(BaseStatsSO newBaseStat = null, ClassStatsSO newClassStat = null)
     {
@@ -49,19 +43,16 @@ public class Player : Entity
 
         base.Initialize();
 
-        /*currentHealth += classStat.bonusHealth;
+        currentHealth += classStat.bonusHealth;
         maxhealth += classStat.bonusHealth;
         defense += classStat.bonusDefense;
         baseMeleeDamage += classStat.bonusMeleeDamage;
-        baseRangeDamage += classStat.bonusRangeDamage;*/
+        baseRangeDamage += classStat.bonusRangeDamage;
 
         CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
         CombatUI.instance.UpdateAttack(baseMeleeDamage);    // no
         CombatUI.instance.UpdateDefense(defense);
         CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
-
-        face = gameObject.GetComponent<NonFinalInventoryInterface>();
-        face.UpdateSprites();
         
         audioKor = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioKor>();
     }
@@ -75,14 +66,6 @@ public class Player : Entity
 
         UpdateLayerIndex();
         targetPosition = transform.position;
-    }
-
-    public void SetUpInventory() 
-    {
-        inventory = new Inventory();
-        inventory.SetOwner(this);
-        inventory.CreateEquipmentInventory();
-        GiveStartingItems();
     }
 
     public override void PreTurn()
@@ -146,17 +129,6 @@ public class Player : Entity
                 break;
 
             case PlayerState.ATTACK_STATE:
-                // Should not be in update
-                /*if (inventory != null)
-                {
-                    switch (inventory.GetEquipedWeaponType())
-                    {
-                        case WeaponType.SWORD: allowCorner = true; break;
-                        default: allowCorner = false; break;
-                    }
-                }*/
-                // !Should not be in update
-
                 if (currentActionPoints > 0)
                     HighlightDecisions(HighlightType.ATTACKABLE, allowCorner);
 
@@ -358,11 +330,8 @@ public class Player : Entity
     public override void Heal(int health)
     {
         base.Heal(health);
-        if (CombatUI.instance != null) 
-        {
-            CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
-        }
-        
+
+        CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
     }
 
     protected override void Death()
@@ -370,165 +339,5 @@ public class Player : Entity
         temporaryAnimatorDeath.SetBool("Closed", true);
         Debug.Log("player died");
         // End game
-    }
-
-    public override void UseItem(int index)
-    {
-        base.UseItem(index);
-        UpdateCombatItems();
-        UpdateCombatUI();
-        UpdateInventoryInterface();
-    }
-    public override void UseItem(InventoryItem item)
-    {
-        
-        base.UseItem(item);
-        UpdateCombatItems();
-        UpdateCombatUI();
-        UpdateInventoryInterface();
-
-
-    }
-    public override void GiveItem(InventoryItem item)
-    {
-        base.GiveItem(item);
-        UpdateCombatItems();
-        UpdateInventoryInterface();
-    }
-
-    public void UseCombatItem(int index) 
-    {
-        if (index >= 0 && index < CombatUsableItems.Count) 
-        {
-            UseItem(CombatUsableItems[index]);
-        }
-        
-    }
-    private void UpdateCombatItems() 
-    {
-        CombatUsableItems.Clear();
-        for(int i=0;i<inventory.GetAmountOfItems(); i++) 
-        {
-            InventoryItem item = inventory.GetItem(i);
-            if (item.GetItemType() != ItemType.EQUIPMENT||canEquipInCombat) 
-            {
-                CombatUsableItems.Add(item);
-            }
-        }
-    }
-
-    public Sprite GetItemImage(int index)
-    {
-        if (inventory!=null) 
-        {
-            InventoryItem item = inventory.GetItem(index);
-            if (item != null)
-            {
-                return item.GetSprite();
-            }
-        }
-        return null;
-    }
-    public Sprite GetItemImageCombat(int index)
-    {
-
-        if (index >= 0 && index < CombatUsableItems.Count)
-        {
-            InventoryItem item = CombatUsableItems[index];
-            if (item != null)
-            {
-                return item.GetSprite();
-            }
-        }
-
-
-        return null;
-    }
-    public Sprite GetEquipedItemImage(EquipmentType equipment,int slot) 
-    {
-        if (inventory != null) 
-        {
-            InventoryItem item=inventory.GetEquipedItem(equipment,slot);
-            if (item != null) 
-            {
-                return item.GetSprite();
-            }
-        }
-        return null;
-    }
-
-    public int GetStackSize(int index) 
-    {
-        if (inventory != null)
-        {
-            InventoryItem item = inventory.GetItem(index);
-            if (item != null)
-            {
-                return item.GetStackAmount();
-            }
-        }
-        return 0;
-    }
-
-    public int GetStackSizeCombat(int index)
-    {
-        if (index >= 0 && index < CombatUsableItems.Count)
-        {
-            InventoryItem item = CombatUsableItems[index];
-            if (item != null)
-            {
-                return item.GetStackAmount();
-            }
-        }
-        return 0;
-    }
-
-
-    public void GiveStartingItems()
-    {
-        foreach (ScriptableItem item in startingInventory)
-        {
-            GiveItem(item.CreateItem());
-        }
-    }
-
-    protected override void UpdateStats()
-    {
-        base.UpdateStats();
-
-		maxhealth += classStat.bonusHealth;
-        defense += classStat.bonusDefense;
-        baseMeleeDamage += classStat.bonusMeleeDamage;
-		
-        UpdateCombatUI();
-
-        if (CombatUI.instance!=null) 
-        {
-            CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
-            CombatUI.instance.UpdateAttack(baseMeleeDamage);
-            CombatUI.instance.UpdateDefense(defense);
-        }
-        
-        UpdateCombatUI();
-    }
-    private void UpdateCombatUI() 
-    {
-        if (CombatUI.instance != null)
-        {
-            CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
-            CombatUI.instance.UpdateAttack(baseMeleeDamage);
-            CombatUI.instance.UpdateDefense(defense);
-
-            CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
-        }
-    }
-    private void UpdateInventoryInterface() 
-    {
-        if (face != null)
-        {
-            face.UpdateSprites();
-        }
-    }
-
-    
+    }    
 }

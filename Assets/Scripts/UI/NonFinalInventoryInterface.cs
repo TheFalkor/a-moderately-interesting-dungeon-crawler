@@ -26,7 +26,7 @@ public class NonFinalInventoryInterface : MonoBehaviour
             int i = 0;
             foreach (Image image in inventoryImages)
             {
-                image.sprite = player.GetItemImageCombat(i);
+                image.sprite = null;
                 image.gameObject.SetActive(image.sprite);
                 i++;
             }
@@ -34,7 +34,7 @@ public class NonFinalInventoryInterface : MonoBehaviour
             foreach(Text text in inventoryText)
             {
                 string tempString = "";
-                int size=player.GetStackSizeCombat(i);
+                int size=999;
                 if (size != 1 && size != 0) 
                 {
                     tempString = size.ToString();

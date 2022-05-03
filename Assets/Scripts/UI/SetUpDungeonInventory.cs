@@ -25,7 +25,7 @@ public class SetUpDungeonInventory : MonoBehaviour
     protected virtual void OnStart() 
     {
         defaultSprite = buttonPrefab.GetComponentInChildren<Image>().sprite;
-        playerScript.SetUpInventory();
+        //playerScript.SetUpInventory();
         Rect rectangle = buttonPrefab.GetComponent<RectTransform>().rect;
         buttonWidth = rectangle.width;
         buttonHeight = rectangle.height;
@@ -80,14 +80,14 @@ public class SetUpDungeonInventory : MonoBehaviour
     {
         for(int i = 0; i < buttonImages.Count; i++) 
         {
-            Sprite spr = playerScript.GetItemImage(i);
+            Sprite spr = null;
             if (spr == null) 
             {
                 spr = defaultSprite;
             }
             buttonImages[i].sprite =spr ;
 
-            int stackSize = playerScript.GetStackSize(i);
+            int stackSize = 999;
             string tempText = "";
             if (stackSize != 0&&stackSize!=1) 
             {

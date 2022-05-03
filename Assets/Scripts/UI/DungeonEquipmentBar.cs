@@ -36,7 +36,7 @@ public class DungeonEquipmentBar : SetUpDungeonInventory
                 case (int)(EquipmentType.ACCESSORY)+1: equipment = EquipmentType.ACCESSORY;slotNr = 1; break;
                 default : equipment = EquipmentType.UNASIGNED; break;
             }
-            Sprite spr = playerScript.GetEquipedItemImage(equipment,slotNr);
+            Sprite spr = null;
             if (spr == null)
             {
                 spr = defaultSprite;
