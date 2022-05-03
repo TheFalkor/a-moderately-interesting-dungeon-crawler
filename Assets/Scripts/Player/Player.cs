@@ -275,17 +275,13 @@ public class Player : Entity
 
         ClearHightlight();
 
-        //currentActionPoints--;//moved to attack with weapon
-        AttackWithWeapon(tile);
+
+        tile.AttackTile(new Damage(baseMeleeDamage, DamageOrigin.FRIENDLY));
+        currentActionPoints--;
+
         CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
         
-        //tile.AttackTile(new Damage(baseMeleeDamage, DamageOrigin.FRIENDLY));//also moved to attack with weapon
-
         audioKor.PlaySFX("SLASH");
-
-        /*print("ATTACKED: " + tile.GetPosition());
-        actionPoints--;
-        tile.AttackTile(new Damage(baseMeleeDamage, DamageOrigin.FRIENDLY));*/
     }
 
     private void HighlightDecisions(HighlightType type, bool allowCorners = false)

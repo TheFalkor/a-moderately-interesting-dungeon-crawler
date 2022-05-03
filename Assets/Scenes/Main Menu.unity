@@ -2501,11 +2501,8 @@ MonoBehaviour:
     Mario Palleschi - Programmer
 
 
-    Marcus Orjes -
-    Programmer
-
-
-    Mattias Axelsson - QA, Level desoigner'
+    Mattias Axelsson
+    - QA, Level desoigner'
 --- !u!222 &936958779
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -203,19 +203,6 @@ public class GridManager : MonoBehaviour
         return tileList[index];
     }
 
-    public Tile GetTileWorldFuzzy(Vector2 position) 
-    {
-        const float widthOffset = 0.5f;
-        const float hightOffset = 0;
-        const float tileWidth = 1;
-        const float tileHeight = 1;
-        Vector2 startOfGrid = new Vector2(-(ROOM_WIDTH / 2f +tileWidth/2f)+widthOffset, (ROOM_HEIGHT / 2f  + tileHeight / 2f) +hightOffset);
-        Vector2 diffrence = position - startOfGrid;
-        Vector2Int gridPosition = new Vector2Int((int)(diffrence.x/tileWidth), -(int)(diffrence.y/tileHeight));
-        //need to invert y because top left is  X negative : Y positive in world and X negative :Y negative in get tile
-        return GetTile(gridPosition);
-    }
-
     private void UpdateBackdrop()
     {
         for (int i = 0; i < ROOM_WIDTH; i++)

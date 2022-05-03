@@ -18,7 +18,6 @@ public abstract class Entity : Occupant
     protected Vector2 targetPosition;
     protected bool isMoving = false;
     protected readonly List<Tile> tilesInRange = new List<Tile>();
-    protected Inventory inventory;  //curently only player use inventory. 
 
     public override void Initialize()
     {
@@ -27,7 +26,7 @@ public abstract class Entity : Occupant
 
         maxMovementPoints = baseStat.movementPoints;
         currentMovementPoints = maxMovementPoints;
-        //maxActionPoints = baseStat.actionPoints;//moved to update stats
+        maxActionPoints = baseStat.actionPoints;//moved to update stats
         currentActionPoints = maxActionPoints;
 
         targetPosition = transform.position;       
@@ -103,99 +102,5 @@ public abstract class Entity : Occupant
         CombatManager.instance.RemoveEntity(this);
 
         base.Death();
-    }
-
-    protected override void UpdateStats()
-    {
-        base.UpdateStats();
-        maxActionPoints = baseStat.actionPoints;
-        if (inventory != null ) 
-        {
-            
-            if (inventory.HasEquipmentInventory())
-            {
-                maxhealth += inventory.EquipedItemsStatValue(StatType.MAX_HEALTH);
-                defense += inventory.EquipedItemsStatValue(StatType.DEFENSE);
-                baseMeleeDamage += inventory.EquipedItemsStatValue(StatType.ATTACK);
-            }
-
-            if (inventory.GetEquipedWeaponType()==WeaponType.SWORD) 
-            {
-                maxActionPoints++;
-            }
-        }
-
-    }
-
-    protected void AttackWithWeapon(Tile tile)
-    {
-        if (inventory != null && inventory.HasEquipmentInventory())
-        {
-            switch (inventory.GetEquipedWeaponType())
-            {
-                case WeaponType.SWORD:AttackWithSword(tile); break;
-                default: AttackWithSword(tile); break; // tmp
-            }
-        }
-        else
-        {
-            AttackWithNone(tile);
-        }
-    }
-    protected void AttackWithNone(Tile tile) 
-    {
-        if (currentActionPoints > 0&& currentTile.orthogonalNeighbors.Contains(tile)) 
-        {
-            currentActionPoints--;
-            Attack(tile, new Damage(baseMeleeDamage, originType));
-        }
-    }
-
-    protected void AttackWithSword(Tile tile)
-    {
-        if (currentActionPoints>0)
-        {
-            if (currentTile.orthogonalNeighbors.Contains(tile) ||currentTile.diagonalNeighbors.Contains(tile) ) 
-            {
-                Attack(tile, new Damage(baseMeleeDamage, originType));
-                currentActionPoints--;
-            }
-        }
-    }
-
-    public virtual void GiveItem(InventoryItem item)
-    {
-        if (inventory != null)
-        {
-            inventory.AddItem(item);
-        }
-    }
-
-    public virtual void UseItem(int index)
-    {
-        if (inventory != null)
-        {
-            inventory.UseItem(index);
-            UpdateStats();
-            CapHealth();
-        }
-
-    }
-
-    public virtual void UseItem(InventoryItem item)
-    {
-        if (inventory != null)
-        {
-            inventory.UseItem(item);
-            UpdateStats();
-            CapHealth();
-        }
-    }
-    public virtual void UnequipItem(EquipmentType slot, int slotNr)
-    {
-        if (inventory != null)
-        {
-            inventory.UnequipItem(slot, slotNr);
-        }
     }
 }

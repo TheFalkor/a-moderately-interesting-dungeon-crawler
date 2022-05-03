@@ -100,20 +100,21 @@ public class Enemy : Entity
     private void MeleeAttack(Action action)
     {
         // TO DO : check the weapon of the enemy
+        Damage damage = new Damage(baseMeleeDamage, originType);    // baseMeleeDamage is temp, maybe
 
         switch(action.direction)
         {
             case Direction.NORTH:
-                AttackWithNone(GridManager.instance.GetTile(currentTile.GetPosition() + Vector2Int.down));
+                Attack(GridManager.instance.GetTile(currentTile.GetPosition() + Vector2Int.down), damage);
                 break;
             case Direction.EAST:
-                AttackWithNone(GridManager.instance.GetTile(currentTile.GetPosition() + Vector2Int.right));
+                Attack(GridManager.instance.GetTile(currentTile.GetPosition() + Vector2Int.right), damage);
                 break;
             case Direction.SOUTH:
-                AttackWithNone(GridManager.instance.GetTile(currentTile.GetPosition() + Vector2Int.up));
+                Attack(GridManager.instance.GetTile(currentTile.GetPosition() + Vector2Int.up), damage);
                 break;
             case Direction.WEST:
-                AttackWithNone(GridManager.instance.GetTile(currentTile.GetPosition() + Vector2Int.left));
+                Attack(GridManager.instance.GetTile(currentTile.GetPosition() + Vector2Int.left), damage);
                 break;
         }
 

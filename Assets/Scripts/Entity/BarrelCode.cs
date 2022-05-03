@@ -21,14 +21,10 @@ public class BarrelCode : Occupant
     GridManager theGrid;
     //Occupant ocupantThatIsMe;
     ExplosionType typeOfExplosion;
-    float widthOfTile;
-    float heightOfTile;
     float timer = 0;//temporary used for testing
     // Start is called before the first frame update
     void Start()
     {
-        widthOfTile = 1;
-        heightOfTile = 1;// both of these should read the size of tiles somewhere instead of being hard coded.
         theGrid = GridManager.instance;
         typeOfExplosion = ExplosionType.SQUARE;
         Initialize();
@@ -53,10 +49,6 @@ public class BarrelCode : Occupant
     public override void Initialize()
     {
         base.Initialize();
-        currentTile.SetOccupant(null);
-        currentTile = theGrid.GetTileWorldFuzzy(transform.position);
-        transform.position = new Vector3(currentTile.transform.position.x, currentTile.transform.position.y);
-        currentTile.SetOccupant(this);
 
         audioKor = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioKor>();
     }
@@ -65,39 +57,20 @@ public class BarrelCode : Occupant
         if (!hasExploded)
         {
             hasExploded = true;
-            Damage barrelDamage = new Damage(baseMeleeDamage,originType);
+            //Damage barrelDamage = new Damage(baseMeleeDamage,originType);
 
             audioKor.PlaySFX("EXPLOSION");
             //no status effects
-            List<Tile> allHitTiles = new List<Tile>();
-            Vector2 myPosition = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-            Vector2 positionToCheck = new Vector2();
+            //List<Tile> allHitTiles = new List<Tile>();
+            //Vector2 myPosition = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+            //Vector2 positionToCheck = new Vector2();
 
             if (typeOfExplosion == ExplosionType.SQUARE)
             {
-                for (int i = -range; i <= range; i++)
-                {
-                    for (int j = -range; j <= range; j++)
-                    {
-                        if (!(i==0&&j==0)) 
-                        {
-                            positionToCheck.x = myPosition.x + i * widthOfTile;
-                            positionToCheck.y = myPosition.y + j * heightOfTile;
-                            Tile tileAtPositionToCheck = theGrid.GetTileWorldFuzzy(positionToCheck);//getTileWorldIsBugged
-                            if (tileAtPositionToCheck != null)
-                            {
-                                allHitTiles.Add(tileAtPositionToCheck);
-                            }
-                        }
-                        
-                    }
-                }
+                
+                // cock
             }
-            
-            foreach (Tile t in allHitTiles)
-            {
-                t.AttackTile(barrelDamage);
-            }
+
         }
     }
 
