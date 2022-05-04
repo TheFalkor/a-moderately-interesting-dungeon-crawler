@@ -211,7 +211,7 @@ public class GridManager : MonoBehaviour
         for (int i = 0; i < ROOM_WIDTH; i++)
         {
             backdropRenders[i * 2].sprite = TilesetManager.instance.GetTileSprite(1);
-            backdropRenders[i * 2 + 1].sprite = TilesetManager.instance.GetTileSprite(5);
+            backdropRenders[i * 2 + 1].sprite = TilesetManager.instance.GetTileSprite(9);
         }
     }
 }
