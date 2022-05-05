@@ -83,7 +83,7 @@ MonoBehaviour:
     occupantPrefab: {fileID: 0}
   - wall: 1
     occupantPrefab: {fileID: 0}
-  - wall: 0
+  - wall: 1
     occupantPrefab: {fileID: 0}
   - wall: 0
     occupantPrefab: {fileID: 0}

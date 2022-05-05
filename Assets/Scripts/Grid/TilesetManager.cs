@@ -41,6 +41,19 @@ public class TilesetManager : MonoBehaviour
         wallIndeces.Add(29);
         wallIndeces.Add(30);
         wallIndeces.Add(31);
+        wallIndeces.Add(34);
+        wallIndeces.Add(36);
+        wallIndeces.Add(37);
+        wallIndeces.Add(38);
+        wallIndeces.Add(39);
+        wallIndeces.Add(44);
+        wallIndeces.Add(45);
+        wallIndeces.Add(46);
+        wallIndeces.Add(47);
+        wallIndeces.Add(52);
+        wallIndeces.Add(53);
+        wallIndeces.Add(54);
+        wallIndeces.Add(55);
 
         groundIndeces.Add(3);
         groundIndeces.Add(11);
@@ -64,14 +77,6 @@ public class TilesetManager : MonoBehaviour
         List<int> availableSprites = new List<int>();
         availableSprites.AddRange(wallIndeces);
 
-        bool wallLeft = false;
-        bool wallRight = false;
-
-        /*Tile downDownTile = GridManager.instance.GetTile(tile.GetPosition() + Vector2Int.up * 2);
-        if (downDownTile && downDownTile.IsWalkable())
-        {
-
-        }*/
 
         Tile upTile = GridManager.instance.GetTile(tile.GetPosition() + Vector2Int.down);
         if (upTile && upTile.IsWalkable())    // No wall above
@@ -85,6 +90,18 @@ public class TilesetManager : MonoBehaviour
             availableSprites.Remove(21);
             availableSprites.Remove(22);
             availableSprites.Remove(23);
+
+            availableSprites.Remove(34);
+            availableSprites.Remove(38);
+            availableSprites.Remove(39);
+            availableSprites.Remove(44);
+            availableSprites.Remove(45);
+            availableSprites.Remove(47);
+
+            availableSprites.Remove(52);
+            availableSprites.Remove(53);
+            availableSprites.Remove(54);
+            availableSprites.Remove(55);
         }
         else
         {
@@ -96,6 +113,10 @@ public class TilesetManager : MonoBehaviour
             availableSprites.Remove(29);
             availableSprites.Remove(30);
             availableSprites.Remove(31);
+
+            availableSprites.Remove(36);
+            availableSprites.Remove(37);
+            availableSprites.Remove(46);
         }
 
         Tile downTile = GridManager.instance.GetTile(tile.GetPosition() + Vector2Int.up);
@@ -110,6 +131,18 @@ public class TilesetManager : MonoBehaviour
             availableSprites.Remove(13);
             availableSprites.Remove(14);
             availableSprites.Remove(15);
+
+            availableSprites.Remove(34);
+            availableSprites.Remove(36);
+            availableSprites.Remove(37);
+            availableSprites.Remove(44);
+            availableSprites.Remove(45);
+            availableSprites.Remove(46);
+
+            availableSprites.Remove(52);
+            availableSprites.Remove(53);
+            availableSprites.Remove(54);
+            availableSprites.Remove(55);
         }
         else
         {
@@ -121,6 +154,10 @@ public class TilesetManager : MonoBehaviour
             availableSprites.Remove(29);
             availableSprites.Remove(30);
             availableSprites.Remove(31);
+
+            availableSprites.Remove(38);
+            availableSprites.Remove(39);
+            availableSprites.Remove(47);
         }
 
         Tile leftTile = GridManager.instance.GetTile(tile.GetPosition() + Vector2Int.left);
@@ -134,11 +171,21 @@ public class TilesetManager : MonoBehaviour
             availableSprites.Remove(22);
             availableSprites.Remove(29);
             availableSprites.Remove(30);
+
+            availableSprites.Remove(34);
+            availableSprites.Remove(37);
+            availableSprites.Remove(39);
+            availableSprites.Remove(45);
+            availableSprites.Remove(46);
+            availableSprites.Remove(47);
+
+            availableSprites.Remove(52);
+            availableSprites.Remove(53);
+            availableSprites.Remove(54);
+            availableSprites.Remove(55);
         }
         else
         {
-            wallLeft = true;
-
             availableSprites.Remove(4);
             availableSprites.Remove(7);
             availableSprites.Remove(12);
@@ -147,6 +194,10 @@ public class TilesetManager : MonoBehaviour
             availableSprites.Remove(23);
             availableSprites.Remove(28);
             availableSprites.Remove(31);
+
+            availableSprites.Remove(36);
+            availableSprites.Remove(38);
+            availableSprites.Remove(44);
         }
 
         Tile rightTile = GridManager.instance.GetTile(tile.GetPosition() + Vector2Int.right);
@@ -160,11 +211,21 @@ public class TilesetManager : MonoBehaviour
             availableSprites.Remove(21);
             availableSprites.Remove(28);
             availableSprites.Remove(29);
+
+            availableSprites.Remove(34);
+            availableSprites.Remove(36);
+            availableSprites.Remove(38);
+            availableSprites.Remove(44);
+            availableSprites.Remove(46);
+            availableSprites.Remove(47);
+
+            availableSprites.Remove(52);
+            availableSprites.Remove(53);
+            availableSprites.Remove(54);
+            availableSprites.Remove(55);
         }
         else
         {
-            wallRight = true;
-
             availableSprites.Remove(6);
             availableSprites.Remove(7);
             availableSprites.Remove(14);
@@ -173,11 +234,71 @@ public class TilesetManager : MonoBehaviour
             availableSprites.Remove(23);
             availableSprites.Remove(30);
             availableSprites.Remove(31);
+
+            availableSprites.Remove(37);
+            availableSprites.Remove(39);
+            availableSprites.Remove(45);
         }
 
-        if (wallLeft != wallRight)
+
+        Tile TLTile = GridManager.instance.GetTile(tile.GetPosition() + Vector2Int.down + Vector2Int.left);
+        bool wallTL = !TLTile || !TLTile.IsWalkable();
+
+        Tile TRTile = GridManager.instance.GetTile(tile.GetPosition() + Vector2Int.down + Vector2Int.right);
+        bool wallTR = !TRTile || !TRTile.IsWalkable();
+
+        Tile BLTile = GridManager.instance.GetTile(tile.GetPosition() + Vector2Int.up + Vector2Int.left);
+        bool wallBL = !BLTile || !BLTile.IsWalkable();
+
+        Tile BRTile = GridManager.instance.GetTile(tile.GetPosition() + Vector2Int.up + Vector2Int.right);
+        bool wallBR = !BRTile || !BRTile.IsWalkable();
+
+        if (wallTL)
         {
+            availableSprites.Remove(34);
+            availableSprites.Remove(39);
+            availableSprites.Remove(45);
+            availableSprites.Remove(47);
+
+            availableSprites.Remove(53);
+            availableSprites.Remove(55);
         }
+
+        if (wallTR)
+        {
+            availableSprites.Remove(34);
+            availableSprites.Remove(38);
+            availableSprites.Remove(44);
+            availableSprites.Remove(47);
+
+            availableSprites.Remove(52);
+            availableSprites.Remove(55);
+        }
+
+        if (wallBL)
+        {
+            availableSprites.Remove(34);
+            availableSprites.Remove(37);
+            availableSprites.Remove(45);
+            availableSprites.Remove(46);
+
+            availableSprites.Remove(53);
+            availableSprites.Remove(54);
+        }
+
+        if (wallBR)
+        {
+            availableSprites.Remove(34);
+            availableSprites.Remove(36);
+            availableSprites.Remove(44);
+            availableSprites.Remove(46);
+
+            availableSprites.Remove(52);
+            availableSprites.Remove(54);
+        }
+
+        if (!wallTL || !wallTR || !wallBL || !wallBR)
+            availableSprites.Remove(13);
 
 
         if (availableSprites.Count != 1)
@@ -196,22 +317,23 @@ public class TilesetManager : MonoBehaviour
 
     public void CalculateFloorTile(Tile tile)
     {
-        List<int> availableSprites = new List<int>();
-
-        availableSprites.Add(3);
-        availableSprites.Add(3);
-        availableSprites.Add(3);
-        availableSprites.Add(3);
-        availableSprites.Add(3);
-        availableSprites.Add(11);
-        availableSprites.Add(11);
-        availableSprites.Add(11);
-        availableSprites.Add(19);
-        availableSprites.Add(19);
-        availableSprites.Add(19);
-        availableSprites.Add(19);
-        availableSprites.Add(27);
-        availableSprites.Add(27);
+        List<int> availableSprites = new List<int>
+        {
+            3,
+            3,
+            3,
+            3,
+            3,
+            11,
+            11,
+            11,
+            19,
+            19,
+            19,
+            19,
+            27,
+            27
+        };
 
         tile.GetComponent<SpriteRenderer>().sprite = spriteList[availableSprites[Random.Range(0, availableSprites.Count)]];
 

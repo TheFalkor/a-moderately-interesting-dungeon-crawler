@@ -22,4 +22,4 @@ MonoBehaviour:
   defense: 0
   baseMeleeDamage: 4
   baseRangeDamage: 4
-  origin: 0
+  origin: 2

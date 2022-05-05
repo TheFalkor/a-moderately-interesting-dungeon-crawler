@@ -20,6 +20,7 @@ public class Player : Entity
     private bool abilityActive = false;
     [Space]
     private Item selectedItem;
+    private int selectedItemIndex = -1;
 
     [Header("Runtime Variables")]
     private LayerMask tileMask;
@@ -203,6 +204,8 @@ public class Player : Entity
 
                             HotbarUI.instance.SelectItem(-1);
                             GridManager.instance.ClearAllHighlights();
+
+                            inventory.RemoveItem(selectedItemIndex);
                         }
                     }
                 }
@@ -253,6 +256,7 @@ public class Player : Entity
         }
 
         selectedItem = inventory.items[inventoryIndex];
+        selectedItemIndex = inventoryIndex;
 
         ClearHightlight();
         state = PlayerState.ITEM_STATE;

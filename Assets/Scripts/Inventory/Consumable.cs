@@ -7,7 +7,7 @@ public class Consumable : Item
     public int consumableValue;
     public ConsumableType consumableType;
 
-    [Header("Runtime Varialbes")]
+    [Header("Runtime Variables")]
     private List<Tile> availableTiles = new List<Tile>();
 
 

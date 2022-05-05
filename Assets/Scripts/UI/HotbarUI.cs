@@ -24,7 +24,6 @@ public class HotbarUI : MonoBehaviour
         instance = this;
     }
 
-
     void Start()
     {
         inventory = GameObject.FindGameObjectWithTag("Manager").GetComponent<Inventory>();

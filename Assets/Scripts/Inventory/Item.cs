@@ -20,6 +20,7 @@ public abstract class Item
         itemSprite = data.itemSprite;
         itemType = data.itemType;
 
+        count = 1;
         maxStack = data.maxStack;
     }
 

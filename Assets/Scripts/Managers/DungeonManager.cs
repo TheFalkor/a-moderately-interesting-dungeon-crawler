@@ -11,6 +11,7 @@ public class DungeonManager : MonoBehaviour
     private DungeonNode currentNode;
     private bool roomSelected = false;
     private float transitionTimer = 0;
+    private bool allowSelection = true;
     private bool start = false;
     
 
@@ -32,6 +33,9 @@ public class DungeonManager : MonoBehaviour
             ChangeMusic("MENU");
             start = true;
         }
+
+        if (!allowSelection)
+            return;
 
         if (!roomSelected && Input.GetMouseButtonUp(0))
         {
@@ -66,6 +70,17 @@ public class DungeonManager : MonoBehaviour
                 ChangeMusic("COMBAT_2");
             }
         }
+    }
+
+    public void OpenInventory()
+    {
+        allowSelection = false;
+        InventoryUI.instance.ShowUI();
+    }
+
+    public void RemoveRestrictions()
+    {
+        allowSelection = true;
     }
 
     public void ToggleDungeonVisibility(bool active)

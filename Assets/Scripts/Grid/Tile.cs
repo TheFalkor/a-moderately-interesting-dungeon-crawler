@@ -89,7 +89,7 @@ public class Tile : MonoBehaviour
                 if (IsOccupied())
                     GetComponent<SpriteRenderer>().color = new Color(0.75f, 0.5f, 0.5f);
                 else
-                    GetComponent<SpriteRenderer>().color = new Color(0.75f, 0.75f, 0.75f);
+                    GetComponent<SpriteRenderer>().color = new Color(175 / 255f, 210 / 255f, 250 / 255f);
                 break;
 
             case HighlightType.ATTACKABLE:

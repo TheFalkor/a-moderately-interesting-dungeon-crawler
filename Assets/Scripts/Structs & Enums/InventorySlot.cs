@@ -12,6 +12,8 @@ public class InventorySlot
     {
         this.image = image;
         this.stackText = stackText;
+
+        ClearSlot();
     }
 
     public void SetSlot(Item item)
