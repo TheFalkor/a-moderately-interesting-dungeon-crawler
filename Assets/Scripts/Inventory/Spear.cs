@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sword : Weapon
+public class Spear : Weapon
 {
     [Header("Runtime Variables")]
     private List<Tile> availableTiles = new List<Tile>();
 
 
-    public Sword(SwordSO data)
+    public Spear(SpearSO data)
     {
         Initialize(data);
 

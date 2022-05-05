@@ -19,7 +19,10 @@ public class InventorySlot
     public void SetSlot(Item item)
     {
         image.sprite = item.itemSprite;
-        stackText.text = "" + item.count;
+        if (item.count > 1)
+            stackText.text = "" + item.count;
+        else
+            stackText.text = "";
 
         image.gameObject.SetActive(true);
     }

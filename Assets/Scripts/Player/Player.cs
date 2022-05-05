@@ -26,6 +26,8 @@ public class Player : Entity
     private LayerMask tileMask;
     private Inventory inventory;
 
+    [Header("TESTING SWORD")]
+    public SwordSO testWeapon;
 
     public void Setup(BaseStatsSO newBaseStat = null, ClassStatsSO newClassStat = null)
     {
@@ -60,6 +62,9 @@ public class Player : Entity
         CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
         
         audioKor = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioKor>();
+
+        //SWORD TEST
+        inventory.equippedWeapon = new Sword(testWeapon);
     }
 
     public void ResestPosition(Vector2 position)
@@ -106,7 +111,7 @@ public class Player : Entity
         {
             case PlayerState.MOVE_STATE:
                 if (currentActionPoints > 0 || currentMovementPoints > 0)
-                    HighlightDecisions(HighlightType.WALKABLE, allowCorner);
+                    HighlightDecisions();
 
                 if (Input.GetMouseButtonUp(0))
                 {
@@ -140,7 +145,9 @@ public class Player : Entity
 
             case PlayerState.ATTACK_STATE:
                 if (currentActionPoints > 0)
-                    HighlightDecisions(HighlightType.ATTACKABLE, allowCorner);
+                {
+                    inventory.equippedWeapon.HighlightDecision(currentTile);
+                }
 
 
                 if (Input.GetMouseButtonUp(0))
@@ -150,7 +157,7 @@ public class Player : Entity
 
                     if (hit)
                     {
-                        TargetTile(hit.transform.GetComponent<Tile>(), allowCorner);
+                        StrikeTiles(inventory.equippedWeapon.Attack(hit.transform.GetComponent<Tile>()));
                     }
                 }
                 break;
@@ -280,7 +287,7 @@ public class Player : Entity
 
         if (tile.IsOccupied())
         {
-            TargetTile(tile, allowCorner);
+            //TargetTile(tile, allowCorner);
             return;
         }
 
@@ -312,6 +319,7 @@ public class Player : Entity
         Move(dir);
     }
 
+   /*
     private void TargetTile(Tile tile, bool allowCorners = false)
     {
         if (currentActionPoints == 0)
@@ -336,24 +344,79 @@ public class Player : Entity
         
         audioKor.PlaySFX("SLASH");
     }
+   */
+    private void StrikeTiles(List<WeaponStrike> strikes)
+    {
+        if (currentActionPoints == 0)
+            return;
 
-    private void HighlightDecisions(HighlightType type, bool allowCorners = false)
+        if (strikes.Count == 0)
+            return;
+
+        foreach (WeaponStrike s in strikes)
+        {
+            int attackDamage = Mathf.RoundToInt(s.weaponDamage.damage + baseMeleeDamage * s.splashMultiplier);
+            Attack(s.tile, new Damage(attackDamage, DamageOrigin.FRIENDLY, s.weaponDamage.statusEffects));
+        }
+
+        currentActionPoints--;
+        CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
+
+        switch(inventory.equippedWeapon.weaponType)
+        {
+            case WeaponType.SWORD:
+                audioKor.PlaySFX("SLASH");
+                break;
+            case WeaponType.SPEAR:
+                audioKor.PlaySFX("SLASH");
+                break;
+            case WeaponType.HAMMER:
+                audioKor.PlaySFX("SLASH");
+                break;
+        }
+    }
+
+    private void HighlightDecisions()
     {
         foreach (Tile tile in currentTile.orthogonalNeighbors)
         {
-            tile.Highlight(type);
+            if (tile.IsOccupied())
+                tile.Highlight(HighlightType.ATTACKABLE);
+            else
+                tile.Highlight(HighlightType.WALKABLE);
         }
 
-        if (!allowCorners)
-            return;
+        switch (inventory.equippedWeapon.weaponType)
+        {
+            case WeaponType.SWORD:
+                SwordCheckHighlight();
+                break;
+            case WeaponType.SPEAR:
+                SpearCheckHighlight();
+                break;
+            case WeaponType.HAMMER:
+                HammerCheckHighlight();
+                break;
+        }
+    }
 
+    private void SwordCheckHighlight()
+    {
         foreach (Tile tile in currentTile.diagonalNeighbors)
         {
-            if (type == HighlightType.WALKABLE && !tile.IsOccupied())
-                continue;
-
-            tile.Highlight(HighlightType.ATTACKABLE);
+            if (tile.IsOccupied())
+                tile.Highlight(HighlightType.ATTACKABLE);
         }
+    }
+
+    private void SpearCheckHighlight()
+    {
+        return;
+    }
+
+    private void HammerCheckHighlight()
+    {
+        return;
     }
 
     private void ClearHightlight()

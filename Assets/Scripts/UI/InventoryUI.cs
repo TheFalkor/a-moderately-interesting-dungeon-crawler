@@ -7,16 +7,23 @@ public class InventoryUI : MonoBehaviour
 {
     [Header("GameObject References")]
     [SerializeField] private Transform inventoryBox;
+    [SerializeField] private Transform equipmentBox;
+    [Space]
     [SerializeField] private GameObject inventoryCanvas;
     [Space]
     [SerializeField] private Image itemIcon;
     [SerializeField] private Text itemNameText;
     [SerializeField] private Text itemDescriptionText;
     [SerializeField] private Text itemStatsText;
+    [SerializeField] private Button useButton;
+    private Text useButtonText;
 
     [Header("Runtime Variables")]
     private Inventory inventory;
-    private List<InventorySlot> inventorySlots = new List<InventorySlot>();
+    private readonly List<InventorySlot> inventorySlots = new List<InventorySlot>();
+    private readonly List<InventorySlot> equipmentSlots = new List<InventorySlot>();
+    private int selectedIndex = -1;
+    private bool selectedEquipment = false;
 
     [Header("Singleton")]
     public static InventoryUI instance;
@@ -41,11 +48,21 @@ public class InventoryUI : MonoBehaviour
 
             inventorySlots.Add(new InventorySlot(image, text));
         }
+
+        for (int i = 0; i < equipmentBox.childCount; i++)
+        {
+            Image image = equipmentBox.GetChild(i).GetChild(0).GetComponent<Image>();
+            Text text = equipmentBox.GetChild(i).GetChild(1).GetComponent<Text>();
+
+            equipmentSlots.Add(new InventorySlot(image, text));
+        }
+
+        useButtonText = useButton.transform.GetChild(0).GetComponent<Text>();
     }
 
     public void ShowUI()
     {
-        UpdateUI();
+        UpdateInventoryUI();
         ShowItemInfo(null);
         inventoryCanvas.SetActive(true);
     }
@@ -56,7 +73,7 @@ public class InventoryUI : MonoBehaviour
         DungeonManager.instance.RemoveRestrictions();
     }
 
-    public void UpdateUI()
+    public void UpdateInventoryUI()
     {
         foreach (InventorySlot slot in inventorySlots)
             slot.ClearSlot();
@@ -72,23 +89,80 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
+    public void UpdateEquipmentUI()
+    {
+        foreach (InventorySlot slot in equipmentSlots)
+            slot.ClearSlot();
+
+        if (inventory.equippedWeapon != null)
+            equipmentSlots[0].SetSlot(inventory.equippedWeapon);
+
+        if (inventory.equippedArmor != null)
+            equipmentSlots[1].SetSlot(inventory.equippedArmor);
+
+        if (inventory.equippedAccessory != null)
+            equipmentSlots[2].SetSlot(inventory.equippedAccessory);
+    }
+
     public void SelectItem(int index)
     {
         if (inventory.items[index] == null)
+        {
             ShowItemInfo(null);
+            selectedIndex = -1;
+            return;
+        }
 
+        selectedIndex = index;
         ShowItemInfo(inventory.items[index]);
         // Highlight the selected one with border thingie
     }
 
-    public void ShowItemInfo(Item item)
+    public void SelectEquipment(int index)
     {
+        Item item = null;
+
+        if (index == 0)
+        {
+            item = inventory.equippedWeapon;
+        }
+        else if (index == 1)
+        {
+            item = inventory.equippedArmor;
+        }
+        else if (index == 2)
+        {
+            item = inventory.equippedAccessory;
+        }
+
+        ShowItemInfo(item, true);
+    }
+
+    public void UseItem()
+    {
+        if (selectedEquipment)
+        {
+            inventory.EquipItem(selectedIndex);
+            ShowItemInfo(null);
+        }
+        else
+        {
+
+        }
+    }
+
+    private void ShowItemInfo(Item item, bool disableButton = false)
+    {
+
         if (item == null)
         {
             itemIcon.gameObject.SetActive(false);
             itemNameText.text = "";
             itemDescriptionText.text = "";
             itemStatsText.text = "";
+
+            useButtonText.text = ":)";
+            useButton.interactable = false;
             // Clear all data
             return;
         }
@@ -98,30 +172,46 @@ public class InventoryUI : MonoBehaviour
         itemIcon.sprite = item.itemSprite;
         itemNameText.text = item.itemName;
         itemDescriptionText.text = item.itemDescription;
+        itemStatsText.text = "";
 
         switch (item.itemType)
         {
             case ItemType.WEAPON:
                 //
+                useButtonText.text = "EQUIP ITEM";
+                selectedEquipment = true;
                 break;
 
             case ItemType.ARMOR:
                 //
+                useButtonText.text = "EQUIP ITEM";
+                selectedEquipment = true;
                 break;
 
             case ItemType.ACCESSORY:
                 //
+                useButtonText.text = "EQUIP ITEM";
+                selectedEquipment = true;
                 break;
 
             case ItemType.CONSUMABLE:
                 itemStatsText.text = "HEAL: " + ((Consumable)item).consumableValue;
+                useButtonText.text = "USE ITEM";
+                selectedEquipment = false;
                 break;
 
             case ItemType.THROWABLE:
                 //
+                useButtonText.text = "CANNOT USE";
+                selectedEquipment = false;
+                disableButton = true;
                 break;
         }
 
+        if (disableButton && item.itemType != ItemType.THROWABLE)
+            useButtonText.text = ":)";
+
+        useButton.interactable = !disableButton;
     }
 
 }

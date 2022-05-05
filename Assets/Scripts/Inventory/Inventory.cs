@@ -5,23 +5,20 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     [HideInInspector] public Item[] items = new Item[16];
-    public ItemSO potionTest;
-    public ItemSO weaonTest;
+    [SerializeField] private List<ItemSO> startingItems = new List<ItemSO>();
 
-    public Weapon equipedWeapon;
+    public Weapon equippedWeapon;
+    public Armor equippedArmor;
+    public Accessory equippedAccessory;
 
 
     private void Awake()
     {
-        Item t = CreateItem(potionTest, 9);
-        Item t2 = CreateItem(weaonTest, 9);
-        AddItem(t);
-        AddItem(t2);
-    }
-
-    void Start()
-    {
-        
+        foreach (ItemSO data in startingItems)
+        {
+            Item t = CreateItem(data, 9);
+            AddItem(t);
+        }
     }
 
     public void UseItem(int index)
@@ -30,6 +27,49 @@ public class Inventory : MonoBehaviour
             return;
 
         items[index].UseItem();
+    }
+
+    public void EquipItem(int index)
+    {
+        EquippableItem previousEquipped = null;
+
+        ItemType type = items[index].itemType;
+
+        switch (type)
+        {
+            case ItemType.WEAPON:
+                previousEquipped = equippedWeapon;
+                equippedWeapon = (Weapon)items[index];
+                equippedWeapon.OnEquip();
+                break;
+            case ItemType.ARMOR:
+                previousEquipped = equippedArmor;
+                equippedArmor = (Armor)items[index];
+                equippedArmor.OnEquip();
+                break;
+
+            case ItemType.ACCESSORY:
+                previousEquipped = equippedAccessory;
+                equippedAccessory = (Accessory)items[index];
+                equippedAccessory.OnEquip();
+                break;
+        }
+
+        if (previousEquipped != null)
+            previousEquipped.OnUnequip();
+
+
+        items[index] = previousEquipped;
+
+        if (items[index] == null)
+        {
+            OrganizeInventory();
+            if (HotbarUI.instance)
+                HotbarUI.instance.UpdateUI();
+        }
+
+        InventoryUI.instance.UpdateInventoryUI();
+        InventoryUI.instance.UpdateEquipmentUI();
     }
 
     public void AddItem(Item item)
@@ -73,10 +113,10 @@ public class Inventory : MonoBehaviour
         if (items[index].count == 0)
         {
             items[index] = null;
-            // Move everything left
+            OrganizeInventory();
         }
 
-        // Update inventory ui
+        InventoryUI.instance.UpdateInventoryUI();
         HotbarUI.instance.UpdateUI();
     }
 
@@ -111,5 +151,19 @@ public class Inventory : MonoBehaviour
                 break;
         }
         return item;
+    }
+
+    private void OrganizeInventory()
+    {
+        for (int i = 0; i < items.Length - 1; i++)
+        {
+            if (items[i] == null)
+            {
+                if (items[i + 1] == null)
+                    break;
+                items[i] = items[i + 1];
+                items[i + 1] = null;
+            }
+        }
     }
 }
