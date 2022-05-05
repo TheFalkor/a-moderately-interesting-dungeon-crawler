@@ -43,4 +43,13 @@ public class Sword : Weapon
             tile.Highlight(HighlightType.ATTACKABLE);
         }
     }
+
+    public override void ExtraHighlight(Tile currentTile)
+    {
+        foreach (Tile tile in currentTile.diagonalNeighbors)
+        {
+            if (tile.IsOccupied())
+                tile.Highlight(HighlightType.ATTACKABLE);
+        }
+    }
 }

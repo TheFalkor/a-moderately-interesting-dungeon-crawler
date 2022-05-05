@@ -386,37 +386,7 @@ public class Player : Entity
                 tile.Highlight(HighlightType.WALKABLE);
         }
 
-        switch (inventory.equippedWeapon.weaponType)
-        {
-            case WeaponType.SWORD:
-                SwordCheckHighlight();
-                break;
-            case WeaponType.SPEAR:
-                SpearCheckHighlight();
-                break;
-            case WeaponType.HAMMER:
-                HammerCheckHighlight();
-                break;
-        }
-    }
-
-    private void SwordCheckHighlight()
-    {
-        foreach (Tile tile in currentTile.diagonalNeighbors)
-        {
-            if (tile.IsOccupied())
-                tile.Highlight(HighlightType.ATTACKABLE);
-        }
-    }
-
-    private void SpearCheckHighlight()
-    {
-        return;
-    }
-
-    private void HammerCheckHighlight()
-    {
-        return;
+        inventory.equippedWeapon.ExtraHighlight(currentTile);
     }
 
     private void ClearHightlight()

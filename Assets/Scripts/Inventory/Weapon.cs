@@ -13,4 +13,10 @@ public abstract class Weapon : EquippableItem
         Debug.Log("Attack(Tile) not implemented.");
         return new List<WeaponStrike>();
     }
+
+    public virtual void ExtraHighlight(Tile currentTile)
+    {
+        Debug.Log("ExtraHighlight(Tile currentTile) not implemented.");
+        return;
+    }
 }
