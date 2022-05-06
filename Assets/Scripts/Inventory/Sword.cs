@@ -7,6 +7,15 @@ public class Sword : Weapon
     [Header("Runtime Variables")]
     private List<Tile> availableTiles = new List<Tile>();
 
+    public override void OnEquip()
+    {
+        DungeonManager.instance.player.maxActionPoints += 1;
+    }
+
+    public override void OnUnequip()
+    {
+        DungeonManager.instance.player.maxActionPoints -= 1;
+    }
 
     public Sword(SwordSO data)
     {
@@ -46,10 +55,24 @@ public class Sword : Weapon
 
     public override void ExtraHighlight(Tile currentTile)
     {
+        availableTiles.Clear();
+
+        foreach (Tile tile in currentTile.orthogonalNeighbors)
+        {
+            if (tile.IsOccupied())
+            {
+                availableTiles.Add(tile);
+                tile.Highlight(HighlightType.ATTACKABLE);
+            }
+        }
+
         foreach (Tile tile in currentTile.diagonalNeighbors)
         {
             if (tile.IsOccupied())
+            {
+                availableTiles.Add(tile);
                 tile.Highlight(HighlightType.ATTACKABLE);
+            }
         }
     }
 }

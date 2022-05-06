@@ -185,7 +185,7 @@ public class InventoryUI : MonoBehaviour
         switch (item.itemType)
         {
             case ItemType.WEAPON:
-                //
+                itemStatsText.text = "DMG: +" + ((Weapon)item).weaponDamage;
                 useButtonText.text = "EQUIP ITEM";
                 selectedEquipment = true;
                 break;

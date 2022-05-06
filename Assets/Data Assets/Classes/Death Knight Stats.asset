@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   className: DEATH KNIGHT
   classDescription: 
-  bonusHealth: 5
+  bonusHealth: 10
   bonusDefense: 0
   bonusMeleeDamage: 0
   bonusRangeDamage: 0

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86085071cdda0d4caf0d5a045120694, type: 3}
   m_Name: cat
   m_EditorClassIdentifier: 
-  itemName: cock
+  itemName: cat (sword)
   itemDescription: is cat image of cat
   itemSprite: {fileID: 21300000, guid: 49f8afda05815274393df54909c7a530, type: 3}
   stackSize: 1
   itemType: 1
-  weaponDamage: 10
+  weaponDamage: 2
   weaponType: 3

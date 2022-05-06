@@ -18,8 +18,8 @@ MonoBehaviour:
   actionPoints: 2
   movementPoints: 1
   movementType: 0
-  maxHealth: 10
+  maxHealth: 20
   defense: 0
-  baseMeleeDamage: 4
-  baseRangeDamage: 2
+  baseMeleeDamage: 7
+  baseRangeDamage: 3
   origin: 1

@@ -50,7 +50,8 @@ MonoBehaviour:
   currentTile: {fileID: 0}
   temporaryAnimatorDeath: {fileID: 0}
   classStat: {fileID: 11400000, guid: e0fc08491a4a9984e9d116e650541901, type: 2}
-  testWeapon: {fileID: 11400000, guid: f125a815c8fe1d64aac7d5963138357d, type: 2}
+  testSword: {fileID: 11400000, guid: f125a815c8fe1d64aac7d5963138357d, type: 2}
+  testSpear: {fileID: 11400000, guid: 478df25a7c104044abadbee07f9a3cc5, type: 2}
 --- !u!61 &1863439721
 BoxCollider2D:
   m_ObjectHideFlags: 0

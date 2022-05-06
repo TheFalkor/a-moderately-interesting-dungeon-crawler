@@ -11,10 +11,19 @@ public class Tile : MonoBehaviour
     [HideInInspector] public List<Tile> orthogonalNeighbors = new List<Tile>();
     [HideInInspector] public List<Tile> diagonalNeighbors = new List<Tile>();
 
+    private SpriteRenderer render;
+    [Header("Highlight Colors")]
+    [SerializeField] private Color COLOR_WALKABLE;
+    [SerializeField] private Color COLOR_ATTACKABLE;
+    [SerializeField] private Color COLOR_SPLASH;
+    [SerializeField] private Color COLOR_ABILITY;
+    [SerializeField] private Color COLOR_HEALABLE;
+
 
     public void Initialize(Vector2Int pos)
     {
         gridPosition = pos;
+        render = GetComponent<SpriteRenderer>();
     }
 
     public void Setup(bool wall)
@@ -24,12 +33,10 @@ public class Tile : MonoBehaviour
         if (isWalkable)
         {
             gameObject.layer = 6;
-            GetComponent<SpriteRenderer>().color = Color.white;
         }
         else
         {
             gameObject.layer = 7;
-            //GetComponent<SpriteRenderer>().color = Color.black;
         }
 
         occupant = null;
@@ -86,22 +93,24 @@ public class Tile : MonoBehaviour
         switch (type)
         {
             case HighlightType.WALKABLE:
-                if (IsOccupied())
-                    GetComponent<SpriteRenderer>().color = new Color(0.75f, 0.5f, 0.5f);
-                else
-                    GetComponent<SpriteRenderer>().color = new Color(175 / 255f, 210 / 255f, 250 / 255f);
+                if (!IsOccupied())
+                    render.color = COLOR_WALKABLE;
                 break;
 
             case HighlightType.ATTACKABLE:
-                GetComponent<SpriteRenderer>().color = new Color(0.75f, 0.5f, 0.5f);
+                render.color = COLOR_ATTACKABLE;
                 break;
 
-            case HighlightType.HEALABLE:
-                GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.75f, 0.5f);
+            case HighlightType.SPLASH:
+                render.color = COLOR_SPLASH;
                 break;
 
             case HighlightType.ABILITY_TARGET:
-                GetComponent<SpriteRenderer>().color = new Color(1, 0.75f, 1);
+                render.color = COLOR_ABILITY;
+                break;
+
+            case HighlightType.HEALABLE:
+                render.color = COLOR_HEALABLE;
                 break;
         }
     }
@@ -111,7 +120,7 @@ public class Tile : MonoBehaviour
         if (!isWalkable)
             return;
 
-        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1);
+        render.color = Color.white;
     }
 
 }

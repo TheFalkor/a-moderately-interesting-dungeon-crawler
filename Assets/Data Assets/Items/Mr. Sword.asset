@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86085071cdda0d4caf0d5a045120694, type: 3}
   m_Name: Mr. Sword
   m_EditorClassIdentifier: 
-  itemName: big swdord
-  itemDescription: is a sword slash slash
+  itemName: MR. SWORD
+  itemDescription: Attacks in all 8 directions and increases your max action points
+    by one.
   itemSprite: {fileID: 21300000, guid: 92d9fa7d0faee584789ee94f0b02adbe, type: 3}
-  stackSize: 1
+  stackSize: 0
   itemType: 1
-  weaponDamage: 0
+  weaponDamage: 5
   weaponType: 3

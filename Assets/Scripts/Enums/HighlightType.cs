@@ -3,5 +3,6 @@ public enum HighlightType
     WALKABLE,
     ATTACKABLE,
     HEALABLE,
-    ABILITY_TARGET
+    ABILITY_TARGET,
+    SPLASH,
 }

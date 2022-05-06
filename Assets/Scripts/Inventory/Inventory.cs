@@ -168,7 +168,7 @@ public class Inventory : MonoBehaviour
                 if (type == WeaponType.HAMMER)
                     item = null;
                 else if (type == WeaponType.SPEAR)
-                    item = null;
+                    item = new Spear((SpearSO)data);
                 else if (type == WeaponType.SWORD)
                     item = new Sword((SwordSO)data);
                 break;

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-public struct AoeSplash
+public class AoeSplash
 {
     public Tile mainTile;
     public List<Tile> splashTiles;

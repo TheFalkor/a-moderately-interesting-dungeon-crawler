@@ -14,7 +14,6 @@ public class Player : Entity
     [Header("Turn variables")]
     private PlayerState state = PlayerState.MOVE_STATE;
     private bool turnEnded = false;
-    private bool allowCorner = true;
     [Space]
     private Ability selectedAbility;
     private bool abilityActive = false;
@@ -25,6 +24,7 @@ public class Player : Entity
     [Header("Runtime Variables")]
     private LayerMask tileMask;
     private Inventory inventory;
+
 
 
     public void Setup(BaseStatsSO newBaseStat = null, ClassStatsSO newClassStat = null)
@@ -56,6 +56,7 @@ public class Player : Entity
 
         
         audioKor = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioKor>();
+
     }
 
     public void ResetPlayer()
@@ -66,7 +67,7 @@ public class Player : Entity
         currentTile.SetOccupant(this);
 
         CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
-        CombatUI.instance.UpdateAttack(baseMeleeDamage);    // no
+        CombatUI.instance.UpdateAttack(baseMeleeDamage + inventory.equippedWeapon.weaponDamage);    // maybe
         CombatUI.instance.UpdateDefense(defense);
         CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
 
@@ -95,13 +96,6 @@ public class Player : Entity
 
         if (IsBusy())
             return false;
-
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            DashAbility da = new DashAbility();
-
-            da.HighlightDecisions(currentTile);
-        }
 
         switch (state)
         {
@@ -243,7 +237,7 @@ public class Player : Entity
             return false;
         }
 
-        ClearHightlight();
+        GridManager.instance.ClearAllHighlights();
         state = PlayerState.ABILITY_STATE;
         selectedAbility.HighlightDecisions(currentTile);
         return true;
@@ -264,7 +258,7 @@ public class Player : Entity
         selectedItem = inventory.items[inventoryIndex];
         selectedItemIndex = inventoryIndex;
 
-        ClearHightlight();
+        GridManager.instance.ClearAllHighlights();
         state = PlayerState.ITEM_STATE;
         selectedItem.HighlightDecision(currentTile);
         return true;
@@ -286,7 +280,7 @@ public class Player : Entity
 
         if (tile.IsOccupied())
         {
-            //TargetTile(tile, allowCorner);
+            StrikeTiles(inventory.equippedWeapon.Attack(tile));
             return;
         }
 
@@ -314,36 +308,10 @@ public class Player : Entity
 
         CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
 
-        ClearHightlight();
+        GridManager.instance.ClearAllHighlights();
         Move(dir);
     }
 
-   /*
-    private void TargetTile(Tile tile, bool allowCorners = false)
-    {
-        if (currentActionPoints == 0)
-            return;
-
-        if (!tile || !tile.IsOccupied())
-            return;
-
-        if (!allowCorners && currentTile.diagonalNeighbors.Contains(tile))
-            return;
-
-        if (!currentTile.orthogonalNeighbors.Contains(tile) && !currentTile.diagonalNeighbors.Contains(tile))
-            return;
-
-        ClearHightlight();
-
-
-        tile.AttackTile(new Damage(baseMeleeDamage, DamageOrigin.FRIENDLY));
-        currentActionPoints--;
-
-        CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
-        
-        audioKor.PlaySFX("SLASH");
-    }
-   */
     private void StrikeTiles(List<WeaponStrike> strikes)
     {
         if (currentActionPoints == 0)
@@ -352,16 +320,17 @@ public class Player : Entity
         if (strikes.Count == 0)
             return;
 
-        foreach (WeaponStrike s in strikes)
+        foreach (WeaponStrike ws in strikes)
         {
-            int attackDamage = Mathf.RoundToInt(s.weaponDamage.damage + baseMeleeDamage * s.splashMultiplier);
-            Attack(s.tile, new Damage(attackDamage, DamageOrigin.FRIENDLY, s.weaponDamage.statusEffects));
+            int attackDamage = Mathf.RoundToInt((ws.weaponDamage.damage + baseMeleeDamage) * ws.splashMultiplier);
+            Attack(ws.tile, new Damage(attackDamage, DamageOrigin.FRIENDLY, ws.weaponDamage.statusEffects));
         }
 
         currentActionPoints--;
         CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
+        GridManager.instance.ClearAllHighlights();
 
-        switch(inventory.equippedWeapon.weaponType)
+        switch (inventory.equippedWeapon.weaponType)
         {
             case WeaponType.SWORD:
                 audioKor.PlaySFX("SLASH");
@@ -378,27 +347,9 @@ public class Player : Entity
     private void HighlightDecisions()
     {
         foreach (Tile tile in currentTile.orthogonalNeighbors)
-        {
-            if (tile.IsOccupied())
-                tile.Highlight(HighlightType.ATTACKABLE);
-            else
-                tile.Highlight(HighlightType.WALKABLE);
-        }
+            tile.Highlight(HighlightType.WALKABLE);
 
         inventory.equippedWeapon.ExtraHighlight(currentTile);
-    }
-
-    private void ClearHightlight()
-    {
-        foreach (Tile tile in currentTile.orthogonalNeighbors)
-        {
-            tile.ClearHighlight();
-        }
-
-        foreach (Tile tile in currentTile.diagonalNeighbors)
-        {
-            tile.ClearHighlight();
-        }
     }
 
     public override void TakeDamage(Damage damage)

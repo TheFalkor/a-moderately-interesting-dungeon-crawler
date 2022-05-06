@@ -43,6 +43,8 @@ public class CombatManager : MonoBehaviour
 
         if (turnQueue.Count == 0)
         {
+            GridManager.instance.ClearAllHighlights();
+
             foreach (Occupant occ in occupantList)
                 occ.UpdateStatusEffects();
 
