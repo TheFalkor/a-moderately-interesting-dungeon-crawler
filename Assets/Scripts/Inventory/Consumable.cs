@@ -19,6 +19,18 @@ public class Consumable : Item
         consumableType = data.consumableType;
     }
 
+    public override bool UseItem()
+    {
+        switch (consumableType)
+        {
+            case ConsumableType.HEALING:
+                DungeonManager.instance.player.Heal(consumableValue);
+                break;
+        }
+
+        return true;
+    }
+
     public override bool UseItem(Tile tile)
     {
         if (!availableTiles.Contains(tile))
@@ -28,7 +40,7 @@ public class Consumable : Item
         {
             case ConsumableType.HEALING:
                 tile.GetOccupant().Heal(consumableValue);
-                return true;
+                break;
         }
 
         GridManager.instance.ClearAllHighlights();

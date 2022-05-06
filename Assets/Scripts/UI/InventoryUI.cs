@@ -142,12 +142,12 @@ public class InventoryUI : MonoBehaviour
     {
         if (selectedEquipment)
         {
+            ShowItemInfo(inventory.items[selectedIndex], true);
             inventory.EquipItem(selectedIndex);
-            ShowItemInfo(null);
         }
         else
         {
-
+            inventory.UseItem(selectedIndex);
         }
     }
 
@@ -209,7 +209,7 @@ public class InventoryUI : MonoBehaviour
         }
 
         if (disableButton && item.itemType != ItemType.THROWABLE)
-            useButtonText.text = ":)";
+            useButtonText.text = "EQUIPPED";
 
         useButton.interactable = !disableButton;
     }

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
+    [Header("GameObject Reference")]
+    [SerializeField] private Transform combatParent;
+
     [Header("Prefabs")]
     public GameObject tilePrefab;
 
@@ -26,12 +29,18 @@ public class GridManager : MonoBehaviour
             return;
 
         instance = this;
+
+        CreateRoom();
+    }
+
+    private void Start()
+    {
+        CreateBorder();
     }
 
     private void CreateRoom()
     {
         GameObject parent = new GameObject("Room");
-        parent.transform.parent = GameObject.Find("Combat Parent").transform;
         for (int i = 0; i < ROOM_WIDTH * ROOM_HEIGHT; i++)
         {
             Tile temp = Instantiate(tilePrefab, new Vector2(-ROOM_WIDTH / 2.0f + i % ROOM_WIDTH + 0.5f, ROOM_HEIGHT / 2.0f - i / ROOM_WIDTH), Quaternion.identity, parent.transform).GetComponentInParent<Tile>();
@@ -72,12 +81,13 @@ public class GridManager : MonoBehaviour
             if (i % ROOM_WIDTH != 0)
                 tile.orthogonalNeighbors.Add(tileList[i - 1]);                    // W
         }
+
+        parent.transform.parent = combatParent;
     }
 
     private void CreateBorder()
     {
         GameObject parent = new GameObject("Room Border");
-        parent.transform.parent = GameObject.Find("Combat Parent").transform;
 
         for (int i = 0; i < ROOM_HEIGHT + 3; i++)
         {
@@ -133,16 +143,12 @@ public class GridManager : MonoBehaviour
 
             backdropRenders.Add(render);
         }
+
+        parent.transform.parent = combatParent;
     }
 
     public void GenerateCombat(CombatRoomSO room)
     {
-        if (tileList.Count == 0)
-        {
-            CreateBorder();
-            CreateRoom();
-        }
-
         // Destroy all existing occupants
 
         for (int i = 0; i < room.tiles.Length; i++)

@@ -43,6 +43,9 @@ public class CombatUI : MonoBehaviour
         actionPointText = statsBox.transform.Find("Action Points Temp").GetComponent<Text>();
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
+        if (ConsistentData.initialized)
+            SetPortrait(ConsistentData.playerBaseStat.entitySprite);
     }
 
     public void ToggleAttackMode()

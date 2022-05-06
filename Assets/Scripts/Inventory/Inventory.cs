@@ -27,6 +27,7 @@ public class Inventory : MonoBehaviour
             return;
 
         items[index].UseItem();
+        RemoveItem(index);
     }
 
     public void EquipItem(int index)
@@ -117,7 +118,8 @@ public class Inventory : MonoBehaviour
         }
 
         InventoryUI.instance.UpdateInventoryUI();
-        HotbarUI.instance.UpdateUI();
+        if (HotbarUI.instance)
+            HotbarUI.instance.UpdateUI();
     }
 
     public Item CreateItem(ItemSO data, int stackCount = 1)

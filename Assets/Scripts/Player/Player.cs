@@ -29,6 +29,7 @@ public class Player : Entity
     [Header("TESTING SWORD")]
     public SwordSO testWeapon;
 
+
     public void Setup(BaseStatsSO newBaseStat = null, ClassStatsSO newClassStat = null)
     {
         if (audioKor != null)
@@ -56,10 +57,6 @@ public class Player : Entity
         baseMeleeDamage += classStat.bonusMeleeDamage;
         baseRangeDamage += classStat.bonusRangeDamage;
 
-        CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
-        CombatUI.instance.UpdateAttack(baseMeleeDamage);    // no
-        CombatUI.instance.UpdateDefense(defense);
-        CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
         
         audioKor = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioKor>();
 
@@ -67,12 +64,17 @@ public class Player : Entity
         inventory.equippedWeapon = new Sword(testWeapon);
     }
 
-    public void ResestPosition(Vector2 position)
+    public void ResetPlayer()
     {
         currentTile.SetOccupant(null);
-        transform.position = position;
+        transform.position = new Vector2(4.5f, 1.5f);
         currentTile = GridManager.instance.GetTileWorld(transform.position);
         currentTile.SetOccupant(this);
+
+        CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
+        CombatUI.instance.UpdateAttack(baseMeleeDamage);    // no
+        CombatUI.instance.UpdateDefense(defense);
+        CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
 
         UpdateLayerIndex();
         targetPosition = transform.position;
@@ -210,7 +212,6 @@ public class Player : Entity
                             state = PlayerState.MOVE_STATE;
 
                             HotbarUI.instance.SelectItem(-1);
-                            GridManager.instance.ClearAllHighlights();
 
                             inventory.RemoveItem(selectedItemIndex);
                         }
@@ -413,7 +414,8 @@ public class Player : Entity
     {
         base.Heal(health);
 
-        CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
+        if (CombatUI.instance)
+            CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
     }
 
     protected override void Death()

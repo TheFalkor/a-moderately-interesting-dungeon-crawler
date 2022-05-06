@@ -77,15 +77,8 @@ public class CombatManager : MonoBehaviour
 
         GridManager.instance.GenerateCombat(room);
 
-        if (ConsistentData.initialized)
-        {
-            player.Setup(ConsistentData.playerBaseStat, ConsistentData.playerClassStat);
-            CombatUI.instance.SetPortrait(ConsistentData.playerBaseStat.entitySprite);
-        }
-        else
-            player.Setup();
 
-        player.ResestPosition(new Vector2(4.5f, 1.5f));
+        player.ResetPlayer();
 
         combatIntroTimer = 0.5f;
         combatActive = true;

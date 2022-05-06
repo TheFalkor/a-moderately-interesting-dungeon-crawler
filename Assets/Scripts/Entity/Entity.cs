@@ -26,7 +26,7 @@ public abstract class Entity : Occupant
 
         maxMovementPoints = baseStat.movementPoints;
         currentMovementPoints = maxMovementPoints;
-        maxActionPoints = baseStat.actionPoints;//moved to update stats
+        maxActionPoints = baseStat.actionPoints;
         currentActionPoints = maxActionPoints;
 
         targetPosition = transform.position;       

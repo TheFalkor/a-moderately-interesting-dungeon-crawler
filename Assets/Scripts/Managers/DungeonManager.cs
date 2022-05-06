@@ -6,6 +6,7 @@ public class DungeonManager : MonoBehaviour
 {
     [SerializeField] private GameObject dungeonParent;
     [SerializeField] private Animator transitionAnimator;
+    public Player player;
 
     [Header("Runtime Variables")]
     private DungeonNode currentNode;
@@ -24,6 +25,11 @@ public class DungeonManager : MonoBehaviour
             return;
 
         instance = this;
+
+        if (ConsistentData.initialized)
+            player.Setup(ConsistentData.playerBaseStat, ConsistentData.playerClassStat);
+        else
+            player.Setup();
     }
 
     void Update()
