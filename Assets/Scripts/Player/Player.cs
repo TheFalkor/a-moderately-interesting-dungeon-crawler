@@ -206,6 +206,7 @@ public class Player : Entity
                             state = PlayerState.MOVE_STATE;
 
                             HotbarUI.instance.SelectItem(-1);
+                            CombatUI.instance.SetAttackButton(false);
 
                             inventory.RemoveItem(selectedItemIndex);
                         }
@@ -252,8 +253,11 @@ public class Player : Entity
     {
         if (inventoryIndex == -1)
         {
-            GridManager.instance.ClearAllHighlights();
-            state = PlayerState.MOVE_STATE;
+            if (state == PlayerState.ITEM_STATE)
+            {
+                GridManager.instance.ClearAllHighlights();
+                state = PlayerState.MOVE_STATE;
+            }
             return false;
         }
 

@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class HotbarUI : MonoBehaviour
 {
+    [Header("GameObject References")]
+    [SerializeField] private GameObject selectionMarker;
+
     private List<InventorySlot> hotbarSlots = new List<InventorySlot>();
     private List<int> hotbarSlotIndex = new List<int>();
 
@@ -34,7 +37,7 @@ public class HotbarUI : MonoBehaviour
             Image image = transform.GetChild(i).GetChild(0).GetComponent<Image>();
             Text text = transform.GetChild(i).GetChild(1).GetComponent<Text>();
 
-            hotbarSlots.Add(new InventorySlot(image, text));
+            hotbarSlots.Add(new InventorySlot(image, text, selectionMarker));
 
             hotbarSlotIndex.Add(-1);
         }
@@ -66,18 +69,25 @@ public class HotbarUI : MonoBehaviour
                 slotIndex++;
             }
         }
+
+        selectionMarker.SetActive(false);
     }
 
     public void SelectItem(int index)
     {
+        if (index != -1)
+            CombatUI.instance.SelectAbility(-1);
+
         if (index == -1 || hotbarSlotIndex[index] == -1 || index == selectedHotbarIndex)
         {
             selectedHotbarIndex = -1;
             player.SelectItem(-1);
-            CombatUI.instance.SetAttackButton(false);
+            //CombatUI.instance.SetAttackButton(false);
+            selectionMarker.SetActive(false);
             return;
         }
 
+        hotbarSlots[index].SelectSlot();
         selectedHotbarIndex = index;
 
         CombatUI.instance.SetAttackButton(true);

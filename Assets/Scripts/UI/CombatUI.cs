@@ -58,6 +58,7 @@ public class CombatUI : MonoBehaviour
     public void SelectAbility(int index)
     {
         Ability ability = AbilityManager.instance.GetAbility(index);
+        GridManager.instance.ClearAllHighlights();
 
         if (ability != null && index != selectedAbilityIndex)
             SetAttackButton(true);
@@ -73,6 +74,9 @@ public class CombatUI : MonoBehaviour
         }
         else
             player.SelectAbility(null);
+
+        if (index != -1)
+            HotbarUI.instance.SelectItem(-1);
     }
 
     public void EndPlayerTurn()
