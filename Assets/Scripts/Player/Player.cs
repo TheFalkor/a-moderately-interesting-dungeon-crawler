@@ -26,9 +26,6 @@ public class Player : Entity
     private LayerMask tileMask;
     private Inventory inventory;
 
-    [Header("TESTING SWORD")]
-    public SwordSO testWeapon;
-
 
     public void Setup(BaseStatsSO newBaseStat = null, ClassStatsSO newClassStat = null)
     {
@@ -59,9 +56,6 @@ public class Player : Entity
 
         
         audioKor = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioKor>();
-
-        //SWORD TEST
-        inventory.equippedWeapon = new Sword(testWeapon);
     }
 
     public void ResetPlayer()

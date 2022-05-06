@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86085071cdda0d4caf0d5a045120694, type: 3}
   m_Name: Mr. Sword
   m_EditorClassIdentifier: 
-  itemName: 
-  itemDescription: 
-  itemSprite: {fileID: 0}
-  maxStack: 0
+  itemName: big swdord
+  itemDescription: is a sword slash slash
+  itemSprite: {fileID: 21300000, guid: 92d9fa7d0faee584789ee94f0b02adbe, type: 3}
+  stackSize: 1
   itemType: 1
   weaponDamage: 0
   weaponType: 3

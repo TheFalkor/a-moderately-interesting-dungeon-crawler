@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: DOG?
   itemDescription: equip the dog please
   itemSprite: {fileID: 21300000, guid: ba5104b85e0fbe84e8fd205e70d4d451, type: 3}
-  maxStack: 1
+  stackSize: 1
   itemType: 1
   weaponDamage: 12
   weaponType: 3

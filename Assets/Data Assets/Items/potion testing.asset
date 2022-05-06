@@ -16,7 +16,7 @@ MonoBehaviour:
   itemDescription: This item is like when you use it, it like gives you health when
     you use it.
   itemSprite: {fileID: 21300000, guid: 1dd887667d0b6c94981c197ce0935981, type: 3}
-  maxStack: 99
+  stackSize: 32
   itemType: 4
   consumableValue: 5
   consumableType: 1

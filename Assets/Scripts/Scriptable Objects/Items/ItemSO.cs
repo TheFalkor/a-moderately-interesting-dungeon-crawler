@@ -10,6 +10,6 @@ public class ItemSO : ScriptableObject
     [Space]
     public Sprite itemSprite;
     [Space]
-    public int maxStack;
+    public StackSize stackSize;
     [HideInInspector] public ItemType itemType;
 }

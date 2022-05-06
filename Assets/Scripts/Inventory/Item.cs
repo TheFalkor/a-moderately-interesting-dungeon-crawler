@@ -21,7 +21,7 @@ public abstract class Item
         itemType = data.itemType;
 
         count = 1;
-        maxStack = data.maxStack;
+        maxStack = (int)data.stackSize + 1;
     }
 
     public virtual bool UseItem()

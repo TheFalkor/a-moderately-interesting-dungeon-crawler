@@ -13,5 +13,6 @@ public class ConsumableItemSO : ItemSO
     private void Reset()
     {
         itemType = ItemType.CONSUMABLE;
+        stackSize = StackSize.STACK_SIZE_32;
     }
 }

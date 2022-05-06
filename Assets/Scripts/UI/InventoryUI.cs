@@ -9,6 +9,8 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Transform inventoryBox;
     [SerializeField] private Transform equipmentBox;
     [Space]
+    [SerializeField] private GameObject selectionMarker;
+    [Space]
     [SerializeField] private GameObject inventoryCanvas;
     [Space]
     [SerializeField] private Image itemIcon;
@@ -46,7 +48,7 @@ public class InventoryUI : MonoBehaviour
             Image image = inventoryBox.GetChild(i).GetChild(0).GetComponent<Image>();
             Text text = inventoryBox.GetChild(i).GetChild(1).GetComponent<Text>();
 
-            inventorySlots.Add(new InventorySlot(image, text));
+            inventorySlots.Add(new InventorySlot(image, text, selectionMarker));
         }
 
         for (int i = 0; i < equipmentBox.childCount; i++)
@@ -54,7 +56,7 @@ public class InventoryUI : MonoBehaviour
             Image image = equipmentBox.GetChild(i).GetChild(0).GetComponent<Image>();
             Text text = equipmentBox.GetChild(i).GetChild(1).GetComponent<Text>();
 
-            equipmentSlots.Add(new InventorySlot(image, text));
+            equipmentSlots.Add(new InventorySlot(image, text, selectionMarker));
         }
 
         useButtonText = useButton.transform.GetChild(0).GetComponent<Text>();
@@ -64,6 +66,7 @@ public class InventoryUI : MonoBehaviour
     {
         UpdateInventoryUI();
         ShowItemInfo(null);
+        selectionMarker.SetActive(false);
         inventoryCanvas.SetActive(true);
     }
 
@@ -106,6 +109,8 @@ public class InventoryUI : MonoBehaviour
 
     public void SelectItem(int index)
     {
+        inventorySlots[index].SelectSlot();
+
         if (inventory.items[index] == null)
         {
             ShowItemInfo(null);
@@ -120,6 +125,7 @@ public class InventoryUI : MonoBehaviour
 
     public void SelectEquipment(int index)
     {
+        equipmentSlots[index].SelectSlot();
         Item item = null;
 
         if (index == 0)
@@ -142,8 +148,10 @@ public class InventoryUI : MonoBehaviour
     {
         if (selectedEquipment)
         {
-            ShowItemInfo(inventory.items[selectedIndex], true);
-            inventory.EquipItem(selectedIndex);
+            int slotIndex = inventory.EquipItem(selectedIndex);
+            SelectEquipment(slotIndex);
+            //ShowItemInfo(inventory.items[selectedIndex], true);
+            //inventory.EquipItem(selectedIndex);
         }
         else
         {

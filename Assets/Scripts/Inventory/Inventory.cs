@@ -4,21 +4,50 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [HideInInspector] public Item[] items = new Item[16];
+    [Header("Base Inventory")]
     [SerializeField] private List<ItemSO> startingItems = new List<ItemSO>();
+    [Space]
+    [SerializeField] private ItemSO startingWeapon;
+    [SerializeField] private ItemSO startingArmor;
+    [SerializeField] private ItemSO startingAccessory;
 
-    public Weapon equippedWeapon;
-    public Armor equippedArmor;
-    public Accessory equippedAccessory;
+    [Header("Inventory")]
+    [HideInInspector] public Item[] items = new Item[16];
+    [HideInInspector] public Weapon equippedWeapon;
+    [HideInInspector] public Armor equippedArmor;
+    [HideInInspector] public Accessory equippedAccessory;
 
 
     private void Awake()
     {
+    }
+
+    private void Start()
+    {
+        if (startingWeapon)
+        {
+            AddItem(CreateItem(startingWeapon));
+            EquipItem(0);
+        }
+
+        if (startingArmor)
+        {
+            AddItem(CreateItem(startingArmor));
+            EquipItem(0);
+        }
+
+        if (startingAccessory)
+        {
+            AddItem(CreateItem(startingAccessory));
+            EquipItem(0);
+        }
+
         foreach (ItemSO data in startingItems)
         {
             Item t = CreateItem(data, 9);
             AddItem(t);
         }
+        
     }
 
     public void UseItem(int index)
@@ -30,9 +59,10 @@ public class Inventory : MonoBehaviour
         RemoveItem(index);
     }
 
-    public void EquipItem(int index)
+    public int EquipItem(int index)
     {
         EquippableItem previousEquipped = null;
+        int slotIndex = 0;
 
         ItemType type = items[index].itemType;
 
@@ -42,17 +72,20 @@ public class Inventory : MonoBehaviour
                 previousEquipped = equippedWeapon;
                 equippedWeapon = (Weapon)items[index];
                 equippedWeapon.OnEquip();
+                slotIndex = 0;
                 break;
             case ItemType.ARMOR:
                 previousEquipped = equippedArmor;
                 equippedArmor = (Armor)items[index];
                 equippedArmor.OnEquip();
+                slotIndex = 1;
                 break;
 
             case ItemType.ACCESSORY:
                 previousEquipped = equippedAccessory;
                 equippedAccessory = (Accessory)items[index];
                 equippedAccessory.OnEquip();
+                slotIndex = 2;
                 break;
         }
 
@@ -71,6 +104,8 @@ public class Inventory : MonoBehaviour
 
         InventoryUI.instance.UpdateInventoryUI();
         InventoryUI.instance.UpdateEquipmentUI();
+
+        return slotIndex;
     }
 
     public void AddItem(Item item)
