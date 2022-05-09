@@ -13397,6 +13397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e3678a6975eea44951630cf2a703c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tempPoolprefab: {fileID: 6236875730236941031, guid: 9f46a13315188234f8877f4365b6f5cc, type: 3}
 --- !u!114 &1596778540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13439,6 +13440,7 @@ MonoBehaviour:
   startingItems:
   - {fileID: 11400000, guid: 3f88c8a18172f404b8a71730f9a4e845, type: 2}
   - {fileID: 11400000, guid: 478df25a7c104044abadbee07f9a3cc5, type: 2}
+  - {fileID: 11400000, guid: 31e5634891b3b4979a5640eb5c216926, type: 2}
   startingWeapon: {fileID: 11400000, guid: f125a815c8fe1d64aac7d5963138357d, type: 2}
   startingArmor: {fileID: 0}
   startingAccessory: {fileID: 0}
@@ -14145,7 +14147,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1743024314
 Transform:
   m_ObjectHideFlags: 0

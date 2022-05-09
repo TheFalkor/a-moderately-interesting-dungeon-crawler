@@ -7,6 +7,8 @@ public class AbilityManager : MonoBehaviour
     [Header("Runtime Variables")]
     private Ability[] abilities = new Ability[4];
 
+    public GameObject tempPoolprefab;
+
     [Header("Singleton")]
     public static AbilityManager instance;
 
@@ -22,7 +24,7 @@ public class AbilityManager : MonoBehaviour
     void Start()
     {
         abilities[0] = new DashAbility();
-        abilities[1] = new CorruptedGroundsAbility();
+        abilities[1] = new CorruptedGroundsAbility(tempPoolprefab);
     }
 
     public Ability GetAbility(int index)
@@ -31,6 +33,11 @@ public class AbilityManager : MonoBehaviour
             return null;
 
         return abilities[index];
+    }
+
+    public TileEffect SpawnTileEffect(GameObject effectPrefab)
+    {
+        return Instantiate(effectPrefab, new Vector2(0, 0), Quaternion.identity).GetComponent<TileEffect>();
     }
 
 }

@@ -166,7 +166,7 @@ public class Inventory : MonoBehaviour
             case ItemType.WEAPON:
                 WeaponType type = ((WeaponSO)data).weaponType;
                 if (type == WeaponType.HAMMER)
-                    item = null;
+                    item = new Hammer((HammerSO)data);
                 else if (type == WeaponType.SPEAR)
                     item = new Spear((SpearSO)data);
                 else if (type == WeaponType.SWORD)

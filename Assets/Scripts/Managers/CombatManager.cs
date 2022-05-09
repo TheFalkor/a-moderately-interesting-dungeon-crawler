@@ -13,6 +13,7 @@ public class CombatManager : MonoBehaviour
 
     private float combatIntroTimer = 0;
 
+    private List<TileEffect> tileEffectList = new List<TileEffect>();
     private List<Occupant> occupantList = new List<Occupant>();
     private List<Entity> entityList = new List<Entity>();
     private Queue<Entity> turnQueue = new Queue<Entity>();
@@ -44,6 +45,18 @@ public class CombatManager : MonoBehaviour
         if (turnQueue.Count == 0)
         {
             GridManager.instance.ClearAllHighlights();
+
+            foreach (TileEffect effect in tileEffectList)
+                effect.PreTurn();
+
+            for (int i = 0; i < tileEffectList.Count; i++)
+            {
+                if (tileEffectList[i].duration == 0)
+                {
+                    tileEffectList.RemoveAt(i);
+                    i--;
+                }
+            }
 
             foreach (Occupant occ in occupantList)
                 occ.UpdateStatusEffects();
@@ -109,6 +122,8 @@ public class CombatManager : MonoBehaviour
     {
         entityList.Remove(entity);
 
+        PlaySFX("ENEMY_DEATH");
+
         Queue<Entity> newQueue = new Queue<Entity>();
 
         foreach (Entity e in entityList)
@@ -134,5 +149,15 @@ public class CombatManager : MonoBehaviour
     public void RemoveOccupant(Occupant occupant)
     {
         occupantList.Remove(occupant);
+    }
+	
+	public void AddTileEffect(TileEffect tileEffect)
+    {
+        tileEffectList.Add(tileEffect);
+    }
+
+    private void PlaySFX(string soundName)
+    {
+        gameObject.GetComponent<AudioKor>().PlaySFX(soundName);
     }
 }

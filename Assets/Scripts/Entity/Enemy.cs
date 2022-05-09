@@ -26,6 +26,8 @@ public class Enemy : Entity
     {
         base.Initialize();
 
+        transform.localScale = new Vector3(-1f, 1f);
+
         Sensing = new EnemySensing(this);
 
         switch(behaviourType)

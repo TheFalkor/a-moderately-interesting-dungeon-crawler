@@ -119,7 +119,7 @@ public class Spear : Weapon
                 if (north1.IsOccupied())
                 {
                     north1.Highlight(HighlightType.SPLASH);
-                    //north2.Highlight(HighlightType.ATTACKABLE);
+                    north2.Highlight(HighlightType.ATTACKABLE);
                 }
 
                 if (north2.IsOccupied())
@@ -141,7 +141,7 @@ public class Spear : Weapon
                 if (east1.IsOccupied())
                 {
                     east1.Highlight(HighlightType.SPLASH);
-                    //east2.Highlight(HighlightType.ATTACKABLE);
+                    east2.Highlight(HighlightType.ATTACKABLE);
                 }
 
                 if (east2.IsOccupied())
@@ -162,7 +162,7 @@ public class Spear : Weapon
                 if (south1.IsOccupied())
                 {
                     south1.Highlight(HighlightType.SPLASH);
-                    //south2.Highlight(HighlightType.ATTACKABLE);
+                    south2.Highlight(HighlightType.ATTACKABLE);
                 }
 
                 if (south2.IsOccupied())
@@ -183,7 +183,7 @@ public class Spear : Weapon
                 if (west1.IsOccupied())
                 {
                     west1.Highlight(HighlightType.SPLASH);
-                    //west2.Highlight(HighlightType.ATTACKABLE);
+                    west2.Highlight(HighlightType.ATTACKABLE);
                 }
 
                 if (west2.IsOccupied())

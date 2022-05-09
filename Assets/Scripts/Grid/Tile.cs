@@ -8,6 +8,7 @@ public class Tile : MonoBehaviour
     private Vector2Int gridPosition = Vector2Int.zero;
     private bool isWalkable = true;
     private Occupant occupant;
+    private TileEffect tileEffect;
     [HideInInspector] public List<Tile> orthogonalNeighbors = new List<Tile>();
     [HideInInspector] public List<Tile> diagonalNeighbors = new List<Tile>();
 
@@ -40,6 +41,7 @@ public class Tile : MonoBehaviour
         }
 
         occupant = null;
+        tileEffect = null;
     }
 
     public void UpdateTileset()
@@ -73,6 +75,19 @@ public class Tile : MonoBehaviour
     public Occupant GetOccupant()
     {
         return occupant;
+    }
+
+    public void SetTileEffect(TileEffect effect)
+    {
+        if (tileEffect && effect != null)
+            tileEffect.OnDespawn();
+
+        tileEffect = effect;
+    }
+
+    public TileEffect GetTileEffect()
+    {
+        return tileEffect;
     }
 
     public bool AttackTile(Damage damage)

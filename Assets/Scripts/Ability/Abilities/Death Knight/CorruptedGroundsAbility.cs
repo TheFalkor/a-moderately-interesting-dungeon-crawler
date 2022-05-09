@@ -7,10 +7,16 @@ public class CorruptedGroundsAbility : Ability
     [Header("Runtime Variables")]
     private List<Tile> corruptedTiles = new List<Tile>();
     private float animationTimer = 0;
+    private GameObject poolPrefab;
 
     [Header("References")]
     private Player player;
 
+
+    public CorruptedGroundsAbility(GameObject poolPrefab)
+    {
+        this.poolPrefab = poolPrefab;
+    }
 
     public override bool UseAbility(Tile tile)
     {
@@ -33,6 +39,8 @@ public class CorruptedGroundsAbility : Ability
 
         foreach (Tile tile in corruptedTiles)
             tile.Highlight(HighlightType.ABILITY_TARGET);
+
+        corruptedTiles.Add(currentTile);
     }
 
     public override bool Tick(float deltaTime)
@@ -47,7 +55,16 @@ public class CorruptedGroundsAbility : Ability
         {
             player.transform.GetChild(0).transform.localScale = new Vector3(1, 1, 1);
 
-            // Spawn death pool
+            foreach (Tile tile in corruptedTiles)
+            {
+                if (!tile.IsWalkable())
+                    continue;
+
+                TileEffect effect = AbilityManager.instance.SpawnTileEffect(poolPrefab);
+                effect.transform.position = tile.transform.position;
+                effect.Initialize(2);
+            }
+
             return true;
         }
 

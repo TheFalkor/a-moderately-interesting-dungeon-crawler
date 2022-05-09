@@ -16,7 +16,7 @@ public abstract class Occupant : MonoBehaviour
     protected int defense;
     protected int baseMeleeDamage;
     protected int baseRangeDamage;
-    protected DamageOrigin originType;
+    [HideInInspector] public DamageOrigin originType;
     
     [Header("Runtime Variables")]
     protected SpriteRenderer render;
@@ -45,6 +45,7 @@ public abstract class Occupant : MonoBehaviour
     public void UpdateStatusEffects()
     {
         // Tick all status effects
+        // note: effect.duration == 0, remove it (duration == -1 is permanent)
     }
 
     public virtual void TakeDamage(Damage damage)
