@@ -22,6 +22,7 @@ public class AbilityManager : MonoBehaviour
     void Start()
     {
         abilities[0] = new DashAbility();
+        abilities[1] = new CorruptedGroundsAbility();
     }
 
     public Ability GetAbility(int index)

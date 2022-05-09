@@ -82,7 +82,7 @@ public class DashAbility : Ability
     {
         if (targetTile.transform.position != player.transform.position)
         {
-            player.transform.position = Vector3.MoveTowards(player.transform.position, targetTile.transform.position, deltaTime * 8);
+            player.transform.position = Vector3.MoveTowards(player.transform.position, targetTile.transform.position, deltaTime * 1);
             player.transform.Rotate(new Vector3(0, 0, 1800 * deltaTime * player.transform.localScale.x));
         }
         else

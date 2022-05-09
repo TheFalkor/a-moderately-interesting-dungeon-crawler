@@ -16,7 +16,7 @@ public class Player : Entity
     private bool turnEnded = false;
     [Space]
     private Ability selectedAbility;
-    private bool abilityActive = false;
+    [HideInInspector] public bool abilityActive = false;
     [Space]
     private Item selectedItem;
     private int selectedItemIndex = -1;
@@ -225,7 +225,7 @@ public class Player : Entity
 
     public bool SelectAbility(Ability ability)
     {
-        if (currentActionPoints == 0)
+        if (currentActionPoints == 0 || abilityActive)
             return false;
 
         selectedAbility = ability;

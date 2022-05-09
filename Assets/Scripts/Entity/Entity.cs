@@ -73,7 +73,7 @@ public abstract class Entity : Occupant
         {
             case Direction.NORTH:
                 targetPosition += new Vector2(0, 1);
-                render.sortingOrder--;
+                render.sortingOrder -= 5;
                 break;
 
             case Direction.EAST:
@@ -83,7 +83,7 @@ public abstract class Entity : Occupant
 
             case Direction.SOUTH:
                 targetPosition += new Vector2(0, -1);
-                render.sortingOrder++;
+                render.sortingOrder += 5;
                 break;
 
             case Direction.WEST:

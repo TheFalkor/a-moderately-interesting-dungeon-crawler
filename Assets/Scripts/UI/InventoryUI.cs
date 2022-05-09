@@ -150,12 +150,11 @@ public class InventoryUI : MonoBehaviour
         {
             int slotIndex = inventory.EquipItem(selectedIndex);
             SelectEquipment(slotIndex);
-            //ShowItemInfo(inventory.items[selectedIndex], true);
-            //inventory.EquipItem(selectedIndex);
         }
         else
         {
             inventory.UseItem(selectedIndex);
+            SelectItem(selectedIndex);
         }
     }
 

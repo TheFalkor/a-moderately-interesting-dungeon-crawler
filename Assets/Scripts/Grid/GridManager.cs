@@ -102,7 +102,7 @@ public class GridManager : MonoBehaviour
                 render.sprite = TilesetManager.instance.GetBorderSprite(Direction.SOUTH_WEST);
             else
                 render.sprite = TilesetManager.instance.GetBorderSprite(Direction.WEST);
-            render.sortingOrder = -16;
+            render.sortingOrder = -101;
         }
 
         for (int i = 0; i < ROOM_HEIGHT + 3; i++)
@@ -118,7 +118,7 @@ public class GridManager : MonoBehaviour
                 render.sprite = TilesetManager.instance.GetBorderSprite(Direction.SOUTH_EAST);
             else
                 render.sprite = TilesetManager.instance.GetBorderSprite(Direction.EAST);
-            render.sortingOrder = -16;
+            render.sortingOrder = -101;
         }
 
         for (int i = 0; i < ROOM_WIDTH; i++)
@@ -129,7 +129,7 @@ public class GridManager : MonoBehaviour
 
             SpriteRenderer render = border.AddComponent<SpriteRenderer>();
             render.sprite = TilesetManager.instance.GetBorderSprite(Direction.SOUTH);
-            render.sortingOrder = -16;
+            render.sortingOrder = -101;
         }
 
         for (int i = 0; i < ROOM_WIDTH * 2; i++)
@@ -139,7 +139,7 @@ public class GridManager : MonoBehaviour
             border.transform.position = new Vector3(-ROOM_WIDTH / 2 + 0.5f + i / 2, ROOM_HEIGHT / 2 + 2.5f - i % 2);
 
             SpriteRenderer render = border.AddComponent<SpriteRenderer>();
-            render.sortingOrder = -16;
+            render.sortingOrder = -101;
 
             backdropRenders.Add(render);
         }

@@ -95,7 +95,7 @@ public abstract class Occupant : MonoBehaviour
 
     public void UpdateLayerIndex()
     {
-        render.sortingOrder = currentTile.GetPosition().y - 10;
+        render.sortingOrder = currentTile.GetPosition().y * 5 - 90;
     }
 
     public virtual void Heal(int health)
