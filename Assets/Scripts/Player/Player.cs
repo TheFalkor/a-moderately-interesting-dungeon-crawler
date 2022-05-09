@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Player : Entity
 {
+    public RectTransform testdeleteimmediately;
     [Header("Audio")]
     private AudioKor audioKor;
     public Animator temporaryAnimatorDeath;
@@ -24,7 +25,6 @@ public class Player : Entity
     [Header("Runtime Variables")]
     private LayerMask tileMask;
     private Inventory inventory;
-
 
 
     public void Setup(BaseStatsSO newBaseStat = null, ClassStatsSO newClassStat = null)
@@ -96,6 +96,9 @@ public class Player : Entity
 
         if (IsBusy())
             return false;
+
+        if (Input.GetKeyUp(KeyCode.Space))
+            MiniTooltip.instance.Show(testdeleteimmediately, "YE", "description");
 
         switch (state)
         {

@@ -6,6 +6,7 @@ public class ItemSO : ScriptableObject
 {
     [Header("Item Information")]
     public string itemName;
+    public string itemSummary;
     public string itemDescription;
     [Space]
     public Sprite itemSprite;
