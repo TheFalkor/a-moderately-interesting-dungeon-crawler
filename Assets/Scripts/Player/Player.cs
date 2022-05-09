@@ -9,7 +9,7 @@ public class Player : Entity
     private AudioKor audioKor;
     public Animator temporaryAnimatorDeath;
 
-    [SerializeField] protected ClassStatsSO classStat;
+    public ClassStatsSO classStat;
 
     [Header("Turn variables")]
     private PlayerState state = PlayerState.MOVE_STATE;

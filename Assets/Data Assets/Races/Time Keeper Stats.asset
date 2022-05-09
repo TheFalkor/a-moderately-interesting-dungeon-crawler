@@ -22,4 +22,5 @@ MonoBehaviour:
   defense: 0
   baseMeleeDamage: 4
   baseRangeDamage: 8
+  availableAbilities: 02000000
   origin: 2

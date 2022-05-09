@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections.Generic;
 
 [CreateAssetMenu(menuName = "Scriptable Objects/Base Stats", fileName = "Entity Base Stats", order = 1)]
 public class BaseStatsSO : ScriptableObject       // Race / Objects
@@ -19,6 +19,8 @@ public class BaseStatsSO : ScriptableObject       // Race / Objects
     public int defense;
     public int baseMeleeDamage;
     public int baseRangeDamage;
+    [Space]
+    public List<AbilitySO> abilities;
     [Space]
     public DamageOrigin origin;
 }

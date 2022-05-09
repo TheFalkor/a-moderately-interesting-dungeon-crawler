@@ -7,16 +7,10 @@ public class CorruptedGroundsAbility : Ability
     [Header("Runtime Variables")]
     private List<Tile> corruptedTiles = new List<Tile>();
     private float animationTimer = 0;
-    private GameObject poolPrefab;
 
     [Header("References")]
     private Player player;
 
-
-    public CorruptedGroundsAbility(GameObject poolPrefab)
-    {
-        this.poolPrefab = poolPrefab;
-    }
 
     public override bool UseAbility(Tile tile)
     {
@@ -60,9 +54,9 @@ public class CorruptedGroundsAbility : Ability
                 if (!tile.IsWalkable())
                     continue;
 
-                TileEffect effect = AbilityManager.instance.SpawnTileEffect(poolPrefab);
+                TileEffect effect = AbilityManager.instance.SpawnTileEffect(data.abilityPrefab);
                 effect.transform.position = tile.transform.position;
-                effect.Initialize(2);
+                effect.Initialize(data.abilityValue);
             }
 
             return true;

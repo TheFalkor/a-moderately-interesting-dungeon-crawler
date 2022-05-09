@@ -8,7 +8,7 @@ public abstract class Occupant : MonoBehaviour
     [SerializeField] private GameObject damagePopup;
 
     [Header("Stats Reference")]
-    [SerializeField] protected BaseStatsSO baseStat;
+    public BaseStatsSO baseStat;
 
     [Header("Occupant Stats")]
     protected int currentHealth;

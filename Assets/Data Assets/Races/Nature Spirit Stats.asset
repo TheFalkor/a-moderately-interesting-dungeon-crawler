@@ -22,4 +22,6 @@ MonoBehaviour:
   defense: 0
   baseMeleeDamage: 4
   baseRangeDamage: 8
+  abilities:
+  - {fileID: 11400000, guid: e576d5a484061ce44919500bf702af02, type: 2}
   origin: 2

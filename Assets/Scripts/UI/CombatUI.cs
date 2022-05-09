@@ -7,10 +7,13 @@ public class CombatUI : MonoBehaviour
 {
     [Header("UI References")]
     [SerializeField] private GameObject statsBox;
+    [SerializeField] private Transform abilityBox;
     private Text healthText;
     private Text attackText;
     private Text defenseText;
     private Text actionPointText;
+    [Space]
+    private readonly List<Image> abilityIcons = new List<Image>();
     [Space]
     [SerializeField] private Text weaponButtonText;
     [Space]
@@ -44,8 +47,15 @@ public class CombatUI : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
+        for (int i = 1; i < abilityBox.childCount; i++)
+        {
+            abilityIcons.Add(abilityBox.GetChild(i).GetChild(0).GetComponent<Image>());
+        }
+
         if (ConsistentData.initialized)
             SetPortrait(ConsistentData.playerBaseStat.entitySprite);
+
+        AbilityManager.instance.SetupUI();
     }
 
     public void ToggleAttackMode()
@@ -121,6 +131,11 @@ public class CombatUI : MonoBehaviour
         actionPointText.text = "AP: " + actionPoints + "   MP: " + movementPoints;
     }
 
+    public void SetAbilityIcon(int index, Sprite sprite)
+    {
+        abilityIcons[index].gameObject.SetActive(true);
+        abilityIcons[index].sprite = sprite;
+    }
 
     public void SetPortrait(Sprite sprite)
     {

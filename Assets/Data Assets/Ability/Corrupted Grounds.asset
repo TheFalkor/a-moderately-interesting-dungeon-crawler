@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e766b29def79f554bbbd59bc98550369, type: 3}
+  m_Name: Corrupted Grounds
+  m_EditorClassIdentifier: 
+  abilityName: CORRUPTED GROUNDS
+  abilityDescription: Create a pool around you that marks enemies within with Deathmark
+  abilitySprite: {fileID: 21300000, guid: 5e281857acaea944aae1b125470f5df2, type: 3}
+  ability: 5
+  cooldown: 3
+  abilityValue: 2
+  abilityPrefab: {fileID: 6236875730236941031, guid: 9f46a13315188234f8877f4365b6f5cc, type: 3}
