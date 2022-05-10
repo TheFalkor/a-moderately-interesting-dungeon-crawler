@@ -43,7 +43,9 @@ public class AbilityManager : MonoBehaviour
     {
         for (int i = 0; i < abilities.Length; i++)
             if (abilities[i] != null)
-                CombatUI.instance.SetAbilityIcon(i, abilities[i].data.abilitySprite);
+            {
+                CombatUI.instance.SetAbilityIcon(i, abilities[i].data);
+            }
     }    
 
     public Ability GetAbility(int index)

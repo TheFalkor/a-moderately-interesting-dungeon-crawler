@@ -131,10 +131,12 @@ public class CombatUI : MonoBehaviour
         actionPointText.text = "AP: " + actionPoints + "   MP: " + movementPoints;
     }
 
-    public void SetAbilityIcon(int index, Sprite sprite)
+    public void SetAbilityIcon(int index, AbilitySO data)
     {
         abilityIcons[index].gameObject.SetActive(true);
-        abilityIcons[index].sprite = sprite;
+        abilityIcons[index].sprite = data.abilitySprite;
+
+        abilityIcons[index].transform.parent.GetComponent<Hoverable>().SetInformation(data.abilityName, data.abilitySummary, data.abilityDescription);
     }
 
     public void SetPortrait(Sprite sprite)

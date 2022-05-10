@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Item
 {
     public string itemName;
+    public string itemSummary;
     public string itemDescription;
     public Sprite itemSprite;
     public ItemType itemType;
@@ -16,6 +17,7 @@ public abstract class Item
     public void Initialize(ItemSO data)
     {
         itemName = data.itemName;
+        itemSummary = data.itemSummary;
         itemDescription = data.itemDescription;
         itemSprite = data.itemSprite;
         itemType = data.itemType;

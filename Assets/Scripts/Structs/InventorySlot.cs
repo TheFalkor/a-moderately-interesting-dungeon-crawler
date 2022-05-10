@@ -8,12 +8,15 @@ public class InventorySlot
     public Image image;
     public Text stackText;
     private GameObject marker;
+    private Hoverable hover;
 
     public InventorySlot(Image image, Text stackText, GameObject marker = null)
     {
         this.image = image;
         this.stackText = stackText;
         this.marker = marker;
+
+        hover = image.transform.parent.GetComponent<Hoverable>();
 
         ClearSlot();
     }
@@ -26,6 +29,9 @@ public class InventorySlot
         else
             stackText.text = "";
 
+        if (hover)
+            hover.SetInformation(item.itemName, item.itemSummary, item.itemDescription);
+
         image.gameObject.SetActive(true);
     }
 
@@ -33,6 +39,9 @@ public class InventorySlot
     {
         image.sprite = null;
         stackText.text = "";
+
+        if (hover)
+            hover.ClearInformation();
 
         image.gameObject.SetActive(false);
     }

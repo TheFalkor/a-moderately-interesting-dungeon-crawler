@@ -7,6 +7,7 @@ public class AbilitySO : ScriptableObject
 {
     [Header("Ability Information")]
     public string abilityName;
+    public string abilitySummary;
     public string abilityDescription;
     [Space]
     public Sprite abilitySprite;

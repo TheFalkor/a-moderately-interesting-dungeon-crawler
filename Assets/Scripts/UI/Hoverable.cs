@@ -38,12 +38,22 @@ public class Hoverable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         }
     }
 
-    public void SetInformation(string header, string summary)
+    public void SetInformation(string header, string summary, string description)
     {
         this.header = header;
         this.summary = summary;
+        this.description = description;
 
         canHover = header != "";
+    }
+
+    public void ClearInformation()
+    {
+        header = "";
+        summary = "";
+        description = "";
+
+        canHover = false;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
