@@ -26,15 +26,15 @@ public class AbilityManager : MonoBehaviour
         player = DungeonManager.instance.player;
 
         int index = 0;
-        foreach (AbilitySO ability in player.baseStat.abilities)
+        foreach (AbilitySO ability in player.baseStat.startingAbilities)
         {
-            abilities[index] = CreateAbility(ability);
+            abilities[index] = AbilityTree.instance.CreateAbility(ability);
             index++;
         }
 
-        foreach (AbilitySO ability in player.classStat.abilities)
+        foreach (AbilitySO ability in player.classStat.startingAbilities)
         {
-            abilities[index] = CreateAbility(ability);
+            abilities[index] = AbilityTree.instance.CreateAbility(ability);
             index++;
         }
     }
@@ -60,33 +60,4 @@ public class AbilityManager : MonoBehaviour
     {
         return Instantiate(effectPrefab, new Vector2(0, 0), Quaternion.identity).GetComponent<TileEffect>();
     }
-
-    private Ability CreateAbility(AbilitySO data)
-    {
-        Ability ability = null;
-
-        switch (data.ability)
-        {
-            case AbilityID.FLUTTER_DASH:
-                ability = new DashAbility();
-                break;
-            case AbilityID.TIME_PULSE:
-                break;
-            case AbilityID.ARCANE_BLAST:
-                break;
-            case AbilityID.IMBUE_WEAPON:
-                break;
-            case AbilityID.CORRUPTED_GROUNDS:
-                ability = new CorruptedGroundsAbility();
-                break;
-            case AbilityID.SIPHON_DEATH:
-                break;
-        }
-
-        if (ability != null)
-            ability.data = data;
-
-        return ability;
-    }
-
 }

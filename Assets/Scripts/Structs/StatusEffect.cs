@@ -1,3 +1,4 @@
+[System.Serializable]
 public struct StatusEffect
 {
     public StatusType type;

@@ -16,7 +16,7 @@ MonoBehaviour:
   abilitySummary: Dash through enemies
   abilityDescription: Dash through enemies to mark them with Flutter
   abilitySprite: {fileID: 21300000, guid: 5e281857acaea944aae1b125470f5df2, type: 3}
-  ability: 1
+  abilityType: 1
   cooldown: 3
   abilityValue: 0
   abilityPrefab: {fileID: 0}

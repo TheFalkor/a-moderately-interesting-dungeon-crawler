@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PassiveManager : MonoBehaviour
 {
+    public List<PassiveSO> testPassives = new List<PassiveSO>();
 
     [Header("Runtime Variables")]
     private readonly List<Passive> activePassives = new List<Passive>();
@@ -20,9 +21,9 @@ public class PassiveManager : MonoBehaviour
         instance = this;
     }
 
-    void Start()
+    private void Start()
     {
-        
+        activePassives.Add(new FlutterSpread());
     }
 
     public void OnPreTurn(Entity entity)

@@ -9,12 +9,12 @@ public class Sword : Weapon
 
     public override void OnEquip()
     {
-        DungeonManager.instance.player.maxActionPoints += 1;
+        DungeonManager.instance.player.ChangeMaxAP(1);
     }
 
     public override void OnUnequip()
     {
-        DungeonManager.instance.player.maxActionPoints -= 1;
+        DungeonManager.instance.player.ChangeMaxAP(-1);
     }
 
     public Sword(SwordSO data)

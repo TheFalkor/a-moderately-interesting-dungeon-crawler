@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Player : Entity
 {
-    public RectTransform testdeleteimmediately;
     [Header("Audio")]
     private AudioKor audioKor;
     public Animator temporaryAnimatorDeath;
@@ -97,8 +96,6 @@ public class Player : Entity
         if (IsBusy())
             return false;
 
-        if (Input.GetKeyUp(KeyCode.Space))
-            MiniTooltip.instance.Show(testdeleteimmediately, "YE", "description");
 
         switch (state)
         {
@@ -164,7 +161,7 @@ public class Player : Entity
                         abilityActive = false;
                         state = PlayerState.MOVE_STATE;
 
-                        PassiveManager.instance.OnAbilityUsed(selectedAbility.data.ability, selectedAbility.affectedEnemies);
+                        PassiveManager.instance.OnAbilityUsed(selectedAbility.data.abilityType, selectedAbility.affectedEnemies);
 
                         CombatUI.instance.SelectAbility(-1);
                         GridManager.instance.ClearAllHighlights();
@@ -273,6 +270,11 @@ public class Player : Entity
     {
         GridManager.instance.ClearAllHighlights();
         turnEnded = true;
+    }
+
+    public void ChangeMaxAP(int difference)
+    {
+        maxActionPoints += difference;
     }
 
     private void MoveToTile(Tile tile)

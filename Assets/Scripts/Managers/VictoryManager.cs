@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class VictoryManager : MonoBehaviour
 {
@@ -9,6 +10,20 @@ public class VictoryManager : MonoBehaviour
 
     private float timer = 0;
     private bool count = false;
+
+    [Header("Victory Info")]
+    [SerializeField] private GameObject textBox;
+    private Text lvlText;
+    private Text xpText;
+    private Text moneyText;
+    [SerializeField] private Image playerPortrait;
+
+    [Header("Static Names")]
+    private string className;
+    private string raceName;
+
+    [Header("GameObject References")]
+    private Player player;
 
     [Header("Singleton")]
     public static VictoryManager instance;
@@ -20,11 +35,34 @@ public class VictoryManager : MonoBehaviour
             return;
 
         instance = this;
+
+        lvlText = textBox.transform.Find("Level & Race Text").GetComponent<Text>();
+        xpText = textBox.transform.Find("XP Text").GetComponent<Text>();
+        moneyText = textBox.transform.Find("Money Text").GetComponent<Text>();
+
+        /*if (ConsistentData.initialized)
+        {
+            raceName = ConsistentData.playerBaseStat.entityName;
+            className = ConsistentData.playerClassStat.className;
+            SetPortrait(ConsistentData.playerBaseStat.entitySprite);
+        }*/
     }
 
-    void Start()
+    private void Start()
     {
-        
+        player = DungeonManager.instance.player;
+        raceName = player.baseStat.entityName;
+        className = player.classStat.className;
+        SetPortrait(player.baseStat.entitySprite);
+    }
+
+    private void Setup()
+    {
+        /*if (ConsistentData.initialized)
+        {
+            raceName = ConsistentData.playerBaseStat.entityName;
+            className = ConsistentData.playerClassStat.className;
+        }*/
     }
 
     void Update()
@@ -46,6 +84,8 @@ public class VictoryManager : MonoBehaviour
 
     public void ShowPopup()
     {
+        //Setup();
+        UpdateVictory();
         victoryPopup.SetActive(true);
     }
 
@@ -55,5 +95,17 @@ public class VictoryManager : MonoBehaviour
         timer = 0;
         DungeonManager.instance.WonRoom();
         transitionAnimator.SetBool("Closed", true);
+    }
+
+    public void UpdateVictory()
+    {
+        lvlText.text = "Lv." + 5 + " " + className + " " + raceName;
+        //xpText.text = "XP: " + player.currentExp.ToString() + "/" + player.levelExp.ToString() + " (" + expGain.ToString() + ")";
+        moneyText.text = "You a broke a** b****";
+    }
+
+    public void SetPortrait(Sprite sprite)
+    {
+        playerPortrait.sprite = sprite;
     }
 }

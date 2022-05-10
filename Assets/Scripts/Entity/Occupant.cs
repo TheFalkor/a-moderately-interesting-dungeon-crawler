@@ -21,7 +21,7 @@ public abstract class Occupant : MonoBehaviour
     [Header("Runtime Variables")]
     protected SpriteRenderer render;
     [HideInInspector] public Tile currentTile;
-    [HideInInspector] public readonly List<StatusEffect> activeStatusEffects = new List<StatusEffect>();
+    public readonly List<StatusEffect> activeStatusEffects = new List<StatusEffect>();
 
 
     public virtual void Initialize()
@@ -91,7 +91,7 @@ public abstract class Occupant : MonoBehaviour
         }
     }
 
-    public virtual void TakePureDamage(int damage, DamageOrigin origin)
+    public virtual void TakeCleanDamage(int damage, DamageOrigin origin)
     {
         if (currentHealth <= 0)
             return;

@@ -18,5 +18,6 @@ MonoBehaviour:
   bonusDefense: 0
   bonusMeleeDamage: 0
   bonusRangeDamage: 0
-  abilities:
+  startingAbilities:
   - {fileID: 11400000, guid: 6507948b62c666a4d8510a17905dd92d, type: 2}
+  unlockableAbilities: []

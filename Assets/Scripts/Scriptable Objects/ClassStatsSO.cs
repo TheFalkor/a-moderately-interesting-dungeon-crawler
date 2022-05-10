@@ -13,6 +13,12 @@ public class ClassStatsSO : ScriptableObject
     public int bonusDefense;
     public int bonusMeleeDamage;
     public int bonusRangeDamage;
-    [Space]
-    public List<AbilitySO> abilities;
+    
+    [Header("Ability")]
+    public List<AbilitySO> startingAbilities;
+    public List<AbilitySO> unlockableAbilities;
+    
+    [Header("Passive")]
+    public List<PassiveSO> startingPassives;
+    public List<PassiveSO> unlockablePassives;
 }

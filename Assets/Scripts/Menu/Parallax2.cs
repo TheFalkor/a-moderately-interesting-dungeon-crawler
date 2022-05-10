@@ -7,7 +7,7 @@ public class Parallax2 : MonoBehaviour
 
     [SerializeField] private float parallaxEffectMultiplier;
     //private SpriteRenderer spriteRenderer;
-    [SerializeField] private Sprite[] alternativeSprites;
+    //[SerializeField] private Sprite[] alternativeSprites;
     private int index;
     private Transform cameraTransform;
     private Vector3 lastCameraPosition;
@@ -19,9 +19,9 @@ public class Parallax2 : MonoBehaviour
     {
         cameraTransform = Camera.main.transform;
         lastCameraPosition = cameraTransform.position;
-        Sprite sprite = GetComponent<SpriteRenderer>().sprite;
-        Texture2D texture = sprite.texture;
-        textureUnitSizeX = (texture.width / sprite.pixelsPerUnit) * transform.localScale.x;
+        //Sprite sprite = GetComponent<SpriteRenderer>().sprite;
+        //Texture2D texture = sprite.texture;
+        //textureUnitSizeX = (texture.width / sprite.pixelsPerUnit) * transform.localScale.x;
 
 
         //if (alternativeSprites.Length > 0)

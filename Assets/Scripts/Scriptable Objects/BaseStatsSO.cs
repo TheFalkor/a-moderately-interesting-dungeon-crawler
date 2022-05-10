@@ -20,7 +20,13 @@ public class BaseStatsSO : ScriptableObject       // Race / Objects
     public int baseMeleeDamage;
     public int baseRangeDamage;
     [Space]
-    public List<AbilitySO> abilities;
-    [Space]
     public DamageOrigin origin;
+
+    [Header("Ability")]
+    public List<AbilitySO> startingAbilities;
+    public List<AbilitySO> unlockableAbilities;
+    
+    [Header("Passive")]
+    public List<PassiveSO> unlockablePassives;
+
 }

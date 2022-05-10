@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DashAbility : Ability
+public class FlutterDash : Ability
 {
     [Header("Runtime Variables")]
     private List<Tile> dashableTiles = new List<Tile>();
     private Tile targetTile;
-    private List<Occupant> victimList = new List<Occupant>();
 
     [Header("References")]
     private Player player;
@@ -17,6 +16,21 @@ public class DashAbility : Ability
     {
         if (!dashableTiles.Contains(tile))
             return false;
+
+        affectedEnemies.Clear();
+
+        Vector2Int direction = tile.GetPosition() - player.currentTile.GetPosition();
+        int dashedTiles = (int)direction.magnitude;
+        direction.x /= dashedTiles;
+        direction.y /= dashedTiles;
+
+        for (int i = 1; i < dashedTiles; i++)
+        {
+            Occupant occ = GridManager.instance.GetTile(player.currentTile.GetPosition() + direction * i).GetOccupant();
+            if (occ && occ.originType == DamageOrigin.ENEMY)
+                affectedEnemies.Add((Entity)occ);
+        }
+
 
         if (tile.transform.position.x > player.transform.position.x)
             player.transform.localScale = new Vector3(-1, 1);
@@ -31,7 +45,6 @@ public class DashAbility : Ability
     public override void HighlightDecisions(Tile currentTile)
     {
         dashableTiles.Clear();
-        victimList.Clear();
 
         player = (Player)currentTile.GetOccupant();
 
@@ -94,10 +107,9 @@ public class DashAbility : Ability
             player.transform.eulerAngles = new Vector3(0, 0, 0);
             player.UpdateLayerIndex();
 
-            foreach (Occupant occupant in victimList)
+            foreach (Occupant occupant in affectedEnemies)
             {
-                occupant.TakeDamage(new Damage(2, DamageOrigin.FRIENDLY, null));
-                //occupant.AddStatusEffect(new StatusEffect(StatusType.FLUTTER, 1));
+                occupant.AddStatusEffect(new StatusEffect(StatusType.FLUTTER, 1));
             }
 
             return true;

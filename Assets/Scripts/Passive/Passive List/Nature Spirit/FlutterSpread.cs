@@ -14,7 +14,7 @@ public class FlutterSpread : Passive
                 {
                     Occupant occ = tile.GetOccupant();
 
-                    if (occ)
+                    if (occ && occ.originType == DamageOrigin.ENEMY)
                         occ.AddStatusEffect(new StatusEffect(StatusType.FLUTTER, -1));
                 }
             }

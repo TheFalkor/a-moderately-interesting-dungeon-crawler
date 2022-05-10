@@ -263,6 +263,8 @@ public class TilesetManager : MonoBehaviour
             availableSprites.Remove(53);
             availableSprites.Remove(55);
         }
+        else
+            availableSprites.Remove(22);
 
         if (wallTR)
         {
@@ -274,6 +276,8 @@ public class TilesetManager : MonoBehaviour
             availableSprites.Remove(52);
             availableSprites.Remove(55);
         }
+        else
+            availableSprites.Remove(20);
 
         if (wallBL)
         {
@@ -285,6 +289,8 @@ public class TilesetManager : MonoBehaviour
             availableSprites.Remove(53);
             availableSprites.Remove(54);
         }
+        else
+            availableSprites.Remove(6);
 
         if (wallBR)
         {
@@ -296,6 +302,8 @@ public class TilesetManager : MonoBehaviour
             availableSprites.Remove(52);
             availableSprites.Remove(54);
         }
+        else
+            availableSprites.Remove(4);
 
         if (!wallTL || !wallTR || !wallBL || !wallBR)
             availableSprites.Remove(13);

@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1878ed3d5d468bd4c852cd486b572d11, type: 3}
   m_Name: Spell Weaver Stats
   m_EditorClassIdentifier: 
-  className: SPELL SLINGER
+  className: SPELL WEAVER
   classDescription: 
   bonusHealth: 0
   bonusDefense: 0
   bonusMeleeDamage: 3
   bonusRangeDamage: 0
-  availableAbilities: 0300000004000000
+  startingAbilities: []
+  unlockableAbilities: []
+  unlockablePassives: []

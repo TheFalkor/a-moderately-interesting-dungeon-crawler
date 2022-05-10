@@ -8,7 +8,7 @@ public abstract class Entity : Occupant
     [Header("Entity Stats")]
     protected int maxMovementPoints;
     protected int currentMovementPoints;
-    public int maxActionPoints;     // mr.NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+    protected int maxActionPoints;
     protected int currentActionPoints;
 
     [Header("Entity Settings")]

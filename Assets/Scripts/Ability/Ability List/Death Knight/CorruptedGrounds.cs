@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CorruptedGroundsAbility : Ability
+public class CorruptedGrounds : Ability
 {
     [Header("Runtime Variables")]
     private List<Tile> corruptedTiles = new List<Tile>();

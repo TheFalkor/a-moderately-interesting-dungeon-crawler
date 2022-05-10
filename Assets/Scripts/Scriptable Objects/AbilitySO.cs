@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scriptable Objects/Ability", fileName = "Ability Name", order = 3)]
+[CreateAssetMenu(menuName = "Scriptable Objects/Ability", fileName = "Ability Name", order = 4)]
 public class AbilitySO : ScriptableObject
 {
     [Header("Ability Information")]
@@ -12,7 +12,7 @@ public class AbilitySO : ScriptableObject
     [Space]
     public Sprite abilitySprite;
     [Space]
-    public AbilityID ability;
+    public AbilityID abilityType;
 
     [Header("Ability Data")]
     public int cooldown;
