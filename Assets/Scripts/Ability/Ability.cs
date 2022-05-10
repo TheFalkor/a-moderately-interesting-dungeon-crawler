@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Ability
 {
     public AbilitySO data;
+    public readonly List<Entity> affectedEnemies = new List<Entity>();
 
 
     public abstract bool UseAbility(Tile tile);

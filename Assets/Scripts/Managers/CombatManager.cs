@@ -71,6 +71,8 @@ public class CombatManager : MonoBehaviour
 
         if (turnQueue.Peek().Tick(Time.deltaTime))
         {
+            PassiveManager.instance.OnEndTurn(turnQueue.Peek());
+
             turnQueue.Dequeue();
 
             if (turnQueue.Count > 0)

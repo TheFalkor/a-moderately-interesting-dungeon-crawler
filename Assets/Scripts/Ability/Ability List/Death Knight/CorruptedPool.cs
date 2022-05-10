@@ -39,7 +39,7 @@ public class CorruptedPool : TileEffect
 
         if (occ)
         {
-            if (occ.originType != DamageOrigin.FRIENDLY)
+            if (occ.originType == DamageOrigin.ENEMY)
                 occ.AddStatusEffect(new StatusEffect(StatusType.DEATHMARK, -1));
         }
 

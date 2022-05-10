@@ -143,4 +143,11 @@ public class Enemy : Entity
         Debug.Log("FIRING PEBBLE LESS GOOOO");
         Attack(Sensing.player.currentTile, new Damage(baseRangeDamage, originType));
     }
+
+    public override void TakeDamage(Damage damage)
+    {
+        base.TakeDamage(damage);
+
+        PassiveManager.instance.OnEnemyTakeDamage(this);
+    }
 }

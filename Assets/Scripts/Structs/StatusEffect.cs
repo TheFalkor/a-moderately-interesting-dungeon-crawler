@@ -8,4 +8,9 @@ public struct StatusEffect
         this.type = type;
         this.duration = duration;
     }
+
+    public void DecreaseDuration()
+    {
+        duration--;
+    }
 }

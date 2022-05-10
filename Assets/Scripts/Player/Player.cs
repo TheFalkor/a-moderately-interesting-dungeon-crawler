@@ -164,6 +164,8 @@ public class Player : Entity
                         abilityActive = false;
                         state = PlayerState.MOVE_STATE;
 
+                        PassiveManager.instance.OnAbilityUsed(selectedAbility.data.ability, selectedAbility.affectedEnemies);
+
                         CombatUI.instance.SelectAbility(-1);
                         GridManager.instance.ClearAllHighlights();
                     }
@@ -180,7 +182,7 @@ public class Player : Entity
                         if (selectedAbility.UseAbility(tile))
                         {
                             abilityActive = true;
-                            currentActionPoints--;  // Dash tmp cost
+                            currentActionPoints--;
 
                             CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
                         }
@@ -358,6 +360,8 @@ public class Player : Entity
     public override void TakeDamage(Damage damage)
     {
         base.TakeDamage(damage);
+
+        PassiveManager.instance.OnPlayerTakeDamage(this);
 
         CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
     }

@@ -38,6 +38,8 @@ public abstract class Entity : Occupant
         currentMovementPoints = maxMovementPoints;
         currentActionPoints = maxActionPoints;
 
+        PassiveManager.instance.OnPreTurn(this);
+
         UpdateStatusEffects();
     }
 

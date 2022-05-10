@@ -21,9 +21,7 @@ public abstract class Occupant : MonoBehaviour
     [Header("Runtime Variables")]
     protected SpriteRenderer render;
     [HideInInspector] public Tile currentTile;
-    private readonly List<StatusEffect> activeStatusEffects = new List<StatusEffect>();
-    
-    // StatusType immunity list
+    [HideInInspector] public readonly List<StatusEffect> activeStatusEffects = new List<StatusEffect>();
 
 
     public virtual void Initialize()
@@ -44,8 +42,26 @@ public abstract class Occupant : MonoBehaviour
 
     public void UpdateStatusEffects()
     {
-        // Tick all status effects
-        // note: effect.duration == 0, remove it (duration == -1 is permanent)
+        for (int i = 0; i < activeStatusEffects.Count; i++)
+        {
+            switch (activeStatusEffects[i].type)
+            {
+                case StatusType.DEATHMARK:  // Placeholder (deathmark shouldnt do anything on preturn)
+                    break;
+            }
+
+            if (activeStatusEffects[i].duration != -1)
+            {
+                activeStatusEffects[i].DecreaseDuration();
+
+                if (activeStatusEffects[i].duration == 0)
+                {
+                    activeStatusEffects.RemoveAt(i);
+                    i--;
+                }
+
+            }
+        }
     }
 
     public virtual void TakeDamage(Damage damage)
@@ -75,6 +91,19 @@ public abstract class Occupant : MonoBehaviour
         }
     }
 
+    public virtual void TakePureDamage(int damage, DamageOrigin origin)
+    {
+        if (currentHealth <= 0)
+            return;
+
+        currentHealth -= damage;
+
+        Instantiate(damagePopup, transform.position + new Vector3(0, 0.5f), Quaternion.identity).GetComponent<DamagePopup>().Setup(damage, origin);
+
+        if (currentHealth <= 0)
+            Death();
+    }
+
     public void AddStatusEffect(StatusEffect statusEffect)
     {
         bool found = false;
@@ -82,7 +111,7 @@ public abstract class Occupant : MonoBehaviour
         {
             if (statusEffect.type == activeStatusEffects[i].type)
             {
-                if (statusEffect.duration > activeStatusEffects[i].duration)
+                if (statusEffect.duration > activeStatusEffects[i].duration && activeStatusEffects[i].duration != -1)
                     activeStatusEffects[i] = statusEffect;
 
                 found = true;
