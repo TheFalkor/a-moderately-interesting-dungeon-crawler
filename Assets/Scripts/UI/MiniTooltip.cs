@@ -52,8 +52,15 @@ public class MiniTooltip : MonoBehaviour
         transform.SetParent(icon);
         parent = icon;
 
-        body.localPosition = new Vector3(-165, 0);
+        int xPosition = (int)icon.position.x;
+
+        if (xPosition >= 0)
+            body.localPosition = new Vector3(-170, 0);
+        else
+            body.localPosition = new Vector3(170, 0);
+
         body.localScale = new Vector3(1, 1, 1);
+
 
         nameText.text = name;
         summaryText.text = summary;

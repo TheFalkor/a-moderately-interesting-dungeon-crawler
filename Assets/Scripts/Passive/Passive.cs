@@ -26,6 +26,11 @@ public abstract class Passive
 
     }
 
+    public virtual void OnEnemyDeath(Entity enemy)
+    {
+
+    }
+
     public virtual void OnAbilityUsed(AbilityID ability, List<Entity> affectedEnemies = null)
     {
 

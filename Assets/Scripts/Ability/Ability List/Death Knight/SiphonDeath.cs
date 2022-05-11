@@ -43,6 +43,22 @@ public class SiphonDeath : Ability
         }
         else
         {
+            int markCount = 0;
+            foreach (Entity entity in CombatManager.instance.entityList)
+            {
+                foreach (StatusEffect effect in entity.activeStatusEffects)
+                {
+                    if (effect.type == StatusType.DEATHMARK)
+                    {
+                        markCount++;
+
+                        entity.activeStatusEffects.Remove(effect);
+                        break;
+                    }
+                }
+            }
+
+            DungeonManager.instance.player.AddShield(markCount * data.abilityValue);
             return true;
         }
 

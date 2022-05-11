@@ -32,6 +32,20 @@ public abstract class Entity : Occupant
         targetPosition = transform.position;       
     }
 
+    public override void UpdateStatusEffects()
+    {
+        for (int i = 0; i < activeStatusEffects.Count; i++)
+        {
+            switch (activeStatusEffects[i].type)
+            {
+                case StatusType.DEATHMARK:  // Placeholder (deathmark shouldnt do anything on preturn)
+                    break;
+            }
+        }
+
+        base.UpdateStatusEffects();
+    }
+
     public abstract bool Tick(float deltaTime);
     public virtual void PreTurn()
     {

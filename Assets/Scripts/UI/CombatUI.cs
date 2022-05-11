@@ -111,9 +111,12 @@ public class CombatUI : MonoBehaviour
         }
     }
 
-    public void UpdateHealth(int currentHealth, int maxHealth)
+    public void UpdateHealth(int currentHealth, int maxHealth, int shield)
     {
         healthText.text = "HP: " + currentHealth + " / " + maxHealth;
+
+        if (shield != 0)
+            healthText.text = healthText.text + " (+" + shield + ")";
     }
 
     public void UpdateAttack(int attackDamage)
@@ -144,8 +147,8 @@ public class CombatUI : MonoBehaviour
         playerPortrait.sprite = sprite;
     }
 
-    public void RotatePortrait()
+    public void RotatePortrait(RectTransform body)
     {
-        playerPortrait.rectTransform.eulerAngles += new Vector3(0, 0, -90);
+        body.eulerAngles += new Vector3(0, 0, -90);
     }
 }

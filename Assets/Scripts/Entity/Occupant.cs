@@ -14,6 +14,7 @@ public abstract class Occupant : MonoBehaviour
     protected int currentHealth;
     protected int maxhealth;
     protected int defense;
+    [HideInInspector] public int shield = 0;
     protected int baseMeleeDamage;
     protected int baseRangeDamage;
     [HideInInspector] public DamageOrigin originType;
@@ -40,16 +41,12 @@ public abstract class Occupant : MonoBehaviour
         UpdateLayerIndex();
     }
 
-    public void UpdateStatusEffects()
+    public virtual void UpdateStatusEffects()
     {
+        // Foreach if needed
+
         for (int i = 0; i < activeStatusEffects.Count; i++)
         {
-            switch (activeStatusEffects[i].type)
-            {
-                case StatusType.DEATHMARK:  // Placeholder (deathmark shouldnt do anything on preturn)
-                    break;
-            }
-
             if (activeStatusEffects[i].duration != -1)
             {
                 activeStatusEffects[i].DecreaseDuration();
@@ -59,7 +56,6 @@ public abstract class Occupant : MonoBehaviour
                     activeStatusEffects.RemoveAt(i);
                     i--;
                 }
-
             }
         }
     }
@@ -72,9 +68,22 @@ public abstract class Occupant : MonoBehaviour
         if (currentHealth <= 0)
             return;
 
-        currentHealth -= damage.damage;
-
         Instantiate(damagePopup, transform.position + new Vector3(0, 0.5f), Quaternion.identity).GetComponent<DamagePopup>().Setup(damage.damage, damage.origin);
+        
+        if (shield > 0)
+        {
+            shield -= damage.damage;
+
+            if (shield >= 0)
+                return;
+
+            damage.damage += shield;
+
+            if (damage.damage <= 0)
+                return;
+        }
+
+        currentHealth -= damage.damage;
 
         if (currentHealth <= 0)
         {

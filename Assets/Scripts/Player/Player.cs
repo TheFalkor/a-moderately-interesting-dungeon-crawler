@@ -61,11 +61,11 @@ public class Player : Entity
     public void ResetPlayer()
     {
         currentTile.SetOccupant(null);
-        transform.position = new Vector2(4.5f, 1.5f);
+        transform.position = new Vector2(4.5f, 0.5f);
         currentTile = GridManager.instance.GetTileWorld(transform.position);
         currentTile.SetOccupant(this);
 
-        CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
+        CombatUI.instance.UpdateHealth(currentHealth, maxhealth, shield);
         CombatUI.instance.UpdateAttack(baseMeleeDamage + inventory.equippedWeapon.weaponDamage);    // maybe
         CombatUI.instance.UpdateDefense(defense);
         CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
@@ -365,7 +365,7 @@ public class Player : Entity
 
         PassiveManager.instance.OnPlayerTakeDamage(this);
 
-        CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
+        CombatUI.instance.UpdateHealth(currentHealth, maxhealth, shield);
     }
 
     public override void Heal(int health)
@@ -373,7 +373,14 @@ public class Player : Entity
         base.Heal(health);
 
         if (CombatUI.instance)
-            CombatUI.instance.UpdateHealth(currentHealth, maxhealth);
+            CombatUI.instance.UpdateHealth(currentHealth, maxhealth, shield);
+    }
+
+    public void AddShield(int shield)
+    {
+        this.shield += shield;
+
+        CombatUI.instance.UpdateHealth(currentHealth, maxhealth, shield);
     }
 
     protected override void Death()

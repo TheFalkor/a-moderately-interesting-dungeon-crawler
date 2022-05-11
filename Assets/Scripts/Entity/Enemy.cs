@@ -150,4 +150,11 @@ public class Enemy : Entity
 
         PassiveManager.instance.OnEnemyTakeDamage(this);
     }
+
+    protected override void Death()
+    {
+        PassiveManager.instance.OnEnemyDeath(this);
+
+        base.Death();
+    }
 }

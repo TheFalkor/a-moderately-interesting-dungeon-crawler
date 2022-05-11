@@ -112,6 +112,10 @@ public class CombatManager : MonoBehaviour
         foreach (Occupant occ in occupantList)
             Destroy(occ.gameObject);
 
+        foreach (TileEffect effect in tileEffectList)
+            Destroy(effect.gameObject);
+
+        tileEffectList.Clear();
         occupantList.Clear();
     }
 

@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PassiveManager : MonoBehaviour
 {
-    public List<PassiveSO> testPassives = new List<PassiveSO>();
-
     [Header("Runtime Variables")]
     private readonly List<Passive> activePassives = new List<Passive>();
+    private GameObject passiveHoverPrefab;
+    [SerializeField] private RectTransform passiveHoverParent;
 
     [Header("Singleton")]
     public static PassiveManager instance;
@@ -19,18 +20,28 @@ public class PassiveManager : MonoBehaviour
             return;
 
         instance = this;
+
+        passiveHoverPrefab = passiveHoverParent.GetChild(0).gameObject;
+        passiveHoverPrefab.SetActive(false);
     }
 
     private void Start()
     {
-        activePassives.Add(new FlutterSpread());
     }
 
     public void AddPassive(Passive passive)
     {
         activePassives.Add(passive);
 
-        // Update UI
+        while (passiveHoverParent.childCount != activePassives.Count)
+        {
+            Instantiate(passiveHoverPrefab, new Vector3(0, 0, 0), Quaternion.identity, passiveHoverParent);
+        }
+
+        Hoverable newHover = passiveHoverParent.GetChild(passiveHoverParent.childCount - 1).GetComponent<Hoverable>();
+        newHover.transform.GetChild(0).GetComponent<Image>().sprite = passive.data.passiveSprite;
+        newHover.SetInformation(passive.data.passiveName, passive.data.passiveSummary, passive.data.passiveDescription);
+        newHover.gameObject.SetActive(true);
     }
 
     public void OnPreTurn(Entity entity)
@@ -55,6 +66,12 @@ public class PassiveManager : MonoBehaviour
     {
         foreach (Passive passive in activePassives)
             passive.OnEnemyTakeDamage(enemy);
+    }
+
+    public void OnEnemyDeath(Entity enemy)
+    {
+        foreach (Passive passive in activePassives)
+            passive.OnEnemyDeath(enemy);
     }
 
     public void OnAbilityUsed(AbilityID ability, List<Entity> affectedEnemies = null)
