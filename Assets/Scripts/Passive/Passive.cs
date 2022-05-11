@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Passive
 {
+    public PassiveSO data;
 
     public virtual void OnPreTurn(Entity entity)
     {
@@ -20,7 +21,7 @@ public abstract class Passive
 
     }
 
-    public virtual void OnEnemyTakeDamage(Entity entity)
+    public virtual void OnEnemyTakeDamage(Entity enemy)
     {
 
     }

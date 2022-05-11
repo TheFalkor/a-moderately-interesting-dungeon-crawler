@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class FlutterSpread : Passive
 {
-    public override void OnEnemyTakeDamage(Entity entity)
+    public override void OnEnemyTakeDamage(Entity enemy)
     {
-        foreach (StatusEffect effect in entity.activeStatusEffects)
+        foreach (StatusEffect effect in enemy.activeStatusEffects)
         {
             if (effect.type == StatusType.FLUTTER)
             {
-                foreach (Tile tile in entity.currentTile.orthogonalNeighbors)
+                foreach (Tile tile in enemy.currentTile.orthogonalNeighbors)
                 {
                     Occupant occ = tile.GetOccupant();
 

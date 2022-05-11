@@ -13,4 +13,7 @@ public class PassiveSO : ScriptableObject
     public Sprite passiveSprite;
     [Space]
     public PassiveID passiveType;
+
+    [Header("Passive Data")]
+    public int passiveValue;
 }

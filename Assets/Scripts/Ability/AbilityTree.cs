@@ -29,6 +29,7 @@ public class AbilityTree : MonoBehaviour
         player = DungeonManager.instance.player;
 
         abilityList.AddRange(player.baseStat.startingAbilities);
+        abilityList.AddRange(player.classStat.startingAbilities);
         abilityList.AddRange(player.baseStat.unlockableAbilities);
         abilityList.AddRange(player.classStat.unlockableAbilities);
 
@@ -36,6 +37,9 @@ public class AbilityTree : MonoBehaviour
             unlockedAbilityList.Add(false);
 
         foreach (AbilitySO ability in player.baseStat.startingAbilities)
+            UnlockAbility(abilityList.IndexOf(ability));
+
+        foreach (AbilitySO ability in player.classStat.startingAbilities)
             UnlockAbility(abilityList.IndexOf(ability));
 
 
@@ -136,7 +140,7 @@ public class AbilityTree : MonoBehaviour
                 Debug.LogError("AbilityTree :: Forgot to create ability");
                 break;
             case PassiveID.DEATH_MARK:
-                Debug.LogError("AbilityTree :: Forgot to create ability");
+                passive = new DeathMark();
                 break;
             case PassiveID.DEATH_SENTENCE:
                 Debug.LogError("AbilityTree :: Forgot to create ability");
@@ -151,6 +155,9 @@ public class AbilityTree : MonoBehaviour
                 Debug.LogError("AbilityTree :: Forgot to create ability");
                 break;
         }
+
+        if (passive != null)
+            passive.data = data;            
 
         return passive;
     }
