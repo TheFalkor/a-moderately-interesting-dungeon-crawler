@@ -26,6 +26,13 @@ public class PassiveManager : MonoBehaviour
         activePassives.Add(new FlutterSpread());
     }
 
+    public void AddPassive(Passive passive)
+    {
+        activePassives.Add(passive);
+
+        // Update UI
+    }
+
     public void OnPreTurn(Entity entity)
     {
         foreach (Passive passive in activePassives)

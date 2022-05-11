@@ -15,7 +15,7 @@ public class CombatManager : MonoBehaviour
 
     private List<TileEffect> tileEffectList = new List<TileEffect>();
     private List<Occupant> occupantList = new List<Occupant>();
-    private List<Entity> entityList = new List<Entity>();
+    [HideInInspector] public List<Entity> entityList = new List<Entity>();
     private Queue<Entity> turnQueue = new Queue<Entity>();
 
     [Header("Singleton")]

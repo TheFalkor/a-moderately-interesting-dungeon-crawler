@@ -789,8 +789,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
+  m_Sprite: {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1006,18 +1005,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   room: {fileID: 11400000, guid: 98071dcf615d9ea4ca65d93d43f8f636, type: 2}
-  northBrokenBridge: {fileID: -9185261993089158924, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  eastBrokenBridge: {fileID: 8413686573964689862, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  southBrokenBridge: {fileID: -3015887500291953810, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
+  northBrokenBridge: {fileID: -9185261993089158924, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  eastBrokenBridge: {fileID: 8413686573964689862, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  southBrokenBridge: {fileID: -3015887500291953810, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   completed: 1
 --- !u!61 &103537513
 BoxCollider2D:
@@ -1085,8 +1078,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -9006130253610692253, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
+  m_Sprite: {fileID: -9006130253610692253, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3177,18 +3169,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   room: {fileID: 11400000, guid: b1a22d4e50a1a0142827d4a7690ff2ed, type: 2}
-  northBrokenBridge: {fileID: -9185261993089158924, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  eastBrokenBridge: {fileID: 8413686573964689862, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  southBrokenBridge: {fileID: -3015887500291953810, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
+  northBrokenBridge: {fileID: -9185261993089158924, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  eastBrokenBridge: {fileID: 8413686573964689862, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  southBrokenBridge: {fileID: -3015887500291953810, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   completed: 1
 --- !u!61 &403026072
 BoxCollider2D:
@@ -3256,8 +3242,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -9006130253610692253, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
+  m_Sprite: {fileID: -9006130253610692253, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3739,8 +3724,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -5
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7,
-    type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0.6415094, g: 0.6044411, b: 0.493236, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4282,8 +4266,7 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 --- !u!4 &475810868 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4352417484911600, guid: d9730ff86bc10ed4ba842a2282e1b715,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 4352417484911600, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
   m_PrefabInstance: {fileID: 4352417689141188}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &483482138
@@ -4785,18 +4768,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   room: {fileID: 11400000, guid: 98071dcf615d9ea4ca65d93d43f8f636, type: 2}
-  northBrokenBridge: {fileID: -9185261993089158924, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  eastBrokenBridge: {fileID: 8413686573964689862, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  southBrokenBridge: {fileID: -3015887500291953810, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
+  northBrokenBridge: {fileID: -9185261993089158924, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  eastBrokenBridge: {fileID: 8413686573964689862, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  southBrokenBridge: {fileID: -3015887500291953810, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   completed: 1
 --- !u!61 &494967394
 BoxCollider2D:
@@ -4864,8 +4841,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -9006130253610692253, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
+  m_Sprite: {fileID: -9006130253610692253, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6798,18 +6774,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   room: {fileID: 11400000, guid: b1a22d4e50a1a0142827d4a7690ff2ed, type: 2}
-  northBrokenBridge: {fileID: -9185261993089158924, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  eastBrokenBridge: {fileID: 8413686573964689862, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  southBrokenBridge: {fileID: -3015887500291953810, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
+  northBrokenBridge: {fileID: -9185261993089158924, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  eastBrokenBridge: {fileID: 8413686573964689862, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  southBrokenBridge: {fileID: -3015887500291953810, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   completed: 1
 --- !u!61 &766738326
 BoxCollider2D:
@@ -6877,8 +6847,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -9006130253610692253, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
+  m_Sprite: {fileID: -9006130253610692253, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7422,8 +7391,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
+  m_Sprite: {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8187,8 +8155,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
+  m_Sprite: {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8705,8 +8672,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
+  m_Sprite: {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9123,8 +9089,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
+  m_Sprite: {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10084,18 +10049,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   room: {fileID: 11400000, guid: b1a22d4e50a1a0142827d4a7690ff2ed, type: 2}
-  northBrokenBridge: {fileID: -9185261993089158924, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  eastBrokenBridge: {fileID: 8413686573964689862, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  southBrokenBridge: {fileID: -3015887500291953810, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
+  northBrokenBridge: {fileID: -9185261993089158924, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  eastBrokenBridge: {fileID: 8413686573964689862, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  southBrokenBridge: {fileID: -3015887500291953810, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   completed: 1
 --- !u!61 &1062679234
 BoxCollider2D:
@@ -10163,8 +10122,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -9006130253610692253, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
+  m_Sprite: {fileID: -9006130253610692253, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10555,8 +10513,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
+  m_Sprite: {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10720,8 +10677,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -9006130253610692253, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
+  m_Sprite: {fileID: -9006130253610692253, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10745,18 +10701,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   room: {fileID: 0}
-  northBrokenBridge: {fileID: -9185261993089158924, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  eastBrokenBridge: {fileID: 8413686573964689862, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  southBrokenBridge: {fileID: -3015887500291953810, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
+  northBrokenBridge: {fileID: -9185261993089158924, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  eastBrokenBridge: {fileID: 8413686573964689862, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  southBrokenBridge: {fileID: -3015887500291953810, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   completed: 1
 --- !u!61 &1129999246
 BoxCollider2D:
@@ -12163,8 +12113,7 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 --- !u!114 &1313392698 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4352417484911601, guid: d9730ff86bc10ed4ba842a2282e1b715,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 4352417484911601, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
   m_PrefabInstance: {fileID: 4352417689141188}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -12244,8 +12193,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
+  m_Sprite: {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -14084,8 +14032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatParent: {fileID: 1743024314}
-  tilePrefab: {fileID: 4120879496890394740, guid: 3dde1f0872f17ad489879d72cccacbfd,
-    type: 3}
+  tilePrefab: {fileID: 4120879496890394740, guid: 3dde1f0872f17ad489879d72cccacbfd, type: 3}
 --- !u!114 &1596778536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14129,6 +14076,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicDatabase: {fileID: 11400000, guid: 8e64bceec6736462b9cee38f9d58f7c4, type: 2}
   sfxDatabase: {fileID: 11400000, guid: a74731b1949394d7aade000e52a24b0c, type: 2}
+  masterVolume: 0
+  musicVolume: 0
+  sfxVolume: 0
+  musicTrackCount: 8
 --- !u!114 &1596778539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14799,6 +14750,7 @@ Transform:
   m_Children:
   - {fileID: 944852183}
   - {fileID: 1195990879}
+  - {fileID: 1731487177}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14953,6 +14905,63 @@ MonoBehaviour:
   summary: 
   description: 
   canHover: 0
+--- !u!1 &1731487176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1731487177}
+  - component: {fileID: 1731487178}
+  m_Layer: 0
+  m_Name: Wall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1731487177
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731487176}
+  m_LocalRotation: {x: -0, y: -0, z: 0.6950976, w: 0.7189154}
+  m_LocalPosition: {x: 7.23, y: -1.32, z: 0}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1719227992}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 88.07}
+--- !u!61 &1731487178
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731487176}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.24, y: 0.25}
+  m_EdgeRadius: 0
 --- !u!1 &1743024313
 GameObject:
   m_ObjectHideFlags: 0
@@ -16544,18 +16553,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   room: {fileID: 11400000, guid: 4bdb7eba6251c468188881351e1ac4d1, type: 2}
-  northBrokenBridge: {fileID: -9185261993089158924, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  eastBrokenBridge: {fileID: 8413686573964689862, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  southBrokenBridge: {fileID: -3015887500291953810, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
+  northBrokenBridge: {fileID: -9185261993089158924, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  eastBrokenBridge: {fileID: 8413686573964689862, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  southBrokenBridge: {fileID: -3015887500291953810, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   completed: 1
 --- !u!61 &1935668828
 BoxCollider2D:
@@ -16623,8 +16626,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -9006130253610692253, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
+  m_Sprite: {fileID: -9006130253610692253, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -16706,8 +16708,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
+  m_Sprite: {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -17850,18 +17851,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   room: {fileID: 11400000, guid: 0fb4dc31ecfdebe4186af1ea06004148, type: 2}
-  northBrokenBridge: {fileID: -9185261993089158924, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  eastBrokenBridge: {fileID: 8413686573964689862, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  southBrokenBridge: {fileID: -3015887500291953810, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
-  verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
+  northBrokenBridge: {fileID: -9185261993089158924, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  eastBrokenBridge: {fileID: 8413686573964689862, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  southBrokenBridge: {fileID: -3015887500291953810, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   completed: 1
 --- !u!61 &2126566512
 BoxCollider2D:
@@ -17929,8 +17924,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -9006130253610692253, guid: 1aeddb29fc1edb543a14c537ebef0376,
-    type: 3}
+  m_Sprite: {fileID: -9006130253610692253, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -18151,8 +18145,7 @@ PrefabInstance:
     - target: {fileID: 4352417484911601, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
       propertyPath: classStat
       value: 
-      objectReference: {fileID: 11400000, guid: e0fc08491a4a9984e9d116e650541901,
-        type: 2}
+      objectReference: {fileID: 11400000, guid: e0fc08491a4a9984e9d116e650541901, type: 2}
     - target: {fileID: 4352417484911601, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
       propertyPath: testdeleteimmediately
       value: 

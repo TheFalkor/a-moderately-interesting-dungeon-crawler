@@ -7,8 +7,6 @@ public class AbilityManager : MonoBehaviour
     [Header("Runtime Variables")]
     private Ability[] abilities = new Ability[4];
 
-    private Player player;
-
     [Header("Singleton")]
     public static AbilityManager instance;
 
@@ -23,20 +21,7 @@ public class AbilityManager : MonoBehaviour
 
     void Start()
     {
-        player = DungeonManager.instance.player;
 
-        int index = 0;
-        foreach (AbilitySO ability in player.baseStat.startingAbilities)
-        {
-            abilities[index] = AbilityTree.instance.CreateAbility(ability);
-            index++;
-        }
-
-        foreach (AbilitySO ability in player.classStat.startingAbilities)
-        {
-            abilities[index] = AbilityTree.instance.CreateAbility(ability);
-            index++;
-        }
     }
 
     public void SetupUI()
@@ -47,6 +32,23 @@ public class AbilityManager : MonoBehaviour
                 CombatUI.instance.SetAbilityIcon(i, abilities[i].data);
             }
     }    
+
+    public void AddAbility(Ability ability)
+    {
+        for (int i = 0; i < abilities.Length; i++)
+        {
+            if (abilities[i] != null)
+                continue;
+
+            abilities[i] = ability;
+
+            if (CombatUI.instance)
+                CombatUI.instance.SetAbilityIcon(i, ability.data);
+
+            return;
+        }
+
+    }
 
     public Ability GetAbility(int index)
     {
