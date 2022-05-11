@@ -37,7 +37,8 @@ public class DungeonNode : MonoBehaviour
 
             if (hit)
             {
-                connectedNodes.Add(hit.transform.GetComponent<DungeonNode>());
+                if (hit.transform.GetComponent<DungeonNode>())
+                    connectedNodes.Add(hit.transform.GetComponent<DungeonNode>());
             }
         }
     }

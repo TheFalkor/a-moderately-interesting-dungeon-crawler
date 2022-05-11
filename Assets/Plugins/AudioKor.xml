@@ -4,7 +4,7 @@
         <name>AudioKor</name>
     </assembly>
     <members>
-        <member name="T:AudioKor.Track">
+        <member name="T:AudioKorLib.Enums.Track">
             <summary>
             Used to specify which Audio Track to affect.
             </summary>
@@ -15,7 +15,7 @@
             </summary>
             <param name="musicName">The music asset to be played.</param>
         </member>
-        <member name="M:AudioKorLib.Interfaces.IAudioKor.PlayMusic(System.String,AudioKor.Track)">
+        <member name="M:AudioKorLib.Interfaces.IAudioKor.PlayMusic(System.String,AudioKorLib.Enums.Track)">
             <summary>
             Starts a track that plays music.
             </summary>
@@ -27,35 +27,11 @@
             Pauses music and ambience playing from all tracks.
             </summary>
         </member>
-        <member name="M:AudioKorLib.Interfaces.IAudioKor.PauseMusic(AudioKor.Track)">
+        <member name="M:AudioKorLib.Interfaces.IAudioKor.PauseMusic(AudioKorLib.Enums.Track)">
             <summary>
             Pauses music and ambience playing from one track.
             </summary>
             <param name="track">The track that will be paused.</param>
-        </member>
-        <member name="M:AudioKorLib.Interfaces.IAudioKor.PlaySFX(System.String)">
-            <summary>
-            Plays a sound effect.
-            </summary>
-            <param name="soundEffectName">The sound effect name to be played.</param>
-        </member>
-        <member name="M:AudioKorLib.Interfaces.IAudioKor.SetMasterVolume(System.Single)">
-            <summary>
-            Sets the general volume of all audio components.
-            </summary>
-            <param name="masterVolume">The general volume for all components.</param>
-        </member>
-        <member name="M:AudioKorLib.Interfaces.IAudioKor.SetMusicVolume(System.Single)">
-            <summary>
-            Sets the volume of all music tracks.
-            </summary>
-            <param name="musicVolume">The volume for all music tracks.</param>
-        </member>
-        <member name="M:AudioKorLib.Interfaces.IAudioKor.SetSFXVolume(System.Single)">
-            <summary>
-            Sets the volume for all sound effects.
-            </summary>
-            <param name="sfxVolume">The volume for all sound effects.</param>
         </member>
     </members>
 </doc>

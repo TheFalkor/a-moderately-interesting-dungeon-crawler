@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class AbilityTree : MonoBehaviour
 {
-    private readonly List<AbilitySO> unlockedAbilityList = new List<AbilitySO>();
+    private readonly List<bool> unlockedAbilityList = new List<bool>();
     private readonly List<AbilitySO> abilityList = new List<AbilitySO>();
-    private readonly List<PassiveSO> unlockedPassiveList = new List<PassiveSO>();
+
+    private readonly List<bool> unlockedPassiveList = new List<bool>();
     private readonly List<PassiveSO> passiveList = new List<PassiveSO>();
 
     private Player player;
@@ -27,16 +28,49 @@ public class AbilityTree : MonoBehaviour
     {
         player = DungeonManager.instance.player;
 
-        unlockedAbilityList.AddRange(player.baseStat.startingAbilities);
+        abilityList.AddRange(player.baseStat.startingAbilities);
         abilityList.AddRange(player.baseStat.unlockableAbilities);
         abilityList.AddRange(player.classStat.unlockableAbilities);
 
-        unlockedPassiveList.AddRange(player.classStat.startingPassives);
+        for (int i = 0; i < abilityList.Count; i++)
+            unlockedAbilityList.Add(false);
+
+        foreach (AbilitySO ability in player.baseStat.startingAbilities)
+            UnlockAbility(abilityList.IndexOf(ability));
+
+
+        passiveList.AddRange(player.classStat.startingPassives);
         passiveList.AddRange(player.baseStat.unlockablePassives);
         passiveList.AddRange(player.classStat.unlockablePassives);
+
+        for (int i = 0; i < passiveList.Count; i++)
+            unlockedPassiveList.Add(false);
+
+        foreach (PassiveSO passive in player.classStat.startingPassives)
+            UnlockPassive(passiveList.IndexOf(passive));
     }
 
-    public Ability CreateAbility(AbilitySO data)
+    public void UnlockAbility(int index)
+    {
+        if (unlockedAbilityList[index])
+            return;
+
+        unlockedAbilityList[index] = true;
+
+        AbilityManager.instance.AddAbility(CreateAbility(abilityList[index]));
+    }
+
+    public void UnlockPassive(int index)
+    {
+        if (unlockedPassiveList[index])
+            return;
+
+        unlockedPassiveList[index] = true;
+
+        PassiveManager.instance.AddPassive(CreatePassive(passiveList[index]));
+    }
+
+    private Ability CreateAbility(AbilitySO data)
     {
         Ability ability = null;
 
@@ -46,15 +80,19 @@ public class AbilityTree : MonoBehaviour
                 ability = new FlutterDash();
                 break;
             case AbilityID.TIME_PULSE:
+                Debug.LogError("AbilityTree :: Forgot to create ability");
                 break;
             case AbilityID.ARCANE_BLAST:
+                Debug.LogError("AbilityTree :: Forgot to create ability");
                 break;
             case AbilityID.IMBUE_WEAPON:
+                Debug.LogError("AbilityTree :: Forgot to create ability");
                 break;
             case AbilityID.CORRUPTED_GROUNDS:
                 ability = new CorruptedGrounds();
                 break;
             case AbilityID.SIPHON_DEATH:
+                ability = new SiphonDeath();
                 break;
         }
 
@@ -64,7 +102,7 @@ public class AbilityTree : MonoBehaviour
         return ability;
     }
 
-    public Passive CreatePassive(PassiveSO data)
+    private Passive CreatePassive(PassiveSO data)
     {
         Passive passive = null;
 
@@ -77,28 +115,40 @@ public class AbilityTree : MonoBehaviour
                 passive = new ThornDash();
                 break;
             case PassiveID.TIME_RIFT:
+                Debug.LogError("AbilityTree :: Forgot to create ability");
                 break;
             case PassiveID.TIME_BUBBLE:
+                Debug.LogError("AbilityTree :: Forgot to create ability");
                 break;
             case PassiveID.SPELL_BOOST:
+                Debug.LogError("AbilityTree :: Forgot to create ability");
                 break;
             case PassiveID.BLADE_DANCER:
+                Debug.LogError("AbilityTree :: Forgot to create ability");
                 break;
             case PassiveID.ARCANE_BLAST:
+                Debug.LogError("AbilityTree :: Forgot to create ability");
                 break;
             case PassiveID.OVERLOAD:
+                Debug.LogError("AbilityTree :: Forgot to create ability");
                 break;
             case PassiveID.CONDUIT_OF_POWER:
+                Debug.LogError("AbilityTree :: Forgot to create ability");
                 break;
             case PassiveID.DEATH_MARK:
+                Debug.LogError("AbilityTree :: Forgot to create ability");
                 break;
             case PassiveID.DEATH_SENTENCE:
+                Debug.LogError("AbilityTree :: Forgot to create ability");
                 break;
             case PassiveID.VITALITY_DRAIN:
+                Debug.LogError("AbilityTree :: Forgot to create ability");
                 break;
             case PassiveID.NECROTIC_SHROUD:
+                Debug.LogError("AbilityTree :: Forgot to create ability");
                 break;
             case PassiveID.MARKED_DECAY:
+                Debug.LogError("AbilityTree :: Forgot to create ability");
                 break;
         }
 
