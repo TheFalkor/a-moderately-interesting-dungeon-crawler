@@ -97,7 +97,7 @@ public class DungeonManager : MonoBehaviour
 
     private void ChangeMusic(string name)
     {
-        gameObject.GetComponent<AudioKor>().PlayMusic(name, AudioKorLib.Enums.Track.A);
+        gameObject.GetComponent<AudioKor>().PlayMusic(name, AudioKor.Track.A);
     }
 
     public void WonRoom()
