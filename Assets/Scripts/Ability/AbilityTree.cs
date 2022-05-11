@@ -146,7 +146,7 @@ public class AbilityTree : MonoBehaviour
                 passive = new DeathSentence();
                 break;
             case PassiveID.VITALITY_DRAIN:
-                Debug.LogError("AbilityTree :: Forgot to create ability");
+                passive = new VitalityDrain();
                 break;
             case PassiveID.NECROTIC_SHROUD:
                 Debug.LogError("AbilityTree :: Forgot to create ability");

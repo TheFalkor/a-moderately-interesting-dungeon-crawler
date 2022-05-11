@@ -264,7 +264,11 @@ public class TilesetManager : MonoBehaviour
             availableSprites.Remove(55);
         }
         else
+        {
+            availableSprites.Remove(21);
             availableSprites.Remove(22);
+            availableSprites.Remove(14);
+        }
 
         if (wallTR)
         {
@@ -277,7 +281,11 @@ public class TilesetManager : MonoBehaviour
             availableSprites.Remove(55);
         }
         else
+        { 
+            availableSprites.Remove(12);
             availableSprites.Remove(20);
+            availableSprites.Remove(21);
+        }
 
         if (wallBL)
         {
@@ -290,7 +298,11 @@ public class TilesetManager : MonoBehaviour
             availableSprites.Remove(54);
         }
         else
+        {
             availableSprites.Remove(6);
+            availableSprites.Remove(5);
+            availableSprites.Remove(14);
+        }
 
         if (wallBR)
         {
@@ -303,7 +315,11 @@ public class TilesetManager : MonoBehaviour
             availableSprites.Remove(54);
         }
         else
+        {
             availableSprites.Remove(4);
+            availableSprites.Remove(5);
+            availableSprites.Remove(12);
+        }
 
         if (!wallTL || !wallTR || !wallBL || !wallBR)
             availableSprites.Remove(13);

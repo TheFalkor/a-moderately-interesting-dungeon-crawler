@@ -113,7 +113,7 @@ public class CombatUI : MonoBehaviour
 
     public void UpdateHealth(int currentHealth, int maxHealth, int shield)
     {
-        healthText.text = "HP: " + currentHealth + " / " + maxHealth;
+        healthText.text = "HP: " + currentHealth + "/" + maxHealth;
 
         if (shield != 0)
             healthText.text = healthText.text + " (+" + shield + ")";

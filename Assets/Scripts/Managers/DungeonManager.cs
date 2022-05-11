@@ -36,7 +36,7 @@ public class DungeonManager : MonoBehaviour
     {
         if (!start)
         {
-            ChangeMusic("MENU");
+            ChangeMusic("DUNGEON");
             start = true;
         }
 
@@ -103,5 +103,6 @@ public class DungeonManager : MonoBehaviour
     public void WonRoom()
     {
         currentNode.MarkCompleted();
+        ChangeMusic("DUNGEON");
     }
 }

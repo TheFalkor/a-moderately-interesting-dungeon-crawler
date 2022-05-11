@@ -55,7 +55,6 @@ public class Player : Entity
 
         
         audioKor = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioKor>();
-
     }
 
     public void ResetPlayer()
@@ -66,7 +65,7 @@ public class Player : Entity
         currentTile.SetOccupant(this);
 
         CombatUI.instance.UpdateHealth(currentHealth, maxhealth, shield);
-        CombatUI.instance.UpdateAttack(baseMeleeDamage + inventory.equippedWeapon.weaponDamage);    // maybe
+        CombatUI.instance.UpdateAttack(meleeDamage);
         CombatUI.instance.UpdateDefense(defense);
         CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
 
@@ -84,7 +83,10 @@ public class Player : Entity
         state = PlayerState.MOVE_STATE;
         turnEnded = false;
 
+        meleeDamage += inventory.equippedWeapon.weaponDamage;
+
         CombatUI.instance.SetAttackButton(false);
+        CombatUI.instance.UpdateAttack(meleeDamage);
         CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
     }
 
@@ -329,7 +331,7 @@ public class Player : Entity
 
         foreach (WeaponStrike ws in strikes)
         {
-            int attackDamage = Mathf.RoundToInt((ws.weaponDamage.damage + baseMeleeDamage) * ws.splashMultiplier);
+            int attackDamage = Mathf.RoundToInt(meleeDamage * ws.splashMultiplier);
             Attack(ws.tile, new Damage(attackDamage, DamageOrigin.FRIENDLY, ws.weaponDamage.statusEffects));
         }
 

@@ -102,7 +102,7 @@ public class Enemy : Entity
     private void MeleeAttack(Action action)
     {
         // TO DO : check the weapon of the enemy
-        Damage damage = new Damage(baseMeleeDamage, originType);    // baseMeleeDamage is temp, maybe
+        Damage damage = new Damage(meleeDamage, originType);
 
         switch(action.direction)
         {
@@ -141,7 +141,7 @@ public class Enemy : Entity
         }
 
         Debug.Log("FIRING PEBBLE LESS GOOOO");
-        Attack(Sensing.player.currentTile, new Damage(baseRangeDamage, originType));
+        Attack(Sensing.player.currentTile, new Damage(rangeDamage, originType));
     }
 
     public override void TakeDamage(Damage damage)

@@ -1,5 +1,6 @@
 public enum StatusType
 {
     DEATHMARK,
-    FLUTTER
+    FLUTTER,
+    STRENGHT_DRAIN,
 }

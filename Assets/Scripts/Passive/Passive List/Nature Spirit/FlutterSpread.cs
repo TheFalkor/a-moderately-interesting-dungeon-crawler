@@ -6,8 +6,10 @@ public class FlutterSpread : Passive
 {
     public override void OnEnemyTakeDamage(Entity enemy)
     {
-        foreach (StatusEffect effect in enemy.activeStatusEffects)
-        {
+        for (int i = 0; i < enemy.activeStatusEffects.Count; i++)
+        { 
+            StatusEffect effect = enemy.activeStatusEffects[i];
+
             if (effect.type == StatusType.FLUTTER)
             {
                 foreach (Tile tile in enemy.currentTile.orthogonalNeighbors)

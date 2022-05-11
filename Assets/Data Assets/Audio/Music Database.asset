@@ -19,17 +19,17 @@ MonoBehaviour:
     volume: 1
     pitch: 1
   - musicName: COMBAT_2
-    audioClip: {fileID: 8300000, guid: b5d2683357f3643ca95f7e5863c88a54, type: 3}
+    audioClip: {fileID: 8300000, guid: a2cfad9630011468caa4cdb56ebb4ca6, type: 3}
     loop: 1
-    volume: 0.8
+    volume: 1
     pitch: 1
   - musicName: MENU
-    audioClip: {fileID: 8300000, guid: eb720e951d0de4d0591a506e086774a0, type: 3}
+    audioClip: {fileID: 8300000, guid: 5f64f617790ff47edb6c9b3c53d44db8, type: 3}
     loop: 1
-    volume: 0.8
+    volume: 1
     pitch: 1
   - musicName: DUNGEON
-    audioClip: {fileID: 8300000, guid: 0d0744bc75eb24117bd169764fde2a92, type: 3}
+    audioClip: {fileID: 8300000, guid: 3360ff7a62ff34079b2c1abc6cb084a1, type: 3}
     loop: 1
-    volume: 0.8
+    volume: 1
     pitch: 1

@@ -10,6 +10,9 @@ public abstract class Entity : Occupant
     protected int currentMovementPoints;
     protected int maxActionPoints;
     protected int currentActionPoints;
+    [Space]
+    protected int meleeDamage;
+    protected int rangeDamage;
 
     [Header("Entity Settings")]
     private const float ANIMATED_MOVEMENT_SPEED = 3.5f;
@@ -38,7 +41,9 @@ public abstract class Entity : Occupant
         {
             switch (activeStatusEffects[i].type)
             {
-                case StatusType.DEATHMARK:  // Placeholder (deathmark shouldnt do anything on preturn)
+                case StatusType.STRENGHT_DRAIN:
+                    meleeDamage = (int)(meleeDamage * 0.75f);
+                    rangeDamage = (int)(rangeDamage * 0.75f);
                     break;
             }
         }
@@ -51,6 +56,9 @@ public abstract class Entity : Occupant
     {
         currentMovementPoints = maxMovementPoints;
         currentActionPoints = maxActionPoints;
+
+        meleeDamage = baseMeleeDamage;
+        rangeDamage = baseRangeDamage;
 
         PassiveManager.instance.OnPreTurn(this);
 
