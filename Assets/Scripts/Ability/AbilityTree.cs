@@ -94,7 +94,7 @@ public class AbilityTree : MonoBehaviour
                 ability = new TimePulse();
                 break;
             case AbilityID.ARCANE_BLAST:
-                Debug.LogError("AbilityTree :: Forgot to create ability");
+                ability = new ArcaneBlast();
                 break;
             case AbilityID.IMBUE_WEAPON:
                 Debug.LogError("AbilityTree :: Forgot to create ability");
@@ -126,10 +126,10 @@ public class AbilityTree : MonoBehaviour
                 passive = new ThornDash();
                 break;
             case PassiveID.TIME_RIFT:
-                Debug.LogError("AbilityTree :: Forgot to create ability");
+                passive = new TimeRift();
                 break;
             case PassiveID.TIME_BUBBLE:
-                Debug.LogError("AbilityTree :: Forgot to create ability");
+                passive = new TimeBubble();
                 break;
             case PassiveID.SPELL_BOOST:
                 passive = new SpellBoost();
@@ -159,7 +159,7 @@ public class AbilityTree : MonoBehaviour
                 passive = new NecroticShroud();
                 break;
             case PassiveID.MARKED_DECAY:
-                Debug.LogError("AbilityTree :: Forgot to create ability");
+                passive = new MarkedDecay();
                 break;
         }
 

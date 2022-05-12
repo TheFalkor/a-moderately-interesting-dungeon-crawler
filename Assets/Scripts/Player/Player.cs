@@ -181,7 +181,9 @@ public class Player : Entity
                         {
                             abilityActive = true;
                             currentActionPoints--;
+                            selectedAbility.cooldown = selectedAbility.data.cooldown;
 
+                            CombatUI.instance.UpdateAbilityUI();
                             CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
                         }
                     }
@@ -347,6 +349,8 @@ public class Player : Entity
             Attack(ws.tile, new Damage(attackDamage, DamageOrigin.FRIENDLY, ws.weaponDamage.statusEffects));
         }
 
+        transform.GetChild(0).GetComponent<Animator>().Play("Attack");
+
         currentActionPoints--;
         PassiveManager.instance.OnPlayerAttack(this);
         CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
@@ -409,7 +413,9 @@ public class Player : Entity
     {
         temporaryAnimatorDeath.SetBool("Closed", true);
         Debug.Log("player died");
+        audioKor.PlaySFX("DEATH");
         // End game
         EndManager.instance.EndGame(false);
+        
     }    
 }

@@ -16,6 +16,7 @@ public class TimePulse : Ability
         player = (Player)currentTile.GetOccupant();
 
         pulseAoe.Clear();
+        affectedEnemies.Clear();
 
 
         foreach (Tile orthogonal in currentTile.orthogonalNeighbors)
@@ -42,6 +43,9 @@ public class TimePulse : Ability
 
     public override bool Tick(float deltaTime)
     {
+        if (animationTimer == -99)
+            return true;
+
         if (animationTimer > 0)
         {
             animationTimer -= deltaTime;
@@ -55,21 +59,12 @@ public class TimePulse : Ability
 
         else
         {
-            if (pulseAoe.Count > 0)
-            {
-                player.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
-                pulseAoe.Clear();
-            }
+            player.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
 
-            if (affectedEnemies.Count > 0)
-            {
-                foreach(Entity e in affectedEnemies)
-                {
-                    e.AddStatusEffect(new StatusEffect(StatusType.SLOWED, 1));
-                }
+            foreach(Entity e in affectedEnemies)
+                 e.AddStatusEffect(new StatusEffect(StatusType.SLOWED, 1));
 
-                affectedEnemies.Clear();
-            }
+            animationTimer = -99;
 
             return true;
         }

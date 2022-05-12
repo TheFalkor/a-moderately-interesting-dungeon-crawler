@@ -18,7 +18,8 @@ MonoBehaviour:
   bonusDefense: 0
   bonusMeleeDamage: 3
   bonusRangeDamage: 0
-  unlockableAbilities: []
+  unlockableAbilities:
+  - {fileID: 11400000, guid: 273842a6fab08704f9a5946eeab3c46c, type: 2}
   startingPassives:
   - {fileID: 11400000, guid: 0bd255a8340315b49a73fecdbf5add5b, type: 2}
   unlockablePassives:

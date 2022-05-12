@@ -9,7 +9,7 @@ public class MoveRelative2Mouse : MonoBehaviour
     public Vector3 pz;
     public Vector3 startPos;
 
-    public int moveModifier;
+    public float moveModifier;
 
     void Start()
     {
@@ -20,11 +20,12 @@ public class MoveRelative2Mouse : MonoBehaviour
     void Update()
     {
         Vector3 pz = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-        pz.z = 0;
-        gameObject.transform.position = pz;
         //Debug.Log("Mouse Position: " + pz);
 
-        transform.position = new Vector3(startPos.x + (pz.x * moveModifier), startPos.y + (pz.y * moveModifier), 0);
+
+
+        transform.position = Vector3.Lerp(transform.position, pz, Time.deltaTime * moveModifier);
+        //transform.position = new Vector3(startPos.x + (pz.x * moveModifier), startPos.y + (pz.y * (moveModifier/2)), 0);
         //move based on the starting position and its modified value.
     }
 

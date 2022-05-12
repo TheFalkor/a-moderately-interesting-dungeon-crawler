@@ -10,7 +10,7 @@ public class ThornDash : Passive
         {
             foreach (Entity entity in affectedEnemies)
             {
-                entity.TakeCleanDamage(5, DamageOrigin.FRIENDLY);
+                entity.TakeCleanDamage(data.passiveValue, DamageOrigin.FRIENDLY);
             }
         }
     }

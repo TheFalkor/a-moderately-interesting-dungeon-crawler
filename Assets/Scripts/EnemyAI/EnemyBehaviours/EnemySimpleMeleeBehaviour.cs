@@ -18,7 +18,7 @@ public class EnemySimpleMeleeBehaviour : EnemyBehaviour
         Senses = sensing;
     }
 
-    public override Queue<Action> DecideTurn(int ap, int mp)
+    public override Queue<Action> DecideTurn(int ap, int mp, bool allowMovement = true)
     {
         actionPoints = ap;
         freeMoves = mp;
@@ -37,7 +37,7 @@ public class EnemySimpleMeleeBehaviour : EnemyBehaviour
                 actionPoints--;
             }
 
-            else if (actionPoints == 1 && freeMoves == 0 && distance <= pebbleRange && Senses.CheckLineOfSight(GridManager.instance.GetTile(futurePlayerPosition).transform.position))
+            else if (actionPoints == 1 && freeMoves == 0 && distance <= pebbleRange /*&& Senses.CheckLineOfSight(GridManager.instance.GetTile(futurePlayerPosition).transform.position)*/)
             {
                 actionQueue.Enqueue(new Action(ActionType.PEBBLE, pathToPlayer.Peek()));
                 actionPoints--;
@@ -45,9 +45,12 @@ public class EnemySimpleMeleeBehaviour : EnemyBehaviour
 
             else
             {
-                updateFuturePosition(pathToPlayer.Peek());
-                actionQueue.Enqueue(new Action(ActionType.MOVE, pathToPlayer.Dequeue()));
-
+                if (allowMovement)
+                {
+                    updateFuturePosition(pathToPlayer.Peek());
+                    actionQueue.Enqueue(new Action(ActionType.MOVE, pathToPlayer.Dequeue()));
+                }
+                    
                 if (freeMoves > 0)
                     freeMoves--;
                 else

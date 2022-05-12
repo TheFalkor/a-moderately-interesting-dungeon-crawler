@@ -17,6 +17,6 @@ MonoBehaviour:
   passiveDescription: "A shroud of necrotic energy envelops your armor, anything
     attacking you gets marked with \u201Cdeath\u201D. If they are already marked,
     you \u2018consume\u2019 and reapply it.  "
-  passiveSprite: {fileID: 21300000, guid: 49f8afda05815274393df54909c7a530, type: 3}
+  passiveSprite: {fileID: 21300000, guid: 6bd81555a8e00974f93f4f2ad586cc44, type: 3}
   passiveType: 13
   passiveValue: 0

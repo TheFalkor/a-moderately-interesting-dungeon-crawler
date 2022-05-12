@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 166254583}
   - component: {fileID: 166254584}
+  - component: {fileID: 9100883422128053131}
   m_Layer: 0
   m_Name: Barrel Sprite
   m_TagString: Untagged
@@ -82,6 +83,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &9100883422128053131
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166254582}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 93b9a87a1eaa9b24dbe3b1d66dfb5c9c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6597304123504305564
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,4 +148,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damagePopup: {fileID: 7620306153505864841, guid: f08a4a53d0af0124db00bdeb9ddcee2f, type: 3}
   baseStat: {fileID: 11400000, guid: 7d226b0f157d210488091ecebef5b583, type: 2}
+  shield: 0
+  originType: 0
   currentTile: {fileID: 0}

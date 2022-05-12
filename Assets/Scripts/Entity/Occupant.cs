@@ -71,6 +71,8 @@ public abstract class Occupant : MonoBehaviour
         if (currentHealth <= 0)
             return;
 
+        transform.GetChild(0).GetComponent<Animator>().Play("Damage");
+
         Instantiate(damagePopup, transform.position + new Vector3(0, 0.5f), Quaternion.identity).GetComponent<DamagePopup>().Setup(damage.damage, damage.origin);
         
         if (shield > 0)
@@ -81,6 +83,7 @@ public abstract class Occupant : MonoBehaviour
                 return;
 
             damage.damage += shield;
+            shield = 0;
 
             if (damage.damage <= 0)
                 return;
@@ -107,6 +110,8 @@ public abstract class Occupant : MonoBehaviour
     {
         if (currentHealth <= 0)
             return;
+
+        transform.GetChild(0).GetComponent<Animator>().Play("Damage");
 
         currentHealth -= damage;
 
@@ -153,8 +158,10 @@ public abstract class Occupant : MonoBehaviour
 
     protected virtual void Death()
     {
+        transform.GetChild(0).GetComponent<Animator>().Play("Death");
+
         CombatManager.instance.RemoveOccupant(this);
-        Destroy(gameObject);
+        Destroy(gameObject, 4 /15f);
     }
 
     public int GetCurrentHealth()

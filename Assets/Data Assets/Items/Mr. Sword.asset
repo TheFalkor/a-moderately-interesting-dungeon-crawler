@@ -19,5 +19,5 @@ MonoBehaviour:
   itemSprite: {fileID: 21300000, guid: 92d9fa7d0faee584789ee94f0b02adbe, type: 3}
   stackSize: 0
   itemType: 1
-  weaponDamage: 500
+  weaponDamage: 5
   weaponType: 3

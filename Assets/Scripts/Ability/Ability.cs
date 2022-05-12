@@ -6,6 +6,7 @@ public abstract class Ability
 {
     public AbilitySO data;
     public readonly List<Entity> affectedEnemies = new List<Entity>();
+    public int cooldown = 0;
 
 
     public abstract bool UseAbility(Tile tile);

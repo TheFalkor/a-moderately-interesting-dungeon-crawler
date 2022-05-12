@@ -1,7 +1,37 @@
 fileFormatVersion: 2
 guid: a8e9e727e8f6d0f40a16e1502090ee12
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 2222237878307552884
+    second: AttackSpearVFX_0
+  - first:
+      213: -7178174125467764812
+    second: AttackSpearVFX_1
+  - first:
+      213: -6522838774591364548
+    second: AttackSpearVFX_2
+  - first:
+      213: 9177835960673461328
+    second: AttackSpearVFX_3
+  - first:
+      213: -7240540263862859268
+    second: AttackSpearVFX_4
+  - first:
+      213: -1376189415761144804
+    second: AttackSpearVFX_5
+  - first:
+      213: 8889768838539483020
+    second: AttackSpearVFX_6
+  - first:
+      213: 5988184064732100613
+    second: AttackSpearVFX_7
+  - first:
+      213: 8427522247400693244
+    second: AttackSpearVFX_8
+  - first:
+      213: -5626443640755853061
+    second: AttackSpearVFX_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,7 +71,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -101,7 +131,217 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: AttackSpearVFX_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4
+        width: 48
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47e70fe8399f6de10800000000000000
+      internalID: 2222237878307552884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackSpearVFX_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 4
+        width: 48
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b7f79b1aa0026c90800000000000000
+      internalID: -7178174125467764812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackSpearVFX_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 4
+        width: 48
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c326659a1b83a75a0800000000000000
+      internalID: -6522838774591364548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackSpearVFX_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 4
+        width: 48
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0546fb21e293e5f70800000000000000
+      internalID: 9177835960673461328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackSpearVFX_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 4
+        width: 48
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf98a86fdfe648b90800000000000000
+      internalID: -7240540263862859268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackSpearVFX_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 4
+        width: 48
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1497e9840bc6ece0800000000000000
+      internalID: -1376189415761144804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackSpearVFX_6
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 4
+        width: 48
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c879b7c98adce5b70800000000000000
+      internalID: 8889768838539483020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackSpearVFX_7
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 4
+        width: 48
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 508f20c1ead4a1350800000000000000
+      internalID: 5988184064732100613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackSpearVFX_8
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 4
+        width: 48
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfd150545d294f470800000000000000
+      internalID: 8427522247400693244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackSpearVFX_9
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 4
+        width: 48
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf8edf3a15bdae1b0800000000000000
+      internalID: -5626443640755853061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

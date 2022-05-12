@@ -4,4 +4,5 @@ public enum StatusType
     FLUTTER,
     STRENGHT_DRAIN,
     SLOWED,
+    ROOTED,
 }

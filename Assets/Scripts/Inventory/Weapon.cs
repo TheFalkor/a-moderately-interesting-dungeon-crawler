@@ -8,6 +8,7 @@ public abstract class Weapon : EquippableItem
     public int weaponDamage;
     public WeaponType weaponType;
 
+
     public virtual List<WeaponStrike> Attack(Tile tile)
     {
         Debug.Log("Attack(Tile) not implemented.");

@@ -134,6 +134,30 @@ public class CombatUI : MonoBehaviour
         actionPointText.text = "AP: " + actionPoints + "   MP: " + movementPoints;
     }
 
+    public void UpdateAbilityUI()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            Ability ability = AbilityManager.instance.GetAbility(i);
+
+            if (ability == null)
+                continue;
+
+            if (ability.cooldown > 0)
+            {
+                abilityIcons[i].transform.parent.GetComponent<Button>().interactable = false;
+                abilityIcons[i].color = new Color(0.3f, 0.3f, 0.3f);
+                abilityIcons[i].transform.parent.GetChild(1).GetComponent<Text>().text = ability.cooldown.ToString();
+            }
+            else
+            {
+                abilityIcons[i].transform.parent.GetComponent<Button>().interactable = true;
+                abilityIcons[i].color = Color.white;
+                abilityIcons[i].transform.parent.GetChild(1).GetComponent<Text>().text = "";
+            }
+        }
+    }
+
     public void SetAbilityIcon(int index, AbilitySO data)
     {
         abilityIcons[index].gameObject.SetActive(true);

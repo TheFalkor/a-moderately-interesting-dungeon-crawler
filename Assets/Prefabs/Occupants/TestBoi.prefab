@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1425400217947452033}
   - component: {fileID: 1426985841543555869}
+  - component: {fileID: 1316063362992676278}
   m_Layer: 0
   m_Name: TestBoiSprite
   m_TagString: Untagged
@@ -82,6 +83,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1316063362992676278
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719089511302807860}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 93b9a87a1eaa9b24dbe3b1d66dfb5c9c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7734823443161916617
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,6 +148,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damagePopup: {fileID: 7620306153505864841, guid: f08a4a53d0af0124db00bdeb9ddcee2f, type: 3}
   baseStat: {fileID: 11400000, guid: b095bc3c6b5d4f145b96b484b87f0b7c, type: 2}
+  shield: 0
+  originType: 0
   currentTile: {fileID: 0}
   behaviourType: 0
   PebblePrefab: {fileID: 2972202281912503759, guid: 5747daf6bb24efd45b06d0d7da33b35a, type: 3}

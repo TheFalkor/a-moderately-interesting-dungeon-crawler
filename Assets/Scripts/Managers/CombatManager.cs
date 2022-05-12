@@ -46,6 +46,9 @@ public class CombatManager : MonoBehaviour
         {
             GridManager.instance.ClearAllHighlights();
 
+            AbilityManager.instance.DecreaseAbilityCooldown();
+            CombatUI.instance.UpdateAbilityUI();
+
             foreach (TileEffect effect in tileEffectList)
                 effect.PreTurn();
 

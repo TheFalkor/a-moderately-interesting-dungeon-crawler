@@ -51,7 +51,16 @@ public class Enemy : Entity
     {
         base.PreTurn();
 
-        actionsQueue = Behaviour.DecideTurn(currentActionPoints, currentMovementPoints);
+        bool allowMovement = true;
+
+        foreach (StatusEffect sf in activeStatusEffects)
+            if (sf.type == StatusType.ROOTED)
+            {
+                allowMovement = false;
+                break;
+            }
+
+        actionsQueue = Behaviour.DecideTurn(currentActionPoints, currentMovementPoints, allowMovement);
     }
 
     public override bool Tick(float deltaTime)
@@ -100,6 +109,8 @@ public class Enemy : Entity
 
     private void MeleeAttack(Action action)
     {
+
+        transform.GetChild(0).GetComponent<Animator>().Play("Attack");
         // TO DO : check the weapon of the enemy
         Damage damage = new Damage(meleeDamage, originType);
 

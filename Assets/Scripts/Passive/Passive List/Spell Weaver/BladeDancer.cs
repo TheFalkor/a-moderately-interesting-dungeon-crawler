@@ -14,12 +14,12 @@ public class BladeDancer : Passive
     public override void OnPlayerMove(Player player)
     {
         playerMoveCounter++;
-        player.ChangeMeleeDamage(1);
+        player.ChangeMeleeDamage(data.passiveValue);
     }
 
     public override void OnPlayerAttack(Player player)
     {
-        player.ChangeMeleeDamage(-(playerMoveCounter));
+        player.ChangeMeleeDamage(-(playerMoveCounter * data.passiveValue));
         playerMoveCounter = 0;
     }
 }

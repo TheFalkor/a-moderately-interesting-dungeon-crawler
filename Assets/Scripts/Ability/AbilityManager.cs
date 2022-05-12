@@ -24,6 +24,18 @@ public class AbilityManager : MonoBehaviour
 
     }
 
+    public void DecreaseAbilityCooldown()
+    {
+        foreach (Ability ability in abilities)
+        {
+            if (ability == null)
+                continue;
+
+            if (ability.cooldown > 0)
+                ability.cooldown--;
+        }
+    }
+
     public void SetupUI()
     {
         for (int i = 0; i < abilities.Length; i++)

@@ -17,4 +17,4 @@ MonoBehaviour:
   passiveDescription: All abilities that affect enemies deal bonus flat damage
   passiveSprite: {fileID: 21300000, guid: 4f5eb084d29c35e4189a37a3bbf90ba9, type: 3}
   passiveType: 9
-  passiveValue: 0
+  passiveValue: 3
