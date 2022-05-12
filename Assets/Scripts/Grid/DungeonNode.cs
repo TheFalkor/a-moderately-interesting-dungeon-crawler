@@ -101,7 +101,7 @@ public class DungeonNode : MonoBehaviour
             if (parent != node)
                 node.Initialize(room, this);
         }
-
+        DungeonManager.instance.AddRoom();
         gameObject.SetActive(!locked);
     }
 

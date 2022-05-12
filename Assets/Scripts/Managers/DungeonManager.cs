@@ -14,6 +14,8 @@ public class DungeonManager : MonoBehaviour
     private float transitionTimer = 0;
     private bool allowSelection = true;
     private bool start = false;
+    private int roomsCompleted = 0;
+    private int roomsAmount = -1;
     
 
     [Header("Singleton")]
@@ -102,9 +104,23 @@ public class DungeonManager : MonoBehaviour
 
     public void WonRoom()
     {
+        AbilityTree.instance.skillPoints++;
+
         currentNode.MarkCompleted();
         ChangeMusic("DUNGEON");
 
-        // check Won dungeon
+        //Check Win Condition
+        roomsCompleted++;
+        Debug.Log(roomsCompleted);
+        if(roomsCompleted >= roomsAmount)
+        {
+            transitionAnimator.SetBool("Closed", true);
+            EndManager.instance.EndGame(true);
+        }
+    }
+
+    public void AddRoom()
+    {
+        roomsAmount++;
     }
 }

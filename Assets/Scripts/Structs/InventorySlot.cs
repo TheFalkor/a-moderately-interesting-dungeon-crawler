@@ -7,8 +7,8 @@ public class InventorySlot
 {
     public Image image;
     public Text stackText;
-    private GameObject marker;
-    private Hoverable hover;
+    private readonly GameObject marker;
+    private readonly Hoverable hover;
 
     public InventorySlot(Image image, Text stackText, GameObject marker = null)
     {

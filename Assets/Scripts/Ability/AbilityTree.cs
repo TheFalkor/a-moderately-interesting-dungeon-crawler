@@ -11,6 +11,7 @@ public class AbilityTree : MonoBehaviour
     private readonly List<PassiveSO> passiveList = new List<PassiveSO>();
 
     private Player player;
+    public int skillPoints = 0;
 
     [Header("Singleton")]
     public static AbilityTree instance;
@@ -29,7 +30,6 @@ public class AbilityTree : MonoBehaviour
         player = DungeonManager.instance.player;
 
         abilityList.AddRange(player.baseStat.startingAbilities);
-        abilityList.AddRange(player.classStat.startingAbilities);
         abilityList.AddRange(player.baseStat.unlockableAbilities);
         abilityList.AddRange(player.classStat.unlockableAbilities);
 
@@ -37,10 +37,7 @@ public class AbilityTree : MonoBehaviour
             unlockedAbilityList.Add(false);
 
         foreach (AbilitySO ability in player.baseStat.startingAbilities)
-            UnlockAbility(abilityList.IndexOf(ability));
-
-        foreach (AbilitySO ability in player.classStat.startingAbilities)
-            UnlockAbility(abilityList.IndexOf(ability));
+            UnlockAbility(ability);
 
 
         passiveList.AddRange(player.classStat.startingPassives);
@@ -51,27 +48,37 @@ public class AbilityTree : MonoBehaviour
             unlockedPassiveList.Add(false);
 
         foreach (PassiveSO passive in player.classStat.startingPassives)
-            UnlockPassive(passiveList.IndexOf(passive));
+            UnlockPassive(passive);
     }
 
-    public void UnlockAbility(int index)
+    public void UnlockAbility(AbilitySO ability)
     {
-        if (unlockedAbilityList[index])
+        if (unlockedAbilityList[abilityList.IndexOf(ability)])
             return;
 
-        unlockedAbilityList[index] = true;
+        unlockedAbilityList[abilityList.IndexOf(ability)] = true;
 
-        AbilityManager.instance.AddAbility(CreateAbility(abilityList[index]));
+        AbilityManager.instance.AddAbility(CreateAbility(ability));
     }
 
-    public void UnlockPassive(int index)
+    public void UnlockPassive(PassiveSO passive)
     {
-        if (unlockedPassiveList[index])
+        if (unlockedPassiveList[passiveList.IndexOf(passive)])
             return;
 
-        unlockedPassiveList[index] = true;
+        unlockedPassiveList[passiveList.IndexOf(passive)] = true;
 
-        PassiveManager.instance.AddPassive(CreatePassive(passiveList[index]));
+        PassiveManager.instance.AddPassive(CreatePassive(passive));
+    }
+
+    public bool IsAbilityUnlocked(AbilitySO ability)
+    {
+        return unlockedAbilityList[abilityList.IndexOf(ability)];
+    }
+
+    public bool IsPassiveUnlocked(PassiveSO passive)
+    {
+        return unlockedPassiveList[passiveList.IndexOf(passive)];
     }
 
     private Ability CreateAbility(AbilitySO data)
@@ -134,7 +141,7 @@ public class AbilityTree : MonoBehaviour
                 Debug.LogError("AbilityTree :: Forgot to create ability");
                 break;
             case PassiveID.OVERLOAD:
-                Debug.LogError("AbilityTree :: Forgot to create ability");
+                passive = new Overload();
                 break;
             case PassiveID.CONDUIT_OF_POWER:
                 passive = new ConduitOfPower();
@@ -149,7 +156,7 @@ public class AbilityTree : MonoBehaviour
                 passive = new VitalityDrain();
                 break;
             case PassiveID.NECROTIC_SHROUD:
-                Debug.LogError("AbilityTree :: Forgot to create ability");
+                passive = new NecroticShroud();
                 break;
             case PassiveID.MARKED_DECAY:
                 Debug.LogError("AbilityTree :: Forgot to create ability");

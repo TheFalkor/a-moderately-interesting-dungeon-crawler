@@ -20,6 +20,9 @@ MonoBehaviour:
   movementType: 0
   maxHealth: 1
   defense: 0
-  baseMeleeDamage: 5
+  baseMeleeDamage: 10
   baseRangeDamage: 0
   origin: 0
+  startingAbilities: []
+  unlockableAbilities: []
+  unlockablePassives: []

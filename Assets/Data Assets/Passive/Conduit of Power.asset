@@ -15,6 +15,6 @@ MonoBehaviour:
   passiveName: CONDUIT OF POWER
   passiveSummary: Abilities do more damage
   passiveDescription: All abilities that affect enemies deal bonus flat damage
-  passiveSprite: {fileID: 21300000, guid: 49f8afda05815274393df54909c7a530, type: 3}
+  passiveSprite: {fileID: 21300000, guid: 4f5eb084d29c35e4189a37a3bbf90ba9, type: 3}
   passiveType: 9
   passiveValue: 0

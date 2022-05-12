@@ -15,7 +15,6 @@ public class ClassStatsSO : ScriptableObject
     public int bonusRangeDamage;
     
     [Header("Ability")]
-    public List<AbilitySO> startingAbilities;
     public List<AbilitySO> unlockableAbilities;
     
     [Header("Passive")]

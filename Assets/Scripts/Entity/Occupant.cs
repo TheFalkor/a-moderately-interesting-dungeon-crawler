@@ -50,7 +50,9 @@ public abstract class Occupant : MonoBehaviour
 
             if (activeStatusEffects[i].duration != -1)
             {
-                activeStatusEffects[i].DecreaseDuration();
+                StatusEffect eff = activeStatusEffects[i];
+                eff.duration--;
+                activeStatusEffects[i] = eff;
 
                 if (activeStatusEffects[i].duration == 0)
                 {
@@ -153,5 +155,10 @@ public abstract class Occupant : MonoBehaviour
     {
         CombatManager.instance.RemoveOccupant(this);
         Destroy(gameObject);
+    }
+
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
     }
 }

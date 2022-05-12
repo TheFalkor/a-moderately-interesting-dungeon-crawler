@@ -28,3 +28,4 @@ MonoBehaviour:
   unlockableAbilities: []
   unlockablePassives:
   - {fileID: 11400000, guid: c70430930ee912f4291bf194a3b1bebf, type: 2}
+  - {fileID: 11400000, guid: 435708757f7874345b505b72590649fc, type: 2}

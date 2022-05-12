@@ -7,6 +7,7 @@ public class InventoryUI : MonoBehaviour
 {
     [Header("GameObject References")]
     [SerializeField] private Transform inventoryBox;
+    [SerializeField] private Transform abilityBox;
     [SerializeField] private Transform equipmentBox;
     [Space]
     [SerializeField] private Transform playerStatBox;
@@ -15,6 +16,7 @@ public class InventoryUI : MonoBehaviour
     private Text defenseText;
     private Text moneyText;
     private Text xpText;
+    private Text skillPointText;
     [Space]
     [SerializeField] private GameObject selectionMarker;
     [Space]
@@ -33,13 +35,25 @@ public class InventoryUI : MonoBehaviour
     private Text raceText;
     private Text classText;
 
+    [Header("Sprites")]
+    [SerializeField] private Sprite passiveBorder;
+    [SerializeField] private Sprite activeBorder;
+
     [Header("Runtime Variables")]
     private Inventory inventory;
     private Player player;
     private readonly List<InventorySlot> inventorySlots = new List<InventorySlot>();
     private readonly List<InventorySlot> equipmentSlots = new List<InventorySlot>();
+    [Space]
+    private readonly List<AbilitySlot> raceSlots = new List<AbilitySlot>();
+    private readonly List<AbilitySlot> classSlots = new List<AbilitySlot>();
     private int selectedIndex = -1;
     private bool selectedEquipment = false;
+    [Space]
+    private PassiveSO selectedPassive;
+    private AbilitySO selectedAbility;
+    [Space]
+    private int currentTab = 0;
 
     [Header("Singleton")]
     public static InventoryUI instance;
@@ -86,6 +100,24 @@ public class InventoryUI : MonoBehaviour
         defenseText = playerStatBox.GetChild(2).GetComponent<Text>();
         moneyText = playerStatBox.GetChild(3).GetComponent<Text>();
         xpText = playerStatBox.GetChild(4).GetComponent<Text>();
+
+        Transform classParent = abilityBox.GetChild(0);
+        for (int i = 0; i < classParent.childCount; i++)
+        {
+            Image image = classParent.GetChild(i).GetChild(0).GetComponent<Image>();
+
+            classSlots.Add(new AbilitySlot(image, selectionMarker, activeBorder, passiveBorder));
+        }
+
+        Transform raceParent = abilityBox.GetChild(1);
+        for (int i = 0; i < raceParent.childCount; i++)
+        {
+            Image image = raceParent.GetChild(i).GetChild(0).GetComponent<Image>();
+
+            raceSlots.Add(new AbilitySlot(image, selectionMarker, activeBorder, passiveBorder));
+        }
+
+        skillPointText = inventoryBox.transform.parent.GetChild(3).GetComponent<Text>();
     }
 
     public void ShowUI()
@@ -93,8 +125,35 @@ public class InventoryUI : MonoBehaviour
         UpdateInventoryUI();
         UpdateProfileUI();
         player.UpdateInventoryStats();
-        SelectItem(0);
+
+        OpenTab(0);
+
         inventoryCanvas.SetActive(true);
+    }
+
+    public void OpenTab(int index)
+    {
+        currentTab = index;
+
+        if (index == 0)
+        {
+            SelectItem(0);
+            inventoryBox.gameObject.SetActive(true);
+            abilityBox.gameObject.SetActive(false);
+
+            skillPointText.gameObject.SetActive(false);
+        }
+        else
+        {
+            ShowItemInfo(null);
+
+            selectionMarker.SetActive(false);
+            abilityBox.gameObject.SetActive(true);
+            inventoryBox.gameObject.SetActive(false);
+            LoadAbilityUI();
+
+            skillPointText.gameObject.SetActive(true);
+        }
     }
 
     public void CloseInventory()
@@ -188,20 +247,83 @@ public class InventoryUI : MonoBehaviour
         ShowItemInfo(item, true);
     }
 
+    public void SelectRaceAbility(int index)
+    {
+        raceSlots[index].SelectSlot();
+
+        if (player.baseStat.startingAbilities.Count > index)
+        {
+            ShowAbilityInfo(player.baseStat.startingAbilities[index]);
+            return;
+        }
+
+        index -= player.baseStat.startingAbilities.Count;
+
+        if (player.baseStat.unlockablePassives.Count > index)
+            ShowAbilityInfo(player.baseStat.unlockablePassives[index]);
+        else
+        {
+            ShowItemInfo(null);
+            selectionMarker.SetActive(false);
+        }
+    }
+
+    public void SelectClassAbility(int index)
+    {
+        classSlots[index].SelectSlot();
+
+        if (player.classStat.startingPassives.Count > index)
+        {
+            ShowAbilityInfo(player.classStat.startingPassives[index]);
+            return;
+        }
+
+        index -= player.classStat.startingPassives.Count;
+
+        if (player.classStat.unlockableAbilities.Count > index)
+        {
+            ShowAbilityInfo(player.classStat.unlockableAbilities[index]);
+            return;
+        }
+
+        index -= player.classStat.unlockableAbilities.Count;
+
+        if (player.classStat.unlockablePassives.Count > index)
+            ShowAbilityInfo(player.classStat.unlockablePassives[index]);
+        else
+        {
+            ShowItemInfo(null);
+            selectionMarker.SetActive(false);
+        }
+    }
+
     public void UseItem()
     {
-        if (selectedEquipment)
+        if (currentTab == 0)
         {
-            int slotIndex = inventory.EquipItem(selectedIndex);
-            SelectEquipment(slotIndex);
+            if (selectedEquipment)
+            {
+                int slotIndex = inventory.EquipItem(selectedIndex);
+                SelectEquipment(slotIndex);
+            }
+            else
+            {
+                inventory.UseItem(selectedIndex);
+                SelectItem(selectedIndex);
+            }
+
+            player.UpdateInventoryStats();
         }
         else
         {
-            inventory.UseItem(selectedIndex);
-            SelectItem(selectedIndex);
-        }
+            if (selectedAbility)
+                AbilityTree.instance.UnlockAbility(selectedAbility);
+            else if (selectedPassive)
+                AbilityTree.instance.UnlockPassive(selectedPassive);
 
-        player.UpdateInventoryStats();
+            LoadAbilityUI();
+            ShowItemInfo(null);
+        }
     }
 
     private void ShowItemInfo(Item item, bool disableButton = false)
@@ -209,7 +331,7 @@ public class InventoryUI : MonoBehaviour
 
         if (item == null)
         {
-            itemIcon.gameObject.SetActive(false);
+            itemIcon.transform.parent.gameObject.SetActive(false);
             itemNameText.text = "";
             itemTypeText.text = "";
             itemDescriptionText.text = "";
@@ -221,7 +343,7 @@ public class InventoryUI : MonoBehaviour
             return;
         }
 
-        itemIcon.gameObject.SetActive(true);
+        itemIcon.transform.parent.gameObject.SetActive(true);
 
         itemIcon.sprite = item.itemSprite;
         itemNameText.text = item.itemName;
@@ -273,4 +395,103 @@ public class InventoryUI : MonoBehaviour
         useButton.interactable = !disableButton;
     }
 
+    private void ShowAbilityInfo(AbilitySO data)
+    {
+        selectedPassive = null;
+        selectedAbility = data;
+
+        itemIcon.transform.parent.gameObject.SetActive(true);
+        itemIcon.sprite = data.abilitySprite;
+        itemNameText.text = data.abilityName;
+        itemTypeText.text = "Active Ability";
+
+        itemDescriptionText.text = data.abilityDescription;
+
+        bool unlocked = AbilityTree.instance.IsAbilityUnlocked(data);
+
+        if (unlocked)
+            useButtonText.text = "UNLOCKED";
+        else
+        {
+            if (AbilityTree.instance.skillPoints > 0)
+                useButtonText.text = "UNLOCK";
+            else
+            {
+                useButtonText.text = "NO POINTS";
+                unlocked = true;
+            }
+        }
+
+
+        useButton.interactable = !unlocked;
+    }
+
+    private void ShowAbilityInfo(PassiveSO data)
+    {
+
+        selectedAbility = null;
+        selectedPassive = data;
+
+        itemIcon.transform.parent.gameObject.SetActive(true);
+        itemIcon.sprite = data.passiveSprite;
+        itemNameText.text = data.passiveName;
+        itemTypeText.text = "Passive Ability";
+
+        itemDescriptionText.text = data.passiveDescription;
+
+        bool unlocked = AbilityTree.instance.IsPassiveUnlocked(data);
+
+        if (unlocked)
+            useButtonText.text = "UNLOCKED";
+        else
+        {
+            if (AbilityTree.instance.skillPoints > 0)
+                useButtonText.text = "UNLOCK";
+            else
+            {
+                useButtonText.text = "NO POINTS";
+                unlocked = true;
+            }
+        }
+
+        useButton.interactable = !unlocked;
+    }
+
+    private void LoadAbilityUI()
+    {
+        int raceIndex = 0;
+        foreach (AbilitySO ability in player.baseStat.startingAbilities)
+        {
+            raceSlots[raceIndex].SetSlot(ability);
+            raceIndex++;
+        }
+
+        foreach (PassiveSO passive in player.baseStat.unlockablePassives)
+        {
+            raceSlots[raceIndex].SetSlot(passive);
+            raceIndex++;
+        }
+
+
+        int classIndex = 0;
+        foreach (PassiveSO passive in player.classStat.startingPassives)
+        {
+            classSlots[classIndex].SetSlot(passive);
+            classIndex++;
+        }
+
+        foreach (AbilitySO ability in player.classStat.unlockableAbilities)
+        {
+            classSlots[classIndex].SetSlot(ability);
+            classIndex++;
+        }
+
+        foreach (PassiveSO passive in player.classStat.unlockablePassives)
+        {
+            classSlots[classIndex].SetSlot(passive);
+            classIndex++;
+        }
+
+        skillPointText.text = "Points Available: " + AbilityTree.instance.skillPoints;
+    }
 }

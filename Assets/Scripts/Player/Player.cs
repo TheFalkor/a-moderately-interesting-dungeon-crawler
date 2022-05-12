@@ -396,7 +396,7 @@ public class Player : Entity
     {
         this.shield += shield;
 
-        CombatUI.instance.UpdateHealth(currentHealth, maxhealth, shield);
+        CombatUI.instance.UpdateHealth(currentHealth, maxhealth, this.shield);
     }
 
     public void UpdateInventoryStats()
@@ -410,5 +410,6 @@ public class Player : Entity
         temporaryAnimatorDeath.SetBool("Closed", true);
         Debug.Log("player died");
         // End game
+        EndManager.instance.EndGame(false);
     }    
 }
