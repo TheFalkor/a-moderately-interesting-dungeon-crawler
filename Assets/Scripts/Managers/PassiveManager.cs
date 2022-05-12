@@ -56,10 +56,10 @@ public class PassiveManager : MonoBehaviour
             passive.OnEndTurn(entity);
     }
 
-    public void OnPlayerTakeDamage(Player player)
+    public void OnPlayerTakeDamage(Entity enemy)
     {
         foreach (Passive passive in activePassives)
-            passive.OnPlayerTakeDamage(player);
+            passive.OnPlayerTakeDamage(enemy);
     }
 
     public void OnEnemyTakeDamage(Entity enemy)
@@ -78,5 +78,17 @@ public class PassiveManager : MonoBehaviour
     {
         foreach (Passive passive in activePassives)
             passive.OnAbilityUsed(ability, affectedEnemies);
+    }
+
+    public void OnPlayerMove(Player player)
+    {
+        foreach (Passive passive in activePassives)
+            passive.OnPlayerMove(player);
+    }
+
+    public void OnPlayerAttack(Player player)
+    {
+        foreach (Passive passive in activePassives)
+            passive.OnPlayerAttack(player);
     }
 }

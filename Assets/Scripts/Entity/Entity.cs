@@ -44,6 +44,9 @@ public abstract class Entity : Occupant
                 case StatusType.STRENGHT_DRAIN:
                     meleeDamage = (int)(meleeDamage * 0.75f);
                     rangeDamage = (int)(rangeDamage * 0.75f);
+					break;
+                case StatusType.SLOWED:
+                    currentActionPoints--;
                     break;
             }
         }

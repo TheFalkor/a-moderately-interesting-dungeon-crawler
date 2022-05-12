@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Siphon Death
   m_EditorClassIdentifier: 
   abilityName: SIPHON DEATH
-  abilitySummary: Create death shield
+  abilitySummary: Consume marks to shield
   abilityDescription: Consume all Deathmarks and gain 2 Shield per enemy marked.
   abilitySprite: {fileID: 21300000, guid: 9992182980873394186e143556823beb, type: 3}
   abilityType: 6

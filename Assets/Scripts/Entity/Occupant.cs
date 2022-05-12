@@ -47,6 +47,7 @@ public abstract class Occupant : MonoBehaviour
 
         for (int i = 0; i < activeStatusEffects.Count; i++)
         {
+
             if (activeStatusEffects[i].duration != -1)
             {
                 activeStatusEffects[i].DecreaseDuration();
@@ -60,7 +61,7 @@ public abstract class Occupant : MonoBehaviour
         }
     }
 
-    public virtual void TakeDamage(Damage damage)
+    public virtual void TakeDamage(Damage damage, Occupant attacker = null)
     {
         if (originType == damage.origin && damage.origin != DamageOrigin.NEUTRAL)
             return;

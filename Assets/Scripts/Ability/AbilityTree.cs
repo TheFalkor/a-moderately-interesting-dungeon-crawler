@@ -84,7 +84,7 @@ public class AbilityTree : MonoBehaviour
                 ability = new FlutterDash();
                 break;
             case AbilityID.TIME_PULSE:
-                Debug.LogError("AbilityTree :: Forgot to create ability");
+                ability = new TimePulse();
                 break;
             case AbilityID.ARCANE_BLAST:
                 Debug.LogError("AbilityTree :: Forgot to create ability");
@@ -125,10 +125,10 @@ public class AbilityTree : MonoBehaviour
                 Debug.LogError("AbilityTree :: Forgot to create ability");
                 break;
             case PassiveID.SPELL_BOOST:
-                Debug.LogError("AbilityTree :: Forgot to create ability");
+                passive = new SpellBoost();
                 break;
             case PassiveID.BLADE_DANCER:
-                Debug.LogError("AbilityTree :: Forgot to create ability");
+                passive = new BladeDancer();
                 break;
             case PassiveID.ARCANE_BLAST:
                 Debug.LogError("AbilityTree :: Forgot to create ability");

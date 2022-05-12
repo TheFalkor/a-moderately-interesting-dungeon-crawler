@@ -54,7 +54,7 @@ public class MiniTooltip : MonoBehaviour
 
         int xPosition = (int)icon.position.x;
 
-        if (xPosition >= 0)
+        if (xPosition >= -3)
             body.localPosition = new Vector3(-170, 0);
         else
             body.localPosition = new Vector3(170, 0);

@@ -22,5 +22,8 @@ MonoBehaviour:
   defense: 0
   baseMeleeDamage: 4
   baseRangeDamage: 8
-  availableAbilities: 02000000
   origin: 2
+  startingAbilities:
+  - {fileID: 11400000, guid: e3190a5f968bfc342ad5c6599f835428, type: 2}
+  unlockableAbilities: []
+  unlockablePassives: []

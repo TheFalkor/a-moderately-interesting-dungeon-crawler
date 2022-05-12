@@ -33,16 +33,16 @@ public class Enemy : Entity
         switch(behaviourType)
         {
             case EnemyBehaviourType.SIMPLE_MELEE:
-                Behaviour = new EnemySimpleMeleeBehaviour(Sensing);
+                Behaviour = new EnemySimpleMeleeBehaviour();
                 break;
 
             default:
                 Debug.LogError("Enemy in the scene doesn't have a behaviour set");
-                Behaviour = new EnemySimpleMeleeBehaviour(Sensing);
+                Behaviour = new EnemySimpleMeleeBehaviour();
                 break;
         }
 
-        Behaviour.Initialize();
+        Behaviour.Initialize(Sensing);
 
         actionsQueue = new Queue<Action>();
     }
@@ -51,7 +51,7 @@ public class Enemy : Entity
     {
         base.PreTurn();
 
-        actionsQueue = Behaviour.DecideTurn();
+        actionsQueue = Behaviour.DecideTurn(currentActionPoints, currentMovementPoints);
     }
 
     public override bool Tick(float deltaTime)
@@ -94,7 +94,6 @@ public class Enemy : Entity
 
             case ActionType.PEBBLE:
                 StartCoroutine(Pebble());
-                Debug.Log("PEBBLE!!!!!!!!!!!!!!");
                 break;
         }
     }
@@ -135,16 +134,14 @@ public class Enemy : Entity
 
         while (!waitHappened)
         {
-            Debug.Log("Waiting for Pebble");
             waitHappened = true;
             yield return new WaitForSeconds(0.15f);
         }
 
-        Debug.Log("FIRING PEBBLE LESS GOOOO");
         Attack(Sensing.player.currentTile, new Damage(rangeDamage, originType));
     }
 
-    public override void TakeDamage(Damage damage)
+    public override void TakeDamage(Damage damage, Occupant attacker = null)
     {
         base.TakeDamage(damage);
 

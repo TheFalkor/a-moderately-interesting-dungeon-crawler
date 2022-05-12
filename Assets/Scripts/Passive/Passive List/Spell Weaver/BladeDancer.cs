@@ -1,0 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BladeDancer : Passive
+{
+    private int playerMoveCounter = 0;
+
+    public override void OnEndTurn(Entity entity)
+    {
+        playerMoveCounter = 0;
+    }
+
+    public override void OnPlayerMove(Player player)
+    {
+        playerMoveCounter++;
+        player.ChangeMeleeDamage(1);
+    }
+
+    public override void OnPlayerAttack(Player player)
+    {
+        player.ChangeMeleeDamage(-(playerMoveCounter));
+        playerMoveCounter = 0;
+    }
+}

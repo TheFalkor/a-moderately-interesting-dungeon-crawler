@@ -4,34 +4,26 @@ using UnityEngine;
 
 public class EnemySimpleMeleeBehaviour : EnemyBehaviour
 {
-    private int actionPointMaximum;
-    private int actionPoints;
-    private int freeMoves;
-    private int freeMovesMaximum;
+    private int actionPoints = 0;
+    private int freeMoves = 0;
     private EnemySensing Senses;
     [SerializeField]
     private int pebbleRange = 3;
     private Vector2Int futurePlayerPosition;
 
-    private Queue<Action> actionQueue;
+    private Queue<Action> actionQueue = new Queue<Action>();
 
-    public EnemySimpleMeleeBehaviour(EnemySensing sensingSystem)
+    public override void Initialize(EnemySensing sensing)
     {
-        Senses = sensingSystem;
+        Senses = sensing;
     }
 
-    public override void Initialize()
+    public override Queue<Action> DecideTurn(int ap, int mp)
     {
-        actionPointMaximum = 2;
-        freeMovesMaximum = 1;
-        actionPoints = actionPointMaximum;
-        freeMoves = freeMovesMaximum;
-        actionQueue = new Queue<Action>();
-    }
-
-    public override Queue<Action> DecideTurn()
-    {
-        ClearTurn();
+        actionPoints = ap;
+        freeMoves = mp;
+        futurePlayerPosition = Senses.myself.currentTile.GetPosition();
+        actionQueue.Clear();
 
         Queue<Direction> pathToPlayer = Senses.GetPathToPlayer();
 
@@ -45,7 +37,7 @@ public class EnemySimpleMeleeBehaviour : EnemyBehaviour
                 actionPoints--;
             }
 
-            else if (actionPoints == 1 && distance <= pebbleRange && Senses.CheckLineOfSight(GridManager.instance.GetTile(futurePlayerPosition).transform.position))
+            else if (actionPoints == 1 && freeMoves == 0 && distance <= pebbleRange && Senses.CheckLineOfSight(GridManager.instance.GetTile(futurePlayerPosition).transform.position))
             {
                 actionQueue.Enqueue(new Action(ActionType.PEBBLE, pathToPlayer.Peek()));
                 actionPoints--;
@@ -66,14 +58,6 @@ public class EnemySimpleMeleeBehaviour : EnemyBehaviour
         return actionQueue;
     }
 
-    private void ClearTurn()
-    {
-        actionPoints = actionPointMaximum;
-        freeMoves = freeMovesMaximum;
-        futurePlayerPosition = Senses.myself.currentTile.GetPosition();
-        actionQueue.Clear();
-        return;
-    }
     private void updateFuturePosition(Direction direction)
     {
         switch(direction)

@@ -4,6 +4,6 @@ using UnityEngine;
 
 public abstract class EnemyBehaviour
 {
-    public abstract void Initialize();
-    public abstract Queue<Action> DecideTurn();
+    public abstract void Initialize(EnemySensing sensing);
+    public abstract Queue<Action> DecideTurn(int ap, int mp);
 }

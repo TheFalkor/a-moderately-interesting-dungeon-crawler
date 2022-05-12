@@ -279,6 +279,18 @@ public class Player : Entity
         maxActionPoints += difference;
     }
 
+    public void ChangeMP(int difference)
+    {
+        currentMovementPoints += difference;
+        CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
+    }
+
+    public void ChangeMeleeDamage(int difference)
+    {
+        meleeDamage += difference;
+        CombatUI.instance.UpdateAttack(meleeDamage);
+    }
+
     private void MoveToTile(Tile tile)
     {
         if (currentActionPoints == 0 && currentMovementPoints == 0)
@@ -315,6 +327,7 @@ public class Player : Entity
         else
             currentActionPoints--;
 
+        PassiveManager.instance.OnPlayerMove(this);
         CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
 
         GridManager.instance.ClearAllHighlights();
@@ -336,6 +349,7 @@ public class Player : Entity
         }
 
         currentActionPoints--;
+        PassiveManager.instance.OnPlayerAttack(this);
         CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
         GridManager.instance.ClearAllHighlights();
 
@@ -345,10 +359,10 @@ public class Player : Entity
                 audioKor.PlaySFX("SLASH");
                 break;
             case WeaponType.SPEAR:
-                audioKor.PlaySFX("SLASH");
+                audioKor.PlaySFX("SLASH"); // PUT CORRECT VFX
                 break;
             case WeaponType.HAMMER:
-                audioKor.PlaySFX("SLASH");
+                audioKor.PlaySFX("SLASH"); // PUT CORRECT VFX
                 break;
         }
     }
@@ -361,11 +375,12 @@ public class Player : Entity
         inventory.equippedWeapon.ExtraHighlight(currentTile);
     }
 
-    public override void TakeDamage(Damage damage)
+    public override void TakeDamage(Damage damage, Occupant attacker)
     {
         base.TakeDamage(damage);
 
-        PassiveManager.instance.OnPlayerTakeDamage(this);
+        if (attacker is Entity entity)
+            PassiveManager.instance.OnPlayerTakeDamage(entity);
 
         CombatUI.instance.UpdateHealth(currentHealth, maxhealth, shield);
     }

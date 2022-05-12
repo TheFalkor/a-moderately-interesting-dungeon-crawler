@@ -16,7 +16,7 @@ public abstract class Passive
 
     }
 
-    public virtual void OnPlayerTakeDamage(Entity entity)
+    public virtual void OnPlayerTakeDamage(Entity enemy)
     {
 
     }
@@ -32,6 +32,16 @@ public abstract class Passive
     }
 
     public virtual void OnAbilityUsed(AbilityID ability, List<Entity> affectedEnemies = null)
+    {
+
+    }
+
+    public virtual void OnPlayerMove(Player player)
+    {
+
+    }
+
+    public virtual void OnPlayerAttack(Player player)
     {
 
     }
