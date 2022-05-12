@@ -52,6 +52,7 @@ public class InventorySlot
         {
             marker.transform.SetParent(image.transform.parent);
             marker.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+            marker.transform.localScale = Vector3.one;
             marker.SetActive(true);
         }
         else

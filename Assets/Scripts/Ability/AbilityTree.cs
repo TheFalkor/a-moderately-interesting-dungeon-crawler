@@ -137,7 +137,7 @@ public class AbilityTree : MonoBehaviour
                 Debug.LogError("AbilityTree :: Forgot to create ability");
                 break;
             case PassiveID.CONDUIT_OF_POWER:
-                Debug.LogError("AbilityTree :: Forgot to create ability");
+                passive = new ConduitOfPower();
                 break;
             case PassiveID.DEATH_MARK:
                 passive = new DeathMark();

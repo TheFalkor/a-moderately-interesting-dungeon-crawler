@@ -53,7 +53,6 @@ public class Player : Entity
         baseMeleeDamage += classStat.bonusMeleeDamage;
         baseRangeDamage += classStat.bonusRangeDamage;
 
-        
         audioKor = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioKor>();
     }
 
@@ -359,10 +358,10 @@ public class Player : Entity
                 audioKor.PlaySFX("SLASH");
                 break;
             case WeaponType.SPEAR:
-                audioKor.PlaySFX("SLASH"); // PUT CORRECT VFX
+                audioKor.PlaySFX("SLASH"); // PUT CORRECT SFX
                 break;
             case WeaponType.HAMMER:
-                audioKor.PlaySFX("SLASH"); // PUT CORRECT VFX
+                audioKor.PlaySFX("SLASH"); // PUT CORRECT SFX
                 break;
         }
     }
@@ -398,6 +397,12 @@ public class Player : Entity
         this.shield += shield;
 
         CombatUI.instance.UpdateHealth(currentHealth, maxhealth, shield);
+    }
+
+    public void UpdateInventoryStats()
+    {
+        meleeDamage = baseMeleeDamage + inventory.equippedWeapon.weaponDamage;
+        InventoryUI.instance.UpdatePlayerStats(currentHealth, maxhealth, defense, meleeDamage);
     }
 
     protected override void Death()

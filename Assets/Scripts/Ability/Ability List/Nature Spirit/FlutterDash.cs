@@ -58,29 +58,35 @@ public class FlutterDash : Ability
         while (directionQueue.Count != 0)
         {
             Tile tile = GridManager.instance.GetTile(currentTile.GetPosition() + directionQueue.Peek());
-            if (!tile || !tile.IsWalkable())
+            if (!tile)
             {
                 directionQueue.Dequeue();
                 continue;
             }
 
             tile = GridManager.instance.GetTile(currentTile.GetPosition() + directionQueue.Peek() * 2);
-            if (!tile || !tile.IsWalkable())
+            if (!tile)
             {
                 directionQueue.Dequeue();
                 continue;
             }
 
-            if (!tile.IsOccupied())
-            {
+            if (tile.IsWalkable() && !tile.IsOccupied())
                 dashableTiles.Add(tile);
-                tile.Highlight(HighlightType.ABILITY_TARGET);
-            }
+
+            tile.Highlight(HighlightType.ABILITY_TARGET, false);
 
             tile = GridManager.instance.GetTile(currentTile.GetPosition() + directionQueue.Peek() * 3);
-            if (!tile || !tile.IsWalkable() || tile.IsOccupied())
+            if (!tile)
             {
                 directionQueue.Dequeue();
+                continue;
+            }
+
+            if (!tile.IsWalkable() || tile.IsOccupied())
+            {
+                directionQueue.Dequeue();
+                tile.Highlight(HighlightType.ABILITY_TARGET, false);
                 continue;
             }
 

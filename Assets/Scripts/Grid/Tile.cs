@@ -12,7 +12,9 @@ public class Tile : MonoBehaviour
     [HideInInspector] public List<Tile> orthogonalNeighbors = new List<Tile>();
     [HideInInspector] public List<Tile> diagonalNeighbors = new List<Tile>();
 
-    private SpriteRenderer render;
+    private SpriteRenderer highlightRender;
+    private SpriteRenderer cornerRender;
+
     [Header("Highlight Colors")]
     [SerializeField] private Color COLOR_WALKABLE;
     [SerializeField] private Color COLOR_ATTACKABLE;
@@ -24,7 +26,8 @@ public class Tile : MonoBehaviour
     public void Initialize(Vector2Int pos)
     {
         gridPosition = pos;
-        render = GetComponent<SpriteRenderer>();
+        highlightRender = transform.GetChild(1).GetComponent<SpriteRenderer>();
+        cornerRender = transform.GetChild(2).GetComponent<SpriteRenderer>();
     }
 
     public void Setup(bool wall)
@@ -100,42 +103,59 @@ public class Tile : MonoBehaviour
         return false;
     }
 
-    public void Highlight(HighlightType type)
+    public void Highlight(HighlightType type, bool allowOccupant = true)
     {
-        if (!isWalkable)
-            return;
+        if (isWalkable)
+        {
+            if (!(!allowOccupant && IsOccupied()))
+                highlightRender.gameObject.SetActive(true);
+        }
+
+        cornerRender.gameObject.SetActive(true);
 
         switch (type)
         {
             case HighlightType.WALKABLE:
                 if (!IsOccupied())
-                    render.color = COLOR_WALKABLE;
+                {
+                    highlightRender.color = COLOR_WALKABLE;
+                    cornerRender.color = COLOR_WALKABLE;
+                }
                 break;
 
             case HighlightType.ATTACKABLE:
-                render.color = COLOR_ATTACKABLE;
+                highlightRender.color = COLOR_ATTACKABLE;
+                cornerRender.color = COLOR_ATTACKABLE;
                 break;
 
             case HighlightType.SPLASH:
-                render.color = COLOR_SPLASH;
+                highlightRender.color = COLOR_SPLASH;
+                cornerRender.color = COLOR_SPLASH;
                 break;
 
             case HighlightType.ABILITY_TARGET:
-                render.color = COLOR_ABILITY;
+                highlightRender.color = COLOR_ABILITY;
+                cornerRender.color = COLOR_ABILITY;
                 break;
 
             case HighlightType.HEALABLE:
-                render.color = COLOR_HEALABLE;
+                highlightRender.color = COLOR_HEALABLE;
+                cornerRender.color = COLOR_HEALABLE;
                 break;
         }
+
+        Color color = cornerRender.color;
+        if (isWalkable)
+            color.a = 0.75f;
+        else
+            color.a = 0.5f;
+        cornerRender.color = color;
     }
 
     public void ClearHighlight()
     {
-        if (!isWalkable)
-            return;
-
-        render.color = Color.white;
+        highlightRender.gameObject.SetActive(false); 
+        cornerRender.gameObject.SetActive(false);
     }
 
 }

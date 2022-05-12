@@ -23,5 +23,7 @@ MonoBehaviour:
   startingPassives:
   - {fileID: 11400000, guid: 0bd255a8340315b49a73fecdbf5add5b, type: 2}
   - {fileID: 11400000, guid: 4a3f703bb9550f34dbcf1bc2f0d39a00, type: 2}
+  - {fileID: 11400000, guid: 67dd24041d873e94389201928347956e, type: 2}
   unlockablePassives:
   - {fileID: 11400000, guid: 4a3f703bb9550f34dbcf1bc2f0d39a00, type: 2}
+  - {fileID: 11400000, guid: 67dd24041d873e94389201928347956e, type: 2}

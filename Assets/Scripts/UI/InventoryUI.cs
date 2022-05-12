@@ -9,19 +9,33 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Transform inventoryBox;
     [SerializeField] private Transform equipmentBox;
     [Space]
+    [SerializeField] private Transform playerStatBox;
+    private Text healthText;
+    private Text attackText;
+    private Text defenseText;
+    private Text moneyText;
+    private Text xpText;
+    [Space]
     [SerializeField] private GameObject selectionMarker;
     [Space]
     [SerializeField] private GameObject inventoryCanvas;
     [Space]
     [SerializeField] private Image itemIcon;
     [SerializeField] private Text itemNameText;
+    [SerializeField] private Text itemTypeText;
     [SerializeField] private Text itemDescriptionText;
     [SerializeField] private Text itemStatsText;
     [SerializeField] private Button useButton;
     private Text useButtonText;
+    [Space]
+    private Transform profileParent;
+    private Image profileIcon;
+    private Text raceText;
+    private Text classText;
 
     [Header("Runtime Variables")]
     private Inventory inventory;
+    private Player player;
     private readonly List<InventorySlot> inventorySlots = new List<InventorySlot>();
     private readonly List<InventorySlot> equipmentSlots = new List<InventorySlot>();
     private int selectedIndex = -1;
@@ -42,6 +56,7 @@ public class InventoryUI : MonoBehaviour
     void Start()
     {
         inventory = GameObject.FindGameObjectWithTag("Manager").GetComponent<Inventory>();
+        player = DungeonManager.instance.player;
 
         for (int i = 0; i < inventoryBox.childCount; i++)
         {
@@ -60,13 +75,25 @@ public class InventoryUI : MonoBehaviour
         }
 
         useButtonText = useButton.transform.GetChild(0).GetComponent<Text>();
+
+        profileParent = equipmentBox.parent;
+        profileIcon = profileParent.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
+        raceText = profileParent.GetChild(1).GetComponent<Text>();
+        classText = profileParent.GetChild(2).GetComponent<Text>();
+
+        healthText = playerStatBox.GetChild(0).GetComponent<Text>();
+        attackText = playerStatBox.GetChild(1).GetComponent<Text>();
+        defenseText = playerStatBox.GetChild(2).GetComponent<Text>();
+        moneyText = playerStatBox.GetChild(3).GetComponent<Text>();
+        xpText = playerStatBox.GetChild(4).GetComponent<Text>();
     }
 
     public void ShowUI()
     {
         UpdateInventoryUI();
-        ShowItemInfo(null);
-        selectionMarker.SetActive(false);
+        UpdateProfileUI();
+        player.UpdateInventoryStats();
+        SelectItem(0);
         inventoryCanvas.SetActive(true);
     }
 
@@ -107,6 +134,24 @@ public class InventoryUI : MonoBehaviour
             equipmentSlots[2].SetSlot(inventory.equippedAccessory);
     }
 
+    public void UpdateProfileUI()
+    {
+        profileIcon.sprite = player.baseStat.entitySprite;
+
+        raceText.text = player.baseStat.entityName;
+        classText.text = "Lv. 0 " + player.classStat.className;
+    }
+
+    public void UpdatePlayerStats(int currentHealth, int maxHealth, int defense, int damage)
+    {
+        healthText.text = "HP: " + currentHealth + "/" + maxHealth;
+        attackText.text = "ATK: " + damage;
+        defenseText.text = "DEF: " + defense;
+
+        moneyText.text = "Money: 0";
+        xpText.text = "XP: ?";
+    }
+
     public void SelectItem(int index)
     {
         inventorySlots[index].SelectSlot();
@@ -120,7 +165,6 @@ public class InventoryUI : MonoBehaviour
 
         selectedIndex = index;
         ShowItemInfo(inventory.items[index]);
-        // Highlight the selected one with border thingie
     }
 
     public void SelectEquipment(int index)
@@ -156,6 +200,8 @@ public class InventoryUI : MonoBehaviour
             inventory.UseItem(selectedIndex);
             SelectItem(selectedIndex);
         }
+
+        player.UpdateInventoryStats();
     }
 
     private void ShowItemInfo(Item item, bool disableButton = false)
@@ -165,6 +211,7 @@ public class InventoryUI : MonoBehaviour
         {
             itemIcon.gameObject.SetActive(false);
             itemNameText.text = "";
+            itemTypeText.text = "";
             itemDescriptionText.text = "";
             itemStatsText.text = "";
 
@@ -184,31 +231,36 @@ public class InventoryUI : MonoBehaviour
         switch (item.itemType)
         {
             case ItemType.WEAPON:
-                itemStatsText.text = "DMG: +" + ((Weapon)item).weaponDamage;
+                itemTypeText.text = "Weapon";
+                itemStatsText.text = "+" + ((Weapon)item).weaponDamage + " ATK";
                 useButtonText.text = "EQUIP ITEM";
                 selectedEquipment = true;
                 break;
 
             case ItemType.ARMOR:
                 //
+                itemTypeText.text = "Armor";
                 useButtonText.text = "EQUIP ITEM";
                 selectedEquipment = true;
                 break;
 
             case ItemType.ACCESSORY:
                 //
+                itemTypeText.text = "Accessory";
                 useButtonText.text = "EQUIP ITEM";
                 selectedEquipment = true;
                 break;
 
             case ItemType.CONSUMABLE:
-                itemStatsText.text = "HEAL: " + ((Consumable)item).consumableValue;
+                itemTypeText.text = "Consumable";
+                itemStatsText.text = "+" + ((Consumable)item).consumableValue + " HP";
                 useButtonText.text = "USE ITEM";
                 selectedEquipment = false;
                 break;
 
             case ItemType.THROWABLE:
                 //
+                itemTypeText.text = "Throwable";
                 useButtonText.text = "CANNOT USE";
                 selectedEquipment = false;
                 disableButton = true;
