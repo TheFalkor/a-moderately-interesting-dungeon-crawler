@@ -1823,7 +1823,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: INVENTORIE
+  m_Text: INVENTORY
 --- !u!222 &215932183
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17785,7 +17785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff26d697a0672b4dbe3548ce80fd393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillPoints: 0
+  skillPoints: 8
 --- !u!114 &1596778545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18103,7 +18103,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'XP: 24/50 (+16)'
+  m_Text: 'XP: 25/25 (+25)'
 --- !u!222 &1653603437
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24024,7 +24024,7 @@ PrefabInstance:
     - target: {fileID: 4352417484911601, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
       propertyPath: classStat
       value: 
-      objectReference: {fileID: 11400000, guid: e0fc08491a4a9984e9d116e650541901, type: 2}
+      objectReference: {fileID: 11400000, guid: a5af1d4bfc4e7cf45b1e7d0dcf2fadcf, type: 2}
     - target: {fileID: 4352417484911601, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
       propertyPath: testdeleteimmediately
       value: 

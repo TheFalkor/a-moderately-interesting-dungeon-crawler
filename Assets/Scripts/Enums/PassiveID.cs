@@ -9,7 +9,7 @@ public enum PassiveID
 
     SPELL_BOOST,        // [C] Spell Weaver
     BLADE_DANCER,       // [C] Spell Weaver
-    ARCANE_TRANSFERENCE,// [C] Spell Weaver
+    ARCANE_SURGE,       // [C] Spell Weaver
     OVERLOAD,           // [C] Spell Weaver
     CONDUIT_OF_POWER,   // [C] Spell Weaver
 

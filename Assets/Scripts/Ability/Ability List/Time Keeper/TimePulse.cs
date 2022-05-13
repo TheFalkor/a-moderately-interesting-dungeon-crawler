@@ -5,9 +5,8 @@ using UnityEngine;
 public class TimePulse : Ability
 {
     [Header("Runtime Variables")]
-    private HashSet<Tile> pulseAoe = new HashSet<Tile>();
-    private float animationTimer = 0;
 
+    private HashSet<Tile> pulseAoe = new HashSet<Tile>();
     [Header("References")]
     private Player player;
 
@@ -44,33 +43,17 @@ public class TimePulse : Ability
 
     public override bool Tick(float deltaTime)
     {
-        if (animationTimer == -99)
-            return true;
+        player.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
 
-        if (animationTimer > 0)
+        foreach(Entity e in affectedEnemies)
         {
-            animationTimer -= deltaTime;
+            e.AddStatusEffect(new StatusEffect(StatusType.SLOWED, 1));
 
-            Color updateColor = Color.white;
-            updateColor.r = Mathf.Cos(Mathf.Abs(Mathf.PI * animationTimer * 2));
-            updateColor.g = Mathf.Cos(Mathf.Abs(Mathf.PI * animationTimer * 2));
-
-            player.transform.GetChild(0).GetComponent<SpriteRenderer>().color = updateColor;
+            GameObject temp = Object.Instantiate(data.abilityVFX[0], e.transform.position, Quaternion.identity);
+            Object.Destroy(temp, 19 / 15f);
         }
 
-        else
-        {
-            player.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
-
-            foreach(Entity e in affectedEnemies)
-                 e.AddStatusEffect(new StatusEffect(StatusType.SLOWED, 1));
-
-            animationTimer = -99;
-
-            return true;
-        }
-
-        return false;
+        return true;
     }
 
     public override bool UseAbility(Tile tile)
@@ -78,7 +61,6 @@ public class TimePulse : Ability
         if (!pulseAoe.Contains(tile))
             return false;
 
-        animationTimer = 1f;
         return true;
     }
 }

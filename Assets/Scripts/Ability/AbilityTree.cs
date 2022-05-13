@@ -137,8 +137,8 @@ public class AbilityTree : MonoBehaviour
             case PassiveID.BLADE_DANCER:
                 passive = new BladeDancer();
                 break;
-            case PassiveID.ARCANE_TRANSFERENCE:
-                Debug.LogError("AbilityTree :: Forgot to create ability");
+            case PassiveID.ARCANE_SURGE:
+                passive = new ArcaneTransference();
                 break;
             case PassiveID.OVERLOAD:
                 passive = new Overload();

@@ -47,7 +47,6 @@ public class CombatManager : MonoBehaviour
             GridManager.instance.ClearAllHighlights();
 
             AbilityManager.instance.DecreaseAbilityCooldown();
-            CombatUI.instance.UpdateAbilityUI();
 
             foreach (TileEffect effect in tileEffectList)
                 effect.PreTurn();
@@ -168,6 +167,11 @@ public class CombatManager : MonoBehaviour
 	public void AddTileEffect(TileEffect tileEffect)
     {
         tileEffectList.Add(tileEffect);
+    }
+
+    public void RemoveTileEffect(TileEffect tileEffect)
+    {
+        tileEffectList.Remove(tileEffect);
     }
 
     private void PlaySFX(string soundName)

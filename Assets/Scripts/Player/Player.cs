@@ -27,8 +27,11 @@ public class Player : Entity
 
 	[Header("VFX Prefabs")]
     public GameObject HealVFX;
-	
+
     // EVENTS DELEGATE
+    public delegate void MoveEvent(Tile t);
+    public static event MoveEvent playerMove;
+
     public delegate void AttackEvent();
     public static event AttackEvent playerAttack;
 
@@ -343,6 +346,8 @@ public class Player : Entity
             currentActionPoints--;
 
         PassiveManager.instance.OnPlayerMove(this);
+        if (playerMove != null)
+            playerMove(tile);
         CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
 
         GridManager.instance.ClearAllHighlights();

@@ -14,8 +14,6 @@ public class ArcaneBlast : Ability
     bool southIsOccupied = false;
     bool westIsOccupied = false;
 
-    private float animationTimer = 0;
-
     [Header("References")]
     private Player player;
     private List<Tile> target = null;
@@ -105,43 +103,26 @@ public class ArcaneBlast : Ability
 
     public override bool Tick(float deltaTime)
     {
-        if (animationTimer == -99)
-            return true;
+        player.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
 
-        if (animationTimer > 0)
+        foreach(Tile t in target)
         {
-            animationTimer -= deltaTime;
-
-            Color updateColor = Color.white;
-            updateColor.g = Mathf.Cos(Mathf.Abs(Mathf.PI * animationTimer * 2));
-            updateColor.b = Mathf.Cos(Mathf.Abs(Mathf.PI * animationTimer * 2));
-
-            player.transform.GetChild(0).GetComponent<SpriteRenderer>().color = updateColor;
-        }
-
-        else
-        {
-            player.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
-
-            foreach(Tile t in target)
+            if (t.IsOccupied())
             {
-                if (t.IsOccupied())
-                {
-                    Occupant tOccupant = t.GetOccupant();
+                Occupant tOccupant = t.GetOccupant();
 
-                    if (t.GetOccupant() is Entity)
-                        affectedEnemies.Add((Entity)tOccupant);
+                if (t.GetOccupant() is Entity)
+                    affectedEnemies.Add((Entity)tOccupant);
 
-                    tOccupant.TakeDamage(new Damage(data.abilityValue, DamageOrigin.FRIENDLY));
-                }
+                tOccupant.TakeDamage(new Damage(data.abilityValue, DamageOrigin.FRIENDLY));
             }
 
-            animationTimer = -99;
-
-            return true;
+            GameObject temp = Object.Instantiate(data.abilityVFX[0], t.transform.position, Quaternion.identity);
+            Object.Destroy(temp, 9 / 15f);
         }
 
-        return false;
+
+        return true;
     }
 
     public override bool UseAbility(Tile tile)
@@ -151,7 +132,6 @@ public class ArcaneBlast : Ability
             if (dirN.Contains(tile))
             {
                 target = dirN;
-                animationTimer = 1f;
                 return true;
             }
         }
@@ -161,7 +141,6 @@ public class ArcaneBlast : Ability
             if (dirE.Contains(tile))
             {
                 target = dirE;
-                animationTimer = 1f;
                 return true;
             }
         }
@@ -171,7 +150,6 @@ public class ArcaneBlast : Ability
             if (dirS.Contains(tile))
             {
                 target = dirS;
-                animationTimer = 1f;
                 return true;
             }
         }
@@ -181,7 +159,6 @@ public class ArcaneBlast : Ability
             if (dirW.Contains(tile))
             {
                 target = dirW;
-                animationTimer = 1f;
                 return true;
             }
         }

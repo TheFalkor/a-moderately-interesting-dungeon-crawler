@@ -16,4 +16,6 @@ public class PassiveSO : ScriptableObject
 
     [Header("Passive Data")]
     public int passiveValue;
+    public GameObject tileEffect;
+    public List<GameObject> passiveVFX;
 }

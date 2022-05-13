@@ -34,6 +34,8 @@ public class AbilityManager : MonoBehaviour
             if (ability.cooldown > 0)
                 ability.cooldown--;
         }
+
+        CombatUI.instance.UpdateAbilityUI();
     }
 
     public void ResetAbilityCooldown()
@@ -45,6 +47,8 @@ public class AbilityManager : MonoBehaviour
 
             ability.cooldown = 0;
         }
+
+        CombatUI.instance.UpdateAbilityUI();
     }
 
     public void SetupUI()

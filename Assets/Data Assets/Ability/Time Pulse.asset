@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e766b29def79f554bbbd59bc98550369, type: 3}
-  m_Name: TimePulse
+  m_Name: Time Pulse
   m_EditorClassIdentifier: 
   abilityName: Time Pulse
   abilitySummary: Emit a slowing wave
@@ -21,3 +21,5 @@ MonoBehaviour:
   cooldown: 3
   abilityValue: 0
   abilityPrefab: {fileID: 0}
+  abilityVFX:
+  - {fileID: 6900506676400863306, guid: 61cbd953e1759ec4baf4a9c204985a56, type: 3}

@@ -22,6 +22,9 @@ public class VictoryManager : MonoBehaviour
     private string className;
     private string raceName;
 
+    [Header("Runtime Variables")]
+    private int level = 1;
+
     [Header("GameObject References")]
     private Player player;
 
@@ -56,15 +59,6 @@ public class VictoryManager : MonoBehaviour
         SetPortrait(player.baseStat.entitySprite);
     }
 
-    private void Setup()
-    {
-        /*if (ConsistentData.initialized)
-        {
-            raceName = ConsistentData.playerBaseStat.entityName;
-            className = ConsistentData.playerClassStat.className;
-        }*/
-    }
-
     void Update()
     {
         if (count)
@@ -84,7 +78,7 @@ public class VictoryManager : MonoBehaviour
 
     public void ShowPopup()
     {
-        //Setup();
+        level++;
         UpdateVictory();
         victoryPopup.SetActive(true);
     }
@@ -99,9 +93,9 @@ public class VictoryManager : MonoBehaviour
 
     public void UpdateVictory()
     {
-        lvlText.text = "Lv." + 5 + " " + className + " " + raceName;
+        lvlText.text = "Lv." + level + " " + raceName + ", " + className;
         //xpText.text = "XP: " + player.currentExp.ToString() + "/" + player.levelExp.ToString() + " (" + expGain.ToString() + ")";
-        moneyText.text = "You a broke a** b****";
+        moneyText.text = "You have gained an ability point!";
     }
 
     public void SetPortrait(Sprite sprite)
