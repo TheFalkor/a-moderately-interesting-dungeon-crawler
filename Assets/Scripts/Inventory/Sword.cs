@@ -23,6 +23,7 @@ public class Sword : Weapon
 
         weaponDamage = data.weaponDamage;
         weaponType = data.weaponType;
+        attackVFX = data.attackVFX;
     }
 
     public override List<WeaponStrike> Attack(Tile tile)
@@ -31,7 +32,11 @@ public class Sword : Weapon
 
         if (tile)
             if (availableTiles.Contains(tile))
+            {
                 strikes.Add(new WeaponStrike(new Damage(weaponDamage, DamageOrigin.FRIENDLY), 1f, tile));
+                GameObject vfx = Object.Instantiate(attackVFX, tile.transform.position, Quaternion.identity);
+                Object.Destroy(vfx, 0.5f);
+            }
 
         return strikes;
     }

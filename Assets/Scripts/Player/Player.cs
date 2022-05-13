@@ -25,6 +25,16 @@ public class Player : Entity
     private LayerMask tileMask;
     private Inventory inventory;
 
+	[Header("VFX Prefabs")]
+    public GameObject HealVFX;
+	
+    // EVENTS DELEGATE
+    public delegate void AttackEvent();
+    public static event AttackEvent playerAttack;
+
+    public delegate void EndOfTurnEvent();
+    public static event EndOfTurnEvent playerEndTurn;
+
 
     public void Setup(BaseStatsSO newBaseStat = null, ClassStatsSO newClassStat = null)
     {
@@ -40,6 +50,7 @@ public class Player : Entity
             classStat = newClassStat;
         }   
 
+        
 
         // Temporary
         transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = baseStat.entitySprite;
@@ -273,6 +284,9 @@ public class Player : Entity
     {
         GridManager.instance.ClearAllHighlights();
         turnEnded = true;
+
+        if (playerEndTurn != null)
+            playerEndTurn();
     }
 
     public void ChangeMaxAP(int difference)
@@ -353,6 +367,8 @@ public class Player : Entity
 
         currentActionPoints--;
         PassiveManager.instance.OnPlayerAttack(this);
+        if (playerAttack != null)
+            playerAttack();
         CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
         GridManager.instance.ClearAllHighlights();
 
@@ -394,6 +410,9 @@ public class Player : Entity
 
         if (CombatUI.instance)
             CombatUI.instance.UpdateHealth(currentHealth, maxhealth, shield);
+
+        GameObject healVFX = Instantiate(HealVFX, gameObject.transform.GetChild(0));
+        Destroy(healVFX, 0.5f);
     }
 
     public void AddShield(int shield)

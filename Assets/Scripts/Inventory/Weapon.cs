@@ -7,6 +7,7 @@ public abstract class Weapon : EquippableItem
     [Header("Weapon Data")]
     public int weaponDamage;
     public WeaponType weaponType;
+    public GameObject attackVFX;
 
 
     public virtual List<WeaponStrike> Attack(Tile tile)

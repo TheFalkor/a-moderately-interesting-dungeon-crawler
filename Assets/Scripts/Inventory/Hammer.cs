@@ -5,6 +5,7 @@ using UnityEngine;
 public class Hammer : Weapon
 {
     private float splashMultiplier;
+    private Tile currentTile;
 
     [Header("Runtime Variables")]
     private List<AoeSplash> availableAoes = new List<AoeSplash>();
@@ -16,6 +17,7 @@ public class Hammer : Weapon
         weaponDamage = data.weaponDamage;
         weaponType = data.weaponType;
         splashMultiplier = data.splashDamageMultiplier;
+        attackVFX = data.attackVFX;
     }
 
     public override List<WeaponStrike> Attack(Tile tile)
@@ -32,9 +34,14 @@ public class Hammer : Weapon
 
                 foreach (Tile s in strikeAoE.splashTiles)
                     strikes.Add(new WeaponStrike(new Damage(weaponDamage, DamageOrigin.FRIENDLY), splashMultiplier, s));
+
+
+                Vector2 direction = strikeAoE.mainTile.transform.position - currentTile.transform.position;
+                GameObject vfx = Object.Instantiate(attackVFX, strikeAoE.mainTile.transform.position, Quaternion.identity);
+                vfx.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+                Object.Destroy(vfx, 13 / 15f);
             }
         }
-
 
         return strikes;
     }
@@ -42,6 +49,7 @@ public class Hammer : Weapon
     public override void HighlightDecision(Tile currentTile)
     {
         availableAoes.Clear();
+        this.currentTile = currentTile;
 
         // NORTH
         Tile north = GridManager.instance.GetTile(currentTile.GetPosition() + Vector2Int.down);
@@ -148,6 +156,7 @@ public class Hammer : Weapon
     public override void ExtraHighlight(Tile currentTile)
     {
         availableAoes.Clear();
+        this.currentTile = currentTile;
 
         // NORTH
         Tile north = GridManager.instance.GetTile(currentTile.GetPosition() + Vector2Int.down);

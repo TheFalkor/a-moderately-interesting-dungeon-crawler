@@ -47,11 +47,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damagePopup: {fileID: 7620306153505864841, guid: f08a4a53d0af0124db00bdeb9ddcee2f, type: 3}
   baseStat: {fileID: 11400000, guid: 4b0e4542de4f4bb448aba4eb67d8a879, type: 2}
+  shield: 0
+  originType: 0
   currentTile: {fileID: 0}
   temporaryAnimatorDeath: {fileID: 0}
   classStat: {fileID: 11400000, guid: e0fc08491a4a9984e9d116e650541901, type: 2}
-  testSword: {fileID: 11400000, guid: f125a815c8fe1d64aac7d5963138357d, type: 2}
-  testSpear: {fileID: 11400000, guid: 478df25a7c104044abadbee07f9a3cc5, type: 2}
+  abilityActive: 0
+  HealVFX: {fileID: 7250300852122040977, guid: 7120697d7dccfe7488a33ae23e37c07b, type: 3}
 --- !u!61 &1863439721
 BoxCollider2D:
   m_ObjectHideFlags: 0

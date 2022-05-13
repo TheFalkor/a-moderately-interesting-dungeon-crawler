@@ -13,7 +13,8 @@ public class TimePulse : Ability
 
     public override void HighlightDecisions(Tile currentTile)
     {
-        player = (Player)currentTile.GetOccupant();
+        if (!player)
+            player = (Player)currentTile.GetOccupant();
 
         pulseAoe.Clear();
         affectedEnemies.Clear();

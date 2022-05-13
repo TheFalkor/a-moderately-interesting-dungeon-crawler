@@ -18,14 +18,15 @@ public class ArcaneBlast : Ability
 
     [Header("References")]
     private Player player;
-    private List<Tile> target = new List<Tile>();
+    private List<Tile> target = null;
 
     public override void HighlightDecisions(Tile currentTile)
     {
-        player = (Player)currentTile.GetOccupant();
+        if (!player)
+            player = (Player)currentTile.GetOccupant();
 
         affectedEnemies.Clear();
-        target.Clear();
+        target = null;
 
         dirN.Clear();
         dirE.Clear();
@@ -149,7 +150,7 @@ public class ArcaneBlast : Ability
         {
             if (dirN.Contains(tile))
             {
-                target.AddRange(dirN);
+                target = dirN;
                 animationTimer = 1f;
                 return true;
             }
@@ -159,7 +160,7 @@ public class ArcaneBlast : Ability
         {
             if (dirE.Contains(tile))
             {
-                target.AddRange(dirE);
+                target = dirE;
                 animationTimer = 1f;
                 return true;
             }
@@ -169,7 +170,7 @@ public class ArcaneBlast : Ability
         {
             if (dirS.Contains(tile))
             {
-                target.AddRange(dirS);
+                target = dirS;
                 animationTimer = 1f;
                 return true;
             }
@@ -179,7 +180,7 @@ public class ArcaneBlast : Ability
         {
             if (dirW.Contains(tile))
             {
-                target.AddRange(dirW);
+                target = dirW;
                 animationTimer = 1f;
                 return true;
             }

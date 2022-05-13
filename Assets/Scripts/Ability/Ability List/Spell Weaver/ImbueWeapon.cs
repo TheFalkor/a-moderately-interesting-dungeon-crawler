@@ -2,17 +2,60 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ImbueWeapon : MonoBehaviour
+public class ImbueWeapon : Ability
 {
-    // Start is called before the first frame update
-    void Start()
+    bool imbueActive = false;
+
+    [Header("References")]
+    private Player player;
+
+    public override void HighlightDecisions(Tile currentTile)
     {
-        
+        if (!player)
+            player = (Player)currentTile.GetOccupant();
+
+        Player.playerAttack += PlayerAttacked;
+        Player.playerEndTurn += PlayerTurnEnd;
+
+        currentTile.Highlight(HighlightType.ABILITY_TARGET);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override bool Tick(float deltaTime)
     {
-        
+        return true;
+    }
+
+    public override bool UseAbility(Tile tile)
+    {
+        if (imbueActive)
+            return false;
+
+        if (tile == player.currentTile)
+        {
+            player.ChangeMeleeDamage(data.abilityValue);
+            imbueActive = true;
+            return true;
+        }
+            
+        else
+            return false;
+    }
+
+    private void PlayerAttacked()
+    {
+        if (imbueActive)
+        {
+            player.ChangeMeleeDamage(data.abilityValue * -1);
+            imbueActive = false;
+        }
+    }
+
+    private void PlayerTurnEnd()
+    {
+        if (imbueActive)
+        {
+            player.ChangeMeleeDamage(data.abilityValue * -1);
+            imbueActive = false;
+        }
     }
 }

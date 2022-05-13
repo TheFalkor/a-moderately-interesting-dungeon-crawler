@@ -97,7 +97,7 @@ public class AbilityTree : MonoBehaviour
                 ability = new ArcaneBlast();
                 break;
             case AbilityID.IMBUE_WEAPON:
-                Debug.LogError("AbilityTree :: Forgot to create ability");
+                ability = new ImbueWeapon();
                 break;
             case AbilityID.CORRUPTED_GROUNDS:
                 ability = new CorruptedGrounds();
@@ -137,7 +137,7 @@ public class AbilityTree : MonoBehaviour
             case PassiveID.BLADE_DANCER:
                 passive = new BladeDancer();
                 break;
-            case PassiveID.ARCANE_BLAST:
+            case PassiveID.ARCANE_TRANSFERENCE:
                 Debug.LogError("AbilityTree :: Forgot to create ability");
                 break;
             case PassiveID.OVERLOAD:

@@ -25,6 +25,7 @@ MonoBehaviour:
   origin: 2
   startingAbilities:
   - {fileID: 11400000, guid: e576d5a484061ce44919500bf702af02, type: 2}
+  - {fileID: 11400000, guid: 3aa3bf6b885edbf4abedd7178037bafb, type: 2}
   unlockableAbilities: []
   unlockablePassives:
   - {fileID: 11400000, guid: c70430930ee912f4291bf194a3b1bebf, type: 2}
