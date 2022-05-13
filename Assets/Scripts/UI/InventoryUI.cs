@@ -321,6 +321,7 @@ public class InventoryUI : MonoBehaviour
             else if (selectedPassive)
                 AbilityTree.instance.UnlockPassive(selectedPassive);
 
+            AbilityTree.instance.skillPoints--;
             skillPointText.text = "Points Available: " + AbilityTree.instance.skillPoints;
 
             LoadAbilityUI();

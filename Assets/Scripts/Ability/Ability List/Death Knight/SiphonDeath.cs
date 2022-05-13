@@ -7,6 +7,7 @@ public class SiphonDeath : Ability
     [Header("Runtime Variables")]
     private Tile currentTile;
     private float animationTimer = 0;
+    private int markCount = 0;
 
     [Header("References")]
     private Player player;
@@ -17,7 +18,8 @@ public class SiphonDeath : Ability
         if (currentTile != tile)
             return false;
 
-        animationTimer = 1f;
+        animationTimer = 0.25f;
+        markCount = 0;
         
         return true;
     }
@@ -33,29 +35,31 @@ public class SiphonDeath : Ability
 
     public override bool Tick(float deltaTime)
     {
-        if (animationTimer > 0)
+        foreach (Entity entity in CombatManager.instance.entityList)
         {
-            animationTimer -= deltaTime;
-
-            Color color = player.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
-            color.a = 1 - Mathf.Cos((animationTimer - 0.5f) * Mathf.Deg2Rad * 180);
-            player.transform.GetChild(0).GetComponent<SpriteRenderer>().color = color;
-        }
-        else
-        {
-            int markCount = 0;
-            foreach (Entity entity in CombatManager.instance.entityList)
+            foreach (StatusEffect effect in entity.activeStatusEffects)
             {
-                foreach (StatusEffect effect in entity.activeStatusEffects)
+                if (effect.type == StatusType.DEATHMARK)
                 {
-                    if (effect.type == StatusType.DEATHMARK)
-                    {
-                        markCount++;
+                    markCount++;
 
-                        entity.activeStatusEffects.Remove(effect);
-                        break;
-                    }
+                    GameObject temp = Object.Instantiate(data.abilityVFX[1], entity.transform.position, Quaternion.identity);
+                    Object.Destroy(temp, 6 / 15f);
+
+                    entity.activeStatusEffects.Remove(effect);
+                    break;
                 }
+            }
+        }
+
+        animationTimer -= deltaTime;
+
+        if (animationTimer <= 0)
+        { 
+            if (markCount > 0)
+            {
+                GameObject tempSelf = Object.Instantiate(data.abilityVFX[0], player.transform.position, Quaternion.identity);
+                tempSelf.transform.parent = player.transform;
             }
 
             DungeonManager.instance.player.AddShield(markCount * data.abilityValue);

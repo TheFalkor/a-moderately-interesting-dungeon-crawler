@@ -111,7 +111,6 @@ public class DungeonManager : MonoBehaviour
 
         //Check Win Condition
         roomsCompleted++;
-        Debug.Log(roomsCompleted);
         if(roomsCompleted >= roomsAmount)
         {
             transitionAnimator.SetBool("Closed", true);

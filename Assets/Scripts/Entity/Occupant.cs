@@ -82,6 +82,10 @@ public abstract class Occupant : MonoBehaviour
             if (shield >= 0)
                 return;
 
+            Transform temp = transform.Find("SiphonDeathPlayerShieldVFX(Clone)");
+            if (temp)
+                Destroy(temp.gameObject);
+
             damage.damage += shield;
             shield = 0;
 

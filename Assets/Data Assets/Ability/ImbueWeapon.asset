@@ -21,3 +21,5 @@ MonoBehaviour:
   cooldown: 1
   abilityValue: 6
   abilityPrefab: {fileID: 0}
+  abilityVFX:
+  - {fileID: 1896953671905617120, guid: c85b69960032d28429c5a4afe2a34861, type: 3}

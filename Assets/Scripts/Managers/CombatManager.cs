@@ -88,6 +88,10 @@ public class CombatManager : MonoBehaviour
         entityList.Clear();
         turnQueue.Clear();
 
+        if (CombatUI.instance)
+            CombatUI.instance.UpdateAbilityUI();
+
+
         combatParent.SetActive(true);
 
         if (!player)
@@ -144,6 +148,7 @@ public class CombatManager : MonoBehaviour
         if (entityList.Count == 1)
         {
             combatActive = false;
+            AbilityManager.instance.ResetAbilityCooldown();
             VictoryManager.instance.ShowPopup();
         }
 

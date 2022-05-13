@@ -36,6 +36,17 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
+    public void ResetAbilityCooldown()
+    {
+        foreach (Ability ability in abilities)
+        {
+            if (ability == null)
+                continue;
+
+            ability.cooldown = 0;
+        }
+    }
+
     public void SetupUI()
     {
         for (int i = 0; i < abilities.Length; i++)

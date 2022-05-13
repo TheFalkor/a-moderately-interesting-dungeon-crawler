@@ -33,6 +33,8 @@ public class ImbueWeapon : Ability
         if (tile == player.currentTile)
         {
             player.ChangeMeleeDamage(data.abilityValue);
+            GameObject temp = Object.Instantiate(data.abilityVFX[0], player.transform.position, Quaternion.identity);
+            Object.Destroy(temp, 8 / 15f);
             imbueActive = true;
             return true;
         }
