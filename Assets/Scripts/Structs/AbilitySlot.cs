@@ -9,7 +9,7 @@ public class AbilitySlot
     private readonly GameObject marker;
     [Space]
     private Color COLOR_FULL = new Color(1, 1, 1, 1);
-    private Color COLOR_HALF = new Color(1, 1, 1, 0.25f);
+    private Color COLOR_HALF = new Color(1, 1, 1, 0.2f);
     [Space]
     private Sprite defaultSprite;
     private Sprite activeBorderSprite;
@@ -31,11 +31,12 @@ public class AbilitySlot
     {
         image.sprite = data.passiveSprite;
 
+        if (passiveBorderSprite)
+            image.transform.parent.GetComponent<Image>().sprite = passiveBorderSprite;
+
         if (AbilityTree.instance.IsPassiveUnlocked(data))
         {
             image.color = COLOR_FULL;
-            if (passiveBorderSprite)
-                image.transform.parent.GetComponent<Image>().sprite = passiveBorderSprite;
         }
         else
             image.color = COLOR_HALF;
@@ -47,16 +48,31 @@ public class AbilitySlot
     {
         image.sprite = data.abilitySprite;
 
+        if (activeBorderSprite)
+            image.transform.parent.GetComponent<Image>().sprite = activeBorderSprite;
+
         if (AbilityTree.instance.IsAbilityUnlocked(data))
         {
             image.color = COLOR_FULL;
-            if (activeBorderSprite)
-                image.transform.parent.GetComponent<Image>().sprite = activeBorderSprite;
         }
         else
             image.color = COLOR_HALF;
 
         image.gameObject.SetActive(true);
+    }
+
+    public void SetSlotActive(bool active)
+    {
+        if (active)
+        {
+            image.transform.parent.GetComponent<Button>().interactable = true;
+            image.color = COLOR_FULL;
+        }
+        else
+        {
+            image.transform.parent.GetComponent<Button>().interactable = false;
+            image.color = COLOR_HALF;
+        }
     }
     
     public void SelectSlot()

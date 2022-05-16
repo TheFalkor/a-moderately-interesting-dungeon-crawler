@@ -98,9 +98,9 @@ public class CombatManager : MonoBehaviour
 
         entityList.Add(player);
 
-        player.ResetPlayer();
 
         GridManager.instance.GenerateCombat(room);
+        player.ResetPlayer();
 
 
         combatIntroTimer = 0.5f;

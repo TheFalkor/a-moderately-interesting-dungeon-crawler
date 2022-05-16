@@ -52,6 +52,8 @@ public class InventoryUI : MonoBehaviour
     [Space]
     private PassiveSO selectedPassive;
     private AbilitySO selectedAbility;
+    private bool isSelectedClass = false;
+    private int selectedAbilityIndex = 0;
     [Space]
     private int currentTab = 0;
 
@@ -249,6 +251,9 @@ public class InventoryUI : MonoBehaviour
 
     public void SelectRaceAbility(int index)
     {
+        selectedAbilityIndex = index;
+        isSelectedClass = false;
+
         raceSlots[index].SelectSlot();
 
         if (player.baseStat.startingAbilities.Count > index)
@@ -270,6 +275,8 @@ public class InventoryUI : MonoBehaviour
 
     public void SelectClassAbility(int index)
     {
+        selectedAbilityIndex = index;
+        isSelectedClass = true;
         classSlots[index].SelectSlot();
 
         if (player.classStat.startingPassives.Count > index)
@@ -325,7 +332,11 @@ public class InventoryUI : MonoBehaviour
             skillPointText.text = "Points Available: " + AbilityTree.instance.skillPoints;
 
             LoadAbilityUI();
-            ShowItemInfo(null);
+
+            if (isSelectedClass)
+                SelectClassAbility(selectedAbilityIndex);
+            else
+                SelectRaceAbility(selectedAbilityIndex);
         }
     }
 
@@ -431,7 +442,6 @@ public class InventoryUI : MonoBehaviour
 
     private void ShowAbilityInfo(PassiveSO data)
     {
-
         selectedAbility = null;
         selectedPassive = data;
 

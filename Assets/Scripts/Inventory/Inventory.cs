@@ -173,7 +173,8 @@ public class Inventory : MonoBehaviour
                     item = new Sword((SwordSO)data);
                 break;
 
-            case ItemType.ARMOR: 
+            case ItemType.ARMOR:
+                item = new Armor((ArmorSO)data);
                 break;
 
             case ItemType.ACCESSORY: 

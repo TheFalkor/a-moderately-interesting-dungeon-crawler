@@ -24,6 +24,7 @@ public class Player : Entity
     [Header("Runtime Variables")]
     private LayerMask tileMask;
     private Inventory inventory;
+    private bool ranOutOfPoints = false;
 
 	[Header("VFX Prefabs")]
     public GameObject HealVFX;
@@ -72,7 +73,6 @@ public class Player : Entity
 
     public void ResetPlayer()
     {
-        currentTile.SetOccupant(null);
         transform.position = new Vector2(4.5f, 0.5f);
         currentTile = GridManager.instance.GetTileWorld(transform.position);
         currentTile.SetOccupant(this);
@@ -111,12 +111,19 @@ public class Player : Entity
         if (IsBusy())
             return false;
 
+        if (currentActionPoints == 0 && !ranOutOfPoints)
+        {
+            ranOutOfPoints = true;
+            CombatUI.instance.DisableAbilityUI();
+            CombatUI.instance.EnableEndTurnGlow();
+        }
 
         switch (state)
         {
             case PlayerState.MOVE_STATE:
                 if (currentActionPoints > 0 || currentMovementPoints > 0)
                     HighlightDecisions();
+
 
                 if (Input.GetMouseButtonUp(0))
                 {
@@ -285,7 +292,9 @@ public class Player : Entity
 
     public void EndTurn()
     {
+        ranOutOfPoints = false;
         GridManager.instance.ClearAllHighlights();
+        CombatUI.instance.DisableAbilityUI();
         turnEnded = true;
 
         if (playerEndTurn != null)

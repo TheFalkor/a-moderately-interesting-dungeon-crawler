@@ -9,12 +9,15 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private GameObject statsBox;
     [SerializeField] private Transform abilityBox;
     [SerializeField] private GameObject backgroundImage;
+    [SerializeField] private Animator endTurnAnimator;
+    [Space]
+    [SerializeField] private GameObject selectionMarker;
     private Text healthText;
     private Text attackText;
     private Text defenseText;
     private Text actionPointText;
     [Space]
-    private readonly List<Image> abilityIcons = new List<Image>();
+    private readonly List<AbilitySlot> abilitySlots = new List<AbilitySlot>();
     [Space]
     [SerializeField] private Text weaponButtonText;
     [Space]
@@ -50,7 +53,7 @@ public class CombatUI : MonoBehaviour
 
         for (int i = 1; i < abilityBox.childCount; i++)
         {
-            abilityIcons.Add(abilityBox.GetChild(i).GetChild(0).GetComponent<Image>());
+            abilitySlots.Add(new AbilitySlot(abilityBox.GetChild(i).GetChild(0).GetComponent<Image>(), selectionMarker));
         }
 
         if (ConsistentData.initialized)
@@ -68,6 +71,7 @@ public class CombatUI : MonoBehaviour
 
     public void SelectAbility(int index)
     {
+        selectionMarker.SetActive(false);
         Ability ability = AbilityManager.instance.GetAbility(index);
 
         if (ability != null && index != selectedAbilityIndex)
@@ -84,6 +88,8 @@ public class CombatUI : MonoBehaviour
 
             if (!player.SelectAbility(ability))
                 SelectAbility(index);
+            else
+                abilitySlots[index].SelectSlot();
         }
         else
             player.SelectAbility(null);
@@ -95,6 +101,12 @@ public class CombatUI : MonoBehaviour
     public void EndPlayerTurn()
     {
         player.EndTurn();
+        endTurnAnimator.SetBool("Glow", false);
+    }
+
+    public void EnableEndTurnGlow()
+    {
+        endTurnAnimator.SetBool("Glow", true);
     }
 
     public void SetAttackButton(bool active)
@@ -146,25 +158,34 @@ public class CombatUI : MonoBehaviour
 
             if (ability.cooldown > 0)
             {
-                abilityIcons[i].transform.parent.GetComponent<Button>().interactable = false;
-                abilityIcons[i].color = new Color(0.3f, 0.3f, 0.3f);
-                abilityIcons[i].transform.parent.GetChild(1).GetComponent<Text>().text = ability.cooldown.ToString();
+                abilitySlots[i].image.transform.parent.GetChild(1).GetComponent<Text>().text = ability.cooldown.ToString();
+                abilitySlots[i].SetSlotActive(false);
             }
             else
             {
-                abilityIcons[i].transform.parent.GetComponent<Button>().interactable = true;
-                abilityIcons[i].color = Color.white;
-                abilityIcons[i].transform.parent.GetChild(1).GetComponent<Text>().text = "";
+                abilitySlots[i].image.transform.parent.GetChild(1).GetComponent<Text>().text = "";
+                abilitySlots[i].SetSlotActive(true);
             }
         }
     }
 
+    public void DisableAbilityUI()
+    {
+        foreach (AbilitySlot slot in abilitySlots)
+            slot.SetSlotActive(false);
+    }
+
     public void SetAbilityIcon(int index, AbilitySO data)
     {
-        abilityIcons[index].gameObject.SetActive(true);
-        abilityIcons[index].sprite = data.abilitySprite;
-
-        abilityIcons[index].transform.parent.GetComponent<Hoverable>().SetInformation(data.abilityName, data.abilitySummary, data.abilityDescription);
+        if (data != null)
+        {
+            abilitySlots[index].SetSlot(data);
+            abilitySlots[index].image.transform.parent.GetComponent<Hoverable>().SetInformation(data.abilityName, data.abilitySummary, data.abilityDescription);
+        }
+        else
+        {
+            abilitySlots[index].SetSlotActive(false);
+        }
     }
 
     public void SetPortrait(Sprite sprite)
