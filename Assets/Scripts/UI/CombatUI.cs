@@ -8,6 +8,7 @@ public class CombatUI : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private GameObject statsBox;
     [SerializeField] private Transform abilityBox;
+    [SerializeField] private GameObject backgroundImage;
     private Text healthText;
     private Text attackText;
     private Text defenseText;
@@ -174,5 +175,12 @@ public class CombatUI : MonoBehaviour
     public void RotatePortrait(RectTransform body)
     {
         body.eulerAngles += new Vector3(0, 0, -90);
+
+        // Cat Rave Feature
+        if (body.name == "Inventory Profile Icon" && body.eulerAngles.z == 180)
+            backgroundImage.SetActive(false);
+        else
+            backgroundImage.SetActive(true);
+
     }
 }
