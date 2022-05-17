@@ -9,7 +9,8 @@ public class EnemySwordBehaviour : EnemyBehaviour
     private EnemySensing Senses;
     [SerializeField]
     private int pebbleRange = 3;
-    private Tile futurePlayerPosition;
+    private Tile futurePosition;
+    private bool pathingToPlayer = true;
 
     private Queue<Action> actionQueue = new Queue<Action>();
 
@@ -22,38 +23,45 @@ public class EnemySwordBehaviour : EnemyBehaviour
     {
         actionPoints = ap;
         freeMoves = mp;
-        futurePlayerPosition = Senses.myself.currentTile;
+        futurePosition = Senses.myself.currentTile;
+        pathingToPlayer = true;
         actionQueue.Clear();
 
         Queue<Tile> pathToPlayer = Senses.GetPathToPlayer();
+
+        if (pathToPlayer.Count == 0)
+        {
+            pathingToPlayer = false;
+            pathToPlayer = Senses.GetPathToClosestEnemy();
+        }
 
         while (actionPoints > 0)
         {
             int distance = pathToPlayer.Count;
 
-            if (futurePlayerPosition.orthogonalNeighbors.Contains(Senses.player.currentTile))
-            {
-                actionQueue.Enqueue(new Action(ActionType.MELEE_ATTACK, pathToPlayer.Peek()));
-                actionPoints--;
-            }
-
-            else if (futurePlayerPosition.diagonalNeighbors.Contains(Senses.player.currentTile))
+            if (futurePosition.orthogonalNeighbors.Contains(Senses.player.currentTile))
             {
                 actionQueue.Enqueue(new Action(ActionType.MELEE_ATTACK, Senses.player.currentTile));
                 actionPoints--;
             }
 
-            else if (actionPoints == 1 && freeMoves == 0 && distance <= pebbleRange /*&& Senses.CheckLineOfSight(futurePlayerPosition.transform.position)*/)
+            else if (futurePosition.diagonalNeighbors.Contains(Senses.player.currentTile))
+            {
+                actionQueue.Enqueue(new Action(ActionType.MELEE_ATTACK, Senses.player.currentTile));
+                actionPoints--;
+            }
+
+            else if (actionPoints == 1 && freeMoves == 0 && distance <= pebbleRange && pathingToPlayer /*&& Senses.CheckLineOfSight(futurePlayerPosition.transform.position)*/)
             {
                 actionQueue.Enqueue(new Action(ActionType.PEBBLE, pathToPlayer.Peek()));
                 actionPoints--;
             }
 
-            else
+            else if (pathToPlayer.Count > 0)
             {
-                if (allowMovement)
+                if (allowMovement && !pathToPlayer.Peek().IsOccupied())
                 {
-                    futurePlayerPosition = pathToPlayer.Peek();
+                    futurePosition = pathToPlayer.Peek();
                     actionQueue.Enqueue(new Action(ActionType.MOVE, pathToPlayer.Dequeue()));
                 }
 
@@ -62,6 +70,9 @@ public class EnemySwordBehaviour : EnemyBehaviour
                 else
                     actionPoints--;
             }
+
+            else
+                actionPoints = 0;
         }
 
         return actionQueue;

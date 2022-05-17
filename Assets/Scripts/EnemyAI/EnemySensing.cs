@@ -23,6 +23,37 @@ public class EnemySensing
         return pathfinder.CreatePath(myself.currentTile, player.currentTile);
     }
 
+    public Queue<Tile> GetPathToClosestEnemy()
+    {
+        Queue<Tile> path = new Queue<Tile>();
+        float distanceFromPlayer = Vector2.Distance(myself.transform.position, player.transform.position);
+
+        foreach (Entity e in CombatManager.instance.entityList)
+        {
+            if (e.originType != DamageOrigin.ENEMY)
+                continue;
+
+            if (e == myself)
+                continue;
+
+            if (Vector2.Distance(e.transform.position, player.transform.position) < distanceFromPlayer)
+            {
+                Queue<Tile> pathToEnemy = pathfinder.CreatePath(myself.currentTile, e.currentTile);
+
+                if (pathToEnemy.Count > 0)
+                {
+                    path.Clear();
+                    while (pathToEnemy.Count > 0)
+                        path.Enqueue(pathToEnemy.Dequeue());
+
+                    distanceFromPlayer = Vector2.Distance(e.transform.position, player.transform.position);
+                }
+            }
+        }
+
+        return path;
+    }
+
     public Queue<Tile> GetSpearPathToPlayer()
     {
         Queue<Tile> output = GetPathToPlayer();
@@ -49,7 +80,9 @@ public class EnemySensing
             if (t.IsWalkable() && !t.IsOccupied())
                 temp = pathfinder.CreatePath(myself.currentTile, t);
 
-            if (temp.Count < output.Count)
+            if (output.Count == 0)
+                output = temp;
+            else if (temp.Count < output.Count && temp.Count > 0)
                 output = temp;
         }
 

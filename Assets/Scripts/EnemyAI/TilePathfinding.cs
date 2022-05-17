@@ -60,7 +60,13 @@ public class TilePathfinding
 
         while(!pathFound)
         {
+            if (cellsToCheck.Count == 0)
+                break;
+
             Stack<Cell> newCells = ScanCell(GetCellToCheck());
+
+            if (newCells.Count == 0)
+                break;
 
             if (newCells.Peek().gridPosition == targetTile.GetPosition())
             {

@@ -8,8 +8,9 @@ public class EnemySpearBehaviour : EnemyBehaviour
     private int freeMoves = 0;
     private EnemySensing Senses;
     [SerializeField]
-    private int pebbleRange = 3;
+    private int pebbleRange = 1;
     private Tile futurePosition;
+    private bool pathingToPlayer;
 
     private Queue<Action> actionQueue = new Queue<Action>();
 
@@ -23,15 +24,22 @@ public class EnemySpearBehaviour : EnemyBehaviour
         actionPoints = ap;
         freeMoves = mp;
         futurePosition = Senses.myself.currentTile;
+        pathingToPlayer = true;
         actionQueue.Clear();
 
         Queue<Tile> pathToPlayer = Senses.GetSpearPathToPlayer();
+
+        if (pathToPlayer.Count == 0)
+        {
+            pathingToPlayer = false;
+            pathToPlayer = Senses.GetPathToClosestEnemy();
+        }
 
         while (actionPoints > 0)
         {
             int distance = pathToPlayer.Count;
 
-            if (PlayerInMainTile() && actionPoints > 0)
+            if (PlayerInMainTile())
             {
                 actionQueue.Enqueue(new Action(ActionType.MELEE_ATTACK, Senses.player.currentTile));
                 actionPoints--;
@@ -49,19 +57,19 @@ public class EnemySpearBehaviour : EnemyBehaviour
 
             else if (futurePosition.orthogonalNeighbors.Contains(Senses.player.currentTile))
             {
-                actionQueue.Enqueue(new Action(ActionType.MELEE_ATTACK, Senses.player.currentTile));
+                actionQueue.Enqueue(new Action(ActionType.SPLASH_ATTACK, Senses.player.currentTile));
                 actionPoints--;
             }
 
-            else if (actionPoints == 1 && freeMoves == 0 && distance <= pebbleRange /*&& Senses.CheckLineOfSight(futurePlayerPosition.transform.position)*/)
+            else if (actionPoints == 1 && freeMoves == 0 && distance <= pebbleRange && pathingToPlayer /*&& Senses.CheckLineOfSight(futurePlayerPosition.transform.position)*/)
             {
-                actionQueue.Enqueue(new Action(ActionType.PEBBLE, pathToPlayer.Peek()));
+                actionQueue.Enqueue(new Action(ActionType.PEBBLE, Senses.player.currentTile));
                 actionPoints--;
             }
 
-            else
+            else if (pathToPlayer.Count > 0)
             {
-                if (allowMovement)
+                if (allowMovement && !pathToPlayer.Peek().IsOccupied())
                 {
                     futurePosition = pathToPlayer.Peek();
                     actionQueue.Enqueue(new Action(ActionType.MOVE, pathToPlayer.Dequeue()));
@@ -72,6 +80,9 @@ public class EnemySpearBehaviour : EnemyBehaviour
                 else
                     actionPoints--;
             }
+
+            else
+                actionPoints = 0;
         }
 
         return actionQueue;

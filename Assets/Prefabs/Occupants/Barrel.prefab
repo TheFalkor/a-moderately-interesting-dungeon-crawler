@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damagePopup: {fileID: 7620306153505864841, guid: f08a4a53d0af0124db00bdeb9ddcee2f, type: 3}
+  overheadPrefab: {fileID: 6743759221455466709, guid: 139e3a25812822247958f097628a21d3, type: 3}
   baseStat: {fileID: 11400000, guid: 7d226b0f157d210488091ecebef5b583, type: 2}
   shield: 0
   originType: 0

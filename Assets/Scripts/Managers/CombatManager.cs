@@ -96,10 +96,9 @@ public class CombatManager : MonoBehaviour
         if (!player)
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
-        entityList.Add(player);
-
-
         GridManager.instance.GenerateCombat(room);
+        entityList.Add(player);
+        entityList.Reverse();
         player.ResetPlayer();
 
 

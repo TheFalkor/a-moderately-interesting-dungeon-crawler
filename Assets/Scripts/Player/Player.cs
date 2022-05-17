@@ -453,6 +453,8 @@ public class Player : Entity
         if (CombatUI.instance)
             CombatUI.instance.UpdateHealth(currentHealth, maxhealth, shield);
 
+        overhead.UpdateHealthbar(currentHealth / (float)maxhealth);
+
         GameObject healVFX = Instantiate(HealVFX, gameObject.transform.GetChild(0));
         Destroy(healVFX, 0.5f);
     }

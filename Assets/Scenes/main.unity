@@ -1121,7 +1121,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &89828507
 Transform:
   m_ObjectHideFlags: 0
@@ -24897,6 +24897,10 @@ PrefabInstance:
       propertyPath: classStat
       value: 
       objectReference: {fileID: 11400000, guid: a5af1d4bfc4e7cf45b1e7d0dcf2fadcf, type: 2}
+    - target: {fileID: 4352417484911601, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
+      propertyPath: overheadPrefab
+      value: 
+      objectReference: {fileID: 6743759221455466709, guid: 139e3a25812822247958f097628a21d3, type: 3}
     - target: {fileID: 4352417484911601, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
       propertyPath: testdeleteimmediately
       value: 

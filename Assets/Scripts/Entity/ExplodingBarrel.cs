@@ -16,6 +16,7 @@ public class ExplodingBarrel : Occupant
         base.Initialize();
 
         audioKor = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioKor>();
+        overhead.UpdateHealthbar(currentHealth / (float)maxhealth);
     }
 
     protected override void Death()
