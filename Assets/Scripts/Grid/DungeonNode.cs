@@ -21,6 +21,8 @@ public class DungeonNode : MonoBehaviour
 
     [Header("Runtime Variables")]
     [HideInInspector] public bool completed = true;
+    private SpriteRenderer render;
+    [Space]
     private SpriteRenderer northRender;
     private SpriteRenderer eastRender;
     private SpriteRenderer southRender;
@@ -33,7 +35,7 @@ public class DungeonNode : MonoBehaviour
         
         foreach (Vector3 dir in directionList)
         {
-            RaycastHit2D hit = Physics2D.Linecast(transform.position + dir / 1.5f, transform.position + dir * 2);
+            RaycastHit2D hit = Physics2D.Linecast(transform.position + dir / 1.2f, transform.position + dir * 2);
 
             if (hit)
             {
@@ -45,6 +47,8 @@ public class DungeonNode : MonoBehaviour
 
     void Start()
     {
+        render = GetComponent<SpriteRenderer>();
+
         foreach (DungeonNode node in connectedNodes)
         {
             Vector2 direction = node.transform.position - transform.position;
@@ -110,11 +114,12 @@ public class DungeonNode : MonoBehaviour
         if (completed)
             return false;
 
+        render.color = Color.white;
+
         CombatManager.instance.StartCombat(room);
         DungeonManager.instance.ToggleDungeonVisibility(false);
 
         return true;
-        //MarkCompleted();    // tmp
     }
 
     public void MarkCompleted()
@@ -149,5 +154,16 @@ public class DungeonNode : MonoBehaviour
 
         foreach (DungeonNode node in connectedNodes)
             node.gameObject.SetActive(true);
+    }
+
+    private void OnMouseEnter()
+    {
+        if (!completed)
+            render.color = new Color(0.85f, 0.85f, 0.85f);
+    }
+
+    private void OnMouseExit()
+    {
+        render.color = Color.white;
     }
 }

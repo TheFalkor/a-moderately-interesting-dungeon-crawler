@@ -11,7 +11,10 @@ public class Tile : MonoBehaviour
     private TileEffect tileEffect;
     [HideInInspector] public List<Tile> orthogonalNeighbors = new List<Tile>();
     [HideInInspector] public List<Tile> diagonalNeighbors = new List<Tile>();
+    private bool isHovering = false;
 
+    [Header("SpriteRenderer References")]
+    private SpriteRenderer render;
     private SpriteRenderer highlightRender;
     private SpriteRenderer cornerRender;
 
@@ -21,11 +24,14 @@ public class Tile : MonoBehaviour
     [SerializeField] private Color COLOR_SPLASH;
     [SerializeField] private Color COLOR_ABILITY;
     [SerializeField] private Color COLOR_HEALABLE;
+    [Space]
+    [SerializeField] private Color COLOR_TILE_HOVER;
 
 
     public void Initialize(Vector2Int pos)
     {
         gridPosition = pos;
+        render = GetComponent<SpriteRenderer>();
         highlightRender = transform.GetChild(1).GetComponent<SpriteRenderer>();
         cornerRender = transform.GetChild(2).GetComponent<SpriteRenderer>();
     }
@@ -108,7 +114,11 @@ public class Tile : MonoBehaviour
         if (isWalkable)
         {
             if (!(!allowOccupant && IsOccupied()))
+            {
                 highlightRender.gameObject.SetActive(true);
+                if (isHovering)
+                    render.color = COLOR_TILE_HOVER;
+            }
         }
 
         cornerRender.gameObject.SetActive(true);
@@ -156,6 +166,22 @@ public class Tile : MonoBehaviour
     {
         highlightRender.gameObject.SetActive(false); 
         cornerRender.gameObject.SetActive(false);
+        render.color = Color.white;
     }
 
+    private void OnMouseEnter()
+    {
+        isHovering = true;
+
+        if (transform.GetChild(1).gameObject.activeSelf)
+            render.color = COLOR_TILE_HOVER;
+        else
+            render.color = Color.white;
+    }
+
+    private void OnMouseExit()
+    {
+        isHovering = false;
+        render.color = Color.white;
+    }
 }

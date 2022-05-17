@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
-    public enum EnemyBehaviourType
+    private enum EnemyBehaviourType
     {
         SIMPLE_MELEE,
-        TestDoNotSelect
+        DUMB,
+        SWORD,
+        SPEAR
     }
 
     [SerializeField]
@@ -34,6 +36,14 @@ public class Enemy : Entity
         {
             case EnemyBehaviourType.SIMPLE_MELEE:
                 Behaviour = new EnemySimpleMeleeBehaviour();
+                break;
+
+            case EnemyBehaviourType.DUMB:
+                Behaviour = new EnemyDumbBehaviour();
+                break;
+
+            case EnemyBehaviourType.SWORD:
+                Behaviour = new EnemySwordBehaviour();
                 break;
 
             default:
@@ -90,7 +100,7 @@ public class Enemy : Entity
         switch (currentAction.action)
         {
             case ActionType.MOVE:
-                Move(currentAction.direction);
+                EnemyMove(currentAction.target);
                 break;
 
             case ActionType.MELEE_ATTACK:
@@ -107,28 +117,30 @@ public class Enemy : Entity
         }
     }
 
+    private void EnemyMove(Tile target)
+    {
+        Vector2Int direction = target.GetPosition() - currentTile.GetPosition();
+
+        if (direction == Vector2Int.down)
+            Move(Direction.NORTH);
+        else if (direction == Vector2Int.right)
+            Move(Direction.EAST);
+        else if (direction == Vector2Int.up)
+            Move(Direction.SOUTH);
+        else if (direction == Vector2Int.left)
+            Move(Direction.WEST);
+        else
+            Debug.LogError("ENEMY MOVE BROKE AAAAAAAAAAAA (invalid target)");
+    }
+
     private void MeleeAttack(Action action)
     {
 
         transform.GetChild(0).GetComponent<Animator>().Play("Attack");
-        // TO DO : check the weapon of the enemy
+
         Damage damage = new Damage(meleeDamage, originType);
 
-        switch(action.direction)
-        {
-            case Direction.NORTH:
-                Attack(GridManager.instance.GetTile(currentTile.GetPosition() + Vector2Int.down), damage);
-                break;
-            case Direction.EAST:
-                Attack(GridManager.instance.GetTile(currentTile.GetPosition() + Vector2Int.right), damage);
-                break;
-            case Direction.SOUTH:
-                Attack(GridManager.instance.GetTile(currentTile.GetPosition() + Vector2Int.up), damage);
-                break;
-            case Direction.WEST:
-                Attack(GridManager.instance.GetTile(currentTile.GetPosition() + Vector2Int.left), damage);
-                break;
-        }
+        Attack(action.target, damage);
 
         return;
     }

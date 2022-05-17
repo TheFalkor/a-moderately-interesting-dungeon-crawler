@@ -29,7 +29,7 @@ public class Player : Entity
 	[Header("VFX Prefabs")]
     public GameObject HealVFX;
 
-    // EVENTS DELEGATEs
+    // EVENT DELEGATEs
     public delegate void MoveEvent(Tile t);
     public static event MoveEvent playerMove;
 
@@ -69,6 +69,31 @@ public class Player : Entity
         baseRangeDamage += classStat.bonusRangeDamage;
 
         audioKor = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioKor>();
+    }
+
+    public void RecalculateStats()
+    {
+        int newHealth = baseStat.maxHealth + classStat.bonusHealth;
+        if (inventory.equippedArmor != null)
+            newHealth += inventory.equippedArmor.health;
+
+        int newDamage = baseStat.baseMeleeDamage + classStat.bonusMeleeDamage;
+        if (inventory.equippedArmor != null)
+            newDamage += inventory.equippedArmor.damage;
+
+        int newDefense = baseStat.defense + classStat.bonusDefense;
+        if (inventory.equippedArmor != null)
+            newDefense += inventory.equippedArmor.defense;
+
+        if (newHealth != maxhealth)
+        {
+            float perc = currentHealth / maxhealth;
+            maxhealth = newHealth;
+            currentHealth = (int)(perc * maxhealth);
+        }
+
+        meleeDamage = newDamage;
+        defense = newDefense;
     }
 
     public void ResetPlayer()
@@ -369,6 +394,10 @@ public class Player : Entity
 
         if (strikes.Count == 0)
             return;
+
+        Vector2 faceDirection = new Vector2(currentTile.GetPosition().x - strikes[0].tile.GetPosition().x, 0);
+        if (faceDirection.x != 0)
+            transform.localScale = new Vector3(faceDirection.normalized.x, 1);
 
         foreach (WeaponStrike ws in strikes)
         {

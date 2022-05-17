@@ -7,7 +7,7 @@ public class TilePathfinding
     private bool canFly = false;
     private Tile targetTile;
 
-    public Queue<Direction> path = new Queue<Direction>();
+    public Queue<Tile> path = new Queue<Tile>();
     private List<Cell> cellsToCheck = new List<Cell>();
     private List<Cell> cellsChecked = new List<Cell>();
 
@@ -44,7 +44,7 @@ public class TilePathfinding
         }
     }
 
-    public Queue<Direction> CreatePath(Tile start,  Tile target)
+    public Queue<Tile> CreatePath(Tile start,  Tile target)
     {
         targetTile = target;
         //canFly = flight;
@@ -179,7 +179,7 @@ public class TilePathfinding
         if (targetCell.parent != null)
         {
             recursiveCreatePath(targetCell.parent);
-            path.Enqueue(GetDirection(targetCell));
+            path.Enqueue(targetCell.tileReference);
         }
 
         return;

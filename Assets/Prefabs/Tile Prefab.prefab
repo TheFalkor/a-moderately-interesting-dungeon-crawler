@@ -92,6 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4910670055736051361}
   - component: {fileID: 844126210199522390}
+  - component: {fileID: 6754992967356412001}
   m_Layer: 0
   m_Name: Highlight
   m_TagString: Untagged
@@ -164,6 +165,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &6754992967356412001
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3044171778486702834}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b18828eaddaad4246b0cd84281da3108, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4120879496890394740
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,6 +290,7 @@ MonoBehaviour:
   COLOR_SPLASH: {r: 0.8235294, g: 0.5254902, b: 0.5254902, a: 0.29411766}
   COLOR_ABILITY: {r: 0.7169812, g: 0.22659309, b: 0.7169812, a: 0.29411766}
   COLOR_HEALABLE: {r: 0.22745098, g: 0.5411765, b: 0.22745098, a: 0.29411766}
+  COLOR_TILE_HOVER: {r: 0.8627451, g: 0.8627451, b: 0.8627451, a: 1}
 --- !u!61 &-7567884143616966213
 BoxCollider2D:
   m_ObjectHideFlags: 0

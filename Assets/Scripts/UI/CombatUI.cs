@@ -21,7 +21,9 @@ public class CombatUI : MonoBehaviour
     [Space]
     [SerializeField] private Text weaponButtonText;
     [Space]
-    [SerializeField] private Image playerPortrait;
+    [SerializeField] private Image combatPortrait;
+    [SerializeField] private Image inventoryPortrait;
+    [SerializeField] private Image victoryPortrait;
 
 
     [Header("Game Variables")]
@@ -190,18 +192,20 @@ public class CombatUI : MonoBehaviour
 
     public void SetPortrait(Sprite sprite)
     {
-        playerPortrait.sprite = sprite;
+        combatPortrait.sprite = sprite;
     }
 
-    public void RotatePortrait(RectTransform body)
+    public void RotatePortrait()
     {
-        body.eulerAngles += new Vector3(0, 0, -90);
+        combatPortrait.rectTransform.eulerAngles += new Vector3(0, 0, -90);
+        inventoryPortrait.rectTransform.eulerAngles += new Vector3(0, 0, -90);
+        victoryPortrait.rectTransform.eulerAngles += new Vector3(0, 0, -90);
 
         // Cat Rave Feature
-        if (body.name == "Inventory Profile Icon" && body.eulerAngles.z == 180)
-            backgroundImage.SetActive(false);
-        else
+        if (combatPortrait.rectTransform.eulerAngles.z == 180)
             backgroundImage.SetActive(true);
+        else
+            backgroundImage.SetActive(false);
 
     }
 }

@@ -18,7 +18,7 @@ public class EnemySensing
         pathfinder = new TilePathfinding();
     }
 
-    public Queue<Direction> GetPathToPlayer()
+    public Queue<Tile> GetPathToPlayer()
     {
         return pathfinder.CreatePath(myself.currentTile, player.currentTile);
     }

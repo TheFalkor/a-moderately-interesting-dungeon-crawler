@@ -9,11 +9,11 @@ public enum ActionType
 public struct Action
 {
     public ActionType action;
-    public Direction direction;
+    public Tile target;
 
-    public Action(ActionType type, Direction dir)
+    public Action(ActionType type, Tile t)
     {
         action = type;
-        direction = dir;
+        target = t;
     }
 }

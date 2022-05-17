@@ -19,11 +19,11 @@ public class Armor : EquippableItem
 
     public override void OnEquip()
     {
-
+        DungeonManager.instance.player.RecalculateStats();
     }
 
     public override void OnUnequip()
     {
-
+        DungeonManager.instance.player.RecalculateStats();
     }
 }

@@ -38,6 +38,8 @@ public class Spear : Weapon
 
                 Vector2 direction = strikeAoE.mainTile.transform.position - currentTile.transform.position;
                 GameObject vfx = Object.Instantiate(attackVFX, currentTile.transform.position + (Vector3)direction / 1.5f, Quaternion.identity);
+                if (direction.y == 0)
+                    vfx.transform.position += new Vector3(0, 0.5f);
                 vfx.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
                 Object.Destroy(vfx, 9 / 15f);
             }

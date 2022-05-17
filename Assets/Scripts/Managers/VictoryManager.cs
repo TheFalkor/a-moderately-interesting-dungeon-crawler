@@ -23,7 +23,7 @@ public class VictoryManager : MonoBehaviour
     private string raceName;
 
     [Header("Runtime Variables")]
-    private int level = 1;
+    private int level = 0;
 
     [Header("GameObject References")]
     private Player player;
@@ -42,13 +42,6 @@ public class VictoryManager : MonoBehaviour
         lvlText = textBox.transform.Find("Level & Race Text").GetComponent<Text>();
         xpText = textBox.transform.Find("XP Text").GetComponent<Text>();
         moneyText = textBox.transform.Find("Money Text").GetComponent<Text>();
-
-        /*if (ConsistentData.initialized)
-        {
-            raceName = ConsistentData.playerBaseStat.entityName;
-            className = ConsistentData.playerClassStat.className;
-            SetPortrait(ConsistentData.playerBaseStat.entitySprite);
-        }*/
     }
 
     private void Start()
@@ -85,6 +78,9 @@ public class VictoryManager : MonoBehaviour
 
     public void ReturnDungeon()
     {
+        if (count)
+            return;
+
         count = true;
         timer = 0;
         DungeonManager.instance.WonRoom();
@@ -95,7 +91,7 @@ public class VictoryManager : MonoBehaviour
     {
         lvlText.text = "Lv." + level + " " + raceName + ", " + className;
         //xpText.text = "XP: " + player.currentExp.ToString() + "/" + player.levelExp.ToString() + " (" + expGain.ToString() + ")";
-        moneyText.text = "You have gained an ability point!";
+        moneyText.text = "You have gained an Ability Point!";
     }
 
     public void SetPortrait(Sprite sprite)
