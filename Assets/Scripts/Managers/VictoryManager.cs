@@ -91,6 +91,7 @@ public class VictoryManager : MonoBehaviour
     {
         lvlText.text = "Lv." + level + " " + raceName + ", " + className;
         //xpText.text = "XP: " + player.currentExp.ToString() + "/" + player.levelExp.ToString() + " (" + expGain.ToString() + ")";
+        xpText.text = "";
         moneyText.text = "You have gained an Ability Point!";
     }
 
