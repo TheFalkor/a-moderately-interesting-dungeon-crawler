@@ -11,6 +11,9 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Transform equipmentBox;
     [Space]
     [SerializeField] private Transform playerStatBox;
+    [Space]
+    [SerializeField] private Button inventoryTabButton;
+    [SerializeField] private Button abilityTabButton;
     private Text healthText;
     private Text attackText;
     private Text defenseText;
@@ -139,6 +142,9 @@ public class InventoryUI : MonoBehaviour
 
         if (index == 0)
         {
+            inventoryTabButton.interactable = false;
+            abilityTabButton.interactable = true;
+
             SelectItem(0);
             inventoryBox.gameObject.SetActive(true);
             abilityBox.gameObject.SetActive(false);
@@ -147,6 +153,9 @@ public class InventoryUI : MonoBehaviour
         }
         else
         {
+            inventoryTabButton.interactable = true;
+            abilityTabButton.interactable = false;
+
             ShowItemInfo(null);
 
             selectionMarker.SetActive(false);
@@ -200,7 +209,7 @@ public class InventoryUI : MonoBehaviour
         profileIcon.sprite = player.baseStat.entitySprite;
 
         raceText.text = player.baseStat.entityName;
-        classText.text = "Lv. 0 " + player.classStat.className;
+        classText.text = "Lv. " + AbilityTree.instance.playerLevel + " " + player.classStat.className;
     }
 
     public void UpdatePlayerStats(int currentHealth, int maxHealth, int defense, int damage)
@@ -328,7 +337,6 @@ public class InventoryUI : MonoBehaviour
             else if (selectedPassive)
                 AbilityTree.instance.UnlockPassive(selectedPassive);
 
-            AbilityTree.instance.skillPoints--;
             skillPointText.text = "Points Available: " + AbilityTree.instance.skillPoints;
 
             LoadAbilityUI();

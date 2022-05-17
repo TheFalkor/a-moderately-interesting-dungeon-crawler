@@ -204,7 +204,7 @@ public class CombatUI : MonoBehaviour
         // Cat Rave Feature
         if (combatPortrait.rectTransform.eulerAngles.z == 180)
             backgroundImage.SetActive(true);
-        else
+        else if (combatPortrait.rectTransform.eulerAngles.z == 0)
             backgroundImage.SetActive(false);
 
     }

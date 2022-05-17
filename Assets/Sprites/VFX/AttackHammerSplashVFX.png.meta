@@ -1,49 +1,28 @@
 fileFormatVersion: 2
-guid: 5ee78026cb2814742b0adb9c8f98f5dd
+guid: f037eb1ab1861cb43b33e72b98600bee
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5093218744412124922
-    second: AttackHammerVFX_0
+      213: -6453525676762095116
+    second: AttackHammerSplashVFX_0
   - first:
-      213: -2669174648434732214
-    second: AttackHammerVFX_1
+      213: -4480736953913551715
+    second: AttackHammerSplashVFX_1
   - first:
-      213: 2432982872548808991
-    second: AttackHammerVFX_2
+      213: 3432423821889809603
+    second: AttackHammerSplashVFX_2
   - first:
-      213: 5578783551822518046
-    second: AttackHammerVFX_3
+      213: -2615592149867024990
+    second: AttackHammerSplashVFX_3
   - first:
-      213: -8622533760291058488
-    second: AttackHammerVFX_4
+      213: 1132269769937078863
+    second: AttackHammerSplashVFX_4
   - first:
-      213: -6466906773603378991
-    second: AttackHammerVFX_5
+      213: 2227523436179130125
+    second: AttackHammerSplashVFX_5
   - first:
-      213: 1250828559649048834
-    second: AttackHammerVFX_6
-  - first:
-      213: 5014965645075744051
-    second: AttackHammerVFX_7
-  - first:
-      213: -3497170763031433587
-    second: AttackHammerVFX_8
-  - first:
-      213: 5356223512570659108
-    second: AttackHammerVFX_9
-  - first:
-      213: 4761356989485696046
-    second: AttackHammerVFX_10
-  - first:
-      213: -5555946541537940785
-    second: AttackHammerVFX_11
-  - first:
-      213: -1543087421149609355
-    second: AttackHammerVFX_12
-  - first:
-      213: -8665168377607557561
-    second: AttackHammerVFX_13
+      213: 272151393590327503
+    second: AttackHammerSplashVFX_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -145,34 +124,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AttackHammerVFX_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 24
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 60944f779804159b0800000000000000
-      internalID: -5093218744412124922
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AttackHammerVFX_1
+      name: AttackHammerSplashVFX_0
       rect:
         serializedVersion: 2
         x: 24
         y: 0
         width: 24
-        height: 24
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -180,20 +138,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a43d1949ccf25fad0800000000000000
-      internalID: -2669174648434732214
+      spriteID: 4f1abb7d6987076a0800000000000000
+      internalID: -6453525676762095116
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AttackHammerVFX_2
+      name: AttackHammerSplashVFX_1
       rect:
         serializedVersion: 2
         x: 48
         y: 0
         width: 24
-        height: 24
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -201,20 +159,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f1991e63801b3c120800000000000000
-      internalID: 2432982872548808991
+      spriteID: d94540afa7931d1c0800000000000000
+      internalID: -4480736953913551715
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AttackHammerVFX_3
+      name: AttackHammerSplashVFX_2
       rect:
         serializedVersion: 2
         x: 72
         y: 0
         width: 24
-        height: 24
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -222,20 +180,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e175c2d2512db6d40800000000000000
-      internalID: 5578783551822518046
+      spriteID: 3cca45eb74b62af20800000000000000
+      internalID: 3432423821889809603
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AttackHammerVFX_4
+      name: AttackHammerSplashVFX_3
       rect:
         serializedVersion: 2
         x: 96
         y: 0
         width: 24
-        height: 24
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -243,20 +201,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ccc90aaa3b965880800000000000000
-      internalID: -8622533760291058488
+      spriteID: 2ad20e53ccc83bbd0800000000000000
+      internalID: -2615592149867024990
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AttackHammerVFX_5
+      name: AttackHammerSplashVFX_4
       rect:
         serializedVersion: 2
         x: 120
         y: 0
         width: 24
-        height: 24
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -264,20 +222,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d89dc37d8ee046a0800000000000000
-      internalID: -6466906773603378991
+      spriteID: f4a43035b51a6bf00800000000000000
+      internalID: 1132269769937078863
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AttackHammerVFX_6
+      name: AttackHammerSplashVFX_5
       rect:
         serializedVersion: 2
         x: 144
         y: 0
         width: 24
-        height: 24
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -285,20 +243,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2098bc4a2f5db5110800000000000000
-      internalID: 1250828559649048834
+      spriteID: d07805663c0c9ee10800000000000000
+      internalID: 2227523436179130125
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AttackHammerVFX_7
+      name: AttackHammerSplashVFX_6
       rect:
         serializedVersion: 2
         x: 168
         y: 0
         width: 24
-        height: 24
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -306,8 +264,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 335078b0facb89540800000000000000
-      internalID: 5014965645075744051
+      spriteID: fc834142040e6c300800000000000000
+      internalID: 272151393590327503
       vertices: []
       indices: 
       edges: []

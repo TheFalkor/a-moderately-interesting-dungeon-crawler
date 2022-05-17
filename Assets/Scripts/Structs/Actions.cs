@@ -2,6 +2,7 @@ public enum ActionType
 {
     MOVE,
     MELEE_ATTACK,
+    SPLASH_ATTACK,
     RANGED_ATTACK,
     PEBBLE
 }

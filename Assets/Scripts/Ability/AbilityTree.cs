@@ -1,17 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AbilityTree : MonoBehaviour
 {
+    [Header("GameObject References")]
+    [SerializeField] private Text abilityNotificationText;
+    [SerializeField] private GameObject tabWhiteNotification;
+
+    [Header("Runtime Variables")]
     private readonly List<bool> unlockedAbilityList = new List<bool>();
     private readonly List<AbilitySO> abilityList = new List<AbilitySO>();
-
+    [Space]
     private readonly List<bool> unlockedPassiveList = new List<bool>();
     private readonly List<PassiveSO> passiveList = new List<PassiveSO>();
-
+    [Space]
     private Player player;
-    public int skillPoints = 0;
+    [HideInInspector] public int skillPoints = 0;
+    [HideInInspector] public int playerLevel = 0;
 
     [Header("Singleton")]
     public static AbilityTree instance;
@@ -49,6 +56,25 @@ public class AbilityTree : MonoBehaviour
 
         foreach (PassiveSO passive in player.classStat.startingPassives)
             UnlockPassive(passive);
+
+        skillPoints = 0;
+    }
+
+    public void AddSkillPoint(int change)
+    {
+        skillPoints += change;
+
+        if (skillPoints > 0)
+        {
+            abilityNotificationText.text = skillPoints.ToString();
+            abilityNotificationText.transform.parent.gameObject.SetActive(true);
+            tabWhiteNotification.SetActive(true);
+        }
+        else
+        {
+            abilityNotificationText.transform.parent.gameObject.SetActive(false);
+            tabWhiteNotification.SetActive(false);
+        }
     }
 
     public void UnlockAbility(AbilitySO ability)
@@ -58,6 +84,7 @@ public class AbilityTree : MonoBehaviour
 
         unlockedAbilityList[abilityList.IndexOf(ability)] = true;
 
+        AddSkillPoint(-1);
         AbilityManager.instance.AddAbility(CreateAbility(ability));
     }
 
@@ -68,6 +95,7 @@ public class AbilityTree : MonoBehaviour
 
         unlockedPassiveList[passiveList.IndexOf(passive)] = true;
 
+        AddSkillPoint(-1);
         PassiveManager.instance.AddPassive(CreatePassive(passive));
     }
 

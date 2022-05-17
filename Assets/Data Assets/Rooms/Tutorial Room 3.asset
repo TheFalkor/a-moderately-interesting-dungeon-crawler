@@ -23,7 +23,7 @@ MonoBehaviour:
   - wall: 0
     occupantPrefab: {fileID: 0}
   - wall: 0
-    occupantPrefab: {fileID: 7734823443161916617, guid: 66099e08600e9f9489372e02be81b82f, type: 3}
+    occupantPrefab: {fileID: 2744464392678596536, guid: 8907a71627ea0d547a0517b7805d8e3b, type: 3}
   - wall: 1
     occupantPrefab: {fileID: 0}
   - wall: 1
@@ -91,7 +91,7 @@ MonoBehaviour:
   - wall: 0
     occupantPrefab: {fileID: 0}
   - wall: 0
-    occupantPrefab: {fileID: 7734823443161916617, guid: 66099e08600e9f9489372e02be81b82f, type: 3}
+    occupantPrefab: {fileID: 2744464392678596536, guid: 8907a71627ea0d547a0517b7805d8e3b, type: 3}
   - wall: 0
     occupantPrefab: {fileID: 0}
   - wall: 0
@@ -137,7 +137,7 @@ MonoBehaviour:
   - wall: 0
     occupantPrefab: {fileID: 0}
   - wall: 0
-    occupantPrefab: {fileID: 7734823443161916617, guid: 66099e08600e9f9489372e02be81b82f, type: 3}
+    occupantPrefab: {fileID: 2744464392678596536, guid: 8907a71627ea0d547a0517b7805d8e3b, type: 3}
   - wall: 1
     occupantPrefab: {fileID: 0}
   - wall: 1

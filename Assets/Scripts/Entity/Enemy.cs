@@ -14,6 +14,9 @@ public class Enemy : Entity
 
     [SerializeField]
     private EnemyBehaviourType behaviourType;
+    [SerializeField]
+    private float splashMultiplier;
+
     private EnemyBehaviour Behaviour;
     private EnemySensing Sensing;
     public GameObject PebblePrefab;
@@ -44,6 +47,10 @@ public class Enemy : Entity
 
             case EnemyBehaviourType.SWORD:
                 Behaviour = new EnemySwordBehaviour();
+                break;
+
+            case EnemyBehaviourType.SPEAR:
+                Behaviour = new EnemySpearBehaviour();
                 break;
 
             default:
@@ -107,6 +114,10 @@ public class Enemy : Entity
                 MeleeAttack(currentAction);
                 break;
 
+            case ActionType.SPLASH_ATTACK:
+                MeleeAttack(currentAction, true);
+                break;
+
             case ActionType.RANGED_ATTACK:
                 Debug.Log("Insanely Amazing Ranged Attack!");
                 break;
@@ -133,12 +144,15 @@ public class Enemy : Entity
             Debug.LogError("ENEMY MOVE BROKE AAAAAAAAAAAA (invalid target)");
     }
 
-    private void MeleeAttack(Action action)
+    private void MeleeAttack(Action action, bool isSplash = false)
     {
-
         transform.GetChild(0).GetComponent<Animator>().Play("Attack");
+        Damage damage;
 
-        Damage damage = new Damage(meleeDamage, originType);
+        if (isSplash)
+            damage = new Damage(Mathf.RoundToInt(meleeDamage * splashMultiplier), originType);
+        else
+            damage = new Damage(meleeDamage, originType);
 
         Attack(action.target, damage);
 

@@ -184,27 +184,4 @@ public class TilePathfinding
 
         return;
     }
-
-    private Direction GetDirection(Cell c)
-    {
-        Vector2 input = c.gridPosition - c.parent.gridPosition;
-
-        if (input == Vector2.up)
-            return Direction.SOUTH;
-
-        else if (input == Vector2.right)
-            return Direction.EAST;
-
-        else if (input == Vector2.down)
-            return Direction.NORTH;
-
-        else if (input == Vector2.left)
-            return Direction.WEST;
-
-        else
-        {
-            Debug.LogError("getDirection of TilePathfinding broke send help");
-            return Direction.NORTH;
-        }
-    }
 }

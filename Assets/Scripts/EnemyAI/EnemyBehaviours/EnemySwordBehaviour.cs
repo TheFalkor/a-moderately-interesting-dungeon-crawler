@@ -66,26 +66,5 @@ public class EnemySwordBehaviour : EnemyBehaviour
 
         return actionQueue;
     }
-
-    private void updateFuturePosition(Direction direction)
-    {
-        switch (direction)
-        {
-            case Direction.NORTH:
-                futurePlayerPosition = GridManager.instance.GetTile(futurePlayerPosition.GetPosition() + Vector2Int.down);
-                break;
-            case Direction.EAST:
-                futurePlayerPosition = GridManager.instance.GetTile(futurePlayerPosition.GetPosition() + Vector2Int.right);
-                break;
-            case Direction.SOUTH:
-                futurePlayerPosition = GridManager.instance.GetTile(futurePlayerPosition.GetPosition() + Vector2Int.up);
-                break;
-            case Direction.WEST:
-                futurePlayerPosition = GridManager.instance.GetTile(futurePlayerPosition.GetPosition() + Vector2Int.left);
-                break;
-        }
-
-        return;
-    }
 }
 

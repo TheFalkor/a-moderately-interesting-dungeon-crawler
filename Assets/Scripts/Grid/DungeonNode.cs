@@ -156,14 +156,11 @@ public class DungeonNode : MonoBehaviour
             node.gameObject.SetActive(true);
     }
 
-    private void OnMouseEnter()
+    public void HighlightNode(bool active)
     {
-        if (!completed)
+        if (active && !completed)
             render.color = new Color(0.85f, 0.85f, 0.85f);
-    }
-
-    private void OnMouseExit()
-    {
-        render.color = Color.white;
+        else
+            render.color = Color.white;
     }
 }

@@ -18,13 +18,6 @@ public class VictoryManager : MonoBehaviour
     private Text moneyText;
     [SerializeField] private Image playerPortrait;
 
-    [Header("Static Names")]
-    private string className;
-    private string raceName;
-
-    [Header("Runtime Variables")]
-    private int level = 0;
-
     [Header("GameObject References")]
     private Player player;
 
@@ -47,8 +40,6 @@ public class VictoryManager : MonoBehaviour
     private void Start()
     {
         player = DungeonManager.instance.player;
-        raceName = player.baseStat.entityName;
-        className = player.classStat.className;
         SetPortrait(player.baseStat.entitySprite);
     }
 
@@ -71,7 +62,7 @@ public class VictoryManager : MonoBehaviour
 
     public void ShowPopup()
     {
-        level++;
+        AbilityTree.instance.playerLevel++;
         UpdateVictory();
         victoryPopup.SetActive(true);
     }
@@ -89,7 +80,7 @@ public class VictoryManager : MonoBehaviour
 
     public void UpdateVictory()
     {
-        lvlText.text = "Lv." + level + " " + raceName + ", " + className;
+        lvlText.text = "Lv." + AbilityTree.instance.playerLevel + " " + player.baseStat.entityName + " " + player.classStat.className;
         //xpText.text = "XP: " + player.currentExp.ToString() + "/" + player.levelExp.ToString() + " (" + expGain.ToString() + ")";
         xpText.text = "";
         moneyText.text = "You have gained an Ability Point!";
