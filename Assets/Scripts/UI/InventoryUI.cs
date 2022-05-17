@@ -218,8 +218,8 @@ public class InventoryUI : MonoBehaviour
         attackText.text = "ATK: " + damage;
         defenseText.text = "DEF: " + defense;
 
-        moneyText.text = "Money: 0";
-        xpText.text = "XP: ?";
+        moneyText.text = "";
+        xpText.text = "";
     }
 
     public void SelectItem(int index)

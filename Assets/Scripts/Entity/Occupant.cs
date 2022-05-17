@@ -73,11 +73,12 @@ public abstract class Occupant : MonoBehaviour
 
         transform.GetChild(0).GetComponent<Animator>().Play("Damage");
 
-        Instantiate(damagePopup, transform.position + new Vector3(0, 0.5f), Quaternion.identity).GetComponent<DamagePopup>().Setup(damage.damage, damage.origin);
+        int actualDamage = damage.damage * (1 - (defense / (36 + defense)));
+        Instantiate(damagePopup, transform.position + new Vector3(0, 0.5f), Quaternion.identity).GetComponent<DamagePopup>().Setup(actualDamage, damage.origin);
         
         if (shield > 0)
         {
-            shield -= damage.damage;
+            shield -= actualDamage;
 
             if (shield >= 0)
                 return;
@@ -86,14 +87,15 @@ public abstract class Occupant : MonoBehaviour
             if (temp)
                 Destroy(temp.gameObject);
 
-            damage.damage += shield;
+            actualDamage += shield;
             shield = 0;
 
-            if (damage.damage <= 0)
+            if (actualDamage <= 0)
                 return;
         }
 
-        currentHealth -= damage.damage;
+
+        currentHealth -= actualDamage;
 
         if (currentHealth <= 0)
         {
@@ -117,9 +119,10 @@ public abstract class Occupant : MonoBehaviour
 
         transform.GetChild(0).GetComponent<Animator>().Play("Damage");
 
-        currentHealth -= damage;
+        int actualDamage = damage * (1 - (defense / (36 + defense)));
+        currentHealth -= actualDamage;
 
-        Instantiate(damagePopup, transform.position + new Vector3(0, 0.5f), Quaternion.identity).GetComponent<DamagePopup>().Setup(damage, origin);
+        Instantiate(damagePopup, transform.position + new Vector3(0, 0.5f), Quaternion.identity).GetComponent<DamagePopup>().Setup(actualDamage, origin);
 
         if (currentHealth <= 0)
             Death();

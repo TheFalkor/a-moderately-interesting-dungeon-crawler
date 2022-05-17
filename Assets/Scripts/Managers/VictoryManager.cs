@@ -7,6 +7,7 @@ public class VictoryManager : MonoBehaviour
 {
     [SerializeField] private Animator transitionAnimator;
     [SerializeField] private GameObject victoryPopup;
+    private Animator victoryAnimator;
 
     private float timer = 0;
     private bool count = false;
@@ -35,6 +36,8 @@ public class VictoryManager : MonoBehaviour
         lvlText = textBox.transform.Find("Level & Race Text").GetComponent<Text>();
         xpText = textBox.transform.Find("XP Text").GetComponent<Text>();
         moneyText = textBox.transform.Find("Money Text").GetComponent<Text>();
+
+        victoryAnimator = victoryPopup.transform.GetChild(0).GetChild(1).GetComponent<Animator>();
     }
 
     private void Start()
@@ -64,7 +67,14 @@ public class VictoryManager : MonoBehaviour
     {
         AbilityTree.instance.playerLevel++;
         UpdateVictory();
+        StartCoroutine(DelayPopup());
+    }
+
+    private IEnumerator DelayPopup()
+    {
+        yield return new WaitForSeconds(0.5f);
         victoryPopup.SetActive(true);
+        victoryAnimator.Play("Victory Popup");
     }
 
     public void ReturnDungeon()
