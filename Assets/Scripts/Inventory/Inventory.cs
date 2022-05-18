@@ -47,7 +47,6 @@ public class Inventory : MonoBehaviour
             Item t = CreateItem(data, 9);
             AddItem(t);
         }
-        
     }
 
     public void UseItem(int index)
@@ -177,7 +176,8 @@ public class Inventory : MonoBehaviour
                 item = new Armor((ArmorSO)data);
                 break;
 
-            case ItemType.ACCESSORY: 
+            case ItemType.ACCESSORY:
+                item = new Accessory((AccessorySO)data);
                 break;
 
             case ItemType.CONSUMABLE: 
@@ -186,6 +186,7 @@ public class Inventory : MonoBehaviour
                 break;
 
             case ItemType.THROWABLE:
+                Debug.LogError("Inventory: Forgot to make new Throwable() row 190");
                 break;
         }
         return item;

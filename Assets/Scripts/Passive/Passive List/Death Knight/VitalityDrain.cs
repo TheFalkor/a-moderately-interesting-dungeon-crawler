@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VitalityDrain : Passive
 {
-    public override void OnEnemyTakeDamage(Entity enemy)
+    public override void OnPreTurn(Entity enemy)
     {
         for (int i = 0; i < enemy.activeStatusEffects.Count; i++)
         {

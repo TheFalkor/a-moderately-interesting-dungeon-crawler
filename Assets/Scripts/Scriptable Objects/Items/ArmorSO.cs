@@ -10,7 +10,7 @@ public class ArmorSO : ItemSO
     public int defense;
     public int damage;
 
-    public void Reset()
+    private void Reset()
     {
         itemType = ItemType.ARMOR;
     }

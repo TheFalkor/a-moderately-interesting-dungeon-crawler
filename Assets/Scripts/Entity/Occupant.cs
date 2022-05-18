@@ -70,7 +70,7 @@ public abstract class Occupant : MonoBehaviour
         overhead.UpdateStatusEffects(activeStatusEffects);
     }
 
-    public virtual void TakeDamage(Damage damage, Occupant attacker = null)
+    public virtual void TakeDamage(Damage damage, Occupant attacker)
     {
         if (originType == damage.origin && damage.origin != DamageOrigin.NEUTRAL)
             return;
@@ -81,6 +81,18 @@ public abstract class Occupant : MonoBehaviour
         transform.GetChild(0).GetComponent<Animator>().Play("Damage");
 
         int actualDamage = damage.damage * (1 - (defense / (36 + defense)));
+
+        for (int i = 0; i < activeStatusEffects.Count; i++)
+        {
+            StatusEffect effect = activeStatusEffects[i];
+            if (effect.type == StatusType.FLUTTER)
+            {
+                actualDamage += (int)(damage.damage * 0.5f);
+                activeStatusEffects.Remove(effect);
+                overhead.UpdateStatusEffects(activeStatusEffects);
+            }
+        }
+
         Instantiate(damagePopup, transform.position + new Vector3(0, 0.5f), Quaternion.identity).GetComponent<DamagePopup>().Setup(actualDamage, damage.origin);
         
         if (shield > 0)
@@ -172,7 +184,7 @@ public abstract class Occupant : MonoBehaviour
 
     protected void Attack(Tile tile, Damage damage)
     {
-        tile.AttackTile(damage);
+        tile.AttackTile(damage, this);
     }
 
     protected virtual void Death()

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scriptable Objects/Items/Weapon/Spear", fileName = "Default Spear", order = 2)]
+[CreateAssetMenu(menuName = "Scriptable Objects/Items/Weapon/Spear", fileName = "Default Spear", order = 5)]
 public class SpearSO : WeaponSO
 {
     [Range (0f, 1f)]

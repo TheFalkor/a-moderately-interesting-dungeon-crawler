@@ -438,7 +438,7 @@ public class Player : Entity
 
     public override void TakeDamage(Damage damage, Occupant attacker)
     {
-        base.TakeDamage(damage);
+        base.TakeDamage(damage, attacker);
 
         if (attacker is Entity entity)
             PassiveManager.instance.OnPlayerTakeDamage(entity);

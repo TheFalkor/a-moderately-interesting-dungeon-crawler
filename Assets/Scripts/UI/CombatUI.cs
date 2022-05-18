@@ -24,6 +24,9 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private Image combatPortrait;
     [SerializeField] private Image inventoryPortrait;
     [SerializeField] private Image victoryPortrait;
+    [Space]
+    [SerializeField] private Transform equipmentHoverParent;
+    private Hoverable[] equipmentHovers = new Hoverable[3];
 
 
     [Header("Game Variables")]
@@ -60,6 +63,12 @@ public class CombatUI : MonoBehaviour
 
         if (ConsistentData.initialized)
             SetPortrait(ConsistentData.playerBaseStat.entitySprite);
+
+        for (int i = 0; i < 3; i++)
+        {
+            equipmentHovers[i] = equipmentHoverParent.GetChild(i).GetComponent<Hoverable>();
+            equipmentHovers[i].gameObject.SetActive(false);
+        }
 
         AbilityManager.instance.SetupUI();
     }
@@ -188,6 +197,11 @@ public class CombatUI : MonoBehaviour
         {
             abilitySlots[index].SetSlotActive(false);
         }
+    }
+
+    public void SetEquipmentData(EquippableItem item, int index)
+    {
+
     }
 
     public void SetPortrait(Sprite sprite)

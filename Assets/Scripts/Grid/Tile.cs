@@ -99,11 +99,11 @@ public class Tile : MonoBehaviour
         return tileEffect;
     }
 
-    public bool AttackTile(Damage damage)
+    public bool AttackTile(Damage damage, Occupant attacker)
     {
         if (occupant)
         {
-            occupant.TakeDamage(damage);
+            occupant.TakeDamage(damage, attacker);
             return true;
         }
         return false;

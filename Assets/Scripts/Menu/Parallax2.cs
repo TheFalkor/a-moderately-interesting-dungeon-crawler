@@ -15,6 +15,7 @@ public class Parallax2 : MonoBehaviour
     private bool instantiated = false;
 
 
+
     void Start()
     {
         cameraTransform = Camera.main.transform;
@@ -33,10 +34,10 @@ public class Parallax2 : MonoBehaviour
 
     }
 
-    void FixedUpdate()
+  /*  void FixedUpdate()
     {
 
-        if (transform.position.x <= cameraTransform.position.x)
+        if (transform.position.x <= Input.mousePosition.x)
         {
             if (!instantiated)
             {
@@ -48,15 +49,15 @@ public class Parallax2 : MonoBehaviour
 
 
     }
-
+  */
 
     void LateUpdate()
     {
-        Vector3 cameraMovement = cameraTransform.position - lastCameraPosition;
+        Vector3 cameraMovement = (Input.mousePosition/1000) - lastCameraPosition;
 
         transform.position += cameraMovement * parallaxEffectMultiplier;
 
-        lastCameraPosition = cameraTransform.position;
+        lastCameraPosition = (Input.mousePosition / 1000);
 
         //if (Mathf.Abs(cameraTransform.position.x - transform.position.x) >= textureUnitSizeX)
         //{

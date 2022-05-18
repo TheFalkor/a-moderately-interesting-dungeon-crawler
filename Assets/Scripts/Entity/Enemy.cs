@@ -180,9 +180,9 @@ public class Enemy : Entity
 
     public override void TakeDamage(Damage damage, Occupant attacker = null)
     {
-        base.TakeDamage(damage);
-
         PassiveManager.instance.OnEnemyTakeDamage(this);
+
+        base.TakeDamage(damage, this);
     }
 
     protected override void Death()

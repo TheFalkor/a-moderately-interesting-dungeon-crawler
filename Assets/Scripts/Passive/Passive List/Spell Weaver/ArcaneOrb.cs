@@ -22,4 +22,11 @@ public class ArcaneOrb : TileEffect
             Destroy(gameObject, 0.1f);
         }
     }
+
+    public override void OnDespawn()
+    {
+        Player.playerMove -= PlayerMoved;
+
+        base.OnDespawn();
+    }
 }

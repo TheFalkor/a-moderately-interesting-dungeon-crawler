@@ -25,10 +25,6 @@ public class PassiveManager : MonoBehaviour
         passiveHoverPrefab.SetActive(false);
     }
 
-    private void Start()
-    {
-    }
-
     public void AddPassive(Passive passive)
     {
         activePassives.Add(passive);
@@ -42,6 +38,25 @@ public class PassiveManager : MonoBehaviour
         newHover.transform.GetChild(0).GetComponent<Image>().sprite = passive.data.passiveSprite;
         newHover.SetInformation(passive.data.passiveName, passive.data.passiveSummary, passive.data.passiveDescription);
         newHover.gameObject.SetActive(true);
+    }
+
+    public void RemovePassive(PassiveSO data)
+    {
+        for (int i = 0; i < activePassives.Count; i++)
+        {
+            if (activePassives[i].data == data)
+            {
+                activePassives.RemoveAt(i);
+                for (int j = 0; j < passiveHoverParent.childCount; j++)
+                {
+                    GameObject child = passiveHoverParent.GetChild(j).gameObject;
+
+                    if (child.transform.GetChild(0).GetComponent<Image>().sprite == data.passiveSprite)
+                        Destroy(child);
+                }
+                break;
+            }
+        }
     }
 
     public void OnPreTurn(Entity entity)

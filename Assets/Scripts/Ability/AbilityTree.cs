@@ -141,7 +141,7 @@ public class AbilityTree : MonoBehaviour
         return ability;
     }
 
-    private Passive CreatePassive(PassiveSO data)
+    public Passive CreatePassive(PassiveSO data)
     {
         Passive passive = null;
 
