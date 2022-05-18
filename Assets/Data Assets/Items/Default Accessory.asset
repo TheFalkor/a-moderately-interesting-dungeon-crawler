@@ -18,4 +18,4 @@ MonoBehaviour:
   itemSprite: {fileID: 21300000, guid: 49f8afda05815274393df54909c7a530, type: 3}
   stackSize: 0
   itemType: 3
-  passiveEffect: {fileID: 11400000, guid: bee50238b0fc449459fc3e2957273ff6, type: 2}
+  passiveEffect: {fileID: 11400000, guid: c0e5519bf5b54564a8bddf1a75f062b6, type: 2}

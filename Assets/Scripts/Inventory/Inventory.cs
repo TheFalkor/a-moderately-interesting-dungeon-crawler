@@ -91,6 +91,8 @@ public class Inventory : MonoBehaviour
         if (previousEquipped != null)
             previousEquipped.OnUnequip();
 
+        if (CombatUI.instance)
+            CombatUI.instance.SetEquipmentData((EquippableItem)items[index], slotIndex);
 
         items[index] = previousEquipped;
 
@@ -100,6 +102,7 @@ public class Inventory : MonoBehaviour
             if (HotbarUI.instance)
                 HotbarUI.instance.UpdateUI();
         }
+
 
         InventoryUI.instance.UpdateInventoryUI();
         InventoryUI.instance.UpdateEquipmentUI();

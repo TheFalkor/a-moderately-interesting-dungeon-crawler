@@ -71,6 +71,7 @@ public class CombatUI : MonoBehaviour
         }
 
         AbilityManager.instance.SetupUI();
+        InventoryUI.instance.UpdateEquippedUI();
     }
 
     public void ToggleAttackMode()
@@ -201,7 +202,10 @@ public class CombatUI : MonoBehaviour
 
     public void SetEquipmentData(EquippableItem item, int index)
     {
+        equipmentHovers[index].transform.GetChild(0).GetComponent<Image>().sprite = item.itemSprite;
+        equipmentHovers[index].SetInformation(item.itemName, item.itemSummary, item.itemDescription);
 
+        equipmentHovers[index].gameObject.SetActive(true);
     }
 
     public void SetPortrait(Sprite sprite)
@@ -220,6 +224,5 @@ public class CombatUI : MonoBehaviour
             backgroundImage.SetActive(true);
         else if (combatPortrait.rectTransform.eulerAngles.z == 0)
             backgroundImage.SetActive(false);
-
     }
 }

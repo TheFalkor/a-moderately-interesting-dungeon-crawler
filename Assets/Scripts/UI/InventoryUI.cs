@@ -515,4 +515,16 @@ public class InventoryUI : MonoBehaviour
 
         skillPointText.text = "Points Available: " + AbilityTree.instance.skillPoints;
     }
+
+    public void UpdateEquippedUI()
+    {
+        if (inventory.equippedWeapon != null)
+            CombatUI.instance.SetEquipmentData(inventory.equippedWeapon, 0);
+
+        if (inventory.equippedArmor != null)
+            CombatUI.instance.SetEquipmentData(inventory.equippedArmor, 1);
+
+        if (inventory.equippedAccessory != null)
+            CombatUI.instance.SetEquipmentData(inventory.equippedAccessory, 2);
+    }
 }
