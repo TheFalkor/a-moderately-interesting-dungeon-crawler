@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: MC. Hammer
   m_EditorClassIdentifier: 
   itemName: MC. HAMMER
-  itemSummary: 
-  itemDescription: Attacks a tile in Orthagonal directions, dealing half damage to
+  itemSummary: High damage to a tile with sideways splash
+  itemDescription: Attacks a close tile in 4 directions, dealing half damage to sideways
     adjacent enemies.
   itemSprite: {fileID: 21300000, guid: dd9a9cadcab3ad2459149021660afec3, type: 3}
   stackSize: 0
   itemType: 1
-  weaponDamage: 8
+  weaponDamage: 10
   weaponType: 1
   attackVFX: {fileID: 527144875018580169, guid: bf376042372368b439f910a528c35583, type: 3}
   splashDamageMultiplier: 0.5

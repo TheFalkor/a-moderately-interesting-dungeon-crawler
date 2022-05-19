@@ -20,8 +20,8 @@ MonoBehaviour:
   movementType: 0
   maxHealth: 40
   defense: 0
-  baseMeleeDamage: 4
-  baseRangeDamage: 8
+  baseMeleeDamage: 0
+  baseRangeDamage: 0
   origin: 2
   startingAbilities:
   - {fileID: 11400000, guid: e576d5a484061ce44919500bf702af02, type: 2}

@@ -139,7 +139,6 @@ public class Player : Entity
         if (currentActionPoints == 0 && !ranOutOfPoints)
         {
             ranOutOfPoints = true;
-            CombatUI.instance.DisableAbilityUI();
             CombatUI.instance.EnableEndTurnGlow();
         }
 
@@ -226,7 +225,7 @@ public class Player : Entity
                         if (selectedAbility.UseAbility(tile))
                         {
                             abilityActive = true;
-                            currentActionPoints--;
+                            currentActionPoints -= selectedAbility.data.actionPointCost;
                             selectedAbility.cooldown = selectedAbility.data.cooldown;
 
                             CombatUI.instance.UpdateAbilityUI();
@@ -276,7 +275,7 @@ public class Player : Entity
 
     public bool SelectAbility(Ability ability)
     {
-        if (currentActionPoints == 0 || abilityActive)
+        if (abilityActive)
             return false;
 
         selectedAbility = ability;
@@ -287,6 +286,9 @@ public class Player : Entity
             state = PlayerState.MOVE_STATE;
             return false;
         }
+
+        if (currentActionPoints < ability.data.actionPointCost)
+            return false;
 
         GridManager.instance.ClearAllHighlights();
         state = PlayerState.ABILITY_STATE;
@@ -470,6 +472,16 @@ public class Player : Entity
     {
         meleeDamage = baseMeleeDamage + inventory.equippedWeapon.weaponDamage;
         InventoryUI.instance.UpdatePlayerStats(currentHealth, maxhealth, defense, meleeDamage);
+    }
+
+    public int GetWeaponDamage()
+    {
+        return inventory.equippedWeapon.weaponDamage;
+    }
+
+    public int GetCurrentAP()
+    {
+        return currentActionPoints;
     }
 
     protected override void Death()

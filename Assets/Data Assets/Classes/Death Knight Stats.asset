@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Death Knight Stats
   m_EditorClassIdentifier: 
   className: DEATH KNIGHT
-  classDescription: 
+  classDescription: Defensive oriented class, utilize death marks in order to drain
+    the life from your enemies. Slowly kill them while using their own life to protect
+    yourself.
   bonusHealth: 10
-  bonusDefense: 0
+  bonusDefense: 2
   bonusMeleeDamage: 0
   bonusRangeDamage: 0
   unlockableAbilities:

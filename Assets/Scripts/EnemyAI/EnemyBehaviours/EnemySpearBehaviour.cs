@@ -47,8 +47,8 @@ public class EnemySpearBehaviour : EnemyBehaviour
 
             else if (futurePosition.orthogonalNeighbors.Contains(Senses.player.currentTile) && CanMoveAway())
             {
-                actionQueue.Enqueue(new Action(ActionType.MOVE, GridManager.instance.GetTile(futurePosition.GetPosition() - (Senses.player.currentTile.GetPosition() - futurePosition.GetPosition()))));
-
+                futurePosition = GridManager.instance.GetTile(futurePosition.GetPosition() - (Senses.player.currentTile.GetPosition() - futurePosition.GetPosition()));
+                actionQueue.Enqueue(new Action(ActionType.MOVE, futurePosition));
                 if (freeMoves > 0)
                     freeMoves--;
                 else

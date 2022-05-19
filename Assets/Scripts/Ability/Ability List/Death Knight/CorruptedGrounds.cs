@@ -56,7 +56,7 @@ public class CorruptedGrounds : Ability
 
                 TileEffect effect = AbilityManager.instance.SpawnTileEffect(data.abilityPrefab);
                 effect.transform.position = tile.transform.position;
-                effect.Initialize(data.abilityValue);
+                effect.Initialize(Mathf.RoundToInt(data.abilityValue));
             }
 
             return true;

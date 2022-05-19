@@ -32,7 +32,7 @@ public class ImbueWeapon : Ability
 
         if (tile == player.currentTile)
         {
-            player.ChangeMeleeDamage(data.abilityValue);
+            player.ChangeMeleeDamage(Mathf.RoundToInt(player.GetWeaponDamage() * data.abilityValue));
             GameObject temp = Object.Instantiate(data.abilityVFX[0], player.transform.position, Quaternion.identity);
             Object.Destroy(temp, 8 / 15f);
             imbueActive = true;
@@ -47,7 +47,7 @@ public class ImbueWeapon : Ability
     {
         if (imbueActive)
         {
-            player.ChangeMeleeDamage(data.abilityValue * -1);
+            player.ChangeMeleeDamage(Mathf.RoundToInt(player.GetWeaponDamage() * data.abilityValue) * -1);
             imbueActive = false;
         }
     }
@@ -56,7 +56,7 @@ public class ImbueWeapon : Ability
     {
         if (imbueActive)
         {
-            player.ChangeMeleeDamage(data.abilityValue * -1);
+            player.ChangeMeleeDamage(Mathf.RoundToInt(player.GetWeaponDamage() * data.abilityValue) * -1);
             imbueActive = false;
         }
     }

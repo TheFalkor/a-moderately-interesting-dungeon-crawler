@@ -26,10 +26,10 @@ MonoBehaviour:
     volume: 0.1
     pitch: 1
   - soundEffectName: DEATH
-    audioClip: {fileID: 8300000, guid: 7020dd2811638411d9e693e9c2e9cae9, type: 3}
-    volume: 0.05
+    audioClip: {fileID: 8300000, guid: 8ec4d03464aad4e0893ce89613d9559b, type: 3}
+    volume: 1
     pitch: 1
   - soundEffectName: ENEMY_DEATH
-    audioClip: {fileID: 8300000, guid: 837527b0f54ba44e5ae57314cefebdfa, type: 3}
-    volume: 0.05
+    audioClip: {fileID: 8300000, guid: 656eafa76e0af4d48a384fb265c44ea4, type: 3}
+    volume: 1
     pitch: 1

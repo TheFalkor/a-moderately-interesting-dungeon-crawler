@@ -16,8 +16,9 @@ public class AbilitySO : ScriptableObject
 
     [Header("Ability Data")]
     public int cooldown;
+    public int actionPointCost;
     [Space]
-    public int abilityValue;
+    public float abilityValue;
     public GameObject abilityPrefab;
     [Space]
     public GameObject[] abilityVFX;

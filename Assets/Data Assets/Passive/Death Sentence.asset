@@ -17,4 +17,6 @@ MonoBehaviour:
   passiveDescription: Restore Health when an enemy marked with Death dies
   passiveSprite: {fileID: 21300000, guid: f596275924f4a684ebfc4cf7f56b0b90, type: 3}
   passiveType: 11
-  passiveValue: 2
+  passiveValue: 4
+  tileEffect: {fileID: 0}
+  passiveVFX: []

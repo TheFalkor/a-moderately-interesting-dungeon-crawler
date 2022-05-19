@@ -18,5 +18,7 @@ MonoBehaviour:
   abilitySprite: {fileID: 21300000, guid: 4fdaf782c86774248853dfca029dd063, type: 3}
   abilityType: 5
   cooldown: 3
+  actionPointCost: 1
   abilityValue: 2
   abilityPrefab: {fileID: 6236875730236941031, guid: 9f46a13315188234f8877f4365b6f5cc, type: 3}
+  abilityVFX: []

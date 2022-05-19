@@ -21,7 +21,7 @@ MonoBehaviour:
   maxHealth: 20
   defense: 0
   baseMeleeDamage: 8
-  baseRangeDamage: 0
+  baseRangeDamage: 2
   origin: 1
   startingAbilities: []
   unlockableAbilities: []

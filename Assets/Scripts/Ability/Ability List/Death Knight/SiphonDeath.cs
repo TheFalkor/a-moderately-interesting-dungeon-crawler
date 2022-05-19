@@ -62,7 +62,7 @@ public class SiphonDeath : Ability
                 tempSelf.transform.parent = player.transform;
             }
 
-            DungeonManager.instance.player.AddShield(markCount * data.abilityValue);
+            DungeonManager.instance.player.AddShield(markCount * Mathf.RoundToInt(data.abilityValue));
             return true;
         }
 

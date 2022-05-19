@@ -157,10 +157,14 @@ public class CombatUI : MonoBehaviour
     public void UpdateActionPoints(int movementPoints, int actionPoints)
     {
         actionPointText.text = "AP: " + actionPoints + "   MP: " + movementPoints;
+
+        UpdateAbilityUI();
     }
 
     public void UpdateAbilityUI()
     {
+        int playerAP = player.GetCurrentAP();
+
         for (int i = 0; i < 4; i++)
         {
             Ability ability = AbilityManager.instance.GetAbility(i);
@@ -176,7 +180,10 @@ public class CombatUI : MonoBehaviour
             else
             {
                 abilitySlots[i].image.transform.parent.GetChild(1).GetComponent<Text>().text = "";
-                abilitySlots[i].SetSlotActive(true);
+                if (playerAP >= ability.data.actionPointCost)
+                    abilitySlots[i].SetSlotActive(true);
+                else
+                    abilitySlots[i].SetSlotActive(false);
             }
         }
     }

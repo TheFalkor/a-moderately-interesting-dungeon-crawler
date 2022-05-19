@@ -114,7 +114,7 @@ public class ArcaneBlast : Ability
                 if (t.GetOccupant() is Entity)
                     affectedEnemies.Add((Entity)tOccupant);
 
-                tOccupant.TakeDamage(new Damage(data.abilityValue, DamageOrigin.FRIENDLY), player);
+                tOccupant.TakeDamage(new Damage(Mathf.RoundToInt(data.abilityValue), DamageOrigin.FRIENDLY), player);
             }
 
             GameObject temp = Object.Instantiate(data.abilityVFX[0], t.transform.position, Quaternion.identity);
