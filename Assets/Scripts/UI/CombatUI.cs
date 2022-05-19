@@ -24,6 +24,7 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private Image combatPortrait;
     [SerializeField] private Image inventoryPortrait;
     [SerializeField] private Image victoryPortrait;
+    [SerializeField] private Image dungeonPortrait;
     [Space]
     [SerializeField] private Transform equipmentHoverParent;
     private Hoverable[] equipmentHovers = new Hoverable[3];
@@ -225,6 +226,7 @@ public class CombatUI : MonoBehaviour
         combatPortrait.rectTransform.eulerAngles += new Vector3(0, 0, -90);
         inventoryPortrait.rectTransform.eulerAngles += new Vector3(0, 0, -90);
         victoryPortrait.rectTransform.eulerAngles += new Vector3(0, 0, -90);
+        dungeonPortrait.rectTransform.eulerAngles += new Vector3(0, 0, -90);
 
         // Cat Rave Feature
         if (combatPortrait.rectTransform.eulerAngles.z == 180)

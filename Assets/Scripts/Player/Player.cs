@@ -145,6 +145,8 @@ public class Player : Entity
         switch (state)
         {
             case PlayerState.MOVE_STATE:
+                inventory.equippedWeapon.CheckHighlights();
+
                 if (currentActionPoints > 0 || currentMovementPoints > 0)
                     HighlightDecisions();
 
@@ -355,7 +357,8 @@ public class Player : Entity
 
         if (tile.IsOccupied())
         {
-            StrikeTiles(inventory.equippedWeapon.Attack(tile));
+            if (currentActionPoints > 0)
+                StrikeTiles(inventory.equippedWeapon.Attack(tile));
             return;
         }
 
@@ -433,9 +436,11 @@ public class Player : Entity
     private void HighlightDecisions()
     {
         foreach (Tile tile in currentTile.orthogonalNeighbors)
-            tile.Highlight(HighlightType.WALKABLE);
+            if (!tile.IsOccupied())
+                tile.Highlight(HighlightType.WALKABLE);
 
-        inventory.equippedWeapon.ExtraHighlight(currentTile);
+        if (currentActionPoints > 0)
+            inventory.equippedWeapon.ExtraHighlight(currentTile);
     }
 
     public override void TakeDamage(Damage damage, Occupant attacker)
@@ -492,5 +497,5 @@ public class Player : Entity
         // End game
         EndManager.instance.EndGame(false);
         
-    }    
+    }
 }

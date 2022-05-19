@@ -95,6 +95,12 @@ public abstract class Entity : Occupant
         overhead.UpdateStatusEffects(activeStatusEffects);
     }
 
+    public override void RemoveStatusEffect(StatusEffect statusEffect)
+    {
+        base.RemoveStatusEffect(statusEffect);
+        overhead.UpdateStatusEffects(activeStatusEffects);
+    }
+
     private void Update()
     {
         if (isMoving)

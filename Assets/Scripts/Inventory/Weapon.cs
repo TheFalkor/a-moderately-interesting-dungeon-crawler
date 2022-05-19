@@ -21,4 +21,6 @@ public abstract class Weapon : EquippableItem
         Debug.Log("ExtraHighlight(Tile currentTile) not implemented.");
         return;
     }
+
+    public abstract void CheckHighlights();
 }

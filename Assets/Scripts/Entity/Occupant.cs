@@ -27,14 +27,14 @@ public abstract class Occupant : MonoBehaviour
 
 
     public virtual void Initialize()
-    { 
+    {
         maxhealth = baseStat.maxHealth;
         currentHealth = maxhealth;
         defense = baseStat.defense;
         baseMeleeDamage = baseStat.baseMeleeDamage;
         baseRangeDamage = baseStat.baseRangeDamage;
         originType = baseStat.origin;
-        
+
         currentTile = GridManager.instance.GetTileWorld(transform.position);
         currentTile.SetOccupant(this);
 
@@ -87,7 +87,7 @@ public abstract class Occupant : MonoBehaviour
         }
 
         Instantiate(damagePopup, transform.position + new Vector3(0, 0.5f), Quaternion.identity).GetComponent<DamagePopup>().Setup(actualDamage, damage.origin);
-        
+
         if (shield > 0)
         {
             shield -= actualDamage;
@@ -158,6 +158,11 @@ public abstract class Occupant : MonoBehaviour
             activeStatusEffects.Add(statusEffect);
     }
 
+    public virtual void RemoveStatusEffect(StatusEffect statusEffect)
+    {
+        activeStatusEffects.Remove(statusEffect);
+    }
+
     public void UpdateLayerIndex()
     {
         render.sortingOrder = currentTile.GetPosition().y * 5 - 90;
@@ -180,6 +185,8 @@ public abstract class Occupant : MonoBehaviour
         transform.GetChild(0).GetComponent<Animator>().Play("Death");
 
         CombatManager.instance.RemoveOccupant(this);
+
+        currentTile.ClearHighlight();
         Destroy(gameObject, 4 /15f);
     }
 

@@ -125,13 +125,13 @@ public class InventoryUI : MonoBehaviour
         skillPointText = inventoryBox.transform.parent.GetChild(3).GetComponent<Text>();
     }
 
-    public void ShowUI()
+    public void ShowUI(int tab)
     {
         UpdateInventoryUI();
         UpdateProfileUI();
         player.UpdateInventoryStats();
 
-        OpenTab(0);
+        OpenTab(tab);
 
         inventoryCanvas.SetActive(true);
     }

@@ -80,4 +80,13 @@ public class Sword : Weapon
             }
         }
     }
+
+    public override void CheckHighlights()
+    {
+        foreach(Tile t in availableTiles)
+        {
+            if (!t.IsOccupied())
+                t.ClearHighlight();
+        }
+    }
 }

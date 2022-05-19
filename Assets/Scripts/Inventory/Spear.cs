@@ -202,6 +202,18 @@ public class Spear : Weapon
             }
     }
 
+    public override void CheckHighlights()
+    {
+        foreach (AoeSplash aoe in availableAoes)
+        {
+            if (!(aoe.mainTile.IsOccupied() || aoe.splashTiles[0].IsOccupied()))
+            {
+                aoe.mainTile.ClearHighlight();
+                aoe.splashTiles[0].ClearHighlight();
+            }
+        }
+    }
+
     private AoeSplash TileInAoe(Tile t)
     {
         foreach (AoeSplash aoe in availableAoes)

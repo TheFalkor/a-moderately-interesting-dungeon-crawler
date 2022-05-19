@@ -262,6 +262,20 @@ public class Hammer : Weapon
             }
     }
 
+    public override void CheckHighlights()
+    {
+        foreach (AoeSplash aoe in availableAoes)
+        {
+            if(!aoe.mainTile.IsOccupied())
+            {
+                foreach (Tile t in aoe.splashTiles)
+                {
+                    t.ClearHighlight();
+                }
+            }
+        }
+    }
+
     private AoeSplash TileInAoe(Tile t)
     {
         foreach (AoeSplash aoe in availableAoes)

@@ -46,7 +46,7 @@ public class SiphonDeath : Ability
                     GameObject temp = Object.Instantiate(data.abilityVFX[1], entity.transform.position, Quaternion.identity);
                     Object.Destroy(temp, 6 / 15f);
 
-                    entity.activeStatusEffects.Remove(effect);
+                    entity.RemoveStatusEffect(effect);
                     break;
                 }
             }

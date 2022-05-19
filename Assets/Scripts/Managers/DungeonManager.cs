@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DungeonManager : MonoBehaviour
 {
     [SerializeField] private GameObject dungeonParent;
     [SerializeField] private Animator transitionAnimator;
+    [SerializeField] private GameObject exitParent;
     [SerializeField] private GameObject miniPlayer;
     public Player player;
 
@@ -91,10 +93,10 @@ public class DungeonManager : MonoBehaviour
 
     }
 
-    public void OpenInventory()
+    public void OpenInventory(int tab)
     {
         allowSelection = false;
-        InventoryUI.instance.ShowUI();
+        InventoryUI.instance.ShowUI(tab);
     }
 
     public void RemoveRestrictions()
@@ -151,5 +153,18 @@ public class DungeonManager : MonoBehaviour
     public void AddRoom()
     {
         roomsAmount++;
+    }
+
+    public void OpenExitPopup()
+    {
+        exitParent.SetActive(true);
+    }
+
+    public void ExitPopupChoice(bool endGame)
+    {
+        if (endGame)
+            SceneManager.LoadScene(0);
+        else
+            exitParent.SetActive(false);
     }
 }
