@@ -17,7 +17,6 @@ public class Inventory : MonoBehaviour
     [HideInInspector] public Armor equippedArmor;
     [HideInInspector] public Accessory equippedAccessory;
 
-
     private void Awake()
     {
     }

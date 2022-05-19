@@ -143,6 +143,11 @@ public class DungeonManager : MonoBehaviour
         }
     }
 
+    public CombatRoomSO GetCurrentRoom()
+    {
+        return currentNode.room;
+    }
+
     public void AddRoom()
     {
         roomsAmount++;

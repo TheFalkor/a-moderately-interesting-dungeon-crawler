@@ -24,6 +24,7 @@ public abstract class Occupant : MonoBehaviour
     protected OverheadUI overhead; 
     protected SpriteRenderer render;
     [HideInInspector] public Tile currentTile;
+    private bool isDead = false;
     public readonly List<StatusEffect> activeStatusEffects = new List<StatusEffect>();
 
 
@@ -75,7 +76,7 @@ public abstract class Occupant : MonoBehaviour
         if (originType == damage.origin && damage.origin != DamageOrigin.NEUTRAL)
             return;
 
-        if (currentHealth <= 0)
+        if (isDead)
             return;
 
         transform.GetChild(0).GetComponent<Animator>().Play("Damage");
@@ -134,7 +135,7 @@ public abstract class Occupant : MonoBehaviour
 
     public virtual void TakeCleanDamage(int damage, DamageOrigin origin)
     {
-        if (currentHealth <= 0)
+        if (isDead)
             return;
 
         transform.GetChild(0).GetComponent<Animator>().Play("Damage");
@@ -189,6 +190,7 @@ public abstract class Occupant : MonoBehaviour
 
     protected virtual void Death()
     {
+        isDead = true;
         transform.GetChild(0).GetComponent<Animator>().Play("Death");
 
         CombatManager.instance.RemoveOccupant(this);

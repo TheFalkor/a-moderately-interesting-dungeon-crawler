@@ -87,9 +87,9 @@ public class Player : Entity
 
         if (newHealth != maxhealth)
         {
-            float perc = currentHealth / maxhealth;
+            float perc = currentHealth / (float)maxhealth;
             maxhealth = newHealth;
-            currentHealth = (int)(perc * maxhealth);
+            currentHealth = Mathf.RoundToInt(perc * maxhealth);
         }
 
         meleeDamage = newDamage;

@@ -7,6 +7,7 @@ public class VictoryManager : MonoBehaviour
 {
     [SerializeField] private Animator transitionAnimator;
     [SerializeField] private GameObject victoryPopup;
+    [SerializeField] private Transform rewardParent;
     private Animator victoryAnimator;
 
     private float timer = 0;
@@ -18,9 +19,11 @@ public class VictoryManager : MonoBehaviour
     private Text xpText;
     private Text moneyText;
     [SerializeField] private Image playerPortrait;
+    public List<Hoverable> rewardIconList;
 
     [Header("GameObject References")]
     private Player player;
+    private Inventory inventory;
 
     [Header("Singleton")]
     public static VictoryManager instance;
@@ -43,6 +46,7 @@ public class VictoryManager : MonoBehaviour
     private void Start()
     {
         player = DungeonManager.instance.player;
+        inventory = GameObject.FindGameObjectWithTag("Manager").GetComponent<Inventory>();
         SetPortrait(player.baseStat.entitySprite);
     }
 
@@ -94,6 +98,24 @@ public class VictoryManager : MonoBehaviour
         //xpText.text = "XP: " + player.currentExp.ToString() + "/" + player.levelExp.ToString() + " (" + expGain.ToString() + ")";
         xpText.text = "";
         moneyText.text = "You have gained an Ability Point!";
+
+        CombatRoomSO room = DungeonManager.instance.GetCurrentRoom();
+
+        for (int i = 0; i < 4; i++)
+        {
+            if (room.rewards.Count <= i)
+                rewardIconList[i].gameObject.SetActive(false);
+            else
+            {
+                ItemSO item = room.rewards[i];
+                rewardIconList[i].SetInformation(item.itemName, item.itemSummary, item.itemDescription);
+                rewardIconList[i].transform.GetChild(0).GetComponent<Image>().sprite = item.itemSprite;
+
+                rewardIconList[i].gameObject.SetActive(true);
+
+                inventory.AddItem(inventory.CreateItem(item));
+            }
+        }
     }
 
     public void SetPortrait(Sprite sprite)
