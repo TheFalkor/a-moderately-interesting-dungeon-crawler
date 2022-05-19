@@ -43,7 +43,7 @@ public class Inventory : MonoBehaviour
 
         foreach (ItemSO data in startingItems)
         {
-            Item t = CreateItem(data, 9);
+            Item t = CreateItem(data, 3);
             AddItem(t);
         }
     }

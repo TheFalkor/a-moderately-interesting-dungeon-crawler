@@ -166,6 +166,7 @@ public class DungeonManager : MonoBehaviour
 
     public void OpenExitPopup()
     {
+        allowSelection = false;
         exitParent.SetActive(true);
     }
 
@@ -175,5 +176,7 @@ public class DungeonManager : MonoBehaviour
             SceneManager.LoadScene(0);
         else
             exitParent.SetActive(false);
+
+        RemoveRestrictions();
     }
 }
