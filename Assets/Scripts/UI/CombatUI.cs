@@ -16,6 +16,7 @@ public class CombatUI : MonoBehaviour
     private Text attackText;
     private Text defenseText;
     private Text actionPointText;
+    private Text movementPointText;
     [Space]
     private readonly List<AbilitySlot> abilitySlots = new List<AbilitySlot>();
     [Space]
@@ -50,10 +51,11 @@ public class CombatUI : MonoBehaviour
 
         instance = this;
 
-        healthText = statsBox.transform.Find("Health Text").GetComponent<Text>();
-        attackText = statsBox.transform.Find("Attack Text").GetComponent<Text>();
-        defenseText = statsBox.transform.Find("Defense Text").GetComponent<Text>();
-        actionPointText = statsBox.transform.Find("Action Points Temp").GetComponent<Text>();
+        healthText = statsBox.transform.GetChild(0).GetChild(0).GetComponent<Text>();
+        attackText = statsBox.transform.GetChild(1).GetChild(0).GetComponent<Text>();
+        defenseText = statsBox.transform.GetChild(2).GetChild(0).GetComponent<Text>();
+        actionPointText = statsBox.transform.GetChild(3).GetChild(0).GetComponent<Text>();
+        movementPointText = statsBox.transform.GetChild(4).GetChild(0).GetComponent<Text>();
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
@@ -139,7 +141,7 @@ public class CombatUI : MonoBehaviour
 
     public void UpdateHealth(int currentHealth, int maxHealth, int shield)
     {
-        healthText.text = "HP: " + currentHealth + "/" + maxHealth;
+        healthText.text = currentHealth + "/" + maxHealth;
 
         if (shield != 0)
             healthText.text = healthText.text + " (+" + shield + ")";
@@ -147,17 +149,18 @@ public class CombatUI : MonoBehaviour
 
     public void UpdateAttack(int attackDamage)
     {
-        attackText.text = "ATK: " + attackDamage.ToString();
+        attackText.text = attackDamage.ToString();
     }
     
     public void UpdateDefense(int defense)
     {
-        defenseText.text = "DEF: " + defense.ToString();
+        defenseText.text = defense.ToString();
     }
 
     public void UpdateActionPoints(int movementPoints, int actionPoints)
     {
-        actionPointText.text = "AP: " + actionPoints + "   MP: " + movementPoints;
+        actionPointText.text = actionPoints.ToString();
+        movementPointText.text = movementPoints.ToString();
 
         UpdateAbilityUI();
     }

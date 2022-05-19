@@ -14,7 +14,7 @@ public class CombatManager : MonoBehaviour
     private float combatIntroTimer = 0;
 
     private List<TileEffect> tileEffectList = new List<TileEffect>();
-    private List<Occupant> occupantList = new List<Occupant>();
+    [HideInInspector] public List<Occupant> occupantList = new List<Occupant>();
     [HideInInspector] public List<Entity> entityList = new List<Entity>();
     private Queue<Entity> turnQueue = new Queue<Entity>();
 

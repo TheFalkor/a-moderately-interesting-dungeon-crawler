@@ -72,6 +72,7 @@ public class Inventory : MonoBehaviour
                 equippedWeapon.OnEquip();
                 slotIndex = 0;
                 break;
+
             case ItemType.ARMOR:
                 previousEquipped = equippedArmor;
                 equippedArmor = (Armor)items[index];
@@ -188,7 +189,8 @@ public class Inventory : MonoBehaviour
                 break;
 
             case ItemType.THROWABLE:
-                Debug.LogError("Inventory: Forgot to make new Throwable() row 190");
+                item = new Throwable((ThrowableItemSO)data);
+                item.count = stackCount;
                 break;
         }
         return item;
