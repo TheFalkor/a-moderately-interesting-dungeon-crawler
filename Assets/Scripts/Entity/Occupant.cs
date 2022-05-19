@@ -6,7 +6,6 @@ public abstract class Occupant : MonoBehaviour
 {
     [Header("Combat Effects")]
     [SerializeField] private GameObject damagePopup;
-    [SerializeField] private GameObject overheadPrefab;
 
     [Header("Stats Reference")]
     public BaseStatsSO baseStat;
@@ -21,7 +20,6 @@ public abstract class Occupant : MonoBehaviour
     [HideInInspector] public DamageOrigin originType;
 
     [Header("Runtime Variables")]
-    protected OverheadUI overhead; 
     protected SpriteRenderer render;
     [HideInInspector] public Tile currentTile;
     private bool isDead = false;
@@ -42,9 +40,6 @@ public abstract class Occupant : MonoBehaviour
 
         render = transform.GetChild(0).GetComponent<SpriteRenderer>();
         UpdateLayerIndex();
-
-        overhead = Instantiate(overheadPrefab, transform.position + new Vector3(0, 1.5f), Quaternion.identity, transform.parent).GetComponent<OverheadUI>();
-        overhead.Initialize(gameObject);
     }
 
     public virtual void UpdateStatusEffects()
@@ -67,8 +62,6 @@ public abstract class Occupant : MonoBehaviour
                 }
             }
         }
-
-        overhead.UpdateStatusEffects(activeStatusEffects);
     }
 
     public virtual void TakeDamage(Damage damage, Occupant attacker)
@@ -90,7 +83,6 @@ public abstract class Occupant : MonoBehaviour
             {
                 actualDamage += (int)(damage.damage * 0.5f);
                 activeStatusEffects.Remove(effect);
-                overhead.UpdateStatusEffects(activeStatusEffects);
             }
         }
 
@@ -115,8 +107,6 @@ public abstract class Occupant : MonoBehaviour
         }
 
         currentHealth -= actualDamage;
-
-        overhead.UpdateHealthbar(currentHealth / (float)maxhealth);
 
         if (currentHealth <= 0)
         {
@@ -143,15 +133,13 @@ public abstract class Occupant : MonoBehaviour
         int actualDamage = damage * (1 - (defense / (36 + defense)));
         currentHealth -= actualDamage;
 
-        overhead.UpdateHealthbar(currentHealth / (float)maxhealth);
-
         Instantiate(damagePopup, transform.position + new Vector3(0, 0.5f), Quaternion.identity).GetComponent<DamagePopup>().Setup(actualDamage, origin);
 
         if (currentHealth <= 0)
             Death();
     }
 
-    public void AddStatusEffect(StatusEffect statusEffect)
+    public virtual void AddStatusEffect(StatusEffect statusEffect)
     {
         bool found = false;
         for (int i = 0; i < activeStatusEffects.Count; i++)
@@ -168,8 +156,6 @@ public abstract class Occupant : MonoBehaviour
 
         if (!found)
             activeStatusEffects.Add(statusEffect);
-
-        overhead.UpdateStatusEffects(activeStatusEffects);
     }
 
     public void UpdateLayerIndex()
@@ -194,7 +180,6 @@ public abstract class Occupant : MonoBehaviour
         transform.GetChild(0).GetComponent<Animator>().Play("Death");
 
         CombatManager.instance.RemoveOccupant(this);
-        Destroy(overhead.gameObject);
         Destroy(gameObject, 4 /15f);
     }
 

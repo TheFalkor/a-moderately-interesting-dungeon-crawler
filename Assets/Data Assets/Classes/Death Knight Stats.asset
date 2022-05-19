@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1878ed3d5d468bd4c852cd486b572d11, type: 3}
   m_Name: Death Knight Stats
   m_EditorClassIdentifier: 
-  className: DEATH KNIGHT
+  className: DEATHKNIGHT
   classDescription: Defensive oriented class, utilize death marks in order to drain
     the life from your enemies. Slowly kill them while using their own life to protect
     yourself.

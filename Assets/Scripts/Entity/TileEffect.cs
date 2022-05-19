@@ -39,6 +39,6 @@ public abstract class TileEffect : MonoBehaviour
     public virtual void OnDespawn() 
     {
         currentTile.SetTileEffect(null);
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 }

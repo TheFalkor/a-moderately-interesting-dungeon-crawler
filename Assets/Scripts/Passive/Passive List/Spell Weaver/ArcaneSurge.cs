@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArcaneTransference : Passive
+public class ArcaneSurge : Passive
 {
     public override void OnEnemyDeath(Entity enemy)
     {

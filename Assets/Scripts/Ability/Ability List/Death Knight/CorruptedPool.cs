@@ -30,6 +30,7 @@ public class CorruptedPool : TileEffect
 
     public override void OnDespawn()
     {
+        ApplyMark();
         base.OnDespawn();
     }
 

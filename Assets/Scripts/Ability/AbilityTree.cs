@@ -166,7 +166,7 @@ public class AbilityTree : MonoBehaviour
                 passive = new BladeDancer();
                 break;
             case PassiveID.ARCANE_SURGE:
-                passive = new ArcaneTransference();
+                passive = new ArcaneSurge();
                 break;
             case PassiveID.OVERLOAD:
                 passive = new Overload();

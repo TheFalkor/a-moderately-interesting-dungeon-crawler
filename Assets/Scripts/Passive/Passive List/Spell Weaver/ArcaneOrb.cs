@@ -19,6 +19,7 @@ public class ArcaneOrb : TileEffect
 
             CombatManager.instance.RemoveTileEffect(this);
             Player.playerMove -= PlayerMoved;
+            currentTile.SetTileEffect(null);
             Destroy(gameObject, 0.1f);
         }
     }

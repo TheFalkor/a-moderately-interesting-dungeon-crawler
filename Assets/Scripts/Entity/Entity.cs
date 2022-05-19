@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class Entity : Occupant
 {
+    [Header("Combat Effects")]
+    [SerializeField] private GameObject overheadPrefab;
 
     [Header("Entity Stats")]
     protected int maxMovementPoints;
@@ -18,6 +20,7 @@ public abstract class Entity : Occupant
     private const float ANIMATED_MOVEMENT_SPEED = 3.5f;
 
     [Header("Runtime Variables")]
+    protected OverheadUI overhead;
     protected Vector2 targetPosition;
     protected bool isMoving = false;
     protected readonly List<Tile> tilesInRange = new List<Tile>();
@@ -32,7 +35,10 @@ public abstract class Entity : Occupant
         maxActionPoints = baseStat.actionPoints;
         currentActionPoints = maxActionPoints;
 
-        targetPosition = transform.position;       
+        targetPosition = transform.position;
+
+        overhead = Instantiate(overheadPrefab, transform.position + new Vector3(0, 1.5f), Quaternion.identity, transform.parent).GetComponent<OverheadUI>();
+        overhead.Initialize(gameObject);
     }
 
     public override void UpdateStatusEffects()
@@ -52,6 +58,8 @@ public abstract class Entity : Occupant
         }
 
         base.UpdateStatusEffects();
+
+        overhead.UpdateStatusEffects(activeStatusEffects);
     }
 
     public abstract bool Tick(float deltaTime);
@@ -66,6 +74,25 @@ public abstract class Entity : Occupant
         PassiveManager.instance.OnPreTurn(this);
 
         UpdateStatusEffects();
+    }
+
+    public override void TakeDamage(Damage damage, Occupant attacker)
+    {
+        base.TakeDamage(damage, attacker);
+        overhead.UpdateStatusEffects(activeStatusEffects);
+        overhead.UpdateHealthbar(currentHealth / (float)maxhealth);
+    }
+
+    public override void TakeCleanDamage(int damage, DamageOrigin origin)
+    {
+        base.TakeCleanDamage(damage, origin);
+        overhead.UpdateHealthbar(currentHealth / (float)maxhealth);
+    }
+
+    public override void AddStatusEffect(StatusEffect statusEffect)
+    {
+        base.AddStatusEffect(statusEffect);
+        overhead.UpdateStatusEffects(activeStatusEffects);
     }
 
     private void Update()
@@ -127,6 +154,7 @@ public abstract class Entity : Occupant
     protected override void Death()
     {
         CombatManager.instance.RemoveEntity(this);
+        Destroy(overhead.gameObject);
 
         base.Death();
     }
