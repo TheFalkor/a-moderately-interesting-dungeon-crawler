@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class DungeonManager : MonoBehaviour
 {
     [SerializeField] private GameObject dungeonParent;
     [SerializeField] private Animator transitionAnimator;
     [SerializeField] private GameObject exitParent;
+    [SerializeField] private GameObject dungeonProfile;
     [SerializeField] private GameObject miniPlayer;
     public Player player;
 
@@ -38,6 +40,13 @@ public class DungeonManager : MonoBehaviour
             player.Setup();
 
         miniPlayer.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = player.baseStat.entitySprite;
+    }
+
+    private void Start()
+    {
+        dungeonProfile.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().sprite = player.baseStat.entitySprite;
+        dungeonProfile.transform.GetChild(1).GetComponent<Text>().text = player.baseStat.entityName;
+        dungeonProfile.transform.GetChild(2).GetComponent<Text>().text = player.classStat.className;
     }
 
     void Update()

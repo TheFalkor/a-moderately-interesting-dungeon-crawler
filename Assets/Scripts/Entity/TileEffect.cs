@@ -38,6 +38,7 @@ public abstract class TileEffect : MonoBehaviour
 
     public virtual void OnDespawn() 
     {
+        CombatManager.instance.RemoveTileEffect(this);
         currentTile.SetTileEffect(null);
         Destroy(gameObject);
     }

@@ -19,7 +19,7 @@ public class VictoryManager : MonoBehaviour
     private Text xpText;
     private Text moneyText;
     [SerializeField] private Image playerPortrait;
-    public List<Hoverable> rewardIconList;
+    private List<Hoverable> rewardIconList = new List<Hoverable>();
 
     [Header("GameObject References")]
     private Player player;
@@ -41,6 +41,9 @@ public class VictoryManager : MonoBehaviour
         moneyText = textBox.transform.Find("Money Text").GetComponent<Text>();
 
         victoryAnimator = victoryPopup.transform.GetChild(0).GetChild(1).GetComponent<Animator>();
+
+        foreach (Transform hover in rewardParent)
+            rewardIconList.Add(hover.GetComponent<Hoverable>());
     }
 
     private void Start()
