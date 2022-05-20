@@ -37,9 +37,9 @@ public class TutorialUI : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.A))
+        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
             SelectTutorial(currentIndex - 1);
-        else if (Input.GetKeyUp(KeyCode.D))
+        else if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
             SelectTutorial(currentIndex + 1);
             
     }

@@ -15,7 +15,7 @@ public class DamagePopup : MonoBehaviour
 
         TextMesh mesh = transform.GetChild(0).GetComponent<TextMesh>();
         if (origin == DamageOrigin.ENEMY)
-            mesh.color = new Color(125 / 255f, 75 / 255f, 200 / 255f);
+            mesh.color = new Color(180 / 255f, 120 / 255f, 230 / 255f);
         else if (origin == DamageOrigin.FRIENDLY)
             mesh.color = new Color(1, 75 / 255f, 75 / 255f);
        else

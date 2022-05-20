@@ -119,6 +119,8 @@ public class VictoryManager : MonoBehaviour
                 inventory.AddItem(inventory.CreateItem(item));
             }
         }
+
+        HotbarUI.instance.UpdateUI();
     }
 
     public void SetPortrait(Sprite sprite)

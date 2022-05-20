@@ -7,7 +7,7 @@ public class PassiveManager : MonoBehaviour
 {
     [Header("Runtime Variables")]
     private readonly List<Passive> activePassives = new List<Passive>();
-    private GameObject passiveHoverPrefab;
+    private readonly List<Hoverable> passiveHoverList = new List<Hoverable>();
     [SerializeField] private RectTransform passiveHoverParent;
 
     [Header("Singleton")]
@@ -21,23 +21,27 @@ public class PassiveManager : MonoBehaviour
 
         instance = this;
 
-        passiveHoverPrefab = passiveHoverParent.GetChild(0).gameObject;
-        passiveHoverPrefab.SetActive(false);
+        foreach (Transform go in passiveHoverParent)
+        { 
+            passiveHoverList.Add(go.GetComponent<Hoverable>());
+            go.gameObject.SetActive(false);
+        }
     }
 
     public void AddPassive(Passive passive)
     {
         activePassives.Add(passive);
 
-        while (passiveHoverParent.childCount != activePassives.Count)
+        foreach (Hoverable hover in passiveHoverList)
         {
-            Instantiate(passiveHoverPrefab, new Vector3(0, 0, 0), Quaternion.identity, passiveHoverParent);
-        }
+            if (hover.gameObject.activeSelf)
+                continue;
 
-        Hoverable newHover = passiveHoverParent.GetChild(passiveHoverParent.childCount - 1).GetComponent<Hoverable>();
-        newHover.transform.GetChild(0).GetComponent<Image>().sprite = passive.data.passiveSprite;
-        newHover.SetInformation(passive.data.passiveName, passive.data.passiveSummary, passive.data.passiveDescription);
-        newHover.gameObject.SetActive(true);
+            hover.transform.GetChild(0).GetComponent<Image>().sprite = passive.data.passiveSprite;
+            hover.SetInformation(passive.data.passiveName, passive.data.passiveSummary, passive.data.passiveDescription);
+            hover.gameObject.SetActive(true);
+            return;
+        }
     }
 
     public void RemovePassive(PassiveSO data)
@@ -52,7 +56,10 @@ public class PassiveManager : MonoBehaviour
                     GameObject child = passiveHoverParent.GetChild(j).gameObject;
 
                     if (child.transform.GetChild(0).GetComponent<Image>().sprite == data.passiveSprite)
-                        Destroy(child);
+                    {
+                        child.SetActive(false);
+                        child.transform.SetAsLastSibling();
+                    }
                 }
                 break;
             }

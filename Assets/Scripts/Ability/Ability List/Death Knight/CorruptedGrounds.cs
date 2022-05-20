@@ -6,7 +6,6 @@ public class CorruptedGrounds : Ability
 {
     [Header("Runtime Variables")]
     private List<Tile> corruptedTiles = new List<Tile>();
-    private float animationTimer = 0;
 
     [Header("References")]
     private Player player;
@@ -16,8 +15,6 @@ public class CorruptedGrounds : Ability
     {
         if (!corruptedTiles.Contains(tile))
             return false;
-
-        animationTimer = 1f;
 
         return true;
     }
@@ -39,29 +36,16 @@ public class CorruptedGrounds : Ability
 
     public override bool Tick(float deltaTime)
     {
-        if (animationTimer > 0)
+        foreach (Tile tile in corruptedTiles)
         {
-            animationTimer -= deltaTime;
+            if (!tile.IsWalkable())
+                continue;
 
-            player.transform.GetChild(0).transform.localScale = new Vector3(1, 0.5f + Mathf.Sin(animationTimer * 30) * 0.5f, 1);
-        }
-        else
-        {
-            player.transform.GetChild(0).transform.localScale = new Vector3(1, 1, 1);
-
-            foreach (Tile tile in corruptedTiles)
-            {
-                if (!tile.IsWalkable())
-                    continue;
-
-                TileEffect effect = AbilityManager.instance.SpawnTileEffect(data.abilityPrefab);
-                effect.transform.position = tile.transform.position;
-                effect.Initialize(Mathf.RoundToInt(data.abilityValue));
-            }
-
-            return true;
+            TileEffect effect = AbilityManager.instance.SpawnTileEffect(data.abilityPrefab);
+            effect.transform.position = tile.transform.position;
+            effect.Initialize(Mathf.RoundToInt(data.abilityValue));
         }
 
-        return false;
+        return true;
     }
 }
