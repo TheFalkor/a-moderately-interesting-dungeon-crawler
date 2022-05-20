@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: TimeRift
   m_EditorClassIdentifier: 
   passiveName: TIME RIFT
-  passiveSummary: Root enemies on Pulse
-  passiveDescription: The pulse now roots enemies in place for one turn
+  passiveSummary: Pulse Roots Enemies
+  passiveDescription: The pulse now roots enemies in place for one turn, making them
+    unable to move.
   passiveSprite: {fileID: 21300000, guid: bf9f844142dc1834ea0401b4cb10d117, type: 3}
   passiveType: 3
   passiveValue: 0
+  tileEffect: {fileID: 0}
+  passiveVFX: []

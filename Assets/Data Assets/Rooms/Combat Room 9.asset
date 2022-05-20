@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: Combat Room 9
   roomDescription: 4 enemies in somewhat open space
+  rewards:
+  - {fileID: 11400000, guid: 2203daaac42424c4ebbe5ed21b171649, type: 2}
+  - {fileID: 11400000, guid: 3f88c8a18172f404b8a71730f9a4e845, type: 2}
+  - {fileID: 11400000, guid: c165f4940f004254cb369cb867df8d49, type: 2}
   tiles:
   - wall: 1
     occupantPrefab: {fileID: 0}

@@ -135,8 +135,6 @@ public class CombatManager : MonoBehaviour
     {
         entityList.Remove(entity);
 
-        PlaySFX("ENEMY_DEATH");
-
         Queue<Entity> newQueue = new Queue<Entity>();
 
         foreach (Entity e in entityList)
@@ -173,10 +171,5 @@ public class CombatManager : MonoBehaviour
     public void RemoveTileEffect(TileEffect tileEffect)
     {
         tileEffectList.Remove(tileEffect);
-    }
-
-    private void PlaySFX(string soundName)
-    {
-        gameObject.GetComponent<AudioKor>().PlaySFX(soundName);
     }
 }

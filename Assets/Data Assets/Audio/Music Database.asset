@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicDatabase:
   - musicName: COMBAT
-    audioClip: {fileID: 8300000, guid: 7248bd73e658b4a1185a337c9e14c96f, type: 3}
+    audioClip: {fileID: 8300000, guid: a2cfad9630011468caa4cdb56ebb4ca6, type: 3}
     loop: 1
     volume: 1
     pitch: 1
   - musicName: COMBAT_2
-    audioClip: {fileID: 8300000, guid: a2cfad9630011468caa4cdb56ebb4ca6, type: 3}
+    audioClip: {fileID: 8300000, guid: ee47f68a5c437410894377ec9f8da8bf, type: 3}
     loop: 1
     volume: 1
     pitch: 1

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Death Sentence
   m_EditorClassIdentifier: 
   passiveName: DEATH SENTENCE
-  passiveSummary: Heal on enemy death
-  passiveDescription: Restore Health when an enemy marked with Death dies
+  passiveSummary: Heal 4 on enemy death
+  passiveDescription: Restore 4 Health when an enemy marked with Death dies
   passiveSprite: {fileID: 21300000, guid: f596275924f4a684ebfc4cf7f56b0b90, type: 3}
   passiveType: 11
   passiveValue: 4

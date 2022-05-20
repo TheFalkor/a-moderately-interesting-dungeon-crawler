@@ -7,20 +7,9 @@ public class ExplodingBarrel : Occupant
     [Header("VFX")]
     public GameObject explodeVFX;
 
-    [Header("Audio")]
-    private AudioKor audioKor;
-
-
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        audioKor = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioKor>();
-    }
-
     protected override void Death()
     {
-        audioKor.PlaySFX("EXPLOSION");
+        sfx.PlaySFX("EXPLOSION");
 
         foreach (Tile t in currentTile.orthogonalNeighbors)
         {

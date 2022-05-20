@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: Combat Room 8
   roomDescription: Upside Down Shield Boi with 3 enemies
+  rewards:
+  - {fileID: 11400000, guid: 3f88c8a18172f404b8a71730f9a4e845, type: 2}
+  - {fileID: 11400000, guid: c165f4940f004254cb369cb867df8d49, type: 2}
   tiles:
   - wall: 0
     occupantPrefab: {fileID: 0}

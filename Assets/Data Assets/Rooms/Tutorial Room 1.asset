@@ -15,7 +15,8 @@ MonoBehaviour:
   roomName: Tutorial Room 1
   roomDescription: First Combat room, designed to ease the player into the game with
     one enemy and a somewhat open space.
-  rewards: []
+  rewards:
+  - {fileID: 11400000, guid: 478df25a7c104044abadbee07f9a3cc5, type: 2}
   tiles:
   - wall: 1
     occupantPrefab: {fileID: 0}

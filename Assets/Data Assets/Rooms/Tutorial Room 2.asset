@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: Tutorial Room 2
   roomDescription: Second Room, introducing Sword Enemy
+  rewards:
+  - {fileID: 11400000, guid: f125a815c8fe1d64aac7d5963138357d, type: 2}
   tiles:
   - wall: 0
     occupantPrefab: {fileID: 0}

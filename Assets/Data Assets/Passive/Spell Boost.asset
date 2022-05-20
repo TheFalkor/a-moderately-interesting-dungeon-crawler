@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Spell Boost
   m_EditorClassIdentifier: 
   passiveName: SPELL BOOST
-  passiveSummary: Gain MP on ability
+  passiveSummary: Gain 1 MP on ability use
   passiveDescription: Using an ability gives you a movement point
   passiveSprite: {fileID: 21300000, guid: 22212797a8923cf42bab0cd0b4753e84, type: 3}
   passiveType: 5
   passiveValue: 1
+  tileEffect: {fileID: 0}
+  passiveVFX: []

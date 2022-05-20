@@ -6,7 +6,6 @@ using UnityEngine;
 public class Player : Entity
 {
     [Header("Audio")]
-    private AudioKor audioKor;
     public Animator temporaryAnimatorDeath;
 
     public ClassStatsSO classStat;
@@ -42,9 +41,6 @@ public class Player : Entity
 
     public void Setup(BaseStatsSO newBaseStat = null, ClassStatsSO newClassStat = null)
     {
-        if (audioKor != null)
-            return;
-
         inventory = GameObject.FindGameObjectWithTag("Manager").GetComponent<Inventory>();
         tileMask = LayerMask.GetMask("Tile");
 
@@ -67,8 +63,6 @@ public class Player : Entity
         defense += classStat.bonusDefense;
         baseMeleeDamage += classStat.bonusMeleeDamage;
         baseRangeDamage += classStat.bonusRangeDamage;
-
-        audioKor = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioKor>();
     }
 
     public void RecalculateStats()
@@ -77,7 +71,7 @@ public class Player : Entity
         if (inventory.equippedArmor != null)
             newHealth += inventory.equippedArmor.health;
 
-        int newDamage = baseStat.baseMeleeDamage + classStat.bonusMeleeDamage;
+        int newDamage = baseStat.baseMeleeDamage + classStat.bonusMeleeDamage + inventory.equippedWeapon.weaponDamage;
         if (inventory.equippedArmor != null)
             newDamage += inventory.equippedArmor.damage;
 
@@ -121,7 +115,7 @@ public class Player : Entity
         state = PlayerState.MOVE_STATE;
         turnEnded = false;
 
-        meleeDamage += inventory.equippedWeapon.weaponDamage;
+        RecalculateStats();
 
         CombatUI.instance.SetAttackButton(false);
         CombatUI.instance.UpdateAttack(meleeDamage);
@@ -368,7 +362,6 @@ public class Player : Entity
         Vector2Int deltaPosition = currentTile.GetPosition() - tile.GetPosition();
         Direction dir;
 
-        audioKor.PlaySFX("MOVE");
 
         if (deltaPosition.x < 0)
             dir = Direction.EAST;
@@ -390,6 +383,8 @@ public class Player : Entity
 
         GridManager.instance.ClearAllHighlights();
         Move(dir);
+
+        sfx.PlaySFX("MOVE");
     }
 
     private void StrikeTiles(List<WeaponStrike> strikes)
@@ -422,13 +417,13 @@ public class Player : Entity
         switch (inventory.equippedWeapon.weaponType)
         {
             case WeaponType.SWORD:
-                audioKor.PlaySFX("SLASH");
+                sfx.PlaySFX("SLASH");
                 break;
             case WeaponType.SPEAR:
-                audioKor.PlaySFX("SLASH"); // PUT CORRECT SFX
+                sfx.PlaySFX("SLASH"); // PUT CORRECT SFX
                 break;
             case WeaponType.HAMMER:
-                audioKor.PlaySFX("SLASH"); // PUT CORRECT SFX
+                sfx.PlaySFX("SLASH"); // PUT CORRECT SFX
                 break;
         }
     }
@@ -475,8 +470,8 @@ public class Player : Entity
 
     public void UpdateInventoryStats()
     {
-        meleeDamage = baseMeleeDamage + inventory.equippedWeapon.weaponDamage;
-        InventoryUI.instance.UpdatePlayerStats(currentHealth, maxhealth, defense, meleeDamage);
+        RecalculateStats();
+        InventoryUI.instance.UpdatePlayerStats(currentHealth, maxhealth, defense, meleeDamage + inventory.equippedWeapon.weaponDamage);
     }
 
     public int GetWeaponDamage()
@@ -493,7 +488,7 @@ public class Player : Entity
     {
         temporaryAnimatorDeath.SetBool("Closed", true);
         Debug.Log("player died");
-        audioKor.PlaySFX("DEATH");
+        sfx.PlaySFX("DEATH");
         // End game
         EndManager.instance.EndGame(false);
         

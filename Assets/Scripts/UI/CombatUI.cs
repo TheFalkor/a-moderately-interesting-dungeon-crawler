@@ -51,11 +51,11 @@ public class CombatUI : MonoBehaviour
 
         instance = this;
 
-        healthText = statsBox.transform.GetChild(0).GetChild(0).GetComponent<Text>();
-        attackText = statsBox.transform.GetChild(1).GetChild(0).GetComponent<Text>();
-        defenseText = statsBox.transform.GetChild(2).GetChild(0).GetComponent<Text>();
-        actionPointText = statsBox.transform.GetChild(3).GetChild(0).GetComponent<Text>();
-        movementPointText = statsBox.transform.GetChild(4).GetChild(0).GetComponent<Text>();
+        healthText = statsBox.transform.GetChild(2).GetChild(0).GetComponent<Text>();
+        attackText = statsBox.transform.GetChild(3).GetChild(0).GetComponent<Text>();
+        defenseText = statsBox.transform.GetChild(4).GetChild(0).GetComponent<Text>();
+        actionPointText = statsBox.transform.GetChild(5).GetChild(0).GetComponent<Text>();
+        movementPointText = statsBox.transform.GetChild(6).GetChild(0).GetComponent<Text>();
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 

@@ -45,7 +45,7 @@ public class EnemySpearBehaviour : EnemyBehaviour
                 actionPoints--;
             }
 
-            else if (futurePosition.orthogonalNeighbors.Contains(Senses.player.currentTile) && CanMoveAway())
+            else if (futurePosition.orthogonalNeighbors.Contains(Senses.player.currentTile) && CanMoveAway() && allowMovement)
             {
                 futurePosition = GridManager.instance.GetTile(futurePosition.GetPosition() - (Senses.player.currentTile.GetPosition() - futurePosition.GetPosition()));
                 actionQueue.Enqueue(new Action(ActionType.MOVE, futurePosition));

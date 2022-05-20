@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Vitality Drain
   m_EditorClassIdentifier: 
   passiveName: VITALITY DRAIN
-  passiveSummary: Weaken enemy on hit
-  passiveDescription: Reduce enemy attack damage for the next turn when attacking
-    an enemy marked with Death
+  passiveSummary: Deathmark Weakens
+  passiveDescription: Deathmarked enemies are now affected by the weakened status
+    starting the turn after they gained the mark. Making them deal 1/4 less damage
+    on their attacks.
   passiveSprite: {fileID: 21300000, guid: 73817a01a8a34fb4eb654f1e8664f745, type: 3}
   passiveType: 12
   passiveValue: 0
+  tileEffect: {fileID: 0}
+  passiveVFX: []

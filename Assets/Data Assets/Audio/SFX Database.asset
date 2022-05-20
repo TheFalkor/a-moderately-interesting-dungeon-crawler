@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundEffectDatabase:
   - soundEffectName: MOVE
-    audioClip: {fileID: 8300000, guid: db7145ebf3b2640d199b86db21f5ba52, type: 3}
-    volume: 0.5
-    pitch: 0.8
+    audioClip: {fileID: 8300000, guid: 72b473511df9c49c588a7d2bcccac7e2, type: 3}
+    volume: 0.25
+    pitch: 0.75
   - soundEffectName: SLASH
-    audioClip: {fileID: 8300000, guid: edac14f988ce749c0b7a0bef72987fce, type: 3}
-    volume: 0.1
+    audioClip: {fileID: 8300000, guid: abb6b818d17634f57b250126ca2e0062, type: 3}
+    volume: 1
     pitch: 1
   - soundEffectName: EXPLOSION
     audioClip: {fileID: 8300000, guid: d5719438194774db182c1af55b6cea20, type: 3}
@@ -31,5 +31,13 @@ MonoBehaviour:
     pitch: 1
   - soundEffectName: ENEMY_DEATH
     audioClip: {fileID: 8300000, guid: 656eafa76e0af4d48a384fb265c44ea4, type: 3}
+    volume: 1
+    pitch: 1
+  - soundEffectName: HEALTH_GAIN
+    audioClip: {fileID: 8300000, guid: 28c97fe4823e54e629b0229161468053, type: 3}
+    volume: 1
+    pitch: 1
+  - soundEffectName: ENEMY_MOVE
+    audioClip: {fileID: 8300000, guid: 8c043f42029ca4e69aa2c4318d034443, type: 3}
     volume: 1
     pitch: 1

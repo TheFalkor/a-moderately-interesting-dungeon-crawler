@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Time Pulse
   m_EditorClassIdentifier: 
   abilityName: Time Pulse
-  abilitySummary: Emit a slowing wave
-  abilityDescription: Emit a slowing pulse that slows enemies hit by the wave for
-    one turn
+  abilitySummary: (0AP) Emit a wave, causing slow
+  abilityDescription: (0AP) Emit a pulse that slows enemies hit by the wave for one
+    turn. Slowed enemies have one less Action Point. Cooldown 3 turns.
   abilitySprite: {fileID: 21300000, guid: e71d7245308e533448821a23ea182ac7, type: 3}
   abilityType: 2
   cooldown: 3
+  actionPointCost: 0
   abilityValue: 0
   abilityPrefab: {fileID: 0}
   abilityVFX:

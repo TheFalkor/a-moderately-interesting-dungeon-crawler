@@ -20,6 +20,18 @@ TextureImporter:
   - first:
       213: -1130621444598234791
     second: AbilityArcaneBlastVFX_5
+  - first:
+      213: 8670197091146867747
+    second: AbilityArcaneBlastVFX_6
+  - first:
+      213: 6223036915950811796
+    second: AbilityArcaneBlastVFX_7
+  - first:
+      213: -7349959596058920256
+    second: AbilityArcaneBlastVFX_8
+  - first:
+      213: -9203514371041257967
+    second: AbilityArcaneBlastVFX_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -242,6 +254,90 @@ TextureImporter:
       bones: []
       spriteID: 951884359c93f40f0800000000000000
       internalID: -1130621444598234791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AbilityArcaneBlastVFX_6
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 24
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3242f66515ab25870800000000000000
+      internalID: 8670197091146867747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AbilityArcaneBlastVFX_7
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 0
+        width: 24
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49af36f9a1bac5650800000000000000
+      internalID: 6223036915950811796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AbilityArcaneBlastVFX_8
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 24
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ca3f6b60b2bff990800000000000000
+      internalID: -7349959596058920256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AbilityArcaneBlastVFX_9
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 0
+        width: 24
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11612ec117c864080800000000000000
+      internalID: -9203514371041257967
       vertices: []
       indices: 
       edges: []

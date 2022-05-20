@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Arcane Blast
   m_EditorClassIdentifier: 
   abilityName: ARCANE BLAST
-  abilitySummary: Cone Damage Spell
-  abilityDescription: Melee ranged spell that deals moderate damage in a directional
-    cone
+  abilitySummary: (1AP) Deal 10 Damage in a Cone
+  abilityDescription: (1AP) Melee ranged spell that deals 10 damage in a directional
+    cone. Cooldown for 2 turns.
   abilitySprite: {fileID: 21300000, guid: b46322dbe73e9c44586b0871e1031df9, type: 3}
   abilityType: 3
   cooldown: 2
-  abilityValue: 10
   actionPointCost: 1
+  abilityValue: 10
   abilityPrefab: {fileID: 0}
   abilityVFX:
   - {fileID: 5081444849801455564, guid: 1d55053d5d75f584d9b97d4f22ed7b25, type: 3}

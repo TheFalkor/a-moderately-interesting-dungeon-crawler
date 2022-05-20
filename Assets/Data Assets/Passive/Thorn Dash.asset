@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Thorn Dash
   m_EditorClassIdentifier: 
   passiveName: THORN DASH
-  passiveSummary: Dashing deals damage
-  passiveDescription: Dashing through enemies now deals damage
+  passiveSummary: Dashing deals 5 damage
+  passiveDescription: Dashing through enemies now deals 5 damage to them.
   passiveSprite: {fileID: 21300000, guid: c8945b819a7381440af49759c9b2455e, type: 3}
   passiveType: 2
   passiveValue: 5
+  tileEffect: {fileID: 0}
+  passiveVFX: []

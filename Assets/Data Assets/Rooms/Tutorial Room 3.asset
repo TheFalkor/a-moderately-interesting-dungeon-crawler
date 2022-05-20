@@ -15,6 +15,10 @@ MonoBehaviour:
   roomName: Tutorial Room 3
   roomDescription: Giving the player a bit of room to play with abilities, forcing
     favorable situations.
+  rewards:
+  - {fileID: 11400000, guid: 0ce910c6db2306d4da44754ef292d038, type: 2}
+  - {fileID: 11400000, guid: 3f88c8a18172f404b8a71730f9a4e845, type: 2}
+  - {fileID: 11400000, guid: 3f88c8a18172f404b8a71730f9a4e845, type: 2}
   tiles:
   - wall: 0
     occupantPrefab: {fileID: 0}
