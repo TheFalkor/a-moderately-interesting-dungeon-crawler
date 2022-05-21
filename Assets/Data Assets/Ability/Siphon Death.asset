@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Siphon Death
   m_EditorClassIdentifier: 
   abilityName: SIPHON DEATH
-  abilitySummary: (1AP) Consume Mark for 6 Shield
+  abilitySummary: (1AP) Consume Death for 6 Shield
   abilityDescription: (1AP) Consume all Deathmarks and gain 6 Shield per enemy marked.
     Cooldown 4 turns
   abilitySprite: {fileID: 21300000, guid: 9992182980873394186e143556823beb, type: 3}

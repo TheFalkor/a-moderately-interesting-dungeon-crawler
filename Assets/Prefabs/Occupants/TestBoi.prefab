@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9eb51e65c8bd0cf4ca86a4b621c624da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e9e994da4972ba84e95c9894d402ccdf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -147,11 +147,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damagePopup: {fileID: 7620306153505864841, guid: f08a4a53d0af0124db00bdeb9ddcee2f, type: 3}
-  overheadPrefab: {fileID: 6743759221455466709, guid: 139e3a25812822247958f097628a21d3, type: 3}
   baseStat: {fileID: 11400000, guid: b095bc3c6b5d4f145b96b484b87f0b7c, type: 2}
   shield: 0
   originType: 0
   currentTile: {fileID: 0}
+  overheadPrefab: {fileID: 6743759221455466709, guid: 139e3a25812822247958f097628a21d3, type: 3}
   behaviourType: 0
   splashMultiplier: 0
   PebblePrefab: {fileID: 2972202281912503759, guid: 5747daf6bb24efd45b06d0d7da33b35a, type: 3}

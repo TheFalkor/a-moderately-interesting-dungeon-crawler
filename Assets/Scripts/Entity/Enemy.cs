@@ -147,7 +147,7 @@ public class Enemy : Entity
 
     private void MeleeAttack(Action action, bool isSplash = false)
     {
-        transform.GetChild(0).GetComponent<Animator>().Play("Attack");
+        transform.GetChild(0).GetChild(0).GetComponent<Animator>().Play("Attack");
         Damage damage;
 
         if (isSplash)

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 398220c39d7c7d04d9742b3cdcc424c7, type: 3}
   m_Name: Wooly's Robe of Bracers
   m_EditorClassIdentifier: 
-  itemName: Wooly's Robe
+  itemName: WOOLY'S ROBE
   itemSummary: 4 HP 4 DEF 2ATK
   itemDescription: Wooly's Robe of Bracers was made to shoulder charge into enemies,
-    what a truly weird wizard he was. Gives 4 Hp, 4 defense and 2 attack
+    what a truly weird wizard he was. Gives 4 HP, 4 DEF and 2 ATK
   itemSprite: {fileID: 21300000, guid: a3c61c8797577784e810b28a6eb32de7, type: 3}
   stackSize: 0
   itemType: 2

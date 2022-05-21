@@ -10,7 +10,7 @@ public class DungeonManager : MonoBehaviour
     [SerializeField] private Animator transitionAnimator;
     [SerializeField] private GameObject exitParent;
     [SerializeField] private GameObject dungeonProfile;
-    [SerializeField] private GameObject miniPlayer;
+    public GameObject miniPlayer;
     public Player player;
 
     [Header("Runtime Variables")]

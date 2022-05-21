@@ -233,8 +233,16 @@ public class CombatUI : MonoBehaviour
 
         // Cat Rave Feature
         if (combatPortrait.rectTransform.eulerAngles.z == 180)
+        {
             backgroundImage.SetActive(true);
+            DungeonManager.instance.player.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().flipY = true;
+            DungeonManager.instance.miniPlayer.transform.GetChild(0).GetComponent<SpriteRenderer>().flipY = true;
+        }
         else if (combatPortrait.rectTransform.eulerAngles.z == 0)
+        {
             backgroundImage.SetActive(false);
+            DungeonManager.instance.player.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().flipY = false;
+            DungeonManager.instance.miniPlayer.transform.GetChild(0).GetComponent<SpriteRenderer>().flipY = false;
+        }
     }
 }

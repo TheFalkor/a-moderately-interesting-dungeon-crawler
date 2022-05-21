@@ -53,7 +53,7 @@ public class Player : Entity
         
 
         // Temporary
-        transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = baseStat.entitySprite;
+        transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().sprite = baseStat.entitySprite;
         // !Temporary
 
         base.Initialize();
@@ -315,6 +315,9 @@ public class Player : Entity
 
     public void EndTurn()
     {
+        if (abilityActive || IsBusy())
+            return;
+
         ranOutOfPoints = false;
         GridManager.instance.ClearAllHighlights();
         CombatUI.instance.DisableAbilityUI();
@@ -405,7 +408,7 @@ public class Player : Entity
             Attack(ws.tile, new Damage(attackDamage, DamageOrigin.FRIENDLY, ws.weaponDamage.statusEffects));
         }
 
-        transform.GetChild(0).GetComponent<Animator>().Play("Attack");
+        transform.GetChild(0).GetChild(0).GetComponent<Animator>().Play("Attack");
 
         currentActionPoints--;
         PassiveManager.instance.OnPlayerAttack(this);

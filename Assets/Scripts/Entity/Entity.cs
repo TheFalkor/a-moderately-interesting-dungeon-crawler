@@ -107,12 +107,12 @@ public abstract class Entity : Occupant
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * ANIMATED_MOVEMENT_SPEED);
             if (targetPosition.y == transform.position.y)
-                transform.Rotate(new Vector3(0, 0, Time.deltaTime * 90 * transform.localScale.x));
+                transform.GetChild(0).Rotate(new Vector3(0, 0, Time.deltaTime * 90 * transform.GetChild(0).localScale.x));
 
             if (targetPosition == (Vector2)transform.position)
             {
                 isMoving = false;
-                transform.eulerAngles = new Vector3(0, 0, 0);
+                transform.GetChild(0).eulerAngles = new Vector3(0, 0, 0);
             }
         }
     }

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 398220c39d7c7d04d9742b3cdcc424c7, type: 3}
-  m_Name: Leather Armour
+  m_Name: Leather Armor
   m_EditorClassIdentifier: 
-  itemName: Leather Armour
-  itemSummary: Gives 10 Hp & 4 defense
-  itemDescription: Armour made of leather scraps, gives protection to the important
+  itemName: LEATHER ARMOR
+  itemSummary: Gives 10 HP & 4 DEF
+  itemDescription: Armor made of leather scraps, gives protection to the important
     places
   itemSprite: {fileID: 21300000, guid: ad940e16040ba4041bf4974894eb7dbb, type: 3}
   stackSize: 0

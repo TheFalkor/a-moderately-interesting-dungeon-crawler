@@ -7,9 +7,13 @@ public class FlutterDash : Ability
     [Header("Runtime Variables")]
     private List<Tile> dashableTiles = new List<Tile>();
     private Tile targetTile;
+    private float animationTimer = 0;
+    private int dashState = 0;
+    private bool verticalDash = false;
 
     [Header("References")]
     private Player player;
+    private Animator playerAnimator;
 
 
     public override bool UseAbility(Tile tile)
@@ -39,6 +43,12 @@ public class FlutterDash : Ability
 
         targetTile = tile;
 
+        verticalDash = player.transform.position.x == targetTile.transform.position.x;
+
+        animationTimer = 0;
+        dashState = 0;
+        playerAnimator.Play("Dash Start");
+
         return true;
     }
 
@@ -46,7 +56,11 @@ public class FlutterDash : Ability
     {
         dashableTiles.Clear();
 
-        player = (Player)currentTile.GetOccupant();
+        if (player == null)
+        {
+            player = (Player)currentTile.GetOccupant();
+            playerAnimator = player.transform.GetChild(0).GetChild(0).GetComponent<Animator>();
+        }
 
         Queue<Vector2Int> directionQueue = new Queue<Vector2Int>();
 
@@ -99,27 +113,60 @@ public class FlutterDash : Ability
 
     public override bool Tick(float deltaTime)
     {
-        if (targetTile.transform.position != player.transform.position)
+        animationTimer += deltaTime;
+
+        if (dashState == 0)     // Dash Start
+        {
+            if (animationTimer >= 24 / 60f)
+            {
+                if (verticalDash)
+                {
+                    int factor = player.transform.position.y > targetTile.transform.position.y? 1: -1;
+                    player.transform.GetChild(0).localPosition = new Vector3(0.75f * factor, 1f, 0);
+                    player.transform.GetChild(0).eulerAngles = new Vector3(0, 0, 90 * factor);
+                }
+
+                dashState = 1;
+                playerAnimator.Play("Dash Middle");
+            }
+        }
+        else if (dashState == 1)    // Dash Middle
         {
             player.transform.position = Vector3.MoveTowards(player.transform.position, targetTile.transform.position, deltaTime * 8);
-            player.transform.Rotate(new Vector3(0, 0, 1800 * deltaTime * player.transform.localScale.x));
-        }
-        else
-        {
-            player.currentTile.SetOccupant(null);
-            player.currentTile = targetTile;
-            player.currentTile.SetOccupant(player);
-
-            player.transform.eulerAngles = new Vector3(0, 0, 0);
-            player.UpdateLayerIndex();
-
-            foreach (Occupant occupant in affectedEnemies)
+        
+            if (targetTile.transform.position == player.transform.position)
             {
-                occupant.AddStatusEffect(new StatusEffect(StatusType.FLUTTER, 1));
-            }
+                player.currentTile.SetOccupant(null);
+                player.currentTile = targetTile;
+                player.currentTile.SetOccupant(player);
 
-            return true;
+                player.UpdateLayerIndex();
+
+                foreach (Occupant occupant in affectedEnemies)
+                {
+                    occupant.AddStatusEffect(new StatusEffect(StatusType.FLUTTER, 1));
+                }
+
+                if (verticalDash)
+                {
+                    player.transform.GetChild(0).localPosition = new Vector3(0, 0, 0);
+                    player.transform.GetChild(0).eulerAngles = new Vector3(0, 0, 0);
+                }
+
+                playerAnimator.Play("Dash End");
+                dashState = 2;
+                animationTimer = 0;
+            }
         }
+        else    // Dash End
+        {
+            if (animationTimer >= 21 / 60f)
+            {
+                return true;
+            }
+        }
+
+       
         return false;
     }
 }

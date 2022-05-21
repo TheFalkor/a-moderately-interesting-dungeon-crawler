@@ -39,7 +39,7 @@ public abstract class Occupant : MonoBehaviour
         currentTile = GridManager.instance.GetTileWorld(transform.position);
         currentTile.SetOccupant(this);
 
-        render = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        render = transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>();
         UpdateLayerIndex();
 
         sfx = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioKor>();
@@ -75,7 +75,7 @@ public abstract class Occupant : MonoBehaviour
         if (isDead)
             return;
 
-        transform.GetChild(0).GetComponent<Animator>().Play("Damage");
+        transform.GetChild(0).GetChild(0).GetComponent<Animator>().Play("Damage");
 
         int actualDamage = damage.damage * (1 - (defense / (36 + defense)));
 
@@ -131,7 +131,7 @@ public abstract class Occupant : MonoBehaviour
         if (isDead)
             return;
 
-        transform.GetChild(0).GetComponent<Animator>().Play("Damage");
+        transform.GetChild(0).GetChild(0).GetComponent<Animator>().Play("Damage");
 
         int actualDamage = damage * (1 - (defense / (36 + defense)));
         currentHealth -= actualDamage;
@@ -185,7 +185,7 @@ public abstract class Occupant : MonoBehaviour
     protected virtual void Death()
     {
         isDead = true;
-        transform.GetChild(0).GetComponent<Animator>().Play("Death");
+        transform.GetChild(0).GetChild(0).GetComponent<Animator>().Play("Death");
 
         CombatManager.instance.RemoveOccupant(this);
 
