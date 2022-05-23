@@ -156,9 +156,9 @@ public class DungeonManager : MonoBehaviour
         }
     }
 
-    public CombatRoomSO GetCurrentRoom()
+    public DungeonNode GetCurrentNode()
     {
-        return currentNode.room;
+        return currentNode;
     }
 
     public void AddRoom()

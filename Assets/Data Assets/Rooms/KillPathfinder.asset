@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: 
   roomDescription: 
+  rewards: []
   tiles:
   - wall: 1
     occupantPrefab: {fileID: 0}

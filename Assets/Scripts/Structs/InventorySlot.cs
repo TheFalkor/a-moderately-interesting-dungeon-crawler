@@ -36,6 +36,7 @@ public class InventorySlot
         if (hover)
             hover.SetInformation(item.itemName, item.itemSummary, item.itemDescription);
 
+        SetSlotActive(true);
         image.gameObject.SetActive(true);
     }
 

@@ -105,16 +105,16 @@ public class VictoryManager : MonoBehaviour
         else
             moneyText.text = "";
 
-        CombatRoomSO room = DungeonManager.instance.GetCurrentRoom();
+        DungeonNode node = DungeonManager.instance.GetCurrentNode();
 
         for (int i = 0; i < 4; i++)
         {
-            if (room.rewards.Count <= i)
+            if (node.rewardList.Count <= i)
                 rewardIconList[i].gameObject.SetActive(false);
             else
             {
 
-                ItemSO item = room.rewards[i];
+                ItemSO item = node.rewardList[i];
 
                 rewardIconList[i].SetInformation(item.itemName, item.itemSummary, item.itemDescription);
                 rewardIconList[i].transform.GetChild(0).GetComponent<Image>().sprite = item.itemSprite;
@@ -129,12 +129,12 @@ public class VictoryManager : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
-            if (room.rewards.Count <= i)
+            if (node.rewardList.Count <= i)
                 break;
 
-            if (room.rewards[i].itemType != ItemType.CONSUMABLE && room.rewards[i].itemType != ItemType.THROWABLE)
+            if (node.rewardList[i].itemType != ItemType.CONSUMABLE && node.rewardList[i].itemType != ItemType.THROWABLE)
             {
-                room.rewards.RemoveAt(i);
+                node.rewardList.RemoveAt(i);
                 i--;
             }
         }
