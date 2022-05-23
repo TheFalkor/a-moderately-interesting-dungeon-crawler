@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a374dec6cdd04df40b4ee58d138db5ee, type: 3}
+  m_Name: Free MP
+  m_EditorClassIdentifier: 
+  passiveName: EXTRA MOVEMENT POINT
+  passiveSummary: 
+  passiveDescription: 
+  passiveSprite: {fileID: 21300000, guid: 035ea2d5e944a83488ea04af93116773, type: 3}
+  passiveType: 16
+  passiveValue: 2
+  tileEffect: {fileID: 0}
+  passiveVFX: []

@@ -14,6 +14,7 @@ public class DungeonManager : MonoBehaviour
     public Player player;
 
     [Header("Runtime Variables")]
+    [HideInInspector] public List<DungeonNode> allNodes = new List<DungeonNode>();
     private DungeonNode currentNode;
     private DungeonNode hoveringNode;
     private bool roomSelected = false;
@@ -134,7 +135,8 @@ public class DungeonManager : MonoBehaviour
 
     public void WonRoom()
     {
-        AbilityTree.instance.AddSkillPoint(1);
+        if (AbilityTree.instance.playerLevel < 9)
+            AbilityTree.instance.AddSkillPoint(1);
 
         miniPlayer.transform.parent = currentNode.transform;
         Vector2 deltaPosition = new Vector2(miniPlayer.transform.position.x - currentNode.transform.position.x, 0);
@@ -162,6 +164,15 @@ public class DungeonManager : MonoBehaviour
     public void AddRoom()
     {
         roomsAmount++;
+    }
+
+    public void ResetGame()
+    {
+        roomsAmount = -1;
+        roomsCompleted = 0;
+        miniPlayer.transform.parent = allNodes[0].transform;
+        miniPlayer.transform.localPosition = new Vector3(0, 0.5f);
+        miniPlayer.transform.localScale = new Vector3(-1, 1, 1);
     }
 
     public void OpenExitPopup()

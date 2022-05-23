@@ -43,8 +43,6 @@ public class TimePulse : Ability
 
     public override bool Tick(float deltaTime)
     {
-        player.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
-
         foreach(Entity e in affectedEnemies)
         {
             e.AddStatusEffect(new StatusEffect(StatusType.SLOWED, 1));

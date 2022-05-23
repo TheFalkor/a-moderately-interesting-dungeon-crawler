@@ -100,7 +100,10 @@ public class VictoryManager : MonoBehaviour
         lvlText.text = "Lv." + AbilityTree.instance.playerLevel + " " + player.baseStat.entityName + " " + player.classStat.className;
         //xpText.text = "XP: " + player.currentExp.ToString() + "/" + player.levelExp.ToString() + " (" + expGain.ToString() + ")";
         xpText.text = "";
-        moneyText.text = "You have gained an Ability Point!";
+        if (AbilityTree.instance.playerLevel < 9)
+            moneyText.text = "You have gained an Ability Point!";
+        else
+            moneyText.text = "";
 
         CombatRoomSO room = DungeonManager.instance.GetCurrentRoom();
 
@@ -110,13 +113,29 @@ public class VictoryManager : MonoBehaviour
                 rewardIconList[i].gameObject.SetActive(false);
             else
             {
+
                 ItemSO item = room.rewards[i];
+
                 rewardIconList[i].SetInformation(item.itemName, item.itemSummary, item.itemDescription);
                 rewardIconList[i].transform.GetChild(0).GetComponent<Image>().sprite = item.itemSprite;
 
                 rewardIconList[i].gameObject.SetActive(true);
 
                 inventory.AddItem(inventory.CreateItem(item));
+
+            }
+
+        }
+
+        for (int i = 0; i < 4; i++)
+        {
+            if (room.rewards.Count <= i)
+                break;
+
+            if (room.rewards[i].itemType != ItemType.CONSUMABLE && room.rewards[i].itemType != ItemType.THROWABLE)
+            {
+                room.rewards.RemoveAt(i);
+                i--;
             }
         }
 

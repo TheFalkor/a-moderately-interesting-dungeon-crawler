@@ -18,4 +18,7 @@ public enum PassiveID
     VITALITY_DRAIN,     // [C] Death Knight
     NECROTIC_SHROUD,    // [C] Death Knight
     MARKED_DECAY,       // [C] Death Knight
+
+    AP_ON_KILL,         // [A] Rat Hook Accessory
+    FREE_MP,            // [A] Ring Accessory    
 }

@@ -12,14 +12,18 @@ public class Parallax2 : MonoBehaviour
     private Transform cameraTransform;
     private Vector3 lastCameraPosition;
     private float textureUnitSizeX;
-    private bool instantiated = false;
+    //private bool instantiated = false;
 
 
 
     void Start()
     {
         cameraTransform = Camera.main.transform;
-        lastCameraPosition = cameraTransform.position;
+        //lastCameraPosition = cameraTransform.position;
+
+        lastCameraPosition = transform.position;
+
+
         //Sprite sprite = GetComponent<SpriteRenderer>().sprite;
         //Texture2D texture = sprite.texture;
         //textureUnitSizeX = (texture.width / sprite.pixelsPerUnit) * transform.localScale.x;
@@ -34,30 +38,32 @@ public class Parallax2 : MonoBehaviour
 
     }
 
-  /*  void FixedUpdate()
-    {
+    /*  void FixedUpdate()
+      {
 
-        if (transform.position.x <= Input.mousePosition.x)
-        {
-            if (!instantiated)
-            {
-                //Instantiate(gameObject, new Vector3((transform.position.x + textureUnitSizeX), transform.position.y, transform.position.z), Quaternion.identity);
+          if (transform.position.x <= Input.mousePosition.x)
+          {
+              if (!instantiated)
+              {
+                  //Instantiate(gameObject, new Vector3((transform.position.x + textureUnitSizeX), transform.position.y, transform.position.z), Quaternion.identity);
 
-                instantiated = true;
-            }
-        }
+                  instantiated = true;
+              }
+          }
 
 
-    }
-  */
+      }
+    */ //Time.deltaTime *
 
     void LateUpdate()
     {
-        Vector3 cameraMovement = (Input.mousePosition/1000) - lastCameraPosition;
+        Vector3 cameraMovement = (Input.mousePosition / 5000)- lastCameraPosition;
 
-        transform.position += cameraMovement * parallaxEffectMultiplier;
+        //transform.position = Vector3.Lerp(transform.position, cameraMovement, parallaxEffectMultiplier);
 
-        lastCameraPosition = (Input.mousePosition / 1000);
+        transform.position = Vector3.Lerp(lastCameraPosition, cameraMovement, parallaxEffectMultiplier * Time.deltaTime);
+
+        lastCameraPosition = transform.position;
 
         //if (Mathf.Abs(cameraTransform.position.x - transform.position.x) >= textureUnitSizeX)
         //{
@@ -65,7 +71,6 @@ public class Parallax2 : MonoBehaviour
           //  Destroy(this.gameObject);
 
         //S}
-
 
     }
 }

@@ -72,7 +72,7 @@ public class TilesetManager : MonoBehaviour
             spriteList.Add(CutSprite(i));
     }
 
-    public void CalculateWallTile(Tile tile)
+    public Sprite CalculateWallTile(Tile tile)
     {
         List<int> availableSprites = new List<int>();
         availableSprites.AddRange(wallIndeces);
@@ -341,13 +341,12 @@ public class TilesetManager : MonoBehaviour
         }    
 
         if (availableSprites.Count == 1)
-            tile.GetComponent<SpriteRenderer>().sprite = spriteList[availableSprites[0]];
+            return spriteList[availableSprites[0]];
         else
-            tile.GetComponent<SpriteRenderer>().sprite = null;
-
+            return null;
     }
 
-    public void CalculateFloorTile(Tile tile)
+    public Sprite CalculateFloorTile(Tile tile)
     {
         List<int> availableSprites = new List<int>
         {
@@ -367,9 +366,8 @@ public class TilesetManager : MonoBehaviour
             27
         };
 
-        tile.GetComponent<SpriteRenderer>().sprite = spriteList[availableSprites[Random.Range(0, availableSprites.Count)]];
+        return spriteList[availableSprites[Random.Range(0, availableSprites.Count)]];
 
-        return;
         availableSprites.AddRange(groundIndeces);
 
         bool wallleft = false;

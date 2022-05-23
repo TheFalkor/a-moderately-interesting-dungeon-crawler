@@ -56,7 +56,7 @@ public class EnemySensing
 
     public Queue<Tile> GetSpearPathToPlayer()
     {
-        Queue<Tile> output = GetPathToPlayer();
+        Queue<Tile> output = new Queue<Tile>();
         Queue<Tile> temp = output;
 
         Tile north = GridManager.instance.GetTile(player.currentTile.GetPosition() + Vector2Int.down * 2);
@@ -81,12 +81,24 @@ public class EnemySensing
                 temp = pathfinder.CreatePath(myself.currentTile, t);
 
             if (output.Count == 0)
-                output = temp;
+            {
+                output.Clear();
+                while (temp.Count > 0)
+                    output.Enqueue(temp.Dequeue());
+            }
             else if (temp.Count < output.Count && temp.Count > 0)
-                output = temp;
+            {
+                output.Clear();
+                while (temp.Count > 0)
+                    output.Enqueue(temp.Dequeue());
+            }
         }
 
-        return output;
+
+        if (output.Count > 0)
+            return output;
+        else
+            return GetPathToPlayer();
     }
 
     public bool CheckLineOfSight(Vector3 position)

@@ -16,6 +16,7 @@ public class Tile : MonoBehaviour
     [Header("SpriteRenderer References")]
     private SpriteRenderer render;
     private SpriteRenderer highlightRender;
+    private SpriteRenderer wallRender;
     private SpriteRenderer cornerRender;
 
     [Header("Highlight Colors")]
@@ -32,8 +33,9 @@ public class Tile : MonoBehaviour
     {
         gridPosition = pos;
         render = GetComponent<SpriteRenderer>();
-        highlightRender = transform.GetChild(1).GetComponent<SpriteRenderer>();
-        cornerRender = transform.GetChild(2).GetComponent<SpriteRenderer>();
+        highlightRender = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        wallRender = transform.GetChild(2).GetComponent<SpriteRenderer>();
+        cornerRender = transform.GetChild(3).GetComponent<SpriteRenderer>();
     }
 
     public void Setup(bool wall)
@@ -55,10 +57,11 @@ public class Tile : MonoBehaviour
 
     public void UpdateTileset()
     {
+        wallRender.gameObject.SetActive(!isWalkable);
+        render.sprite = TilesetManager.instance.CalculateFloorTile(this);
+
         if (!isWalkable)
-            TilesetManager.instance.CalculateWallTile(this);
-        else
-            TilesetManager.instance.CalculateFloorTile(this);
+            wallRender.sprite = TilesetManager.instance.CalculateWallTile(this);
     }
     
     public bool IsWalkable()
@@ -173,7 +176,7 @@ public class Tile : MonoBehaviour
     {
         isHovering = true;
 
-        if (transform.GetChild(1).gameObject.activeSelf)
+        if (highlightRender.gameObject.activeSelf)
             render.color = COLOR_TILE_HOVER;
         else
             render.color = Color.white;

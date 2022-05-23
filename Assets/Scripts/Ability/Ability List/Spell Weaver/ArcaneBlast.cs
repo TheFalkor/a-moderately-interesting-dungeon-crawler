@@ -103,8 +103,6 @@ public class ArcaneBlast : Ability
 
     public override bool Tick(float deltaTime)
     {
-        player.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
-
         foreach(Tile t in target)
         {
             if (t.IsOccupied())

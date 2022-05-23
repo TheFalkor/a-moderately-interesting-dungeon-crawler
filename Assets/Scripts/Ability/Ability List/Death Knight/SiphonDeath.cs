@@ -20,6 +20,8 @@ public class SiphonDeath : Ability
 
         animationTimer = 0.25f;
         markCount = 0;
+
+        affectedEnemies.Clear();
         
         return true;
     }
@@ -42,6 +44,8 @@ public class SiphonDeath : Ability
                 if (effect.type == StatusType.DEATHMARK)
                 {
                     markCount++;
+
+                    affectedEnemies.Add(entity);
 
                     GameObject temp = Object.Instantiate(data.abilityVFX[1], entity.transform.position, Quaternion.identity);
                     Object.Destroy(temp, 6 / 15f);

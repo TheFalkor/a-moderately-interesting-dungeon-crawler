@@ -18,7 +18,7 @@ public abstract class TileEffect : MonoBehaviour
         currentTile.SetTileEffect(this);
 
         render = transform.GetChild(0).GetComponent<SpriteRenderer>();
-        render.sortingOrder = currentTile.GetPosition().y * 5 - 90 + 1;
+        render.sortingOrder = currentTile.GetPosition().y * 5 - 100 + 1;
 
         CombatManager.instance.AddTileEffect(this);
     }

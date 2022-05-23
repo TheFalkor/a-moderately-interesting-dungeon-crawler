@@ -29,7 +29,13 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Text itemNameText;
     [SerializeField] private Text itemTypeText;
     [SerializeField] private Text itemDescriptionText;
-    [SerializeField] private Text itemStatsText;
+    [Space]
+    [SerializeField] private GameObject weaponStatParent;
+    [SerializeField] private GameObject armorStatParent;
+    [SerializeField] private GameObject consumableStatParent;
+    [SerializeField] private GameObject throwableStatParent;
+    [SerializeField] private GameObject accessoryStatParent;
+    [Space]
     [SerializeField] private Button useButton;
     private Text useButtonText;
     [Space]
@@ -100,9 +106,9 @@ public class InventoryUI : MonoBehaviour
         raceText = profileParent.GetChild(1).GetComponent<Text>();
         classText = profileParent.GetChild(2).GetComponent<Text>();
 
-        healthText = playerStatBox.GetChild(0).GetComponent<Text>();
-        attackText = playerStatBox.GetChild(1).GetComponent<Text>();
-        defenseText = playerStatBox.GetChild(2).GetComponent<Text>();
+        healthText = playerStatBox.GetChild(0).GetChild(0).GetComponent<Text>();
+        attackText = playerStatBox.GetChild(1).GetChild(0).GetComponent<Text>();
+        defenseText = playerStatBox.GetChild(2).GetChild(0).GetComponent<Text>();
         moneyText = playerStatBox.GetChild(3).GetComponent<Text>();
         xpText = playerStatBox.GetChild(4).GetComponent<Text>();
 
@@ -214,9 +220,9 @@ public class InventoryUI : MonoBehaviour
 
     public void UpdatePlayerStats(int currentHealth, int maxHealth, int defense, int damage)
     {
-        healthText.text = "HP: " + currentHealth + "/" + maxHealth;
-        attackText.text = "ATK: " + damage;
-        defenseText.text = "DEF: " + defense;
+        healthText.text = currentHealth + "/" + maxHealth;
+        attackText.text = damage.ToString();
+        defenseText.text = defense.ToString();
 
         moneyText.text = "";
         xpText.text = "";
@@ -350,6 +356,11 @@ public class InventoryUI : MonoBehaviour
 
     private void ShowItemInfo(Item item, bool disableButton = false)
     {
+        weaponStatParent.SetActive(false);
+        armorStatParent.SetActive(false);
+        consumableStatParent.SetActive(false);
+        throwableStatParent.SetActive(false);
+        accessoryStatParent.SetActive(false);
 
         if (item == null)
         {
@@ -357,7 +368,6 @@ public class InventoryUI : MonoBehaviour
             itemNameText.text = "";
             itemTypeText.text = "";
             itemDescriptionText.text = "";
-            itemStatsText.text = "";
 
             useButtonText.text = ":)";
             useButton.interactable = false;
@@ -370,20 +380,23 @@ public class InventoryUI : MonoBehaviour
         itemIcon.sprite = item.itemSprite;
         itemNameText.text = item.itemName;
         itemDescriptionText.text = item.itemDescription;
-        itemStatsText.text = "";
 
         switch (item.itemType)
         {
             case ItemType.WEAPON:
                 itemTypeText.text = "Weapon";
-                itemStatsText.text = "+" + ((Weapon)item).weaponDamage + " ATK";
+                weaponStatParent.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = ((Weapon)item).weaponDamage + " ATK";
+                weaponStatParent.SetActive(true);
                 useButtonText.text = "EQUIP ITEM";
                 selectedEquipment = true;
                 break;
 
             case ItemType.ARMOR:
-                //
                 itemTypeText.text = "Armor";
+                armorStatParent.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = ((Armor)item).defense + " DEF";
+                armorStatParent.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = ((Armor)item).health + " HP";
+                armorStatParent.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = ((Armor)item).damage + " ATK";
+                armorStatParent.SetActive(true);
                 useButtonText.text = "EQUIP ITEM";
                 selectedEquipment = true;
                 break;
@@ -397,14 +410,16 @@ public class InventoryUI : MonoBehaviour
 
             case ItemType.CONSUMABLE:
                 itemTypeText.text = "Consumable";
-                itemStatsText.text = "+" + ((Consumable)item).consumableValue + " HP";
+                consumableStatParent.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = ((Consumable)item).consumableValue + " HP";
+                consumableStatParent.SetActive(true);
                 useButtonText.text = "USE ITEM";
                 selectedEquipment = false;
                 break;
 
             case ItemType.THROWABLE:
-                //
                 itemTypeText.text = "Throwable";
+                throwableStatParent.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = ((Throwable)item).throwableValue + " ATK";
+                throwableStatParent.SetActive(true);
                 useButtonText.text = "CANNOT USE";
                 selectedEquipment = false;
                 disableButton = true;

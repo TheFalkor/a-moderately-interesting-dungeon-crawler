@@ -21,6 +21,7 @@ public class DungeonNode : MonoBehaviour
 
     [Header("Runtime Variables")]
     [HideInInspector] public bool completed = true;
+    private DungeonNode parentNode = null;
     private SpriteRenderer render;
     [Space]
     private SpriteRenderer northRender;
@@ -47,6 +48,16 @@ public class DungeonNode : MonoBehaviour
 
     void Start()
     {
+        if (room)
+        {
+            completed = false;
+        }
+        else
+        {
+            Initialize(room, this);
+            MarkCompleted();
+        }
+
         render = GetComponent<SpriteRenderer>();
 
         foreach (DungeonNode node in connectedNodes)
@@ -84,22 +95,23 @@ public class DungeonNode : MonoBehaviour
                 render.sprite = westBrokenBridge;
                 westRender = render;
             }
-        }
 
-
-        if (room)
-        {
-            completed = false;
-        }
-        else
-        {
-            Initialize(room, this);
-            MarkCompleted();
+            if (parentNode == node)
+            {
+                GameObject parentBridge = new GameObject("Parent Bridge");
+                parentBridge.transform.localPosition = render.transform.localPosition * 2;
+                SpriteRenderer parentRender = parentBridge.AddComponent<SpriteRenderer>();
+                parentRender.sortingOrder = 3;
+            }
         }
     }
 
     public void Initialize(bool locked, DungeonNode parent)
     {
+        DungeonManager.instance.allNodes.Add(this);
+
+        parentNode = parent;
+
         foreach (DungeonNode node in connectedNodes)
         {
             if (parent != node)
@@ -127,7 +139,7 @@ public class DungeonNode : MonoBehaviour
         completed = true;
         transform.GetChild(0).gameObject.SetActive(false);
 
-        if (northRender)
+        /*if (northRender)
         {
             northRender.sprite = verticalBridge;
             northRender.transform.localPosition = new Vector3(0, 1);
@@ -150,7 +162,7 @@ public class DungeonNode : MonoBehaviour
             westRender.sprite = horizontalBridge;
             westRender.transform.localPosition = new Vector3(-1, 0);
             westRender.sortingOrder = 3;
-        }
+        }*/
 
         foreach (DungeonNode node in connectedNodes)
             node.gameObject.SetActive(true);
@@ -162,5 +174,14 @@ public class DungeonNode : MonoBehaviour
             render.color = new Color(0.85f, 0.85f, 0.85f);
         else
             render.color = Color.white;
+    }
+
+    public void GGC_NewGamePlus()
+    {
+        if (room)
+        {
+            completed = false;
+            transform.GetChild(0).gameObject.SetActive(true);
+        }
     }
 }

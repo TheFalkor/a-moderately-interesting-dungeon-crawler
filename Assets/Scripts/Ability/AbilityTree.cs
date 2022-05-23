@@ -189,6 +189,12 @@ public class AbilityTree : MonoBehaviour
             case PassiveID.MARKED_DECAY:
                 passive = new MarkedDecay();
                 break;
+            case PassiveID.AP_ON_KILL:
+                passive = new APonKill();
+                break;
+            case PassiveID.FREE_MP:
+                passive = new FreeMP();
+                break;
         }
 
         if (passive != null)

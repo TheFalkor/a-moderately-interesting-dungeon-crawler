@@ -31,6 +31,10 @@ public class Enemy : Entity
     {
         base.Initialize();
 
+        maxhealth = (int)(maxhealth * ConsistentData.difficultyScale);
+        currentHealth = maxhealth;
+        baseMeleeDamage = (int)(baseMeleeDamage * ConsistentData.difficultyScale);
+
         transform.localScale = new Vector3(-1f, 1f);
 
         Sensing = new EnemySensing(this);

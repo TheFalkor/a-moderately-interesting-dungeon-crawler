@@ -327,12 +327,19 @@ public class Player : Entity
             playerEndTurn();
     }
 
+    public void ChangeCurrentAP(int difference)
+    {
+        currentActionPoints += difference;
+
+        CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
+    }
+
     public void ChangeMaxAP(int difference)
     {
         maxActionPoints += difference;
     }
 
-    public void ChangeMP(int difference)
+    public void ChangeCurrentMP(int difference)
     {
         currentMovementPoints += difference;
         CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);

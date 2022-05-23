@@ -6,6 +6,6 @@ public class SpellBoost : Passive
 {
     public override void OnAbilityUsed(AbilityID ability, List<Entity> affectedEnemies = null)
     {
-        DungeonManager.instance.player.ChangeMP(data.passiveValue);
+        DungeonManager.instance.player.ChangeCurrentMP(data.passiveValue);
     }
 }
