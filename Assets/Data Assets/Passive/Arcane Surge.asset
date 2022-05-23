@@ -19,5 +19,5 @@ MonoBehaviour:
   passiveSprite: {fileID: 21300000, guid: 615e5c254710ce84888d13a17c2c3d47, type: 3}
   passiveType: 7
   passiveValue: 0
-  tileEffect: {fileID: 5756851737384967585, guid: 51fb3bfd7a64709468b8999fb1124060, type: 3}
+  tileEffect: {fileID: 6631947614577981235, guid: 3441635525fa7ef49ad4f587cd7099e4, type: 3}
   passiveVFX: []

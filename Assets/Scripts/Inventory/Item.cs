@@ -12,6 +12,8 @@ public abstract class Item
     [Space]
     public int count;
     public int maxStack;
+    [Space]
+    public ItemSO data;
 
 
     public void Initialize(ItemSO data)
@@ -24,6 +26,8 @@ public abstract class Item
 
         count = 1;
         maxStack = (int)data.stackSize + 1;
+
+        this.data = data;
     }
 
     public virtual bool UseItem()

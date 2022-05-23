@@ -37,8 +37,12 @@ public class PassiveManager : MonoBehaviour
             if (hover.gameObject.activeSelf)
                 continue;
 
+            TooltipData data = new TooltipData();
+            data.header = passive.data.passiveName;
+            data.description = passive.data.passiveDescription;
+
             hover.transform.GetChild(0).GetComponent<Image>().sprite = passive.data.passiveSprite;
-            hover.SetInformation(passive.data.passiveName, passive.data.passiveSummary, passive.data.passiveDescription);
+            hover.SetInformation(data);
             hover.gameObject.SetActive(true);
             return;
         }

@@ -23,4 +23,4 @@ MonoBehaviour:
   abilityValue: 0
   abilityPrefab: {fileID: 0}
   abilityVFX:
-  - {fileID: 6900506676400863306, guid: 61cbd953e1759ec4baf4a9c204985a56, type: 3}
+  - {fileID: 2653010421190398661, guid: 61cbd953e1759ec4baf4a9c204985a56, type: 3}

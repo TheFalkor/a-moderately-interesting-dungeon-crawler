@@ -6,9 +6,7 @@ using UnityEngine.EventSystems;
 public class Hoverable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("Hover Data")]
-    public string header;
-    public string summary;
-    public string description;
+    public TooltipData data;
     [Space]
     public bool canHover = false;
 
@@ -31,28 +29,23 @@ public class Hoverable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
             if (delay > 0.25f)
             {
-                MiniTooltip.instance.Show(body, header, summary);
+                MetaTooltip.instance.Show(body, data);
+                // MiniTooltip.instance.Show(body, header, summary);
                 mouseOn = false;
                 delay = 0;
             }
         }
     }
 
-    public void SetInformation(string header, string summary, string description)
+    public void SetInformation(TooltipData data)
     {
-        this.header = header;
-        this.summary = summary;
-        this.description = description;
+        this.data = data;
 
-        canHover = header != "";
+        canHover = true;
     }
 
     public void ClearInformation()
     {
-        header = "";
-        summary = "";
-        description = "";
-
         canHover = false;
     }
 
@@ -60,14 +53,14 @@ public class Hoverable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         if (canHover)
         {
-            MiniTooltip.instance.MouseOnIcon(body);
+            MetaTooltip.instance.MouseOnTarget(body);
             mouseOn = true;
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        MiniTooltip.instance.MouseOffIcon(body);
+        MetaTooltip.instance.MouseOffTarget(body);
 
         mouseOn = false;
         delay = 0;

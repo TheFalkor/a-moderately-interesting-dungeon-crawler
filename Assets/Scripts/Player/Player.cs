@@ -484,7 +484,7 @@ public class Player : Entity
     public void UpdateInventoryStats()
     {
         RecalculateStats();
-        InventoryUI.instance.UpdatePlayerStats(currentHealth, maxhealth, defense, meleeDamage + inventory.equippedWeapon.weaponDamage);
+        InventoryUI.instance.UpdatePlayerStats(currentHealth, maxhealth, defense, meleeDamage);
     }
 
     public int GetWeaponDamage()

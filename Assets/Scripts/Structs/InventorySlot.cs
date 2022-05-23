@@ -34,7 +34,10 @@ public class InventorySlot
             stackText.text = "";
 
         if (hover)
-            hover.SetInformation(item.itemName, item.itemSummary, item.itemDescription);
+        {
+            TooltipData data = Inventory.ItemToData(item.data);
+            hover.SetInformation(data);
+        }
 
         SetSlotActive(true);
         image.gameObject.SetActive(true);

@@ -113,10 +113,11 @@ public class VictoryManager : MonoBehaviour
                 rewardIconList[i].gameObject.SetActive(false);
             else
             {
-
                 ItemSO item = node.rewardList[i];
 
-                rewardIconList[i].SetInformation(item.itemName, item.itemSummary, item.itemDescription);
+                TooltipData data = Inventory.ItemToData(item);
+
+                rewardIconList[i].SetInformation(data);
                 rewardIconList[i].transform.GetChild(0).GetComponent<Image>().sprite = item.itemSprite;
 
                 rewardIconList[i].gameObject.SetActive(true);

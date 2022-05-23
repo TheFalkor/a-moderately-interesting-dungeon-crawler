@@ -196,6 +196,67 @@ public class Inventory : MonoBehaviour
         return item;
     }
 
+    public static TooltipData ItemToData(ItemSO item)
+    {
+        TooltipData data = new TooltipData();
+        data.header = item.itemName;
+
+        switch (item.itemType)
+        {
+            case ItemType.WEAPON:
+                WeaponSO weapon = (WeaponSO)item;
+                if (weapon.weaponType == WeaponType.HAMMER)
+                    data.leftHeader = "HAMMER";
+                else if (weapon.weaponType == WeaponType.SPEAR)
+                    data.leftHeader = "SPEAR";
+                else if (weapon.weaponType == WeaponType.SWORD)
+                    data.leftHeader = "SWORD";
+
+                data.rightHeader = "WEAPON";
+                data.stat1 = weapon.weaponDamage + " ATK";
+                data.stat1Type = "ATK";
+                break;
+
+            case ItemType.ARMOR:
+                data.rightHeader = "ARMOR";
+                ArmorSO armor = (ArmorSO)item;
+
+                data.stat1 = armor.defense + " DEF";
+                data.stat1Type = "DEF";
+
+                data.stat2 = armor.health + " HP";
+                data.stat2Type = "HP";
+
+                data.stat3 = armor.damage + " ATK";
+                data.stat3Type = "ATK";
+                break;
+
+            case ItemType.ACCESSORY:
+                data.rightHeader = "ACCESSORY";
+                break;
+
+            case ItemType.CONSUMABLE:
+                data.rightHeader = "CONSUMABLE";
+                ConsumableItemSO consumable = (ConsumableItemSO)item;
+
+                data.stat1 = consumable.consumableValue + " HP";
+                data.stat1Type = "HP";
+                break;
+
+            case ItemType.THROWABLE:
+                data.rightHeader = "THROWABLE";
+                ThrowableItemSO throwable = (ThrowableItemSO)item;
+
+                data.stat1 = throwable.throwableValue + " ATK";
+                data.stat1Type = "ATK";
+                break;
+        }
+
+        data.description = item.itemDescription;
+
+        return data;
+    }
+
     private void OrganizeInventory()
     {
         for (int i = 0; i < items.Length - 1; i++)

@@ -220,9 +220,9 @@ public class InventoryUI : MonoBehaviour
 
     public void UpdatePlayerStats(int currentHealth, int maxHealth, int defense, int damage)
     {
-        healthText.text = currentHealth + "/" + maxHealth;
-        attackText.text = damage.ToString();
-        defenseText.text = defense.ToString();
+        healthText.text = currentHealth + "/" + maxHealth + " HP";
+        attackText.text = damage + " ATK";
+        defenseText.text = defense + " DEF";
 
         moneyText.text = "";
         xpText.text = "";

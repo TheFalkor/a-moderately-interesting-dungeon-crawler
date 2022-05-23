@@ -203,7 +203,7 @@ public class CombatUI : MonoBehaviour
         if (data != null)
         {
             abilitySlots[index].SetSlot(data);
-            abilitySlots[index].image.transform.parent.GetComponent<Hoverable>().SetInformation(data.abilityName, data.abilitySummary, data.abilityDescription);
+            //abilitySlots[index].image.transform.parent.GetComponent<Hoverable>().SetInformation(data.abilityName, data.abilitySummary, data.abilityDescription);
         }
         else
         {
@@ -214,7 +214,9 @@ public class CombatUI : MonoBehaviour
     public void SetEquipmentData(EquippableItem item, int index)
     {
         equipmentHovers[index].transform.GetChild(0).GetComponent<Image>().sprite = item.itemSprite;
-        equipmentHovers[index].SetInformation(item.itemName, item.itemSummary, item.itemDescription);
+
+        TooltipData data = Inventory.ItemToData(item.data);
+        equipmentHovers[index].SetInformation(data);
 
         equipmentHovers[index].gameObject.SetActive(true);
     }
