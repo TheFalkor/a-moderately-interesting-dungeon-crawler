@@ -66,11 +66,22 @@ public class HotbarUI : MonoBehaviour
                 hotbarSlots[slotIndex].SetSlot(item);
                 hotbarSlotIndex[slotIndex] = i;
 
+                hotbarSlots[slotIndex].SetSlotActive(true);
+
                 slotIndex++;
             }
         }
 
         selectionMarker.SetActive(false);
+    }
+
+    public void EnableHotbar()
+    {
+        foreach (InventorySlot slot in hotbarSlots)
+        {
+            if (slot.image.gameObject.activeSelf)
+                slot.SetSlotActive(true);
+        }
     }
 
     public void SelectItem(int index)
@@ -92,5 +103,13 @@ public class HotbarUI : MonoBehaviour
 
         CombatUI.instance.SetAttackButton(true);
         player.SelectItem(hotbarSlotIndex[index]);
+    }
+
+    public void DisableItemUI()
+    {
+        selectionMarker.gameObject.SetActive(false);
+
+        foreach (InventorySlot slot in hotbarSlots)
+            slot.SetSlotActive(false);
     }
 }

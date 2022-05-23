@@ -7,6 +7,10 @@ public class InventorySlot
 {
     public Image image;
     public Text stackText;
+    [Space]
+    private Color COLOR_FULL = new Color(1, 1, 1, 1);
+    private Color COLOR_HALF = new Color(1, 1, 1, 0.2f);
+    [Space]
     private readonly GameObject marker;
     private readonly Hoverable hover;
 
@@ -43,7 +47,23 @@ public class InventorySlot
         if (hover)
             hover.ClearInformation();
 
+        SetSlotActive(false);
+
         image.gameObject.SetActive(false);
+    }
+
+    public void SetSlotActive(bool active)
+    {
+        if (active)
+        {
+            image.transform.parent.GetComponent<Button>().interactable = true;
+            image.color = COLOR_FULL;
+        }
+        else
+        {
+            image.transform.parent.GetComponent<Button>().interactable = false;
+            image.color = COLOR_HALF;
+        }
     }
 
     public void SelectSlot()

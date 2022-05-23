@@ -117,6 +117,8 @@ public class Player : Entity
 
         RecalculateStats();
 
+        HotbarUI.instance.EnableHotbar();
+
         CombatUI.instance.SetAttackButton(false);
         CombatUI.instance.UpdateAttack(meleeDamage);
         CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
@@ -321,6 +323,7 @@ public class Player : Entity
         ranOutOfPoints = false;
         GridManager.instance.ClearAllHighlights();
         CombatUI.instance.DisableAbilityUI();
+        HotbarUI.instance.DisableItemUI();
         turnEnded = true;
 
         if (playerEndTurn != null)
