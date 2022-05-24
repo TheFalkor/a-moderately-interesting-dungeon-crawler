@@ -7,6 +7,7 @@ public struct TooltipData
     public string rightHeader;
     public bool iconOnRightHeader;
 
+    public string summary;
     public string description;
 
     public string stat1;

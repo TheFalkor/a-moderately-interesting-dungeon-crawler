@@ -115,8 +115,11 @@ public class CombatUI : MonoBehaviour
 
     public void EndPlayerTurn()
     {
-        player.EndTurn();
-        endTurnAnimator.SetBool("Glow", false);
+        if (player.EndTurn())
+        {
+            selectionMarker.SetActive(false);
+            endTurnAnimator.SetBool("Glow", false);
+        }
     }
 
     public void EnableEndTurnGlow()
@@ -274,7 +277,7 @@ public class CombatUI : MonoBehaviour
     {
         equipmentHovers[index].transform.GetChild(0).GetComponent<Image>().sprite = item.itemSprite;
 
-        TooltipData data = Inventory.ItemToData(item.data);
+        TooltipData data = Inventory.ItemToData(item.data, false);
         equipmentHovers[index].SetInformation(data);
 
         equipmentHovers[index].gameObject.SetActive(true);

@@ -11,7 +11,6 @@ public class AbilitySlot
     private Color COLOR_FULL = new Color(1, 1, 1, 1);
     private Color COLOR_HALF = new Color(1, 1, 1, 0.2f);
     [Space]
-    private Sprite defaultSprite;
     private Sprite activeBorderSprite;
     private Sprite passiveBorderSprite;
 
@@ -20,14 +19,13 @@ public class AbilitySlot
         this.image = image;
         this.marker = marker;
 
-        defaultSprite = image.transform.parent.GetComponent<Image>().sprite;
         activeBorderSprite = activeBorder;
         passiveBorderSprite = passiveBorder;
 
         image.gameObject.SetActive(false);
     }
 
-    public void SetSlot(PassiveSO data)
+    public void SetSlot(PassiveSO data, bool summaryHoverData = false)
     {
         image.sprite = data.passiveSprite;
 
@@ -42,9 +40,19 @@ public class AbilitySlot
             image.color = COLOR_HALF;
 
         image.gameObject.SetActive(true);
+
+        if (summaryHoverData)
+        {
+            TooltipData tipData = new TooltipData()
+            {
+                header = data.passiveName,
+                summary = data.passiveSummary
+            };
+            image.transform.parent.GetComponent<Hoverable>().SetInformation(tipData);
+        }
     }
 
-    public void SetSlot(AbilitySO data)
+    public void SetSlot(AbilitySO data, bool summaryHoverData = false)
     {
         image.sprite = data.abilitySprite;
 
@@ -59,6 +67,16 @@ public class AbilitySlot
             image.color = COLOR_HALF;
 
         image.gameObject.SetActive(true);
+
+        if (summaryHoverData)
+        {
+            TooltipData tipData = new TooltipData()
+            {
+                header = data.abilityName,
+                summary = data.abilitySummary
+            };
+            image.transform.parent.GetComponent<Hoverable>().SetInformation(tipData);
+        }
     }
 
     public void SetSlotActive(bool active)

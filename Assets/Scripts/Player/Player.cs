@@ -315,10 +315,10 @@ public class Player : Entity
         return true;
     }
 
-    public void EndTurn()
+    public bool EndTurn()
     {
         if (abilityActive || IsBusy())
-            return;
+            return false;
 
         ranOutOfPoints = false;
         GridManager.instance.ClearAllHighlights();
@@ -328,6 +328,8 @@ public class Player : Entity
 
         if (playerEndTurn != null)
             playerEndTurn();
+
+        return true;
     }
 
     public void ChangeCurrentAP(int difference)

@@ -15,7 +15,8 @@ public class MiniTooltip : MonoBehaviour
     private bool mouseOn = false;
     private float delay = 0;
     private const float DELAY_TIME = 0.1f;
-    private RectTransform parent;
+    private RectTransform target;
+    private Transform parent;
 
     [Header("Singleton")]
     public static MiniTooltip instance;
@@ -32,6 +33,7 @@ public class MiniTooltip : MonoBehaviour
         summaryText = transform.GetChild(1).GetComponent<Text>();
 
         body = GetComponent<RectTransform>();
+        parent = transform.parent;
 
         gameObject.SetActive(false);
     }
@@ -47,37 +49,39 @@ public class MiniTooltip : MonoBehaviour
         }
     }
 
-    public void Show(RectTransform icon, string name, string summary)
+    public void Show(RectTransform icon, TooltipData data)
     {
         transform.SetParent(icon);
-        parent = icon;
+        target = icon;
 
-        int xPosition = (int)icon.position.x;
-
-        if (xPosition >= -3)
-            body.localPosition = new Vector3(-170, 0);
+        float xPosition = icon.position.x;
+        if (xPosition > -2)
+            body.localPosition = new Vector3(-210, 0);
         else
-            body.localPosition = new Vector3(170, 0);
+            body.localPosition = new Vector3(210, 0);
 
         body.localScale = new Vector3(1, 1, 1);
 
 
-        nameText.text = name;
-        summaryText.text = summary;
+        nameText.text = data.header;
+        summaryText.text = data.summary;
+
+        body.SetParent(parent);
+        body.localScale = Vector3.one;
 
         mouseOn = true;
         gameObject.SetActive(true);
     }
 
-    public void MouseOnIcon(RectTransform icon)
+    public void MouseOnTarget(RectTransform icon)
     {
-        if (parent == icon)
+        if (target == icon)
             mouseOn = true;
     }
 
     public void MouseOffIcon(RectTransform icon)
     {
-        if (parent == icon)
+        if (target == icon)
         {
             mouseOn = false;
             delay = 0.1f;

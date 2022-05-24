@@ -196,7 +196,7 @@ public class Inventory : MonoBehaviour
         return item;
     }
 
-    public static TooltipData ItemToData(ItemSO item)
+    public static TooltipData ItemToData(ItemSO item, bool includeSummary)
     {
         TooltipData data = new TooltipData();
         data.header = item.itemName;
@@ -221,14 +221,14 @@ public class Inventory : MonoBehaviour
                 data.rightHeader = "ARMOR";
                 ArmorSO armor = (ArmorSO)item;
 
-                data.stat1 = armor.defense + " DEF";
-                data.stat1Type = "DEF";
+                data.stat1 = armor.health + " HP";
+                data.stat1Type = "HP";
 
-                data.stat2 = armor.health + " HP";
-                data.stat2Type = "HP";
+                data.stat2 = armor.damage + " ATK";
+                data.stat2Type = "ATK";
 
-                data.stat3 = armor.damage + " ATK";
-                data.stat3Type = "ATK";
+                data.stat3 = armor.defense + " DEF";
+                data.stat3Type = "DEF";
                 break;
 
             case ItemType.ACCESSORY:
@@ -253,6 +253,9 @@ public class Inventory : MonoBehaviour
         }
 
         data.description = item.itemDescription;
+
+        if (includeSummary)
+            data.summary = item.itemSummary;
 
         return data;
     }

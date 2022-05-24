@@ -13,12 +13,14 @@ public class InventorySlot
     [Space]
     private readonly GameObject marker;
     private readonly Hoverable hover;
+    private bool includeSummary = false;
 
-    public InventorySlot(Image image, Text stackText, GameObject marker = null)
+    public InventorySlot(Image image, Text stackText, GameObject marker = null, bool includeSummary = false)
     {
         this.image = image;
         this.stackText = stackText;
         this.marker = marker;
+        this.includeSummary = includeSummary;
 
         hover = image.transform.parent.GetComponent<Hoverable>();
 
@@ -35,7 +37,7 @@ public class InventorySlot
 
         if (hover)
         {
-            TooltipData data = Inventory.ItemToData(item.data);
+            TooltipData data = Inventory.ItemToData(item.data, includeSummary);
             hover.SetInformation(data);
         }
 

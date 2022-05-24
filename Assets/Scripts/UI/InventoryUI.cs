@@ -88,7 +88,7 @@ public class InventoryUI : MonoBehaviour
             Image image = inventoryBox.GetChild(i).GetChild(0).GetComponent<Image>();
             Text text = inventoryBox.GetChild(i).GetChild(1).GetComponent<Text>();
 
-            inventorySlots.Add(new InventorySlot(image, text, selectionMarker));
+            inventorySlots.Add(new InventorySlot(image, text, selectionMarker, true));
         }
 
         for (int i = 0; i < equipmentBox.childCount; i++)
@@ -96,7 +96,7 @@ public class InventoryUI : MonoBehaviour
             Image image = equipmentBox.GetChild(i).GetChild(0).GetComponent<Image>();
             Text text = equipmentBox.GetChild(i).GetChild(1).GetComponent<Text>();
 
-            equipmentSlots.Add(new InventorySlot(image, text, selectionMarker));
+            equipmentSlots.Add(new InventorySlot(image, text, selectionMarker, true));
         }
 
         useButtonText = useButton.transform.GetChild(0).GetComponent<Text>();
@@ -223,6 +223,35 @@ public class InventoryUI : MonoBehaviour
         healthText.text = currentHealth + "/" + maxHealth + " HP";
         attackText.text = damage + " ATK";
         defenseText.text = defense + " DEF";
+
+
+        TooltipData healthData = new TooltipData()
+        {
+            header = "    HEALTH",
+            headerIcon = healthText.transform.parent.GetComponent<Image>().sprite,
+            leftHeader = "CURRENT STAT: " + currentHealth + "/" + maxHealth,
+            description = "Health is used to keep track of how much health you have and when you lose health the health number drops a little. If you have no health you lose gaming."
+        };
+        healthText.transform.parent.GetComponent<Hoverable>().SetInformation(healthData);
+
+        TooltipData attackData = new TooltipData()
+        {
+            header = "    ATTACK",
+            headerIcon = attackText.transform.parent.GetComponent<Image>().sprite,
+            leftHeader = "CURRENT STAT: " + damage,
+            description = "Attack is used when attacking an enemy using your equipped weapon. Weapons that deal splash damage deal 50% of the Attack Stat"
+        };
+        attackText.transform.parent.GetComponent<Hoverable>().SetInformation(attackData);
+
+        int defensePercentage = (int)(100 - 100 * (1 - defense / (float)(36 + defense)));
+        TooltipData defenseData = new TooltipData()
+        {
+            header = "    DEFENSE",
+            headerIcon = defenseText.transform.parent.GetComponent<Image>().sprite,
+            leftHeader = "CURRENT STAT: " + defense,
+            description = "Defense is used to reduce a percentage of all damage taken.\nYou are currently blocking " + defensePercentage + "% of all damage taken."
+        };
+        defenseText.transform.parent.GetComponent<Hoverable>().SetInformation(defenseData);
 
         moneyText.text = "";
         xpText.text = "";
@@ -393,9 +422,9 @@ public class InventoryUI : MonoBehaviour
 
             case ItemType.ARMOR:
                 itemTypeText.text = "Armor";
-                armorStatParent.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = ((Armor)item).defense + " DEF";
-                armorStatParent.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = ((Armor)item).health + " HP";
-                armorStatParent.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = ((Armor)item).damage + " ATK";
+                armorStatParent.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = ((Armor)item).health + " HP";
+                armorStatParent.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = ((Armor)item).damage + " ATK";
+                armorStatParent.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = ((Armor)item).defense + " DEF";
                 armorStatParent.SetActive(true);
                 useButtonText.text = "EQUIP ITEM";
                 selectedEquipment = true;
@@ -498,13 +527,13 @@ public class InventoryUI : MonoBehaviour
         int raceIndex = 0;
         foreach (AbilitySO ability in player.baseStat.startingAbilities)
         {
-            raceSlots[raceIndex].SetSlot(ability);
+            raceSlots[raceIndex].SetSlot(ability, true);
             raceIndex++;
         }
 
         foreach (PassiveSO passive in player.baseStat.unlockablePassives)
         {
-            raceSlots[raceIndex].SetSlot(passive);
+            raceSlots[raceIndex].SetSlot(passive, true);
             raceIndex++;
         }
 
@@ -512,19 +541,19 @@ public class InventoryUI : MonoBehaviour
         int classIndex = 0;
         foreach (PassiveSO passive in player.classStat.startingPassives)
         {
-            classSlots[classIndex].SetSlot(passive);
+            classSlots[classIndex].SetSlot(passive, true);
             classIndex++;
         }
 
         foreach (AbilitySO ability in player.classStat.unlockableAbilities)
         {
-            classSlots[classIndex].SetSlot(ability);
+            classSlots[classIndex].SetSlot(ability, true);
             classIndex++;
         }
 
         foreach (PassiveSO passive in player.classStat.unlockablePassives)
         {
-            classSlots[classIndex].SetSlot(passive);
+            classSlots[classIndex].SetSlot(passive, true);
             classIndex++;
         }
 

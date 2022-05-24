@@ -9,6 +9,7 @@ public class Hoverable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public TooltipData data;
     [Space]
     public bool canHover = false;
+    private bool miniTooltip = false;
 
     [Header("Runtime Variables")]
     private RectTransform body;
@@ -29,8 +30,10 @@ public class Hoverable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
             if (delay > 0.25f)
             {
-                MetaTooltip.instance.Show(body, data);
-                // MiniTooltip.instance.Show(body, header, summary);
+                if (miniTooltip)
+                    MiniTooltip.instance.Show(body, data);
+                else
+                    MetaTooltip.instance.Show(body, data);
                 mouseOn = false;
                 delay = 0;
             }
@@ -41,6 +44,7 @@ public class Hoverable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         this.data = data;
 
+        miniTooltip = data.summary != null;
         canHover = data.header != null;
     }
 
@@ -53,14 +57,20 @@ public class Hoverable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         if (canHover)
         {
-            MetaTooltip.instance.MouseOnTarget(body);
+            if (miniTooltip)
+                MiniTooltip.instance.MouseOnTarget(body);
+            else
+                MetaTooltip.instance.MouseOnTarget(body);
             mouseOn = true;
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        MetaTooltip.instance.MouseOffTarget(body);
+        if (miniTooltip)
+            MiniTooltip.instance.MouseOffIcon(body);
+        else
+            MetaTooltip.instance.MouseOffTarget(body);
 
         mouseOn = false;
         delay = 0;

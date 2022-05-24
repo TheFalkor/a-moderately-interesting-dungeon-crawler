@@ -49,7 +49,7 @@ public class MetaTooltip : MonoBehaviour
         body = GetComponent<RectTransform>();
         parent = transform.parent;
 
-        for (int i = 1; i < parent.childCount; i++)
+        for (int i = 2; i < parent.childCount; i++)
             metaPoints.Add(parent.GetChild(i).GetComponent<RectTransform>());
 
         headerIcon = transform.GetChild(5).GetComponent<Image>();
@@ -91,18 +91,17 @@ public class MetaTooltip : MonoBehaviour
         this.target = target;
         body.SetParent(target);
 
-        int xPosition = (int)target.position.x;
-
-        if (xPosition >= -3)
-            body.localPosition = target.position + new Vector3(-200, 0);
-        else
-            body.localPosition = target.position + new Vector3(200, 0);
+        body.localPosition = target.position;
 
         RectTransform rect = metaPoints[0];
+        body.SetParent(parent);
 
         foreach (RectTransform tr in metaPoints)
         {
-            if ((body.transform.position - tr.position).magnitude < (body.transform.position - rect.position).magnitude)
+            float pointMagnitude = (body.transform.position - tr.position).magnitude;
+            float currentMagnitude = (body.transform.position - rect.position).magnitude;
+
+            if (pointMagnitude < currentMagnitude && pointMagnitude > 2.4f)
                 rect = tr;
         }
 
