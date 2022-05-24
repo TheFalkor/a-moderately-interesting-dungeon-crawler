@@ -31,9 +31,6 @@ public abstract class TileEffect : MonoBehaviour
     public virtual void PreTurn() 
     {
         duration -= 1;
-
-        if (duration == 0)
-            OnDespawn();
     }
 
     public virtual void OnDespawn() 

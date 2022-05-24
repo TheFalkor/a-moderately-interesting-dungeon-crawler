@@ -55,7 +55,7 @@ public class CombatManager : MonoBehaviour
             {
                 if (tileEffectList[i].duration == 0)
                 {
-                    tileEffectList.RemoveAt(i);
+                    tileEffectList[i].OnDespawn();
                     i--;
                 }
             }

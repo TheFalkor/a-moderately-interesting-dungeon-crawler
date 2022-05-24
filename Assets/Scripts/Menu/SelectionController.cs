@@ -13,6 +13,9 @@ public class SelectionController : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private Image playerImage;
     [Space]
+    [SerializeField] private RectTransform raceParent;
+    [SerializeField] private RectTransform classParent;
+    [Space]
     [SerializeField] private Text raceText;
     [SerializeField] private Text classText;
 
@@ -20,62 +23,40 @@ public class SelectionController : MonoBehaviour
     [Header("Runtime variables")]
     private int currentRaceIndex = 0;
     private int currentClassIndex = 0;
+    private List<Button> raceButtons = new List<Button>();
+    private List<Button> classButtons = new List<Button>();
 
 
     private void Start()
     {
         UpdateUI();
+
+        for (int i = 1; i < raceParent.childCount; i++)
+            raceButtons.Add(raceParent.GetChild(i).GetComponent<Button>());
+
+        for (int i = 1; i < classParent.childCount; i++)
+            classButtons.Add(classParent.GetChild(i).GetComponent<Button>());
+
+        SwitchRace(0);
+        SwitchClass(0);
     }
 
-    public void SwitchRace(int direction)
+    public void SwitchRace(int index)
     {
-        currentRaceIndex += direction;
-        currentRaceIndex %= raceList.Count;
-
-        if (currentRaceIndex < 0)
-            currentRaceIndex = raceList.Count - 1;
-        UpdateUI();
-    }
-
-    public void SwitchRace(Slider slider)
-    {
-        int direction;
-        if (slider.value == -1)
-            direction = -1;
-        else if (slider.value == 1)
-            direction = 1;
-        else
-            return;
-
-        slider.value = 0;
-
-        SwitchRace(direction);
-    }
-
-    public void SwitchClass(int direction)
-    {
-        currentClassIndex += direction;
-        currentClassIndex %= classList.Count;
-
-        if (currentClassIndex < 0)
-            currentClassIndex = classList.Count - 1;
+        raceButtons[currentRaceIndex].interactable = true;
+        currentRaceIndex = index;
+        raceButtons[currentRaceIndex].interactable = false;
 
         UpdateUI();
     }
 
-    public void SwitchClass(Slider slider)
+    public void SwitchClass(int index)
     {
-        int direction;
-        if (slider.value == -1)
-            direction = -1;
-        else if (slider.value == 1)
-            direction = 1;
-        else
-            return;
+        classButtons[currentClassIndex].interactable = true;
+        currentClassIndex = index;
+        classButtons[currentClassIndex].interactable = false;
 
-        slider.value = 0;
-
-        SwitchClass(direction);
+        UpdateUI();
     }
 
     public BaseStatsSO GetBaseStat()
