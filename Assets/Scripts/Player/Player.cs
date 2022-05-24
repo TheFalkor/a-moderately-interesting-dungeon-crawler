@@ -500,7 +500,8 @@ public class Player : Entity
     protected override void Death()
     {
         temporaryAnimatorDeath.SetBool("Closed", true);
-        Debug.Log("player died");
+
+        transform.GetChild(0).GetChild(0).GetComponent<Animator>().Play("Death");
         sfx.PlaySFX("DEATH");
         // End game
         EndManager.instance.EndGame(false);

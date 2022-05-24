@@ -41,7 +41,7 @@ public class Hoverable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         this.data = data;
 
-        canHover = true;
+        canHover = data.header != null;
     }
 
     public void ClearInformation()

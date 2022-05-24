@@ -146,13 +146,13 @@ public class CombatUI : MonoBehaviour
         if (shield != 0)
             healthText.text = healthText.text + " (+" + shield + ")";
 
-        TooltipData data = new TooltipData();
-
-        data.header = "     HEALTH";
-        data.headerIcon = healthText.transform.parent.GetComponent<Image>().sprite;
-        data.leftHeader = "CURRENT STAT: " + healthText.text;
-        data.description = "Health is used to keep track of how much health you have and when you lose health the health number drops a little. If you have no health you lose gaming.";
-
+        TooltipData data = new TooltipData
+        {
+            header = "    HEALTH",
+            headerIcon = healthText.transform.parent.GetComponent<Image>().sprite,
+            leftHeader = "CURRENT STAT: " + healthText.text,
+            description = "Health is used to keep track of how much health you have and when you lose health the health number drops a little. If you have no health you lose gaming."
+        };
         healthText.transform.parent.GetComponent<Hoverable>().SetInformation(data);
     }
 
@@ -160,25 +160,56 @@ public class CombatUI : MonoBehaviour
     {
         attackText.text = attackDamage.ToString();
 
-        TooltipData data = new TooltipData();
-
-        data.header = "     ATTACK";
-        data.headerIcon = attackText.transform.parent.GetComponent<Image>().sprite;
-        data.leftHeader = "CURRENT STAT: " + attackDamage;
-        data.description = "Attack is used to keep track of how much health you have and when you lose health the health number drops a little. If you have no health you lose gaming.";
-
+        TooltipData data = new TooltipData
+        {
+            header = "    ATTACK",
+            headerIcon = attackText.transform.parent.GetComponent<Image>().sprite,
+            leftHeader = "CURRENT STAT: " + attackDamage,
+            description = "Attack is used when attacking an enemy using your equipped weapon. Weapons that deal splash damage deal 50% of the Attack Stat"
+        };
         attackText.transform.parent.GetComponent<Hoverable>().SetInformation(data);
     }
     
     public void UpdateDefense(int defense)
     {
+        defense = 5;
         defenseText.text = defense.ToString();
+        // int actualDamage = damage.damage * (1 - (defense / (36 + defense)));
+        int defensePercentage = (int)(100 - 100 * (1 - defense / (float)(36 + defense)));
+
+        TooltipData data = new TooltipData
+        {
+            header = "    DEFENSE",
+            headerIcon = defenseText.transform.parent.GetComponent<Image>().sprite,
+            leftHeader = "CURRENT STAT: " + defense,
+            description = "Defense is used to reduce a percentage of all damage taken.\nYou are currently blocking " + defensePercentage + "% of all damage taken."
+        };
+        defenseText.transform.parent.GetComponent<Hoverable>().SetInformation(data);
     }
 
     public void UpdateActionPoints(int movementPoints, int actionPoints)
     {
         actionPointText.text = actionPoints.ToString();
         movementPointText.text = movementPoints.ToString();
+
+        TooltipData dataAP = new TooltipData
+        {
+            header = "    ACTION POINT",
+            headerIcon = actionPointText.transform.parent.GetComponent<Image>().sprite,
+            leftHeader = "CURRENT STAT: " + actionPoints,
+            description = "Action Points are used to move, attack and use abilities.\nAction Points are restored at the start of each turn."
+        };
+        actionPointText.transform.parent.GetComponent<Hoverable>().SetInformation(dataAP);
+
+
+        TooltipData dataMP = new TooltipData
+        {
+            header = "    MOVEMENT POINT",
+            headerIcon = movementPointText.transform.parent.GetComponent<Image>().sprite,
+            leftHeader = "CURRENT STAT: " + movementPoints,
+            description = "Movement Points are used to move without using Action Points.\nMovement Points are restored at the start of each turn."
+        };
+        movementPointText.transform.parent.GetComponent<Hoverable>().SetInformation(dataMP);
 
         UpdateAbilityUI();
     }
@@ -221,11 +252,21 @@ public class CombatUI : MonoBehaviour
         if (data != null)
         {
             abilitySlots[index].SetSlot(data);
-            //abilitySlots[index].image.transform.parent.GetComponent<Hoverable>().SetInformation(data.abilityName, data.abilitySummary, data.abilityDescription);
+
+            TooltipData tipData = new TooltipData()
+            {
+                header = data.abilityName,
+                leftHeader = "COOLDOWN: " + data.cooldown + " TURNS",
+                rightHeader = "COST: " + data.actionPointCost + "   ",
+                iconOnRightHeader = true,
+                description = data.abilityDescription
+            };
+            abilitySlots[index].image.transform.parent.GetComponent<Hoverable>().SetInformation(tipData);
         }
         else
         {
             abilitySlots[index].SetSlotActive(false);
+            abilitySlots[index].image.transform.parent.GetComponent<Hoverable>().SetInformation(new TooltipData());
         }
     }
 
