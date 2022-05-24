@@ -40,6 +40,7 @@ public class PassiveManager : MonoBehaviour
             TooltipData data = new TooltipData();
             data.header = passive.data.passiveName;
             data.description = passive.data.passiveDescription;
+            data.rightHeader = "PASSIVE";
 
             hover.transform.GetChild(0).GetComponent<Image>().sprite = passive.data.passiveSprite;
             hover.SetInformation(data);

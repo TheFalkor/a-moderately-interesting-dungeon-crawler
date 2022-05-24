@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: AMULET OF WOOLY WIZARD
   itemSummary: 
   itemDescription: 
-  itemSprite: {fileID: 21300000, guid: 9919e0c6e8b31084a911239b4f7fe871, type: 3}
+  itemSprite: {fileID: 21300000, guid: da9f0bbcf9b0f624a8562399b1e23abd, type: 3}
   stackSize: 0
   itemType: 3
   passiveEffect: {fileID: 11400000, guid: 021e66e905ba57d45a433273c2c01303, type: 2}

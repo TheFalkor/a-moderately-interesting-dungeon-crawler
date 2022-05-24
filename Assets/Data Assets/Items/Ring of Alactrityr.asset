@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: RING OF ALACRITY
   itemSummary: 
   itemDescription: 
-  itemSprite: {fileID: 21300000, guid: 035ea2d5e944a83488ea04af93116773, type: 3}
+  itemSprite: {fileID: 21300000, guid: 5c8b1fd12ba35c743a4128c82f1c0d4b, type: 3}
   stackSize: 0
   itemType: 3
   passiveEffect: {fileID: 11400000, guid: d6e656bef1fc4a549bb07ed0cf83697c, type: 2}

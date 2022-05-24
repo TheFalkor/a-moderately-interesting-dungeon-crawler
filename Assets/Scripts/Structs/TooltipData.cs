@@ -1,6 +1,8 @@
+using UnityEngine;
 public struct TooltipData
 {
     public string header;
+    public Sprite headerIcon;
     public string leftHeader;
     public string rightHeader;
     public bool iconOnRightHeader;

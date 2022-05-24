@@ -145,11 +145,29 @@ public class CombatUI : MonoBehaviour
 
         if (shield != 0)
             healthText.text = healthText.text + " (+" + shield + ")";
+
+        TooltipData data = new TooltipData();
+
+        data.header = "     HEALTH";
+        data.headerIcon = healthText.transform.parent.GetComponent<Image>().sprite;
+        data.leftHeader = "CURRENT STAT: " + healthText.text;
+        data.description = "Health is used to keep track of how much health you have and when you lose health the health number drops a little. If you have no health you lose gaming.";
+
+        healthText.transform.parent.GetComponent<Hoverable>().SetInformation(data);
     }
 
     public void UpdateAttack(int attackDamage)
     {
         attackText.text = attackDamage.ToString();
+
+        TooltipData data = new TooltipData();
+
+        data.header = "     ATTACK";
+        data.headerIcon = attackText.transform.parent.GetComponent<Image>().sprite;
+        data.leftHeader = "CURRENT STAT: " + attackDamage;
+        data.description = "Attack is used to keep track of how much health you have and when you lose health the health number drops a little. If you have no health you lose gaming.";
+
+        attackText.transform.parent.GetComponent<Hoverable>().SetInformation(data);
     }
     
     public void UpdateDefense(int defense)

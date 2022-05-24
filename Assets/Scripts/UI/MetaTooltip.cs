@@ -7,6 +7,7 @@ public class MetaTooltip : MonoBehaviour
 {
     [Header("UI References")]
     private Text headerText;
+    private Image headerIcon;
     [Space]
     private Text leftSubHeaderText;
     private Text rightSubHeaderText;
@@ -32,6 +33,7 @@ public class MetaTooltip : MonoBehaviour
     private RectTransform target;
     private Transform parent;
     private RectTransform body;
+    private List<RectTransform> metaPoints = new List<RectTransform>();
 
     [Header("Singleton")]
     public static MetaTooltip instance;
@@ -47,6 +49,10 @@ public class MetaTooltip : MonoBehaviour
         body = GetComponent<RectTransform>();
         parent = transform.parent;
 
+        for (int i = 1; i < parent.childCount; i++)
+            metaPoints.Add(parent.GetChild(i).GetComponent<RectTransform>());
+
+        headerIcon = transform.GetChild(5).GetComponent<Image>();
         headerText = transform.GetChild(0).GetComponent<Text>();
         leftSubHeaderText = transform.GetChild(1).GetComponent<Text>();
         rightSubHeaderText = transform.GetChild(2).GetComponent<Text>();
@@ -92,8 +98,20 @@ public class MetaTooltip : MonoBehaviour
         else
             body.localPosition = target.position + new Vector3(200, 0);
 
-        body.SetParent(parent);
+        RectTransform rect = metaPoints[0];
+
+        foreach (RectTransform tr in metaPoints)
+        {
+            if ((body.transform.position - tr.position).magnitude < (body.transform.position - rect.position).magnitude)
+                rect = tr;
+        }
+
+        body.SetParent(rect);
+        body.anchoredPosition = new Vector3(0, 0, 0);
         body.localScale = Vector3.one;
+
+        headerIcon.gameObject.SetActive(data.headerIcon != null);
+        headerIcon.sprite = data.headerIcon;
 
         headerText.text = data.header;
         leftSubHeaderText.text = data.leftHeader;
@@ -109,7 +127,7 @@ public class MetaTooltip : MonoBehaviour
             stat1Image.transform.GetChild(0).GetComponent<Text>().text = data.stat1;
         }
         else
-            statsParent.gameObject.SetActive(false);
+            stat1Image.gameObject.SetActive(false);
 
         if (data.stat2 != null)
         {
