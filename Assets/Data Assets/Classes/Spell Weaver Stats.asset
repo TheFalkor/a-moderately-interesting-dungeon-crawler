@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: Spell Weaver Stats
   m_EditorClassIdentifier: 
   className: SPELLWEAVER
-  classDescription: Offensive Oriented Class, weave spells in between attacks to
-    traverse the battlefield and lay waste to your foes. Use your trained mobility
-    to navigate around your foes and slay them before they have a chance to touch
-    you.
+  classDescription: Offensive Class, Mobility and Ability Usage
+  backgroundSplash: {fileID: 21300000, guid: 984ad2f99a4318948997c2df7a0c90d1, type: 3}
   bonusHealth: 0
   bonusDefense: 0
   bonusMeleeDamage: 3

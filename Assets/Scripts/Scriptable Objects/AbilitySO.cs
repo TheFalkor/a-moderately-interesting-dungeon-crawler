@@ -21,5 +21,6 @@ public class AbilitySO : ScriptableObject
     public float abilityValue;
     public GameObject abilityPrefab;
     [Space]
+    public string abilitySFX;
     public GameObject[] abilityVFX;
 }

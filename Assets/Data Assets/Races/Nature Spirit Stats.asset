@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Nature Spirit Stats
   m_EditorClassIdentifier: 
   entityName: NATURE SPIRIT
-  entityDescription: cock
+  entityDescription: Dash through enemies to deal extra damage
   entitySprite: {fileID: 21300000, guid: 84f4e4c2017e3fa4ead22f343ba5d2db, type: 3}
+  racePortrait: {fileID: 21300000, guid: 3ef819e404d1758489dc7a1cd7a9edbb, type: 3}
+  miniSprite: {fileID: 21300000, guid: 636783760ba513e4181e995818d973cf, type: 3}
   actionPoints: 2
   movementPoints: 1
   movementType: 0

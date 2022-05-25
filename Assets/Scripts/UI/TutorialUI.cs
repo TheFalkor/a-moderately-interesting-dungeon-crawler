@@ -28,11 +28,13 @@ public class TutorialUI : MonoBehaviour
 
     [Header("Runtime Variables")]
     private int currentIndex = 0;
+    private AudioKor sfx;
 
     void Start()
     {
         for (int i = 0; i < shortcutParent.childCount; i++)
             shortcutImageList.Add(shortcutParent.GetChild(i).GetComponent<Image>());
+        sfx = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioKor>();
     }
 
     private void Update()
@@ -62,6 +64,7 @@ public class TutorialUI : MonoBehaviour
 
     public void ChangeTutorial(int direction)
     {
+        sfx.PlaySFX("SELECT");
         SelectTutorial(currentIndex + direction);
     }
 }

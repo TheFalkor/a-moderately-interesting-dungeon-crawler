@@ -7,6 +7,7 @@ public class ClassStatsSO : ScriptableObject
     [Header("Information")]
     public string className;
     public string classDescription;
+    public Sprite backgroundSplash;
 
     [Header("Combat")]
     public int bonusHealth;

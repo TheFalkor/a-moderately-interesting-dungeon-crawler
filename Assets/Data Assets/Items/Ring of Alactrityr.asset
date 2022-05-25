@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Ring of Alactrityr
   m_EditorClassIdentifier: 
   itemName: RING OF ALACRITY
-  itemSummary: 
-  itemDescription: 
+  itemSummary: +2 MP
+  itemDescription: This Topaz Gem Ring enhances your natural Mobility, giving you
+    two extra movement points per turn
   itemSprite: {fileID: 21300000, guid: 5c8b1fd12ba35c743a4128c82f1c0d4b, type: 3}
   stackSize: 0
   itemType: 3

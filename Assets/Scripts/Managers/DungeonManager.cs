@@ -23,6 +23,7 @@ public class DungeonManager : MonoBehaviour
     private bool start = false;
     private int roomsCompleted = 0;
     private int roomsAmount = -1;
+    private AudioKor audioKor;
     
 
     [Header("Singleton")]
@@ -40,14 +41,15 @@ public class DungeonManager : MonoBehaviour
         else
             player.Setup();
 
-        miniPlayer.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = player.baseStat.entitySprite;
+        miniPlayer.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = player.baseStat.miniSprite;
     }
 
     private void Start()
     {
-        dungeonProfile.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().sprite = player.baseStat.entitySprite;
+        dungeonProfile.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().sprite = player.baseStat.racePortrait;
         dungeonProfile.transform.GetChild(1).GetComponent<Text>().text = player.baseStat.entityName;
         dungeonProfile.transform.GetChild(2).GetComponent<Text>().text = player.classStat.className;
+        audioKor = gameObject.GetComponent<AudioKor>();
     }
 
     void Update()
@@ -130,7 +132,7 @@ public class DungeonManager : MonoBehaviour
 
     private void ChangeMusic(string name)
     {
-        gameObject.GetComponent<AudioKor>().PlayMusic(name, AudioKor.Track.A);
+        audioKor.PlayMusic(name, AudioKor.Track.A);
     }
 
     public void WonRoom()
@@ -145,7 +147,6 @@ public class DungeonManager : MonoBehaviour
             miniPlayer.transform.localScale = new Vector2(deltaPosition.normalized.x, 1);
 
         currentNode.MarkCompleted();
-        ChangeMusic("DUNGEON");
 
         //Check Win Condition
         roomsCompleted++;
@@ -178,6 +179,7 @@ public class DungeonManager : MonoBehaviour
     public void OpenExitPopup()
     {
         allowSelection = false;
+        audioKor.PlaySFX("SELECT");
         exitParent.SetActive(true);
     }
 

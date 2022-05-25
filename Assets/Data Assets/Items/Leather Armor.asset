@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Leather Armor
   m_EditorClassIdentifier: 
   itemName: LEATHER ARMOR
-  itemSummary: Gives 10 HP & 4 DEF
-  itemDescription: Armor made of leather scraps, gives protection to the important
-    places
+  itemSummary: 10 HP 4 DEF
+  itemDescription: Armor made of leather scraps, provides protection to the important
+    places. It has a rancid smell
   itemSprite: {fileID: 21300000, guid: ad940e16040ba4041bf4974894eb7dbb, type: 3}
   stackSize: 0
   itemType: 2

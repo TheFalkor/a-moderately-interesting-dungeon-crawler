@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Kunai
   m_EditorClassIdentifier: 
   itemName: Kunai
-  itemSummary: Throwing Knife
-  itemDescription: Is a knife that you can throw
+  itemSummary: 5 DMG, 3 Range
+  itemDescription: The Kunai is a throwable knife, dealing 5 damage to a single target
+    up to 3 tiles away
   itemSprite: {fileID: 21300000, guid: 90f23fe1c51240c4c9bde41f8b235353, type: 3}
   stackSize: 31
   itemType: 5

@@ -15,7 +15,7 @@ MonoBehaviour:
   passiveName: BLADE DANCER
   passiveSummary: 2 Extra Damage per Move
   passiveDescription: Your next attack gains 2 bonus damage per time you move, this
-    bonus is expended on attack.
+    bonus is expended on attack
   passiveSprite: {fileID: 21300000, guid: 0fbbbdae621d95541b3805c07196fe82, type: 3}
   passiveType: 6
   passiveValue: 2

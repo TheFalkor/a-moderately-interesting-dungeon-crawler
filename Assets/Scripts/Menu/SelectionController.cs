@@ -12,19 +12,23 @@ public class SelectionController : MonoBehaviour
 
     [Header("UI References")]
     [SerializeField] private Image playerImage;
+    [SerializeField] private Image background;
     [Space]
     [SerializeField] private RectTransform raceParent;
     [SerializeField] private RectTransform classParent;
     [Space]
     [SerializeField] private Text raceText;
     [SerializeField] private Text classText;
+    [Space]
+    [SerializeField] private Text raceDescription;
+    [SerializeField] private Text classDescription;
 
 
     [Header("Runtime variables")]
     private int currentRaceIndex = 0;
     private int currentClassIndex = 0;
-    private List<Button> raceButtons = new List<Button>();
-    private List<Button> classButtons = new List<Button>();
+    private List<RectTransform> raceSelectors = new List<RectTransform>();
+    private List<RectTransform> classSelectors = new List<RectTransform>();
 
 
     private void Start()
@@ -32,10 +36,10 @@ public class SelectionController : MonoBehaviour
         UpdateUI();
 
         for (int i = 1; i < raceParent.childCount; i++)
-            raceButtons.Add(raceParent.GetChild(i).GetComponent<Button>());
+            raceSelectors.Add(raceParent.GetChild(i).GetComponent<RectTransform>());
 
         for (int i = 1; i < classParent.childCount; i++)
-            classButtons.Add(classParent.GetChild(i).GetComponent<Button>());
+            classSelectors.Add(classParent.GetChild(i).GetComponent<RectTransform>());
 
         SwitchRace(0);
         SwitchClass(0);
@@ -43,19 +47,27 @@ public class SelectionController : MonoBehaviour
 
     public void SwitchRace(int index)
     {
-        raceButtons[currentRaceIndex].interactable = true;
+        raceSelectors[currentRaceIndex].GetComponentInChildren<Button>().interactable = true;
+        raceSelectors[currentRaceIndex].GetChild(1).gameObject.SetActive(false);
         currentRaceIndex = index;
-        raceButtons[currentRaceIndex].interactable = false;
+        raceSelectors[currentRaceIndex].GetComponentInChildren<Button>().interactable = false;
+        raceSelectors[currentRaceIndex].GetChild(1).gameObject.SetActive(true);
+        raceSelectors[currentRaceIndex].transform.SetAsLastSibling();
 
+        gameObject.GetComponent<MainMenuManager>().OnClick();
         UpdateUI();
     }
 
     public void SwitchClass(int index)
     {
-        classButtons[currentClassIndex].interactable = true;
+        classSelectors[currentClassIndex].GetComponentInChildren<Button>().interactable = true;
+        classSelectors[currentClassIndex].GetChild(1).gameObject.SetActive(false);
         currentClassIndex = index;
-        classButtons[currentClassIndex].interactable = false;
+        classSelectors[currentClassIndex].GetComponentInChildren<Button>().interactable = false;
+        classSelectors[currentClassIndex].GetChild(1).gameObject.SetActive(true);
+        classSelectors[currentClassIndex].transform.SetAsLastSibling();
 
+        gameObject.GetComponent<MainMenuManager>().OnClick();
         UpdateUI();
     }
 
@@ -73,7 +85,15 @@ public class SelectionController : MonoBehaviour
     {
         playerImage.sprite = raceList[currentRaceIndex].entitySprite;
 
-        raceText.text = raceList[currentRaceIndex].entityName;
-        classText.text = classList[currentClassIndex].className;
+        BaseStatsSO selectedRace = raceList[currentRaceIndex];
+        ClassStatsSO selectedClass = classList[currentClassIndex];
+
+        background.sprite = selectedClass.backgroundSplash;
+
+        raceText.text = selectedRace.entityName;
+        classText.text = selectedClass.className;
+
+        raceDescription.text = selectedRace.entityName + ": " + selectedRace.entityDescription;
+        classDescription.text = selectedClass.className + ": " + selectedClass.classDescription;
     }
 }

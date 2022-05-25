@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Rat Hook
   m_EditorClassIdentifier: 
   itemName: RAT HOOK
-  itemSummary: 
-  itemDescription: 
+  itemSummary: +1 AP ON KILL
+  itemDescription: A tiny hook with traces of rat fur, with an inscription on it.
+    "Property of 'RATTHEW', the greatest rat pirate to ever sail"
   itemSprite: {fileID: 21300000, guid: 68e92745b7a29034e8bdafd1ec31d1b4, type: 3}
   stackSize: 0
   itemType: 3

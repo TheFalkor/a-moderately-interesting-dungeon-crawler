@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Marked Decay
   m_EditorClassIdentifier: 
   passiveName: MARKED DECAY
-  passiveSummary: Marks deal 4 damage at end of turn
-  passiveDescription: 'An enemy marked with Death will feel the effects of rotting
-    away, losing 4 HP at the end of their turn. '
+  passiveSummary: Mark deals 4 DMG at end of turn
+  passiveDescription: A Deathmarked enemy will feel the effects of rotting away,
+    losing 4 Health Points at the end of their turn
   passiveSprite: {fileID: 21300000, guid: d8cb83d7fb00744488817c88e81e0e70, type: 3}
   passiveType: 14
   passiveValue: 4

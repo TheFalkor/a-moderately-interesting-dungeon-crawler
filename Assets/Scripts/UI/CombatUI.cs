@@ -65,7 +65,7 @@ public class CombatUI : MonoBehaviour
         }
 
         if (ConsistentData.initialized)
-            SetPortrait(ConsistentData.playerBaseStat.entitySprite);
+            SetPortrait(ConsistentData.playerBaseStat.racePortrait);
 
         for (int i = 0; i < 3; i++)
         {

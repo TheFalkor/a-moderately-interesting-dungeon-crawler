@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: Imbue Weapon
   m_EditorClassIdentifier: 
   abilityName: IMBUE WEAPON
-  abilitySummary: (1AP) 50% bonus weapon dmg
-  abilityDescription: (1AP) You imbue your weapon with magic, causing your next strike
-    to deal 50% bonus weapon damage. Cooldown 1 turn
+  abilitySummary: +50% bonus weapon damage
+  abilityDescription: Imbue your weapon with magic, causing your next attack to deal
+    50% bonus weapon damage
   abilitySprite: {fileID: 21300000, guid: 4af0c40091a9770489ab421880260f94, type: 3}
   abilityType: 4
   cooldown: 1
   actionPointCost: 1
   abilityValue: 0.5
   abilityPrefab: {fileID: 0}
+  abilitySFX: 
   abilityVFX:
   - {fileID: 1896953671905617120, guid: c85b69960032d28429c5a4afe2a34861, type: 3}

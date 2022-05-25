@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Flutter Spread
   m_EditorClassIdentifier: 
   passiveName: FLUTTER SPREAD
-  passiveSummary: Spread flutter on attack
+  passiveSummary: Spread Flutter on attack
   passiveDescription: Attacking an enemy marked with Flutter spreads it to 4 adjacent
     enemies
   passiveSprite: {fileID: 21300000, guid: cd29487fe045b2648baabba9ff3f303b, type: 3}

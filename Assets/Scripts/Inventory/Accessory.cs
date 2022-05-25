@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class Accessory : EquippableItem
 {
-    AccessorySO data;
+    AccessorySO pData;
 
     public Accessory(AccessorySO data)
     {
         Initialize(data);
 
-        this.data = data;
+        this.pData = data;
     }
 
     public override void OnEquip()
     {
-        PassiveManager.instance.AddPassive(AbilityTree.instance.CreatePassive(data.passiveEffect));
+        PassiveManager.instance.AddPassive(AbilityTree.instance.CreatePassive(pData.passiveEffect));
     }
 
     public override void OnUnequip()
     {
-        PassiveManager.instance.RemovePassive(data.passiveEffect);
+        PassiveManager.instance.RemovePassive(pData.passiveEffect);
     }
 }

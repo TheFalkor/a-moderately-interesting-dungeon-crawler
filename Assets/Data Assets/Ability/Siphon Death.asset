@@ -13,15 +13,16 @@ MonoBehaviour:
   m_Name: Siphon Death
   m_EditorClassIdentifier: 
   abilityName: SIPHON DEATH
-  abilitySummary: (1AP) Consume Death for 6 Shield
-  abilityDescription: (1AP) Consume all Deathmarks and gain 6 Shield per enemy marked.
-    Cooldown 4 turns
+  abilitySummary: Consume marks for 6 Shield each
+  abilityDescription: Consume all Deathmarks and gain 6 Shield per enemy that was
+    marked. Shield is temporary Health Points that is lost on clearing the room
   abilitySprite: {fileID: 21300000, guid: 9992182980873394186e143556823beb, type: 3}
   abilityType: 6
-  cooldown: 4
+  cooldown: 3
   actionPointCost: 1
   abilityValue: 6
   abilityPrefab: {fileID: 0}
+  abilitySFX: 
   abilityVFX:
   - {fileID: 7017349863399784242, guid: 7464ac8543ec0794d8c1959fa6e5c795, type: 3}
   - {fileID: 5917475424260452853, guid: 266f3ae8e07ee7144a1a8cb9eb76dea6, type: 3}

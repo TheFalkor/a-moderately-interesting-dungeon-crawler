@@ -222,6 +222,8 @@ public class Player : Entity
                         
                         if (selectedAbility.UseAbility(tile))
                         {
+                            if (selectedAbility.data.abilitySFX != "")
+                                sfx.PlaySFX(selectedAbility.data.abilitySFX);
                             abilityActive = true;
                             currentActionPoints -= selectedAbility.data.actionPointCost;
                             selectedAbility.cooldown = selectedAbility.data.cooldown;
@@ -291,6 +293,7 @@ public class Player : Entity
         GridManager.instance.ClearAllHighlights();
         state = PlayerState.ABILITY_STATE;
         selectedAbility.HighlightDecisions(currentTile);
+        sfx.PlaySFX("SELECT");
         return true;
     }
 
@@ -305,6 +308,8 @@ public class Player : Entity
             }
             return false;
         }
+
+        sfx.PlaySFX("SELECT");
 
         selectedItem = inventory.items[inventoryIndex];
         selectedItemIndex = inventoryIndex;
@@ -474,6 +479,7 @@ public class Player : Entity
 
         GameObject healVFX = Instantiate(HealVFX, gameObject.transform.GetChild(0));
         Destroy(healVFX, 0.5f);
+        sfx.PlaySFX("HEALTH_GAIN");
     }
 
     public void AddShield(int shield)
@@ -481,6 +487,7 @@ public class Player : Entity
         this.shield += shield;
 
         CombatUI.instance.UpdateHealth(currentHealth, maxhealth, this.shield);
+        sfx.PlaySFX("HEALTH_GAIN");
     }
 
     public void UpdateInventoryStats()

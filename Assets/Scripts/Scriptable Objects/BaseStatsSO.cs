@@ -9,6 +9,10 @@ public class BaseStatsSO : ScriptableObject       // Race / Objects
     public string entityDescription;
     public Sprite entitySprite;
 
+    [Header("Race Specifics")]
+    public Sprite racePortrait;
+    public Sprite miniSprite;
+
     [Header("Stamina")]
     public int actionPoints;
     public int movementPoints;

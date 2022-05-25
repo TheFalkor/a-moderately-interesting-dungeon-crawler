@@ -9,13 +9,16 @@ public class MainMenuManager : MonoBehaviour
     //To keep track of buttons to select when changing canvas when not using mouse
     [Header("Standard Selected Buttons")]
     private GameObject lastSelected;
-    private bool isMusicOn = false;//Just test
+    [Space]
+    private AudioKor audioKor;
+    private bool isMusicOn;
 
     private void Update()
     {
-        if (!isMusicOn)
+        if(!isMusicOn)
         {
-            gameObject.GetComponent<AudioKor>().PlayMusic("MENU");
+            audioKor = gameObject.GetComponent<AudioKor>();
+            audioKor.PlayMusic("MENU", AudioKor.Track.A);
             isMusicOn = true;
         }
     }
@@ -26,23 +29,31 @@ public class MainMenuManager : MonoBehaviour
         ConsistentData.SetBaseStat(selection.GetBaseStat());
         ConsistentData.SetClassStat(selection.GetClassStat());
 
+        StartCoroutine(DelayStart());
+    }
+
+    private IEnumerator DelayStart()
+    {
+        audioKor.PauseMusic();
+        audioKor.PlaySFX("START_GAME");
+        yield return new WaitForSeconds(audioKor.sfxDatabase.GetSoundEffect("START_GAME").audioClip.length);
+
         SceneManager.LoadScene("main");
     }
 
     public void QuitGame()
     {
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-        #else
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
             Application.Quit();
-        #endif
+#endif
     }
 
     //Saves selected button when changing canvas
     public void ChangeCanvas(GameObject newSelect)
     {
         lastSelected = EventSystem.current.currentSelectedGameObject;
-
         SelectChange(newSelect);
     }
 
@@ -58,5 +69,14 @@ public class MainMenuManager : MonoBehaviour
 
         //Selects new Object
         EventSystem.current.SetSelectedGameObject(newSelect);
+
+        OnClick();
+    }
+
+    public void OnClick()
+    {
+        if (audioKor == null)
+            return;
+        audioKor.PlaySFX("SELECT");
     }
 }

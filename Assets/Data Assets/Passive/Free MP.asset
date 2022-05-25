@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Free MP
   m_EditorClassIdentifier: 
   passiveName: EXTRA MOVEMENT POINT
-  passiveSummary: 
-  passiveDescription: 
-  passiveSprite: {fileID: 21300000, guid: 035ea2d5e944a83488ea04af93116773, type: 3}
+  passiveSummary: +2 MP
+  passiveDescription: Gain 2 extra movement points at the start of each turn
+  passiveSprite: {fileID: 21300000, guid: 5c8b1fd12ba35c743a4128c82f1c0d4b, type: 3}
   passiveType: 16
   passiveValue: 2
   tileEffect: {fileID: 0}

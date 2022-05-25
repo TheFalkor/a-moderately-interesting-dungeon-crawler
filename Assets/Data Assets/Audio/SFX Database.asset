@@ -27,11 +27,11 @@ MonoBehaviour:
     pitch: 1
   - soundEffectName: DEATH
     audioClip: {fileID: 8300000, guid: 8ec4d03464aad4e0893ce89613d9559b, type: 3}
-    volume: 1
+    volume: 0.75
     pitch: 1
   - soundEffectName: ENEMY_DEATH
     audioClip: {fileID: 8300000, guid: 656eafa76e0af4d48a384fb265c44ea4, type: 3}
-    volume: 1
+    volume: 0.75
     pitch: 1
   - soundEffectName: HEALTH_GAIN
     audioClip: {fileID: 8300000, guid: 28c97fe4823e54e629b0229161468053, type: 3}
@@ -39,5 +39,29 @@ MonoBehaviour:
     pitch: 1
   - soundEffectName: ENEMY_MOVE
     audioClip: {fileID: 8300000, guid: 8c043f42029ca4e69aa2c4318d034443, type: 3}
+    volume: 1
+    pitch: 1
+  - soundEffectName: VICTORY
+    audioClip: {fileID: 8300000, guid: 0cc583e0753b3460fa11d2b1a55fe85e, type: 3}
+    volume: 1
+    pitch: 1
+  - soundEffectName: YOU_DIED
+    audioClip: {fileID: 8300000, guid: 2b45e45f431b840de844f6b87cba1cbd, type: 3}
+    volume: 1
+    pitch: 1
+  - soundEffectName: SELECT
+    audioClip: {fileID: 8300000, guid: e10ba915ca4ba4b6e8e2f80e76cda7dc, type: 3}
+    volume: 1
+    pitch: 1
+  - soundEffectName: NEGATIVE_FEEDBACK
+    audioClip: {fileID: 8300000, guid: d7c8095792ac24fe480a6ee3b2a17258, type: 3}
+    volume: 1
+    pitch: 1
+  - soundEffectName: DASH
+    audioClip: {fileID: 8300000, guid: d43518bfa4beebd479283bc58b86a4e2, type: 3}
+    volume: 1
+    pitch: 1
+  - soundEffectName: START_GAME
+    audioClip: {fileID: 8300000, guid: cefbbd67bec400e4bbb5a78e1cba2425, type: 3}
     volume: 1
     pitch: 1

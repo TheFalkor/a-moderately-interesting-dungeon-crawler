@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: Corrupted Grounds
   m_EditorClassIdentifier: 
   abilityName: CORRUPTED GROUNDS
-  abilitySummary: (1AP) Corrupt 9 tiles for 2 turns
-  abilityDescription: (1AP) Create a pool around you that marks enemies within with
-    Death, lasts for 2 turns. Cooldown 3 turns.
+  abilitySummary: Marks Enemies at end of turn
+  abilityDescription: Corrupt 9 tiles around you that Deathmarks enemies within at
+    the end of each turn, lasts for 3 turns
   abilitySprite: {fileID: 21300000, guid: 4fdaf782c86774248853dfca029dd063, type: 3}
   abilityType: 5
-  cooldown: 3
+  cooldown: 4
   actionPointCost: 1
-  abilityValue: 2
+  abilityValue: 3
   abilityPrefab: {fileID: 1827277220733585493, guid: 5cbdc3be72a90aa45a75b80ee6b0e32a, type: 3}
+  abilitySFX: 
   abilityVFX: []

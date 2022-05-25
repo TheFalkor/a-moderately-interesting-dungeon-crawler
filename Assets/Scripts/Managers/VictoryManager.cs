@@ -24,6 +24,7 @@ public class VictoryManager : MonoBehaviour
     [Header("GameObject References")]
     private Player player;
     private Inventory inventory;
+    private AudioKor audioKor;
 
     [Header("Singleton")]
     public static VictoryManager instance;
@@ -50,7 +51,8 @@ public class VictoryManager : MonoBehaviour
     {
         player = DungeonManager.instance.player;
         inventory = GameObject.FindGameObjectWithTag("Manager").GetComponent<Inventory>();
-        SetPortrait(player.baseStat.entitySprite);
+        SetPortrait(player.baseStat.racePortrait);
+        audioKor = gameObject.GetComponent<AudioKor>();
     }
 
     void Update()
@@ -79,9 +81,14 @@ public class VictoryManager : MonoBehaviour
 
     private IEnumerator DelayPopup()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(audioKor.sfxDatabase.GetSoundEffect("ENEMY_DEATH").audioClip.length);
         victoryPopup.SetActive(true);
         victoryAnimator.Play("Victory Popup");
+
+        PlaySound("VICTORY");
+        yield return new WaitForSeconds(audioKor.sfxDatabase.GetSoundEffect("VICTORY").audioClip.length);
+
+        audioKor.PlayMusic("DUNGEON", AudioKor.Track.A);
     }
 
     public void ReturnDungeon()
@@ -146,5 +153,11 @@ public class VictoryManager : MonoBehaviour
     public void SetPortrait(Sprite sprite)
     {
         playerPortrait.sprite = sprite;
+    }
+
+    private void PlaySound(string name)
+    {
+        audioKor.PauseMusic(AudioKor.Track.A);
+        audioKor.PlaySFX(name);
     }
 }

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passiveName: TIME BUBBLE
   passiveSummary: Pulse grants 3 Shield per enemy
-  passiveDescription: 'Time Pulse also gives you a temporary Shield = 3 * enemies
-    hit  '
+  passiveDescription: Time Pulse now also gives you 3 Shield per enemies hit. Shield
+    is temporary Health Points that is lost on clearing a room
   passiveSprite: {fileID: 21300000, guid: 68ee68a402f4c124f861803fd9332087, type: 3}
   passiveType: 4
   passiveValue: 3

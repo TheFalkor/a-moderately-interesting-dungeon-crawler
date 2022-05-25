@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Flutter Dash
   m_EditorClassIdentifier: 
   abilityName: FLUTTER DASH
-  abilitySummary: (1AP) Dash 2-3 tiles, applies Flutter
-  abilityDescription: (1AP) Dash 2-3 tiles away, applying Flutter to any enemy you
-    dash through. Attacking an enemy with Flutter deals 50% extra damage, expending
-    Flutter on the attack. Cooldown 3 turns.
+  abilitySummary: Dash 2-3 tiles, applies Flutter
+  abilityDescription: Dash 2-3 tiles, applying Flutter to any enemy you go through.
+    Attacking an enemy with Flutter expends it and deals 50% extra damage
   abilitySprite: {fileID: 21300000, guid: 5e281857acaea944aae1b125470f5df2, type: 3}
   abilityType: 1
   cooldown: 3
   actionPointCost: 1
   abilityValue: 0
   abilityPrefab: {fileID: 0}
+  abilitySFX: DASH
   abilityVFX: []

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: HEALTH POTION
   itemSummary: Restores 10 HP
-  itemDescription: This item is like when you use it, it like gives you health when
-    you use it.
+  itemDescription: Using this item will restore 10 Health Points. It also has a nice
+    cherry flavor
   itemSprite: {fileID: 21300000, guid: 1dd887667d0b6c94981c197ce0935981, type: 3}
   stackSize: 31
   itemType: 4
