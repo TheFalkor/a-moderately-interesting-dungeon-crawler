@@ -8,6 +8,7 @@ public class MainMenuManager : MonoBehaviour
 {
     //To keep track of buttons to select when changing canvas when not using mouse
     [Header("Standard Selected Buttons")]
+    [SerializeField] private Animator transitionAnimator;
     private GameObject lastSelected;
     [Space]
     private AudioKor audioKor;
@@ -36,7 +37,9 @@ public class MainMenuManager : MonoBehaviour
     {
         audioKor.PauseMusic();
         audioKor.PlaySFX("START_GAME");
-        yield return new WaitForSeconds(audioKor.sfxDatabase.GetSoundEffect("START_GAME").audioClip.length);
+        transitionAnimator.SetBool("Closed", true);
+
+        yield return new WaitForSeconds(1.05f);
 
         SceneManager.LoadScene("main");
     }
