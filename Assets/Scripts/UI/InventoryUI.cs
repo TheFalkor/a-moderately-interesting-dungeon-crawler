@@ -484,7 +484,7 @@ public class InventoryUI : MonoBehaviour
         itemNameText.text = data.abilityName;
         itemTypeText.text = "Active Ability";
 
-        abilityStatParent.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "COST: " + data.actionPointCost;
+        abilityStatParent.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "Cost: " + data.actionPointCost;
         abilityStatParent.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "Cooldown: " + data.cooldown + " Turns";
 
         itemDescriptionText.text = data.abilityDescription;

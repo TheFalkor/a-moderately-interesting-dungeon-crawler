@@ -30,7 +30,15 @@ public class Overload : Passive
             }
 
             if (target)
+            {
+                GameObject dyingVFX = Object.Instantiate(data.passiveVFX[0], enemy.transform.position, Quaternion.identity);
+                Object.Destroy(dyingVFX, 6 / 15f);
+
+                GameObject receiveVFX = Object.Instantiate(data.passiveVFX[2], target.transform.position, Quaternion.identity);
+                Object.Destroy(receiveVFX, 3 / 15f);
+
                 target.TakeCleanDamage(overkillDamage, DamageOrigin.FRIENDLY);
+            }
         }
     }
 }

@@ -39,6 +39,7 @@ public abstract class Entity : Occupant
 
         overhead = Instantiate(overheadPrefab, transform.position + new Vector3(0, 1.5f), Quaternion.identity, transform.parent).GetComponent<OverheadUI>();
         overhead.Initialize(gameObject);
+        overhead.SetIcon(baseStat.overheadIconSprite);
     }
 
     public override void UpdateStatusEffects()

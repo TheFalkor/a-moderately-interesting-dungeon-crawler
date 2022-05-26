@@ -15,6 +15,9 @@ MonoBehaviour:
   entityName: Sword guy
   entityDescription: He has a sword oh shit
   entitySprite: {fileID: 21300000, guid: 8945321abb75994478ee713d46a8a5aa, type: 3}
+  overheadIconSprite: {fileID: 21300000, guid: ae6681ac887b3034c97a69e120d83d92, type: 3}
+  racePortrait: {fileID: 0}
+  miniSprite: {fileID: 0}
   actionPoints: 3
   movementPoints: 1
   movementType: 0

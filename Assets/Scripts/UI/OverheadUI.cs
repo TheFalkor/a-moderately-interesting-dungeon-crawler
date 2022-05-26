@@ -73,14 +73,22 @@ public class OverheadUI : MonoBehaviour
                         break;
                 }
 
-                statusRenderers[i].sprite = sprite;
-                statusRenderers[i].gameObject.SetActive(true);
+                if (statusRenderers[i].sprite != sprite || !statusRenderers[i].gameObject.activeSelf)
+                {
+                    statusRenderers[i].sprite = sprite;
+                    statusRenderers[i].gameObject.SetActive(true);
+                }
             }
             else
             {
                 statusRenderers[i].gameObject.SetActive(false);
             }
         }
+    }
+
+    public void SetIcon(Sprite icon)
+    {
+        transform.GetChild(0).GetChild(1).GetComponent<SpriteRenderer>().sprite = icon;
     }
 
     private void GetReferences()

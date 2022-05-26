@@ -172,4 +172,9 @@ public class CombatManager : MonoBehaviour
     {
         tileEffectList.Remove(tileEffect);
     }
+
+    public void StopGame()
+    {
+        combatActive = false;
+    }
 }

@@ -44,8 +44,13 @@ public class EndManager : MonoBehaviour
 
     public void EndGame(bool win)
     {
-        gameEnd = true;
+        if (win)
+            gameEnd = true;
         this.win = win;
+        CombatManager.instance.StopGame();
+
+        if (!win)
+            End();
     }
 
     private void End()
@@ -60,6 +65,7 @@ public class EndManager : MonoBehaviour
     {
         gameEnd = false;
         win = false;
+        DungeonManager.instance.allowSelection = false;
 
         ConsistentData.difficultyScale += 0.25f;
         DungeonManager.instance.ResetGame();
@@ -85,6 +91,7 @@ public class EndManager : MonoBehaviour
         transitionAnimator.SetBool("Closed", true);
 
         yield return new WaitForSeconds(1.25f);
+        DungeonManager.instance.allowSelection = true;
 
         winScreen.SetActive(false);
         transitionAnimator.SetBool("Closed", false);

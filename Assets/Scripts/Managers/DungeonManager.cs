@@ -19,7 +19,7 @@ public class DungeonManager : MonoBehaviour
     private DungeonNode hoveringNode;
     private bool roomSelected = false;
     private float transitionTimer = 0;
-    private bool allowSelection = true;
+    [HideInInspector] public bool allowSelection = true;
     private bool start = false;
     private int roomsCompleted = 0;
     private int roomsAmount = -1;
@@ -76,6 +76,12 @@ public class DungeonManager : MonoBehaviour
 
         if (!allowSelection)
             return;
+
+        if (Input.GetKeyUp(KeyCode.F10))
+        {
+            foreach (DungeonNode node in allNodes)
+                node.gameObject.SetActive(true);
+        }
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);

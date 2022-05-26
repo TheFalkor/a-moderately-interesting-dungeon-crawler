@@ -15,6 +15,9 @@ MonoBehaviour:
   entityName: Spear Enemy
   entityDescription: He has a spear oh shit
   entitySprite: {fileID: 21300000, guid: 9eb51e65c8bd0cf4ca86a4b621c624da, type: 3}
+  overheadIconSprite: {fileID: 21300000, guid: 00e785d587a81264b9e7add75a29f58f, type: 3}
+  racePortrait: {fileID: 0}
+  miniSprite: {fileID: 0}
   actionPoints: 2
   movementPoints: 1
   movementType: 0

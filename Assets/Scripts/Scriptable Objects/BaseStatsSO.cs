@@ -8,6 +8,7 @@ public class BaseStatsSO : ScriptableObject       // Race / Objects
     public string entityName;
     public string entityDescription;
     public Sprite entitySprite;
+    public Sprite overheadIconSprite;
 
     [Header("Race Specifics")]
     public Sprite racePortrait;

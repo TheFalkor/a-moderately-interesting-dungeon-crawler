@@ -20,4 +20,5 @@ MonoBehaviour:
   passiveType: 1
   passiveValue: 0
   tileEffect: {fileID: 0}
-  passiveVFX: []
+  passiveVFX:
+  - {fileID: 7678179006296128355, guid: 4430d4052d679c141b4de24ff327f4cf, type: 3}
