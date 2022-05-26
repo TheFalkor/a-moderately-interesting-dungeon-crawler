@@ -15,6 +15,7 @@ MonoBehaviour:
   entityName: TIMEKEEPER
   entityDescription: Manipulate time itself to slow your enemies
   entitySprite: {fileID: 21300000, guid: b219122d2df8ae447b827185ebb4ff98, type: 3}
+  overheadIconSprite: {fileID: 21300000, guid: a9353535733a98645898062ea33cc99a, type: 3}
   racePortrait: {fileID: 21300000, guid: a9353535733a98645898062ea33cc99a, type: 3}
   miniSprite: {fileID: 21300000, guid: 798f9c220b3e8a94cb7c47456e84ef82, type: 3}
   actionPoints: 2
