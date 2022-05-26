@@ -175,7 +175,6 @@ public class CombatUI : MonoBehaviour
     
     public void UpdateDefense(int defense)
     {
-        defense = 5;
         defenseText.text = defense.ToString();
         // int actualDamage = damage.damage * (1 - (defense / (36 + defense)));
         int defensePercentage = (int)(100 - 100 * (1 - defense / (float)(36 + defense)));

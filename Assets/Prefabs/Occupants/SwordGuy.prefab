@@ -52,6 +52,7 @@ MonoBehaviour:
   currentTile: {fileID: 0}
   overheadPrefab: {fileID: 6743759221455466709, guid: 139e3a25812822247958f097628a21d3, type: 3}
   behaviourType: 2
+  attackVFX: {fileID: 3787393950166176399, guid: 51837673a1249124bbea5473c12c9573, type: 3}
   splashMultiplier: 0
   PebblePrefab: {fileID: 2972202281912503759, guid: 5747daf6bb24efd45b06d0d7da33b35a, type: 3}
 --- !u!1 &6226948747316748314

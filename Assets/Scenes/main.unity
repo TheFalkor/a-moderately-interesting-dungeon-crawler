@@ -1211,7 +1211,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: +10 DMG; Sideways Splash
+  m_Text: Gives 2 ATK, 4 HP & 4 DEF
 --- !u!222 &62036484
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6088,8 +6088,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Armor made of thick steel plates, gives ample protection against enemy
-    blows. Has a tag inside the collar saying "Universal Fit"
+  m_Text: Claw armor was made with offense in mind, scrapping some of the armors
+    defensive capabilities.
 --- !u!222 &393924653
 CanvasRenderer:
   m_ObjectHideFlags: 0

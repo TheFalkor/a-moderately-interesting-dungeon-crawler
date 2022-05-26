@@ -44,21 +44,18 @@ public class EndManager : MonoBehaviour
 
     public void EndGame(bool win)
     {
-        if (win)
-            gameEnd = true;
+        gameEnd = true;
         this.win = win;
-        CombatManager.instance.StopGame();
 
-        if (!win)
-            End();
+        CombatManager.instance.StopGame();
     }
 
     private void End()
     {
         if (win)
-            winScreen.SetActive(win);
-        else if (!win)
-            loseScreen.SetActive(!win);
+            winScreen.SetActive(true);
+        else
+            loseScreen.SetActive(true);
     }
 
     public void NewGamePlus()

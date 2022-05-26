@@ -14,6 +14,7 @@ public class Enemy : Entity
 
     [SerializeField]
     private EnemyBehaviourType behaviourType;
+    [SerializeField] private GameObject attackVFX;
     [SerializeField]
     private float splashMultiplier;
 
@@ -160,6 +161,31 @@ public class Enemy : Entity
             damage = new Damage(meleeDamage, originType);
 
         Attack(action.target, damage);
+        GameObject vfx;
+
+        switch (behaviourType)
+        {
+            case EnemyBehaviourType.DUMB:
+                vfx = Instantiate(attackVFX, action.target.transform.position, Quaternion.identity);
+                Destroy(vfx, 0.5f);
+                break;
+            case EnemyBehaviourType.SPEAR:
+                Vector3 direction = action.target.transform.position - transform.position;
+                direction.Normalize();
+
+                vfx = Instantiate(attackVFX, transform.position + direction * 1.3f, Quaternion.identity);
+
+                if (direction.y == 0)
+                    vfx.transform.position += new Vector3(0, 0.5f);
+                vfx.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+                
+                Destroy(vfx, 9 / 15f);
+                break;
+            case EnemyBehaviourType.SWORD:
+                vfx = Instantiate(attackVFX, action.target.transform.position, Quaternion.identity);
+                Destroy(vfx, 0.5f);
+                break;
+        }
 
         sfx.PlaySFX("SLASH");
 

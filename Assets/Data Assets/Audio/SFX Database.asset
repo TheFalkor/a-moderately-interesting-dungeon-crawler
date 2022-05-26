@@ -68,7 +68,7 @@ MonoBehaviour:
   - soundEffectName: ZAP
     audioClip: {fileID: 8300000, guid: 25e4214f441d54e7ca554dd34ba4f08e, type: 3}
     volume: 1
-    pitch: 1
+    pitch: 0.75
   - soundEffectName: POWER_UP
     audioClip: {fileID: 8300000, guid: 7fa713491832a4be2ab7c48116a1e617, type: 3}
     volume: 1

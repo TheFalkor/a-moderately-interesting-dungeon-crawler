@@ -175,6 +175,7 @@ public class CombatManager : MonoBehaviour
 
     public void StopGame()
     {
+        GridManager.instance.ClearAllHighlights();
         combatActive = false;
     }
 }
