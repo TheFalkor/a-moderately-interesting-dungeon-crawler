@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: Combat Room 5
   roomDescription: 
-  rewards: []
+  rewards:
+  - {fileID: 11400000, guid: 31bdf6304918c3c40b2a2b4d541a142c, type: 2}
   tiles:
   - wall: 0
     occupantPrefab: {fileID: 0}

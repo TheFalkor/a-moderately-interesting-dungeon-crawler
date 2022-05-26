@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c0791f92ff0357429ca77b3786f96fe, type: 3}
   m_Name: Amulet of Wooly Wizard
   m_EditorClassIdentifier: 
-  itemName: AMULET OF WOOLY WIZARD
+  itemName: WOOLY'S AMULET
   itemSummary: +4 DMG to Abilities
   itemDescription: The Amulet Of Wooly The Wizard enhances your abilities, dealing
     4 damage to affected enemies

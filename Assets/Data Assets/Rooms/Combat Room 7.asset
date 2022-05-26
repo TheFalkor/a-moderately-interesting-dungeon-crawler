@@ -15,6 +15,7 @@ MonoBehaviour:
   roomName: Combat Room 7
   roomDescription: Upside Down Cactus
   rewards:
+  - {fileID: 11400000, guid: ef7d11764fe36794583171165ed0f922, type: 2}
   - {fileID: 11400000, guid: 3f88c8a18172f404b8a71730f9a4e845, type: 2}
   - {fileID: 11400000, guid: c165f4940f004254cb369cb867df8d49, type: 2}
   tiles:

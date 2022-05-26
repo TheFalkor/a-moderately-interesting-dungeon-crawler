@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundEffectDatabase:
   - soundEffectName: MOVE
-    audioClip: {fileID: 8300000, guid: 72b473511df9c49c588a7d2bcccac7e2, type: 3}
-    volume: 0.25
-    pitch: 0.75
+    audioClip: {fileID: 8300000, guid: caaff2d2c77b25640b683307bb7ed74c, type: 3}
+    volume: 0.5
+    pitch: 1
   - soundEffectName: SLASH
     audioClip: {fileID: 8300000, guid: abb6b818d17634f57b250126ca2e0062, type: 3}
     volume: 1
@@ -63,5 +63,21 @@ MonoBehaviour:
     pitch: 1
   - soundEffectName: START_GAME
     audioClip: {fileID: 8300000, guid: cefbbd67bec400e4bbb5a78e1cba2425, type: 3}
+    volume: 1
+    pitch: 1
+  - soundEffectName: ZAP
+    audioClip: {fileID: 8300000, guid: 25e4214f441d54e7ca554dd34ba4f08e, type: 3}
+    volume: 1
+    pitch: 1
+  - soundEffectName: POWER_UP
+    audioClip: {fileID: 8300000, guid: 7fa713491832a4be2ab7c48116a1e617, type: 3}
+    volume: 1
+    pitch: 1
+  - soundEffectName: TIME_PULSE
+    audioClip: {fileID: 8300000, guid: 968fb7fc9aeda49b1b03411f2c5f5472, type: 3}
+    volume: 1
+    pitch: 1
+  - soundEffectName: CORRUPT_GROUND
+    audioClip: {fileID: 8300000, guid: c6be6310ccfcb4270b6d97b331490f57, type: 3}
     volume: 1
     pitch: 1

@@ -35,6 +35,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private GameObject consumableStatParent;
     [SerializeField] private GameObject throwableStatParent;
     [SerializeField] private GameObject accessoryStatParent;
+    [SerializeField] private GameObject abilityStatParent;
     [Space]
     [SerializeField] private Button useButton;
     private Text useButtonText;
@@ -399,6 +400,7 @@ public class InventoryUI : MonoBehaviour
         consumableStatParent.SetActive(false);
         throwableStatParent.SetActive(false);
         accessoryStatParent.SetActive(false);
+        abilityStatParent.SetActive(false);
 
         if (item == null)
         {
@@ -475,10 +477,15 @@ public class InventoryUI : MonoBehaviour
         selectedPassive = null;
         selectedAbility = data;
 
+        abilityStatParent.SetActive(true);
+
         itemIcon.transform.parent.gameObject.SetActive(true);
         itemIcon.sprite = data.abilitySprite;
         itemNameText.text = data.abilityName;
         itemTypeText.text = "Active Ability";
+
+        abilityStatParent.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "COST: " + data.actionPointCost;
+        abilityStatParent.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "Cooldown: " + data.cooldown + " Turns";
 
         itemDescriptionText.text = data.abilityDescription;
 
@@ -505,6 +512,8 @@ public class InventoryUI : MonoBehaviour
     {
         selectedAbility = null;
         selectedPassive = data;
+
+        abilityStatParent.SetActive(false);
 
         itemIcon.transform.parent.gameObject.SetActive(true);
         itemIcon.sprite = data.passiveSprite;

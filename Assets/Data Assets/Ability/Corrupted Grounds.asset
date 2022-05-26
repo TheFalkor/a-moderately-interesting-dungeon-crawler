@@ -22,5 +22,5 @@ MonoBehaviour:
   actionPointCost: 1
   abilityValue: 3
   abilityPrefab: {fileID: 1827277220733585493, guid: 5cbdc3be72a90aa45a75b80ee6b0e32a, type: 3}
-  abilitySFX: 
+  abilitySFX: CORRUPT_GROUND
   abilityVFX: []

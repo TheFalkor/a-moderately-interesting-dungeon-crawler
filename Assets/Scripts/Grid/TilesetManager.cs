@@ -348,149 +348,30 @@ public class TilesetManager : MonoBehaviour
 
     public Sprite CalculateFloorTile(Tile tile)
     {
-        List<int> availableSprites = new List<int>
+        bool emptyLeft = GridManager.instance.GetTile(tile.GetPosition() + Vector2Int.left) == null;
+        bool emptyRight = GridManager.instance.GetTile(tile.GetPosition() + Vector2Int.right) == null;
+        bool emptyUp = GridManager.instance.GetTile(tile.GetPosition() + Vector2Int.down) == null;
+
+        if (emptyLeft && !emptyUp)
+            return spriteList[40];
+        else if (emptyLeft)
+            return spriteList[32];
+        else if (emptyRight && !emptyUp)
+            return spriteList[41];
+        else if (emptyRight)
+            return spriteList[33];
+        else if (emptyUp)
+            return spriteList[17];
+
+        List<int> randomFloorTiles = new List<int>
         {
-            3,
-            3,
-            3,
-            3,
-            3,
-            11,
-            11,
-            11,
-            19,
-            19,
-            19,
-            19,
-            27,
-            27
+            3, 3, 3, 3, 3,
+            11, 11, 11,
+            19, 19, 19, 19,
+            27, 27
         };
 
-        return spriteList[availableSprites[Random.Range(0, availableSprites.Count)]];
-
-        availableSprites.AddRange(groundIndeces);
-
-        bool wallleft = false;
-        bool wallRight = false;
-        bool wallTL = false;
-        bool wallTR = false;
-
-
-        Tile upLeftTile = GridManager.instance.GetTile(tile.GetPosition() + Vector2Int.down + Vector2Int.left);
-        if (upLeftTile && upLeftTile.IsWalkable())
-        {
-            availableSprites.Remove(6);
-        }
-        else
-            wallTL = true;
-
-        Tile upRightTile = GridManager.instance.GetTile(tile.GetPosition() + Vector2Int.down + Vector2Int.right);
-        if (upRightTile && upRightTile.IsWalkable())
-        {
-            availableSprites.Remove(4);
-        }
-        else
-            wallTR = true;
-
-        Tile upTile = GridManager.instance.GetTile(tile.GetPosition() + Vector2Int.down);
-        if (!upTile || !upTile.IsWalkable())
-        {
-            availableSprites.Remove(3);
-            availableSprites.Remove(7);
-            availableSprites.Remove(11);
-            availableSprites.Remove(15);
-
-            availableSprites.Remove(4);
-            availableSprites.Remove(6);
-            availableSprites.Remove(20);
-            availableSprites.Remove(21);
-        }
-        else
-        {
-            availableSprites.Remove(9);
-            if (!wallTR)
-                availableSprites.Remove(16);
-            else
-                availableSprites.Remove(20);
-
-            if (!wallTL)
-                availableSprites.Remove(17);
-            else
-                availableSprites.Remove(21);
-        }
-
-        Tile leftTile = GridManager.instance.GetTile(tile.GetPosition() + Vector2Int.left);
-        if (!leftTile || !leftTile.IsWalkable())
-        {
-            wallleft = true;
-
-            availableSprites.Remove(3);
-            availableSprites.Remove(7);
-            availableSprites.Remove(11);
-            availableSprites.Remove(4);
-            availableSprites.Remove(6);
-            availableSprites.Remove(9);
-            availableSprites.Remove(17);
-            availableSprites.Remove(21);
-        }
-        else
-        {
-            availableSprites.Remove(16);
-            availableSprites.Remove(20);
-        }
-
-        Tile rightTile = GridManager.instance.GetTile(tile.GetPosition() + Vector2Int.right);
-        if (!rightTile || !rightTile.IsWalkable())
-        {
-            wallRight = true;
-
-            availableSprites.Remove(3);
-            availableSprites.Remove(7);
-            availableSprites.Remove(11);
-            availableSprites.Remove(4);
-            availableSprites.Remove(6);
-            availableSprites.Remove(9);
-            availableSprites.Remove(16);
-            availableSprites.Remove(20);
-        }
-        else
-        {
-            availableSprites.Remove(17);
-            availableSprites.Remove(21);
-        }
-
-        if (wallleft != wallRight)
-        {
-            availableSprites.Remove(15);
-        }
-
-        if (!wallRight && !wallRight)
-        {
-            availableSprites.Remove(15);
-        }
-
-        if (wallTL || wallTR)
-        {
-            availableSprites.Remove(3);
-            availableSprites.Remove(7);
-            availableSprites.Remove(11);
-        }
-
-
-        if (availableSprites.Count != 1 && availableSprites.Count != 3)
-        {
-            Debug.Log(tile.GetPosition() + " :: " + availableSprites.Count);
-
-            foreach (int i in availableSprites)
-                Debug.Log(i);
-        }
-
-        if (availableSprites.Count == 1)
-            tile.GetComponent<SpriteRenderer>().sprite = spriteList[availableSprites[0]];
-        else if (availableSprites.Count > 0)
-            tile.GetComponent<SpriteRenderer>().sprite = spriteList[availableSprites[Random.Range(0, 3)]];
-        else
-            tile.GetComponent<SpriteRenderer>().sprite = null;
+        return spriteList[randomFloorTiles[Random.Range(0, randomFloorTiles.Count)]];
     }
 
     public Sprite GetTileSprite(int index)

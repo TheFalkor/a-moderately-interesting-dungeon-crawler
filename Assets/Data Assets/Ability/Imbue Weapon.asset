@@ -22,6 +22,6 @@ MonoBehaviour:
   actionPointCost: 1
   abilityValue: 0.5
   abilityPrefab: {fileID: 0}
-  abilitySFX: 
+  abilitySFX: POWER_UP
   abilityVFX:
   - {fileID: 1896953671905617120, guid: c85b69960032d28429c5a4afe2a34861, type: 3}

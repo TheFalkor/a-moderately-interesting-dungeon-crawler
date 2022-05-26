@@ -50,6 +50,9 @@ public class OverheadUI : MonoBehaviour
     {
         for (int i = 0; i < statusRenderers.Count; i++)
         {
+            if (i >= statusRenderers.Count)
+                break;
+
             if (i < list.Count)
             {
                 Sprite sprite = null;
