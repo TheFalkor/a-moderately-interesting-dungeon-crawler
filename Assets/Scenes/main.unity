@@ -2782,8 +2782,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -175}
-  m_SizeDelta: {x: 260, y: 200}
+  m_AnchoredPosition: {x: 7.0137, y: -170}
+  m_SizeDelta: {x: 309.9, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &189079262
 MonoBehaviour:
@@ -2818,11 +2818,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Test text asd asd asd as da ds sad
-
-    s
-
-    s'
+  m_Text: nice
 --- !u!222 &189079263
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5933,8 +5929,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Claw armor was made with offense in mind, scrapping some of the armors
-    defensive capabilities.
+  m_Text: With the lighter materials this spear is easier to handle and move around
+    with. Its most commonly seen wielded by nature spirits.
 --- !u!222 &393924653
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -25456,7 +25452,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 6, y: 50}
+  m_AnchoredPosition: {x: 6, y: 40}
   m_SizeDelta: {x: 218, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1556598390
@@ -33431,7 +33427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2052042501
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33451,7 +33447,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -70}
+  m_AnchoredPosition: {x: 0, y: -85}
   m_SizeDelta: {x: 300, y: 105}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2052211843
@@ -34958,6 +34954,10 @@ PrefabInstance:
       propertyPath: baseStat
       value: 
       objectReference: {fileID: 11400000, guid: 4b0e4542de4f4bb448aba4eb67d8a879, type: 2}
+    - target: {fileID: 4352417484911601, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
+      propertyPath: classStat
+      value: 
+      objectReference: {fileID: 11400000, guid: a5af1d4bfc4e7cf45b1e7d0dcf2fadcf, type: 2}
     - target: {fileID: 4352417484911601, guid: d9730ff86bc10ed4ba842a2282e1b715, type: 3}
       propertyPath: temporaryAnimatorDeath
       value: 

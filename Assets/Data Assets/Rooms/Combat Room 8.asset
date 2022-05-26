@@ -17,6 +17,7 @@ MonoBehaviour:
   rewards:
   - {fileID: 11400000, guid: 3f88c8a18172f404b8a71730f9a4e845, type: 2}
   - {fileID: 11400000, guid: c165f4940f004254cb369cb867df8d49, type: 2}
+  - {fileID: 11400000, guid: 666dea7e6a80e46a094d3bd1e4c7e20e, type: 2}
   tiles:
   - wall: 0
     occupantPrefab: {fileID: 0}

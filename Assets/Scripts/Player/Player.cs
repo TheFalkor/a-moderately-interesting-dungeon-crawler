@@ -98,6 +98,12 @@ public class Player : Entity
         currentTile = GridManager.instance.GetTileWorld(transform.position);
         currentTile.SetOccupant(this);
 
+        Transform temp = transform.Find("SiphonDeathPlayerShieldVFX(Clone)");
+        if (temp)
+            Destroy(temp.gameObject);
+
+        shield = 0;
+
         CombatUI.instance.UpdateHealth(currentHealth, maxhealth, shield);
         CombatUI.instance.UpdateAttack(meleeDamage);
         CombatUI.instance.UpdateDefense(defense);

@@ -21,15 +21,15 @@ MonoBehaviour:
   - musicName: COMBAT_2
     audioClip: {fileID: 8300000, guid: 916fbf02a0df5d648bf5949dbed7ad35, type: 3}
     loop: 1
-    volume: 1
+    volume: 0.25
     pitch: 1
   - musicName: MENU
     audioClip: {fileID: 8300000, guid: d9c1e98f97b946f48ba3ca3f593ad99f, type: 3}
     loop: 1
-    volume: 1
+    volume: 0.25
     pitch: 1
   - musicName: DUNGEON
     audioClip: {fileID: 8300000, guid: a0e49dd286f10da45a9f70932ced468e, type: 3}
     loop: 1
-    volume: 1
+    volume: 0.25
     pitch: 1

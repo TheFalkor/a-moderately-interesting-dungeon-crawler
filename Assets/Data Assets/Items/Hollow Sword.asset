@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86085071cdda0d4caf0d5a045120694, type: 3}
+  m_Name: Hollow Sword
+  m_EditorClassIdentifier: 
+  itemName: HOLLOW SWORD
+  itemSummary: +5 DMG
+  itemDescription: The hollow sword, typically used by elite guards, makes it easier
+    to disrupt and disarm enemies, making it better in defensive situations.
+  itemSprite: {fileID: 21300000, guid: f6e9df394b2c40649b49672c63a0d633, type: 3}
+  stackSize: 0
+  itemType: 1
+  weaponDamage: 5
+  bonusDefense: 2
+  bonusMP: 0
+  weaponType: 3
+  attackVFX: {fileID: 3787393950166176399, guid: 51837673a1249124bbea5473c12c9573, type: 3}

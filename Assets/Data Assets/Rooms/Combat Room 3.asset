@@ -15,7 +15,7 @@ MonoBehaviour:
   roomName: Combat Room 3
   roomDescription: 
   rewards:
-  - {fileID: 11400000, guid: 3f88c8a18172f404b8a71730f9a4e845, type: 2}
+  - {fileID: 11400000, guid: 108c623923f174e288bb3817022701ef, type: 2}
   tiles:
   - wall: 0
     occupantPrefab: {fileID: 0}

@@ -59,8 +59,9 @@ public class SiphonDeath : Ability
         animationTimer -= deltaTime;
 
         if (animationTimer <= 0)
-        { 
-            if (markCount > 0)
+        {
+            Transform temp = player.transform.Find("SiphonDeathPlayerShieldVFX(Clone)");
+            if (markCount > 0 && !temp)
             {
                 GameObject tempSelf = Object.Instantiate(data.abilityVFX[0], player.transform.position, Quaternion.identity);
                 tempSelf.transform.parent = player.transform;

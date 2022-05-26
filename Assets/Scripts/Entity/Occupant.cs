@@ -77,7 +77,7 @@ public abstract class Occupant : MonoBehaviour
 
         transform.GetChild(0).GetChild(0).GetComponent<Animator>().Play("Damage");
 
-        int actualDamage = damage.damage * (1 - (defense / (36 + defense)));
+        int actualDamage = Mathf.RoundToInt(damage.damage * (1f - (defense / (24f + defense))));
 
         for (int i = 0; i < activeStatusEffects.Count; i++)
         {
@@ -95,7 +95,7 @@ public abstract class Occupant : MonoBehaviour
         {
             shield -= actualDamage;
 
-            if (shield >= 0)
+            if (shield > 0)
                 return;
 
             Transform temp = transform.Find("SiphonDeathPlayerShieldVFX(Clone)");
@@ -133,7 +133,7 @@ public abstract class Occupant : MonoBehaviour
 
         transform.GetChild(0).GetChild(0).GetComponent<Animator>().Play("Damage");
 
-        int actualDamage = damage * (1 - (defense / (36 + defense)));
+        int actualDamage = Mathf.RoundToInt(damage * (1f - (defense / (24f + defense))));
         currentHealth -= actualDamage;
 
         Instantiate(damagePopup, transform.position + new Vector3(0, 0.5f), Quaternion.identity).GetComponent<DamagePopup>().Setup(actualDamage, origin);
