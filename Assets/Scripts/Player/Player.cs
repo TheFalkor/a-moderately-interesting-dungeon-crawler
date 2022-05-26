@@ -75,7 +75,7 @@ public class Player : Entity
         if (inventory.equippedArmor != null)
             newDamage += inventory.equippedArmor.damage;
 
-        int newDefense = baseStat.defense + classStat.bonusDefense;
+        int newDefense = baseStat.defense + classStat.bonusDefense + inventory.equippedWeapon.weaponData.bonusDefense;
         if (inventory.equippedArmor != null)
             newDefense += inventory.equippedArmor.defense;
 
@@ -85,6 +85,8 @@ public class Player : Entity
             maxhealth = newHealth;
             currentHealth = Mathf.RoundToInt(perc * maxhealth);
         }
+
+        maxMovementPoints = baseStat.movementPoints + inventory.equippedWeapon.weaponData.bonusMP;
 
         meleeDamage = newDamage;
         defense = newDefense;

@@ -213,22 +213,43 @@ public class Inventory : MonoBehaviour
                     data.leftHeader = "SWORD";
 
                 data.rightHeader = "WEAPON";
+
                 data.stat1 = weapon.weaponDamage + " ATK";
                 data.stat1Type = "ATK";
+
+                if (weapon.bonusDefense != 0)
+                {
+                    data.stat2 = weapon.bonusDefense + " DEF";
+                    data.stat2Type = "DEF";
+                }
+                if (weapon.bonusMP != 0)
+                {
+                    data.stat3 = weapon.bonusMP + " MP";
+                    data.stat3Type = "MP";
+                }
                 break;
 
             case ItemType.ARMOR:
                 data.rightHeader = "ARMOR";
                 ArmorSO armor = (ArmorSO)item;
 
-                data.stat1 = armor.health + " HP";
-                data.stat1Type = "HP";
+                if (armor.health != 0)
+                {
+                    data.stat1 = armor.health + " HP";
+                    data.stat1Type = "HP";
+                }
 
-                data.stat2 = armor.damage + " ATK";
-                data.stat2Type = "ATK";
+                if (armor.damage != 0)
+                {
+                    data.stat2 = armor.damage + " ATK";
+                    data.stat2Type = "ATK";
+                }
 
-                data.stat3 = armor.defense + " DEF";
-                data.stat3Type = "DEF";
+                if (armor.defense != 0)
+                {
+                    data.stat3 = armor.defense + " DEF";
+                    data.stat3Type = "DEF";
+                }
                 break;
 
             case ItemType.ACCESSORY:

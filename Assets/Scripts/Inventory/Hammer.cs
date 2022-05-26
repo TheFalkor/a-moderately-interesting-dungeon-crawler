@@ -14,6 +14,7 @@ public class Hammer : Weapon
     {
         Initialize(data);
 
+        weaponData = data;
         weaponDamage = data.weaponDamage;
         weaponType = data.weaponType;
         splashMultiplier = data.splashDamageMultiplier;

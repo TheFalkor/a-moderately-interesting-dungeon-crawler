@@ -21,6 +21,7 @@ public class Sword : Weapon
     {
         Initialize(data);
 
+        weaponData = data;
         weaponDamage = data.weaponDamage;
         weaponType = data.weaponType;
         attackVFX = data.attackVFX;

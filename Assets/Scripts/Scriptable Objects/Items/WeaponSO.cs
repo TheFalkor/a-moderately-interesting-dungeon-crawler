@@ -6,6 +6,8 @@ public class WeaponSO : ItemSO
 {
     [Header("Weapon Data")]
     public int weaponDamage;
+    public int bonusDefense;
+    public int bonusMP;
     [HideInInspector] public WeaponType weaponType;
     public GameObject attackVFX;
 }

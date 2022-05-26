@@ -6,9 +6,9 @@ public abstract class Weapon : EquippableItem
 {
     [Header("Weapon Data")]
     public int weaponDamage;
+    public WeaponSO weaponData;
     public WeaponType weaponType;
     public GameObject attackVFX;
-
 
     public virtual List<WeaponStrike> Attack(Tile tile)
     {
@@ -20,6 +20,11 @@ public abstract class Weapon : EquippableItem
     {
         Debug.Log("ExtraHighlight(Tile currentTile) not implemented.");
         return;
+    }
+
+    public override void OnEquip()
+    {
+        DungeonManager.instance.player.RecalculateStats();
     }
 
     public abstract void CheckHighlights();

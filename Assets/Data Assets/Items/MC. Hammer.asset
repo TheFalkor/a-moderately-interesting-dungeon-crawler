@@ -20,6 +20,8 @@ MonoBehaviour:
   stackSize: 0
   itemType: 1
   weaponDamage: 10
+  bonusDefense: 0
+  bonusMP: 0
   weaponType: 1
   attackVFX: {fileID: 527144875018580169, guid: bf376042372368b439f910a528c35583, type: 3}
   splashDamageMultiplier: 0.5

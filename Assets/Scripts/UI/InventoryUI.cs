@@ -30,11 +30,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Text itemTypeText;
     [SerializeField] private Text itemDescriptionText;
     [Space]
-    [SerializeField] private GameObject weaponStatParent;
-    [SerializeField] private GameObject armorStatParent;
-    [SerializeField] private GameObject consumableStatParent;
-    [SerializeField] private GameObject throwableStatParent;
-    [SerializeField] private GameObject accessoryStatParent;
+    [SerializeField] private GameObject itemStatParent;
     [SerializeField] private GameObject abilityStatParent;
     [Space]
     [SerializeField] private Button useButton;
@@ -395,12 +391,11 @@ public class InventoryUI : MonoBehaviour
 
     private void ShowItemInfo(Item item, bool disableButton = false)
     {
-        weaponStatParent.SetActive(false);
-        armorStatParent.SetActive(false);
-        consumableStatParent.SetActive(false);
-        throwableStatParent.SetActive(false);
-        accessoryStatParent.SetActive(false);
+        itemStatParent.SetActive(false);
         abilityStatParent.SetActive(false);
+
+        foreach (Transform tr in itemStatParent.transform)
+            tr.gameObject.SetActive(false);
 
         if (item == null)
         {
@@ -421,28 +416,70 @@ public class InventoryUI : MonoBehaviour
         itemNameText.text = item.itemName;
         itemDescriptionText.text = item.itemDescription;
 
+        int rowIndex = 0;
         switch (item.itemType)
         {
             case ItemType.WEAPON:
                 itemTypeText.text = "Weapon";
-                weaponStatParent.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = ((Weapon)item).weaponDamage + " ATK";
-                weaponStatParent.SetActive(true);
+                WeaponSO weaponData = ((Weapon)item).weaponData;
+                if (weaponData.weaponDamage != 0)
+                {
+                    itemStatParent.transform.GetChild(rowIndex).GetComponent<Image>().sprite = IconManager.instance.GetSprite("ATK");
+                    itemStatParent.transform.GetChild(rowIndex).GetChild(0).GetComponent<Text>().text = ((Weapon)item).weaponDamage + " ATK";
+                    itemStatParent.transform.GetChild(rowIndex).gameObject.SetActive(true);
+                    rowIndex++;
+                }
+                if (weaponData.bonusDefense != 0)
+                {
+                    itemStatParent.transform.GetChild(rowIndex).GetComponent<Image>().sprite = IconManager.instance.GetSprite("DEF");
+                    itemStatParent.transform.GetChild(rowIndex).GetChild(0).GetComponent<Text>().text = ((Weapon)item).weaponData.bonusDefense + " DEF";
+                    itemStatParent.transform.GetChild(rowIndex).gameObject.SetActive(true);
+                    rowIndex++;
+                }
+                if (weaponData.bonusMP != 0)
+                {
+                    itemStatParent.transform.GetChild(rowIndex).GetComponent<Image>().sprite = IconManager.instance.GetSprite("MP");
+                    itemStatParent.transform.GetChild(rowIndex).GetChild(0).GetComponent<Text>().text = ((Weapon)item).weaponData.bonusMP + " MP";
+                    itemStatParent.transform.GetChild(rowIndex).gameObject.SetActive(true);
+                    rowIndex++;
+                }
+
+                itemStatParent.SetActive(true);
                 useButtonText.text = "EQUIP ITEM";
                 selectedEquipment = true;
                 break;
 
             case ItemType.ARMOR:
                 itemTypeText.text = "Armor";
-                armorStatParent.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = ((Armor)item).health + " HP";
-                armorStatParent.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = ((Armor)item).damage + " ATK";
-                armorStatParent.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = ((Armor)item).defense + " DEF";
-                armorStatParent.SetActive(true);
+                Armor armor = (Armor)item;
+                if (armor.health != 0)
+                {
+                    itemStatParent.transform.GetChild(rowIndex).GetComponent<Image>().sprite = IconManager.instance.GetSprite("HP");
+                    itemStatParent.transform.GetChild(rowIndex).GetChild(0).GetComponent<Text>().text = armor.health + " HP";
+                    itemStatParent.transform.GetChild(rowIndex).gameObject.SetActive(true);
+                    rowIndex++;
+                }
+                if (armor.damage != 0)
+                {
+                    itemStatParent.transform.GetChild(rowIndex).GetComponent<Image>().sprite = IconManager.instance.GetSprite("ATK");
+                    itemStatParent.transform.GetChild(rowIndex).GetChild(0).GetComponent<Text>().text = armor.damage + " ATK";
+                    itemStatParent.transform.GetChild(rowIndex).gameObject.SetActive(true);
+                    rowIndex++;
+                }
+                if (armor.defense != 0)
+                {
+                    itemStatParent.transform.GetChild(rowIndex).GetComponent<Image>().sprite = IconManager.instance.GetSprite("DEF");
+                    itemStatParent.transform.GetChild(rowIndex).GetChild(0).GetComponent<Text>().text = armor.defense + " DEF";
+                    itemStatParent.transform.GetChild(rowIndex).gameObject.SetActive(true);
+                    rowIndex++;
+                }
+
+                itemStatParent.SetActive(true);
                 useButtonText.text = "EQUIP ITEM";
                 selectedEquipment = true;
                 break;
 
             case ItemType.ACCESSORY:
-                //
                 itemTypeText.text = "Accessory";
                 useButtonText.text = "EQUIP ITEM";
                 selectedEquipment = true;
@@ -450,16 +487,20 @@ public class InventoryUI : MonoBehaviour
 
             case ItemType.CONSUMABLE:
                 itemTypeText.text = "Consumable";
-                consumableStatParent.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = ((Consumable)item).consumableValue + " HP";
-                consumableStatParent.SetActive(true);
+                itemStatParent.transform.GetChild(0).GetComponent<Image>().sprite = IconManager.instance.GetSprite("HP");
+                itemStatParent.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = ((Consumable)item).consumableValue + " HP";
+                itemStatParent.transform.GetChild(0).gameObject.SetActive(true);
+                itemStatParent.SetActive(true);
                 useButtonText.text = "USE ITEM";
                 selectedEquipment = false;
                 break;
 
             case ItemType.THROWABLE:
                 itemTypeText.text = "Throwable";
-                throwableStatParent.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = ((Throwable)item).throwableValue + " ATK";
-                throwableStatParent.SetActive(true);
+                itemStatParent.transform.GetChild(0).GetComponent<Image>().sprite = IconManager.instance.GetSprite("ATK");
+                itemStatParent.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = ((Throwable)item).throwableValue + " ATK";
+                itemStatParent.transform.GetChild(0).gameObject.SetActive(true);
+                itemStatParent.SetActive(true);
                 useButtonText.text = "CANNOT USE";
                 selectedEquipment = false;
                 disableButton = true;

@@ -17,14 +17,6 @@ public class MetaTooltip : MonoBehaviour
     private Text descriptionText;
     [Space]
     private Transform statsParent;
-    private Image stat1Image;
-    private Image stat2Image;
-    private Image stat3Image;
-
-    [Header("Sprites")]
-    private Sprite attackSprite;
-    private Sprite healthSprite;
-    private Sprite defenseSprite;
 
     [Header("Runtime Variables")]
     private bool mouseOn = false;
@@ -61,14 +53,6 @@ public class MetaTooltip : MonoBehaviour
         descriptionText = transform.GetChild(3).GetComponent<Text>();
 
         statsParent = transform.GetChild(4);
-
-        stat1Image = statsParent.GetChild(0).GetComponent<Image>();
-        stat2Image = statsParent.GetChild(1).GetComponent<Image>();
-        stat3Image = statsParent.GetChild(2).GetComponent<Image>();
-
-        attackSprite = stat1Image.sprite;
-        healthSprite = stat2Image.sprite;
-        defenseSprite = stat3Image.sprite;
 
         gameObject.SetActive(false);
     }
@@ -119,32 +103,32 @@ public class MetaTooltip : MonoBehaviour
 
         descriptionText.text = data.description;
 
+        foreach (Transform tr in statsParent)
+            tr.gameObject.SetActive(false);
+
+        int rowIndex = 0;
         if (data.stat1 != null)
         {
-            stat1Image.gameObject.SetActive(true);
-            stat1Image.sprite = GetSprite(data.stat1Type);
-            stat1Image.transform.GetChild(0).GetComponent<Text>().text = data.stat1;
+            statsParent.GetChild(rowIndex).GetComponent<Image>().sprite = IconManager.instance.GetSprite(data.stat1Type);
+            statsParent.GetChild(rowIndex).GetChild(0).GetComponent<Text>().text = data.stat1;
+            statsParent.GetChild(rowIndex).gameObject.SetActive(true);
+            rowIndex++;
         }
-        else
-            stat1Image.gameObject.SetActive(false);
 
         if (data.stat2 != null)
         {
-            stat2Image.gameObject.SetActive(true);
-            stat2Image.sprite = GetSprite(data.stat2Type);
-            stat2Image.transform.GetChild(0).GetComponent<Text>().text = data.stat2;
+            statsParent.GetChild(rowIndex).GetComponent<Image>().sprite = IconManager.instance.GetSprite(data.stat2Type);
+            statsParent.GetChild(rowIndex).GetChild(0).GetComponent<Text>().text = data.stat2;
+            statsParent.GetChild(rowIndex).gameObject.SetActive(true);
+            rowIndex++;
         }
-        else
-            stat2Image.gameObject.SetActive(false);
 
         if (data.stat3 != null)
         {
-            stat3Image.gameObject.SetActive(true);
-            stat3Image.sprite = GetSprite(data.stat3Type);
-            stat3Image.transform.GetChild(0).GetComponent<Text>().text = data.stat3;
+            statsParent.GetChild(rowIndex).GetComponent<Image>().sprite = IconManager.instance.GetSprite(data.stat3Type);
+            statsParent.GetChild(rowIndex).GetChild(0).GetComponent<Text>().text = data.stat3;
+            statsParent.GetChild(rowIndex).gameObject.SetActive(true);
         }
-        else
-            stat3Image.gameObject.SetActive(false);
 
         mouseOn = true;
         gameObject.SetActive(true);
@@ -162,17 +146,6 @@ public class MetaTooltip : MonoBehaviour
         {
             mouseOn = false;
             delay = DELAY_TIME;
-        }
-    }
-
-    private Sprite GetSprite(string type)
-    {
-        switch (type)
-        {
-            case "ATK": return attackSprite;
-            case "DEF": return defenseSprite;
-            case "HP": return healthSprite;
-            default: return null;
         }
     }
 }
