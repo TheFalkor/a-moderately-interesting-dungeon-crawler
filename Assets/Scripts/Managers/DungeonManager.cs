@@ -153,7 +153,7 @@ public class DungeonManager : MonoBehaviour
         {
             case RoomType.COMBAT:
                 CombatManager.instance.StartCombat((CombatRoomSO)currentNode.room);
-                ChangeMusic("COMBAT_2");
+                ChangeMusic("COMBAT");
                 break;
 
             case RoomType.EVENT:
