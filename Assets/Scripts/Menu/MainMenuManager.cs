@@ -11,15 +11,15 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private Animator transitionAnimator;
     private GameObject lastSelected;
     [Space]
-    private AudioKor audioKor;
+    private AudioCore audioCore;
     private bool isMusicOn;
 
     private void Update()
     {
         if(!isMusicOn)
         {
-            audioKor = gameObject.GetComponent<AudioKor>();
-            audioKor.PlayMusic("MENU", AudioKor.Track.A);
+            audioCore = gameObject.GetComponent<AudioCore>();
+            audioCore.PlayMusic("MENU", AudioCore.Track.A);
             isMusicOn = true;
         }
     }
@@ -35,8 +35,8 @@ public class MainMenuManager : MonoBehaviour
 
     private IEnumerator DelayStart()
     {
-        audioKor.PauseMusic();
-        audioKor.PlaySFX("START_GAME");
+        audioCore.PauseMusic();
+        audioCore.PlaySFX("START_GAME");
         transitionAnimator.SetBool("Closed", true);
 
         yield return new WaitForSeconds(1.05f);
@@ -78,8 +78,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnClick()
     {
-        if (audioKor == null)
+        if (audioCore == null)
             return;
-        audioKor.PlaySFX("SELECT");
+        audioCore.PlaySFX("SELECT");
     }
 }

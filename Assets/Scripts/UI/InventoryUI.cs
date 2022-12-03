@@ -63,7 +63,7 @@ public class InventoryUI : MonoBehaviour
     [Space]
     private int currentTab = 0;
     [Space]
-    private AudioKor audioKor;
+    private AudioCore audioCore;
 
     [Header("Singleton")]
     public static InventoryUI instance;
@@ -129,7 +129,7 @@ public class InventoryUI : MonoBehaviour
 
         skillPointText = inventoryBox.transform.parent.GetChild(3).GetComponent<Text>();
 
-        audioKor = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioKor>();
+        audioCore = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioCore>();
     }
 
     public void ShowUI(int tab)
@@ -171,7 +171,7 @@ public class InventoryUI : MonoBehaviour
 
             skillPointText.gameObject.SetActive(true);
 
-            audioKor.PlaySFX("SELECT");
+            audioCore.PlaySFX("SELECT");
         }
     }
 
@@ -270,7 +270,7 @@ public class InventoryUI : MonoBehaviour
             return;
         }
 
-        audioKor.PlaySFX("SELECT");
+        audioCore.PlaySFX("SELECT");
         selectedIndex = index;
         ShowItemInfo(inventory.items[index]);
     }
@@ -293,7 +293,7 @@ public class InventoryUI : MonoBehaviour
             item = inventory.equippedAccessory;
         }
 
-        audioKor.PlaySFX("SELECT");
+        audioCore.PlaySFX("SELECT");
         ShowItemInfo(item, true);
     }
 
@@ -303,7 +303,7 @@ public class InventoryUI : MonoBehaviour
         isSelectedClass = false;
 
         raceSlots[index].SelectSlot();
-        audioKor.PlaySFX("SELECT");
+        audioCore.PlaySFX("SELECT");
 
         if (player.baseStat.startingAbilities.Count > index)
         {
@@ -327,7 +327,7 @@ public class InventoryUI : MonoBehaviour
         selectedAbilityIndex = index;
         isSelectedClass = true;
         classSlots[index].SelectSlot();
-        audioKor.PlaySFX("SELECT");
+        audioCore.PlaySFX("SELECT");
 
         if (player.classStat.startingPassives.Count > index)
         {

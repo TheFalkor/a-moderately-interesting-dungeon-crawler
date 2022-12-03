@@ -16,14 +16,11 @@ public class DungeonManager : MonoBehaviour
     [Header("Runtime Variables")]
     [HideInInspector] public List<DungeonNode> allNodes = new List<DungeonNode>();
     private DungeonNode currentNode;
-    private DungeonNode hoveringNode;
-    private bool roomSelected = false;
-    private float transitionTimer = 0;
     [HideInInspector] public bool allowSelection = true;
     private bool start = false;
     private int roomsCompleted = 0;
     private int roomsAmount = -1;
-    private AudioKor audioKor;
+    private AudioCore audioCore;
     
 
     [Header("Singleton")]
@@ -49,7 +46,7 @@ public class DungeonManager : MonoBehaviour
         dungeonProfile.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().sprite = player.baseStat.racePortrait;
         dungeonProfile.transform.GetChild(1).GetComponent<Text>().text = player.baseStat.entityName;
         dungeonProfile.transform.GetChild(2).GetComponent<Text>().text = player.classStat.className;
-        audioKor = gameObject.GetComponent<AudioKor>();
+        audioCore = gameObject.GetComponent<AudioCore>();
     }
 
     void Update()
@@ -60,20 +57,6 @@ public class DungeonManager : MonoBehaviour
             start = true;
         }
 
-        if (roomSelected)
-        {
-            transitionTimer += Time.deltaTime;
-
-            if (transitionTimer > 1.25f)
-            {
-                transitionTimer = 0;
-                roomSelected = false;
-
-                currentNode.EnterNode();
-                ChangeMusic("COMBAT_2");
-            }
-        }
-
         if (!allowSelection)
             return;
 
@@ -82,33 +65,18 @@ public class DungeonManager : MonoBehaviour
             foreach (DungeonNode node in allNodes)
                 node.gameObject.SetActive(true);
         }
+    }
 
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+    public void EnterRoom(DungeonNode node)
+    {
+        if (!allowSelection)
+            return;
 
-        if (hit && hit.transform.GetComponent<DungeonNode>())
-        {
-            hoveringNode = hit.transform.GetComponent<DungeonNode>();
-            hoveringNode.HighlightNode(true);
-        }
-        else if (hoveringNode)
-        {
-            hoveringNode.HighlightNode(false);
-            hoveringNode = null;
-        }
+        currentNode = node;
+        allowSelection = false;
 
-
-        if (!roomSelected && Input.GetMouseButtonUp(0))
-        {
-            if (hoveringNode && !hoveringNode.completed)
-            {
-                currentNode = hit.transform.GetComponent<DungeonNode>();
-                roomSelected = true;
-                allowSelection = false;
-                transitionAnimator.SetBool("Closed", true);
-            }
-        }
-
+        transitionAnimator.SetBool("Closed", true);
+        StartCoroutine(DelayRoom());
     }
 
     public void OpenInventory(int tab)
@@ -138,7 +106,7 @@ public class DungeonManager : MonoBehaviour
 
     private void ChangeMusic(string name)
     {
-        audioKor.PlayMusic(name, AudioKor.Track.A);
+        audioCore.PlayMusic(name, AudioCore.Track.A);
     }
 
     public void WonRoom()
@@ -154,7 +122,6 @@ public class DungeonManager : MonoBehaviour
 
         currentNode.MarkCompleted();
 
-        //Check Win Condition
         roomsCompleted++;
         if(roomsCompleted >= roomsAmount)
         {
@@ -185,7 +152,7 @@ public class DungeonManager : MonoBehaviour
     public void OpenExitPopup()
     {
         allowSelection = false;
-        audioKor.PlaySFX("SELECT");
+        audioCore.PlaySFX("SELECT");
         exitParent.SetActive(true);
     }
 
@@ -197,5 +164,28 @@ public class DungeonManager : MonoBehaviour
             exitParent.SetActive(false);
 
         RemoveRestrictions();
+    }
+
+    private IEnumerator DelayRoom()
+    {
+        yield return new WaitForSeconds(1.25f);
+
+        ToggleDungeonVisibility(false);
+
+        switch (currentNode.room.roomType)
+        {
+            case RoomType.COMBAT:
+                CombatManager.instance.StartCombat((CombatRoomSO)currentNode.room);
+                ChangeMusic("COMBAT_2");
+                break;
+
+            case RoomType.EVENT:
+                Debug.Log("event dog");
+                break;
+
+            case RoomType.TREASURE:
+                Debug.Log("treasure dog");
+                break;
+        }
     }
 }

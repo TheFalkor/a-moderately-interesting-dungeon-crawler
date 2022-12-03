@@ -147,7 +147,7 @@ public class GridManager : MonoBehaviour
         parent.transform.parent = combatParent;
     }
 
-    public void GenerateCombat(CombatRoomSO room)
+    public void GenerateCombat(CombatRoomSO room, bool spawnEnemy = true)
     {
         // Destroy all existing occupants
 
@@ -155,7 +155,7 @@ public class GridManager : MonoBehaviour
         {
             tileList[i].Setup(room.tiles[i].wall);
 
-            if (!room.tiles[i].wall && room.tiles[i].occupantPrefab)
+            if (!room.tiles[i].wall && room.tiles[i].occupantPrefab && spawnEnemy)
             {
                 GameObject temp = Instantiate(room.tiles[i].occupantPrefab, tileList[i].transform.position, Quaternion.identity);
 

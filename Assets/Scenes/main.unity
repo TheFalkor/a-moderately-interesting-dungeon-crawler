@@ -4801,6 +4801,10 @@ MonoBehaviour:
   westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  icons:
+  - {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  - {fileID: -2412923733930947755, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  - {fileID: 5939652681055086684, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   rewardList: []
   completed: 1
 --- !u!61 &315833286
@@ -5498,6 +5502,10 @@ MonoBehaviour:
   westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  icons:
+  - {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  - {fileID: -2412923733930947755, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  - {fileID: 5939652681055086684, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   rewardList: []
   completed: 1
 --- !u!61 &355054329
@@ -5780,6 +5788,10 @@ MonoBehaviour:
   westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  icons:
+  - {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  - {fileID: -2412923733930947755, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  - {fileID: 5939652681055086684, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   rewardList: []
   completed: 1
 --- !u!61 &377545773
@@ -9450,6 +9462,10 @@ MonoBehaviour:
   westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  icons:
+  - {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  - {fileID: -2412923733930947755, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  - {fileID: 5939652681055086684, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   rewardList: []
   completed: 1
 --- !u!61 &585901647
@@ -12040,6 +12056,10 @@ MonoBehaviour:
   westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  icons:
+  - {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  - {fileID: -2412923733930947755, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  - {fileID: 5939652681055086684, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   rewardList: []
   completed: 1
 --- !u!61 &776871783
@@ -12172,6 +12192,10 @@ MonoBehaviour:
   westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  icons:
+  - {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  - {fileID: -2412923733930947755, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  - {fileID: 5939652681055086684, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   rewardList: []
   completed: 1
 --- !u!61 &778430877
@@ -13342,6 +13366,10 @@ MonoBehaviour:
   westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  icons:
+  - {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  - {fileID: -2412923733930947755, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  - {fileID: 5939652681055086684, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   rewardList: []
   completed: 1
 --- !u!61 &849427524
@@ -19503,6 +19531,10 @@ MonoBehaviour:
   westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  icons:
+  - {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  - {fileID: -2412923733930947755, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  - {fileID: 5939652681055086684, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   rewardList: []
   completed: 1
 --- !u!61 &1214459959
@@ -19971,6 +20003,10 @@ MonoBehaviour:
   westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  icons:
+  - {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  - {fileID: -2412923733930947755, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  - {fileID: 5939652681055086684, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   rewardList: []
   completed: 1
 --- !u!61 &1229855630
@@ -20103,6 +20139,10 @@ MonoBehaviour:
   westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  icons:
+  - {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  - {fileID: -2412923733930947755, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  - {fileID: 5939652681055086684, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   rewardList: []
   completed: 1
 --- !u!61 &1236783432
@@ -26121,10 +26161,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1596778534}
+  - component: {fileID: 1596778538}
   - component: {fileID: 1596778535}
   - component: {fileID: 1596778537}
   - component: {fileID: 1596778536}
-  - component: {fileID: 1596778538}
   - component: {fileID: 1596778539}
   - component: {fileID: 1596778543}
   - component: {fileID: 1596778540}
@@ -26213,15 +26253,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1596778533}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1802875013, guid: 9d5f5acdd76bd694394d48216ebc699f, type: 3}
+  m_Script: {fileID: 834237197, guid: f68ac4af8b716be48b9af2e8506b1d3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicDatabase: {fileID: 11400000, guid: 8e64bceec6736462b9cee38f9d58f7c4, type: 2}
-  sfxDatabase: {fileID: 11400000, guid: a74731b1949394d7aade000e52a24b0c, type: 2}
+  musicDatabase: {fileID: 11400000, guid: 7f46e59dcf67d134bb3c44ea94a48892, type: 2}
+  sfxDatabase: {fileID: 11400000, guid: 72cb10644358f5d48bb45b2a4099a4da, type: 2}
+  playOnAwake: 
   masterVolume: 0.5
   musicVolume: 0.5
-  sfxVolume: 0.5
+  SFXVolume: 0.5
   musicTrackCount: 2
+  dontDestroyOnLoad: 0
+  forceUniqueInstance: 0
 --- !u!114 &1596778539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32495,6 +32538,10 @@ MonoBehaviour:
   westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  icons:
+  - {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  - {fileID: -2412923733930947755, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  - {fileID: 5939652681055086684, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   rewardList: []
   completed: 1
 --- !u!61 &1962121614
@@ -33231,6 +33278,10 @@ MonoBehaviour:
   westBrokenBridge: {fileID: -5563344673404217702, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   horizontalBridge: {fileID: 1757925049903464377, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   verticalBridge: {fileID: -770090151303598645, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  icons:
+  - {fileID: -2390724075838241844, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  - {fileID: -2412923733930947755, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
+  - {fileID: 5939652681055086684, guid: 1aeddb29fc1edb543a14c537ebef0376, type: 3}
   rewardList: []
   completed: 1
 --- !u!61 &2043679878

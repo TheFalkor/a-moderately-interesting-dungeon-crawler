@@ -56,8 +56,8 @@ public class EndManager : MonoBehaviour
             winScreen.SetActive(true);
         else
         {
-            gameObject.GetComponent<AudioKor>().PauseMusic();
-            gameObject.GetComponent<AudioKor>().PlaySFX("YOU_DIED");
+            gameObject.GetComponent<AudioCore>().PauseMusic();
+            gameObject.GetComponent<AudioCore>().PlaySFX("YOU_DIED");
             loseScreen.SetActive(true);
         }
     }

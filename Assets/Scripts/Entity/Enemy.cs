@@ -147,7 +147,7 @@ public class Enemy : Entity
             Move(Direction.WEST);
         else
             Debug.LogError("ENEMY MOVE BROKE AAAAAAAAAAAA (invalid target)");
-        sfx.PlaySFX("ENEMY_MOVE");
+        audioCore.PlaySFX("ENEMY_MOVE");
     }
 
     private void MeleeAttack(Action action, bool isSplash = false)
@@ -187,7 +187,7 @@ public class Enemy : Entity
                 break;
         }
 
-        sfx.PlaySFX("SLASH");
+        audioCore.PlaySFX("SLASH");
 
         return;
     }
@@ -209,7 +209,7 @@ public class Enemy : Entity
         }
 
         Attack(Sensing.player.currentTile, new Damage(rangeDamage, originType));
-        sfx.PlaySFX("SLASH");
+        audioCore.PlaySFX("SLASH");
     }
 
     public override void TakeDamage(Damage damage, Occupant attacker = null)
@@ -222,7 +222,7 @@ public class Enemy : Entity
     protected override void Death()
     {
         PassiveManager.instance.OnEnemyDeath(this);
-        sfx.PlaySFX("ENEMY_DEATH");
+        audioCore.PlaySFX("ENEMY_DEATH");
         base.Death();
     }
 }

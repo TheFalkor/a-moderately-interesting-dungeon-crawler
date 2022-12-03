@@ -8,6 +8,8 @@ public class TilesetManager : MonoBehaviour
     [SerializeField] private Texture2D tileset;
 
     [Header("Runtime Variables")]
+    [HideInInspector] public bool randomizePattern = true;
+    
     private readonly List<int> wallIndeces = new List<int>();
     private readonly List<int> groundIndeces = new List<int>();
 
@@ -371,7 +373,10 @@ public class TilesetManager : MonoBehaviour
             27, 27
         };
 
-        return spriteList[randomFloorTiles[Random.Range(0, randomFloorTiles.Count)]];
+        if (randomizePattern)
+            return spriteList[randomFloorTiles[Random.Range(0, randomFloorTiles.Count)]];
+        else
+            return spriteList[randomFloorTiles[0]];
     }
 
     public Sprite GetTileSprite(int index)

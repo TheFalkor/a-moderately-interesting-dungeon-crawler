@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AudioCore</name>
+    </assembly>
+    <members>
+        <member name="T:AudioCore">
+            <summary>
+            AudioCore is an Audio Manager made by Henrik Nilsson.<br></br>https://www.github.com/TheFalkor
+            </summary>
+        </member>
+        <member name="T:AudioCore.Track">
+            <summary>
+            Used to specify which Audio Track to affect.
+            </summary>
+        </member>
+        <member name="M:AudioCoreLib.Interfaces.IAudioCore.SetMusic(System.String,AudioCore.Track)">
+            <summary>
+            Sets the music data into the track without starting it.
+            </summary>
+            <param name="musicName">The music asset to be played.</param>
+            <param name="track">The track that will be used.</param>
+        </member>
+        <member name="M:AudioCoreLib.Interfaces.IAudioCore.PlayMusic(System.String)">
+            <summary>
+            Starts a track that plays music.
+            </summary>
+            <param name="musicName">The music asset to be played.</param>
+        </member>
+        <member name="M:AudioCoreLib.Interfaces.IAudioCore.PlayMusic(System.String,AudioCore.Track)">
+            <summary>
+            Starts a track that plays music.
+            </summary>
+            <param name="musicName">The music asset to be played.</param>
+            <param name="track">The track that will be used.</param>
+        </member>
+        <member name="M:AudioCoreLib.Interfaces.IAudioCore.PauseMusic">
+            <summary>
+            Pauses music and ambience playing from all tracks.
+            </summary>
+        </member>
+        <member name="M:AudioCoreLib.Interfaces.IAudioCore.PauseMusic(AudioCore.Track)">
+            <summary>
+            Pauses music and ambience playing from one track.
+            </summary>
+            <param name="track">The track that will be paused.</param>
+        </member>
+        <member name="M:AudioCoreLib.Interfaces.IAudioCore.ResumeMusic">
+            <summary>
+            Resume all tracks.
+            </summary>
+        </member>
+        <member name="M:AudioCoreLib.Interfaces.IAudioCore.FadeInMusic(AudioCore.Track,System.Single)">
+            <summary>
+            Fade in the track.
+            </summary>
+            <param name="track">The track that will be faded.</param>
+            <param name="duration">The duration of the fade.</param>
+        </member>
+        <member name="M:AudioCoreLib.Interfaces.IAudioCore.FadeInMusic(AudioCore.Track,System.Single,System.String)">
+            <summary>
+            Set the music asset and fade in the track.
+            </summary>
+            <param name="track">The track that will be faded.</param>
+            <param name="duration">The duration of the fade.</param>
+            <param name="musicName">The music asset to be played.</param>
+        </member>
+        <member name="M:AudioCoreLib.Interfaces.IAudioCore.FadeOutMusic(AudioCore.Track,System.Single)">
+            <summary>
+            Fade out the track.
+            </summary>
+            <param name="track">The track that will be faded.</param>
+            <param name="duration">The duration of the fade.</param>
+        </member>
+        <member name="M:AudioCoreLib.Interfaces.IAudioCore.FadeOutAll(System.Single)">
+            <summary>
+            Fade out all available tracks.
+            </summary>
+            <param name="duration">The duration of the fade.</param>
+        </member>
+        <member name="M:AudioCoreLib.Interfaces.IAudioCore.ResumeMusic(AudioCore.Track)">
+            <summary>
+            Resumes one track.
+            </summary>
+            <param name="track">The track that will be resumed.</param>
+        </member>
+        <member name="M:AudioCoreLib.Interfaces.IAudioCore.PlaySFX(System.String)">
+            <summary>
+            Plays a sound effect.
+            </summary>
+            <param name="soundEffectName">The sound effect name to be played.</param>
+        </member>
+        <member name="M:AudioCoreLib.Interfaces.IAudioCore.PlaySFX(System.String,System.Single)">
+            <summary>
+            Plays a sound effect with additional volume scale.
+            </summary>
+            <param name="soundEffectName">The sound effect name to be played.</param>
+            <param name="volumeScale">The volume to scale the SFX by.</param>
+        </member>
+        <member name="M:AudioCoreLib.Interfaces.IAudioCore.SetMasterVolume(System.Single)">
+            <summary>
+            Sets the general volume of all audio components.
+            </summary>
+            <param name="masterVolume">The general volume for all components.</param>
+        </member>
+        <member name="M:AudioCoreLib.Interfaces.IAudioCore.SetMusicVolume(System.Single)">
+            <summary>
+            Sets the volume of all music tracks.
+            </summary>
+            <param name="musicVolume">The volume for all music tracks.</param>
+        </member>
+        <member name="M:AudioCoreLib.Interfaces.IAudioCore.SetSFXVolume(System.Single)">
+            <summary>
+            Sets the volume for all sound effects.
+            </summary>
+            <param name="sfxVolume">The volume for all sound effects.</param>
+        </member>
+    </members>
+</doc>

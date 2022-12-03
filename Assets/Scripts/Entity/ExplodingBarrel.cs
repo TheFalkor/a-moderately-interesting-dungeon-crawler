@@ -9,7 +9,7 @@ public class ExplodingBarrel : Occupant
 
     protected override void Death()
     {
-        sfx.PlaySFX("EXPLOSION");
+        audioCore.PlaySFX("EXPLOSION");
 
         foreach (Tile t in currentTile.orthogonalNeighbors)
         {

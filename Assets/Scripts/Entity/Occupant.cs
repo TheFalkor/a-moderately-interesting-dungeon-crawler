@@ -24,7 +24,7 @@ public abstract class Occupant : MonoBehaviour
     [HideInInspector] public Tile currentTile;
     private bool isDead = false;
     public readonly List<StatusEffect> activeStatusEffects = new List<StatusEffect>();
-    protected AudioKor sfx;
+    protected AudioCore audioCore;
 
 
     public virtual void Initialize()
@@ -42,7 +42,7 @@ public abstract class Occupant : MonoBehaviour
         render = transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>();
         UpdateLayerIndex();
 
-        sfx = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioKor>();
+        audioCore = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioCore>();
     }
 
     public virtual void UpdateStatusEffects()

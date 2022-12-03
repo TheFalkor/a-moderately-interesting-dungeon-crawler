@@ -9,75 +9,143 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 2138287151, guid: 9d5f5acdd76bd694394d48216ebc699f, type: 3}
+  m_Script: {fileID: -2007344685, guid: f68ac4af8b716be48b9af2e8506b1d3f, type: 3}
   m_Name: SFX Database
   m_EditorClassIdentifier: 
   soundEffectDatabase:
   - soundEffectName: MOVE
-    audioClip: {fileID: 8300000, guid: caaff2d2c77b25640b683307bb7ed74c, type: 3}
-    volume: 0.5
+    audio:
+      audioType: 0
+      audioClip: {fileID: 8300000, guid: caaff2d2c77b25640b683307bb7ed74c, type: 3}
+      audioClips: []
+    volume: 1
     pitch: 1
+    modifiers: []
   - soundEffectName: SLASH
-    audioClip: {fileID: 8300000, guid: abb6b818d17634f57b250126ca2e0062, type: 3}
+    audio:
+      audioType: 0
+      audioClip: {fileID: 8300000, guid: abb6b818d17634f57b250126ca2e0062, type: 3}
+      audioClips: []
     volume: 1
     pitch: 1
+    modifiers: []
   - soundEffectName: EXPLOSION
-    audioClip: {fileID: 8300000, guid: d5719438194774db182c1af55b6cea20, type: 3}
-    volume: 0.1
+    audio:
+      audioType: 0
+      audioClip: {fileID: 8300000, guid: d5719438194774db182c1af55b6cea20, type: 3}
+      audioClips: []
+    volume: 1
     pitch: 1
+    modifiers: []
   - soundEffectName: DEATH
-    audioClip: {fileID: 8300000, guid: 8ec4d03464aad4e0893ce89613d9559b, type: 3}
-    volume: 0.75
+    audio:
+      audioType: 0
+      audioClip: {fileID: 8300000, guid: 8ec4d03464aad4e0893ce89613d9559b, type: 3}
+      audioClips: []
+    volume: 1
     pitch: 1
+    modifiers: []
   - soundEffectName: ENEMY_DEATH
-    audioClip: {fileID: 8300000, guid: 656eafa76e0af4d48a384fb265c44ea4, type: 3}
-    volume: 0.75
+    audio:
+      audioType: 0
+      audioClip: {fileID: 8300000, guid: 656eafa76e0af4d48a384fb265c44ea4, type: 3}
+      audioClips: []
+    volume: 1
     pitch: 1
+    modifiers: []
   - soundEffectName: HEALTH_GAIN
-    audioClip: {fileID: 8300000, guid: 28c97fe4823e54e629b0229161468053, type: 3}
+    audio:
+      audioType: 0
+      audioClip: {fileID: 8300000, guid: 28c97fe4823e54e629b0229161468053, type: 3}
+      audioClips: []
     volume: 1
     pitch: 1
+    modifiers: []
   - soundEffectName: ENEMY_MOVE
-    audioClip: {fileID: 8300000, guid: 8c043f42029ca4e69aa2c4318d034443, type: 3}
+    audio:
+      audioType: 0
+      audioClip: {fileID: 8300000, guid: 8c043f42029ca4e69aa2c4318d034443, type: 3}
+      audioClips: []
     volume: 1
     pitch: 1
+    modifiers: []
   - soundEffectName: VICTORY
-    audioClip: {fileID: 8300000, guid: 0cc583e0753b3460fa11d2b1a55fe85e, type: 3}
+    audio:
+      audioType: 0
+      audioClip: {fileID: 8300000, guid: 0cc583e0753b3460fa11d2b1a55fe85e, type: 3}
+      audioClips: []
     volume: 1
     pitch: 1
+    modifiers: []
   - soundEffectName: YOU_DIED
-    audioClip: {fileID: 8300000, guid: 2b45e45f431b840de844f6b87cba1cbd, type: 3}
+    audio:
+      audioType: 0
+      audioClip: {fileID: 8300000, guid: 2b45e45f431b840de844f6b87cba1cbd, type: 3}
+      audioClips: []
     volume: 1
     pitch: 1
+    modifiers: []
   - soundEffectName: SELECT
-    audioClip: {fileID: 8300000, guid: e10ba915ca4ba4b6e8e2f80e76cda7dc, type: 3}
+    audio:
+      audioType: 0
+      audioClip: {fileID: 8300000, guid: e10ba915ca4ba4b6e8e2f80e76cda7dc, type: 3}
+      audioClips: []
     volume: 1
     pitch: 1
+    modifiers: []
   - soundEffectName: NEGATIVE_FEEDBACK
-    audioClip: {fileID: 8300000, guid: d7c8095792ac24fe480a6ee3b2a17258, type: 3}
+    audio:
+      audioType: 0
+      audioClip: {fileID: 8300000, guid: d7c8095792ac24fe480a6ee3b2a17258, type: 3}
+      audioClips: []
     volume: 1
     pitch: 1
+    modifiers: []
   - soundEffectName: DASH
-    audioClip: {fileID: 8300000, guid: d43518bfa4beebd479283bc58b86a4e2, type: 3}
+    audio:
+      audioType: 0
+      audioClip: {fileID: 8300000, guid: d43518bfa4beebd479283bc58b86a4e2, type: 3}
+      audioClips: []
     volume: 1
     pitch: 1
+    modifiers: []
   - soundEffectName: START_GAME
-    audioClip: {fileID: 8300000, guid: cefbbd67bec400e4bbb5a78e1cba2425, type: 3}
+    audio:
+      audioType: 0
+      audioClip: {fileID: 8300000, guid: cefbbd67bec400e4bbb5a78e1cba2425, type: 3}
+      audioClips: []
     volume: 1
     pitch: 1
+    modifiers: []
   - soundEffectName: ZAP
-    audioClip: {fileID: 8300000, guid: 25e4214f441d54e7ca554dd34ba4f08e, type: 3}
+    audio:
+      audioType: 0
+      audioClip: {fileID: 8300000, guid: 25e4214f441d54e7ca554dd34ba4f08e, type: 3}
+      audioClips: []
     volume: 1
-    pitch: 0.75
+    pitch: 1
+    modifiers: []
   - soundEffectName: POWER_UP
-    audioClip: {fileID: 8300000, guid: 7fa713491832a4be2ab7c48116a1e617, type: 3}
+    audio:
+      audioType: 0
+      audioClip: {fileID: 8300000, guid: 7fa713491832a4be2ab7c48116a1e617, type: 3}
+      audioClips: []
     volume: 1
     pitch: 1
+    modifiers: []
   - soundEffectName: TIME_PULSE
-    audioClip: {fileID: 8300000, guid: 968fb7fc9aeda49b1b03411f2c5f5472, type: 3}
+    audio:
+      audioType: 0
+      audioClip: {fileID: 8300000, guid: 968fb7fc9aeda49b1b03411f2c5f5472, type: 3}
+      audioClips: []
     volume: 1
     pitch: 1
+    modifiers: []
   - soundEffectName: CORRUPT_GROUND
-    audioClip: {fileID: 8300000, guid: c6be6310ccfcb4270b6d97b331490f57, type: 3}
+    audio:
+      audioType: 0
+      audioClip: {fileID: 8300000, guid: c6be6310ccfcb4270b6d97b331490f57, type: 3}
+      audioClips: []
     volume: 1
     pitch: 1
+    modifiers: []

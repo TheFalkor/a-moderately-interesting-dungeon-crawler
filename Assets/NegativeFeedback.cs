@@ -7,17 +7,17 @@ using UnityEngine.EventSystems;
 public class NegativeFeedback : MonoBehaviour , IPointerUpHandler
 {
     private Button me;
-    private AudioKor sfx;
+    private AudioCore audioCore;
     // Start is called before the first frame update
     void Start()
     {
         me = gameObject.GetComponent<Button>();
-        sfx = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioKor>();
+        audioCore = GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioCore>();
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         if (!me.interactable)
-            sfx.PlaySFX("NEGATIVE_FEEDBACK");
+            audioCore.PlaySFX("NEGATIVE_FEEDBACK");
     }
 }

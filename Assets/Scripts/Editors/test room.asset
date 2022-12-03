@@ -10,99 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e1abec32d62953409dee2ebcae7439c, type: 3}
-  m_Name: Combat Room 1
+  m_Name: test room
   m_EditorClassIdentifier: 
   roomType: 0
-  roomName: Combat Room 1
-  roomDescription: Easy start level after onboarding
-  rewards:
-  - {fileID: 11400000, guid: c165f4940f004254cb369cb867df8d49, type: 2}
+  roomName: 
+  roomDescription: dog
+  rewards: []
   tiles:
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 4544870868030951868, guid: 6656aba1331884e42baee4680f31cbed, type: 3}
   - wall: 1
-    occupantPrefab: {fileID: 0}
-  - wall: 1
-    occupantPrefab: {fileID: 0}
-  - wall: 1
-    occupantPrefab: {fileID: 0}
-  - wall: 1
-    occupantPrefab: {fileID: 0}
-  - wall: 1
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 1
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 6597304123504305564, guid: 39e8658937743f3418f09961d51f1175, type: 3}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 1
-    occupantPrefab: {fileID: 0}
-  - wall: 1
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 0}
-  - wall: 0
-    occupantPrefab: {fileID: 2744464392678596536, guid: 8907a71627ea0d547a0517b7805d8e3b, type: 3}
-  - wall: 0
     occupantPrefab: {fileID: 0}
   - wall: 0
     occupantPrefab: {fileID: 0}
@@ -145,7 +60,7 @@ MonoBehaviour:
   - wall: 0
     occupantPrefab: {fileID: 0}
   - wall: 0
-    occupantPrefab: {fileID: 3460375710609821761, guid: 7b36018a0c3b03448bea5aca77944878, type: 3}
+    occupantPrefab: {fileID: 0}
   - wall: 0
     occupantPrefab: {fileID: 0}
   - wall: 0
@@ -155,6 +70,90 @@ MonoBehaviour:
   - wall: 1
     occupantPrefab: {fileID: 0}
   - wall: 0
-    occupantPrefab: {fileID: 2744464392678596536, guid: 8907a71627ea0d547a0517b7805d8e3b, type: 3}
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 1
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 1
+    occupantPrefab: {fileID: 0}
+  - wall: 1
+    occupantPrefab: {fileID: 0}
+  - wall: 1
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
+  - wall: 0
+    occupantPrefab: {fileID: 0}
   - wall: 0
     occupantPrefab: {fileID: 0}

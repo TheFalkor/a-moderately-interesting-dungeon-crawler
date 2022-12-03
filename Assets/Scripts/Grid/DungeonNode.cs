@@ -5,7 +5,7 @@ using UnityEngine;
 public class DungeonNode : MonoBehaviour
 {
     [Header("Dungeon Setup")]
-    public CombatRoomSO room;
+    public BaseRoomSO room;
     [Space]
     private List<DungeonNode> connectedNodes = new List<DungeonNode>();
     
@@ -18,6 +18,8 @@ public class DungeonNode : MonoBehaviour
     public Sprite horizontalBridge;
     public Sprite verticalBridge;
 
+    [Header("Hovering Icons")]
+    public Sprite[] icons;
 
     [Header("Runtime Variables")]
     [HideInInspector] public List<ItemSO> rewardList = new List<ItemSO>();
@@ -50,6 +52,8 @@ public class DungeonNode : MonoBehaviour
                 rewardList.Add(item);
 
             completed = false;
+
+            transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = icons[(int)room.roomType];
         }
         else
         {
@@ -76,34 +80,47 @@ public class DungeonNode : MonoBehaviour
             SetupSprites();
     }
 
-    public bool EnterNode()
-    {
-        if (completed)
-            return false;
-
-        render.color = Color.white;
-
-        CombatManager.instance.StartCombat(room);
-        DungeonManager.instance.ToggleDungeonVisibility(false);
-
-        return true;
-    }
-
     public void MarkCompleted()
     {
         completed = true;
         transform.GetChild(0).gameObject.SetActive(false);
 
+        HighlightNode(false);
+
         foreach (DungeonNode node in connectedNodes)
             node.gameObject.SetActive(true);
     }
 
-    public void HighlightNode(bool active)
+    private void HighlightNode(bool active)
     {
         if (active && !completed)
             render.color = new Color(0.85f, 0.85f, 0.85f);
         else
             render.color = Color.white;
+    }
+
+    private void OnMouseDown()
+    {
+        if (completed)
+            return;
+
+        DungeonManager.instance.EnterRoom(this);
+    }
+
+    private void OnMouseEnter()
+    {
+        if (completed)
+            return;
+
+        HighlightNode(true);
+    }
+
+    private void OnMouseExit()
+    {
+        if (completed)
+            return;
+
+        HighlightNode(false);
     }
 
     public void GGC_NewGamePlus()

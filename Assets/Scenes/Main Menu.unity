@@ -14933,7 +14933,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1702972929}
-  - component: {fileID: 1702972931}
+  - component: {fileID: 1702972932}
   - component: {fileID: 1702972928}
   - component: {fileID: 1702972930}
   m_Layer: 0
@@ -14996,7 +14996,7 @@ MonoBehaviour:
   classText: {fileID: 1576041599}
   raceDescription: {fileID: 270030134}
   classDescription: {fileID: 2119806206}
---- !u!114 &1702972931
+--- !u!114 &1702972932
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15005,15 +15005,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1702972927}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1802875013, guid: 9d5f5acdd76bd694394d48216ebc699f, type: 3}
+  m_Script: {fileID: 834237197, guid: f68ac4af8b716be48b9af2e8506b1d3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicDatabase: {fileID: 11400000, guid: 8e64bceec6736462b9cee38f9d58f7c4, type: 2}
-  sfxDatabase: {fileID: 11400000, guid: a74731b1949394d7aade000e52a24b0c, type: 2}
+  musicDatabase: {fileID: 11400000, guid: 7f46e59dcf67d134bb3c44ea94a48892, type: 2}
+  sfxDatabase: {fileID: 11400000, guid: 72cb10644358f5d48bb45b2a4099a4da, type: 2}
+  playOnAwake: 
   masterVolume: 0.5
   musicVolume: 0.5
-  sfxVolume: 0.5
+  SFXVolume: 0.5
   musicTrackCount: 2
+  dontDestroyOnLoad: 0
+  forceUniqueInstance: 0
 --- !u!1 &1711542521
 GameObject:
   m_ObjectHideFlags: 0

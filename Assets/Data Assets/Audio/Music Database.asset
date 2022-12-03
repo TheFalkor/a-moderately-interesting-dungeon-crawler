@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 850357297, guid: 9d5f5acdd76bd694394d48216ebc699f, type: 3}
+  m_Script: {fileID: -156566072, guid: f68ac4af8b716be48b9af2e8506b1d3f, type: 3}
   m_Name: Music Database
   m_EditorClassIdentifier: 
   musicDatabase:
@@ -21,15 +21,15 @@ MonoBehaviour:
   - musicName: COMBAT_2
     audioClip: {fileID: 8300000, guid: 916fbf02a0df5d648bf5949dbed7ad35, type: 3}
     loop: 1
-    volume: 0.25
+    volume: 1
     pitch: 1
   - musicName: MENU
     audioClip: {fileID: 8300000, guid: d9c1e98f97b946f48ba3ca3f593ad99f, type: 3}
     loop: 1
-    volume: 0.25
+    volume: 1
     pitch: 1
   - musicName: DUNGEON
     audioClip: {fileID: 8300000, guid: a0e49dd286f10da45a9f70932ced468e, type: 3}
     loop: 1
-    volume: 0.25
+    volume: 1
     pitch: 1
