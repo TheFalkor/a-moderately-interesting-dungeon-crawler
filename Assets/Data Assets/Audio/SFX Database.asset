@@ -34,7 +34,7 @@ MonoBehaviour:
       audioType: 0
       audioClip: {fileID: 8300000, guid: d5719438194774db182c1af55b6cea20, type: 3}
       audioClips: []
-    volume: 1
+    volume: 0.5
     pitch: 1
     modifiers: []
   - soundEffectName: DEATH
@@ -149,3 +149,4 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     modifiers: []
+  databaseLength: 17

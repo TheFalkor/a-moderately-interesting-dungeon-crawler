@@ -28,3 +28,4 @@ MonoBehaviour:
     loop: 1
     volume: 1
     pitch: 1
+  databaseLength: 3
