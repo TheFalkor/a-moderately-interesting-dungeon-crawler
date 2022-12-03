@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class NecroticShroud : Passive
 {
-    public override void OnPlayerTakeDamage(Entity enemy)
+    public override void Initialize()
+    {
+        ServiceLocator.Get<EventManager>().OnPlayerTakeDamage += OnPlayerTakeDamage;
+    }
+
+    private void OnPlayerTakeDamage(Entity enemy)
     {
         enemy.AddStatusEffect(new StatusEffect(StatusType.DEATHMARK, 2));
     }

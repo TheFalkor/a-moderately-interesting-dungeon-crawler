@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class FreeMP : Passive
 {
-    public override void OnPreTurn(Entity entity)
+    public override void Initialize()
+    {
+        ServiceLocator.Get<EventManager>().OnPreTurn += OnPreTurn;
+    }
+
+    private void OnPreTurn(Entity entity)
     {
         if (entity is Player player)
         {

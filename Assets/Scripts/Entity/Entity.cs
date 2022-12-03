@@ -72,7 +72,7 @@ public abstract class Entity : Occupant
         meleeDamage = baseMeleeDamage;
         rangeDamage = baseRangeDamage;
 
-        PassiveManager.instance.OnPreTurn(this);
+        ServiceLocator.Get<EventManager>().OnPreTurn?.Invoke(this);
 
         UpdateStatusEffects();
     }

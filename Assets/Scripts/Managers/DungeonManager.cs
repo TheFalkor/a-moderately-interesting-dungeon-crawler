@@ -8,7 +8,6 @@ public class DungeonManager : MonoBehaviour
 {
     [SerializeField] private GameObject dungeonParent;
     [SerializeField] private Animator transitionAnimator;
-    [SerializeField] private GameObject exitParent;
     [SerializeField] private GameObject dungeonProfile;
     public GameObject miniPlayer;
     public Player player;
@@ -79,12 +78,6 @@ public class DungeonManager : MonoBehaviour
         StartCoroutine(DelayRoom());
     }
 
-    public void OpenInventory(int tab)
-    {
-        allowSelection = false;
-        InventoryUI.instance.ShowUI(tab);
-    }
-
     public void RemoveRestrictions()
     {
         StartCoroutine(RestrictionsCooldown());
@@ -149,28 +142,12 @@ public class DungeonManager : MonoBehaviour
         miniPlayer.transform.localScale = new Vector3(-1, 1, 1);
     }
 
-    public void OpenExitPopup()
-    {
-        allowSelection = false;
-        audioCore.PlaySFX("SELECT");
-        exitParent.SetActive(true);
-    }
-
-    public void ExitPopupChoice(bool endGame)
-    {
-        if (endGame)
-            SceneManager.LoadScene(0);
-        else
-            exitParent.SetActive(false);
-
-        RemoveRestrictions();
-    }
-
     private IEnumerator DelayRoom()
     {
         yield return new WaitForSeconds(1.25f);
 
         ToggleDungeonVisibility(false);
+        TopBarManager.instance.SetVisible(false);
 
         switch (currentNode.room.roomType)
         {

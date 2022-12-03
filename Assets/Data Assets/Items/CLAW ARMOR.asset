@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 398220c39d7c7d04d9742b3cdcc424c7, type: 3}
-  m_Name: Claw Armor
+  m_Name: CLAW ARMOR
   m_EditorClassIdentifier: 
   itemName: CLAW ARMOR
   itemSummary: Gives 2 ATK, 4 HP & 4 DEF

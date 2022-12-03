@@ -66,6 +66,7 @@ public class VictoryManager : MonoBehaviour
                 count = false;
                 victoryPopup.SetActive(false);
                 DungeonManager.instance.ToggleDungeonVisibility(true);
+                TopBarManager.instance.SetVisible(true);
                 CombatManager.instance.HideRoom();
                 transitionAnimator.SetBool("Closed", false);
             }

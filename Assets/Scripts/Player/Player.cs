@@ -213,7 +213,7 @@ public class Player : Entity
                         abilityActive = false;
                         state = PlayerState.MOVE_STATE;
 
-                        PassiveManager.instance.OnAbilityUsed(selectedAbility.data.abilityType, selectedAbility.affectedEnemies);
+                        ServiceLocator.Get<EventManager>().OnAbilityUsed?.Invoke(selectedAbility.data.abilityType, selectedAbility.affectedEnemies);
 
                         CombatUI.instance.SelectAbility(-1);
                         GridManager.instance.ClearAllHighlights();
@@ -405,7 +405,7 @@ public class Player : Entity
         else
             currentActionPoints--;
 
-        PassiveManager.instance.OnPlayerMove(this);
+        ServiceLocator.Get<EventManager>().OnPlayerMove?.Invoke(this);
         playerMove?.Invoke(tile);
         CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
 
@@ -436,7 +436,7 @@ public class Player : Entity
         transform.GetChild(0).GetChild(0).GetComponent<Animator>().Play("Attack");
 
         currentActionPoints--;
-        PassiveManager.instance.OnPlayerAttack(this);
+        ServiceLocator.Get<EventManager>().OnPlayerAttack?.Invoke(this);
 
         playerAttack?.Invoke();
         CombatUI.instance.UpdateActionPoints(currentMovementPoints, currentActionPoints);
@@ -471,7 +471,7 @@ public class Player : Entity
         base.TakeDamage(damage, attacker);
 
         if (attacker is Entity entity)
-            PassiveManager.instance.OnPlayerTakeDamage(entity);
+            ServiceLocator.Get<EventManager>().OnPlayerTakeDamage?.Invoke(entity);
 
         CombatUI.instance.UpdateHealth(currentHealth, maxhealth, shield);
     }

@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class VitalityDrain : Passive
 {
-    public override void OnPreTurn(Entity enemy)
+    public override void Initialize()
+    {
+        ServiceLocator.Get<EventManager>().OnPreTurn += OnPreTurn;
+    }
+
+    private void OnPreTurn(Entity enemy)
     {
         for (int i = 0; i < enemy.activeStatusEffects.Count; i++)
         {

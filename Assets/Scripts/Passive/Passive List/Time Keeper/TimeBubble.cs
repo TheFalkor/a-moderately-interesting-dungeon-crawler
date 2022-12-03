@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class TimeBubble : Passive
 {
-    public override void OnAbilityUsed(AbilityID ability, List<Entity> affectedEnemies = null)
+    public override void Initialize()
     {
-        if (!(ability == AbilityID.TIME_PULSE))
+        ServiceLocator.Get<EventManager>().OnAbilityUsed += OnAbilityUsed;
+    }
+
+    private void OnAbilityUsed(AbilityID ability, List<Entity> affectedEnemies = null)
+    {
+        if (ability != AbilityID.TIME_PULSE)
             return;
 
         DungeonManager.instance.player.AddShield(data.passiveValue * affectedEnemies.Count);

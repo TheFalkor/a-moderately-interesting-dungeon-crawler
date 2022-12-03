@@ -198,7 +198,10 @@ public class AbilityTree : MonoBehaviour
         }
 
         if (passive != null)
-            passive.data = data;            
+        {
+            passive.data = data;
+            passive.Initialize();
+        }
 
         return passive;
     }

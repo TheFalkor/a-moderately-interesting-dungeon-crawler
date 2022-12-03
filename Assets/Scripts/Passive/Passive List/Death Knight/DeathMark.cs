@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class DeathMark : Passive
 {
-    public override void OnEnemyTakeDamage(Entity enemy)
+    public override void Initialize()
+    {
+        ServiceLocator.Get<EventManager>().OnEnemyTakeDamage += OnEnemyTakeDamage;
+    }
+
+    private void OnEnemyTakeDamage(Entity enemy)
     {
         foreach (StatusEffect effect in enemy.activeStatusEffects)
         {

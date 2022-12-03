@@ -214,14 +214,14 @@ public class Enemy : Entity
 
     public override void TakeDamage(Damage damage, Occupant attacker = null)
     {
-        PassiveManager.instance.OnEnemyTakeDamage(this);
+        ServiceLocator.Get<EventManager>().OnEnemyTakeDamage?.Invoke(this);
 
         base.TakeDamage(damage, this);
     }
 
     protected override void Death()
     {
-        PassiveManager.instance.OnEnemyDeath(this);
+        ServiceLocator.Get<EventManager>().OnEnemyDeath?.Invoke(this);
         audioCore.PlaySFX("ENEMY_DEATH");
         base.Death();
     }

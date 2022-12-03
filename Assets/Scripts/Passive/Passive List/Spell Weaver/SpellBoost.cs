@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class SpellBoost : Passive
 {
-    public override void OnAbilityUsed(AbilityID ability, List<Entity> affectedEnemies = null)
+    public override void Initialize()
+    {
+        ServiceLocator.Get<EventManager>().OnAbilityUsed += OnAbilityUsed;
+    }
+
+    private void OnAbilityUsed(AbilityID ability, List<Entity> affectedEnemies = null)
     {
         DungeonManager.instance.player.ChangeCurrentMP(data.passiveValue);
     }

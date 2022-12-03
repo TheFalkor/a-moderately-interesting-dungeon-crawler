@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class FlutterSpread : Passive
 {
-    public override void OnEnemyTakeDamage(Entity enemy)
+    public override void Initialize()
+    {
+        ServiceLocator.Get<EventManager>().OnEnemyTakeDamage += OnEnemyTakeDamage;
+    }
+
+    private void OnEnemyTakeDamage(Entity enemy)
     {
         for (int i = 0; i < enemy.activeStatusEffects.Count; i++)
         { 

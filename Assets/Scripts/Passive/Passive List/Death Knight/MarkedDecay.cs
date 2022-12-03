@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class MarkedDecay : Passive
 {
-    public override void OnEndTurn(Entity entity)
+    public override void Initialize()
+    {
+        ServiceLocator.Get<EventManager>().OnEndTurn += OnEndTurn;
+    }
+
+    private void OnEndTurn(Entity entity)
     {
         foreach (StatusEffect effect in entity.activeStatusEffects)
         {

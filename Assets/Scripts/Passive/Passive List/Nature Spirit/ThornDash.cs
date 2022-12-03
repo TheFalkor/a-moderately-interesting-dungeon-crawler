@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class ThornDash : Passive
 {
-    public override void OnAbilityUsed(AbilityID ability, List<Entity> affectedEnemies = null)
+    public override void Initialize()
     {
-        if(ability == AbilityID.FLUTTER_DASH)
+        ServiceLocator.Get<EventManager>().OnAbilityUsed += OnAbilityUsed;
+    }
+
+    private void OnAbilityUsed(AbilityID ability, List<Entity> affectedEnemies = null)
+    {
+        if (ability != AbilityID.FLUTTER_DASH)
+            return;
+
+        foreach (Entity entity in affectedEnemies)
         {
-            foreach (Entity entity in affectedEnemies)
-            {
-                entity.TakeCleanDamage(data.passiveValue, DamageOrigin.FRIENDLY);
-            }
+            entity.TakeCleanDamage(data.passiveValue, DamageOrigin.FRIENDLY);
         }
     }
 }

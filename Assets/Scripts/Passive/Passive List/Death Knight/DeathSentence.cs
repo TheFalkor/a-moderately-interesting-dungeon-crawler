@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class DeathSentence : Passive
 {
-    public override void OnEnemyDeath(Entity enemy)
+    public override void Initialize()
+    {
+        ServiceLocator.Get<EventManager>().OnEnemyDeath += OnEnemyDeath;
+    }
+
+    private void OnEnemyDeath(Entity enemy)
     {
         foreach (StatusEffect effect in enemy.activeStatusEffects)
         {
