@@ -56,6 +56,10 @@ public class TilesetManager : MonoBehaviour
         wallIndeces.Add(53);
         wallIndeces.Add(54);
         wallIndeces.Add(55);
+        wallIndeces.Add(60);
+        wallIndeces.Add(61);
+        wallIndeces.Add(62);
+        wallIndeces.Add(63);
 
         groundIndeces.Add(3);
         groundIndeces.Add(11);
@@ -104,6 +108,11 @@ public class TilesetManager : MonoBehaviour
             availableSprites.Remove(53);
             availableSprites.Remove(54);
             availableSprites.Remove(55);
+
+            availableSprites.Remove(60);
+            availableSprites.Remove(61);
+            availableSprites.Remove(62);
+            availableSprites.Remove(63);
         }
         else
         {
@@ -145,6 +154,11 @@ public class TilesetManager : MonoBehaviour
             availableSprites.Remove(53);
             availableSprites.Remove(54);
             availableSprites.Remove(55);
+
+            availableSprites.Remove(60);
+            availableSprites.Remove(61);
+            availableSprites.Remove(62);
+            availableSprites.Remove(63);
         }
         else
         {
@@ -185,6 +199,11 @@ public class TilesetManager : MonoBehaviour
             availableSprites.Remove(53);
             availableSprites.Remove(54);
             availableSprites.Remove(55);
+
+            availableSprites.Remove(60);
+            availableSprites.Remove(61);
+            availableSprites.Remove(62);
+            availableSprites.Remove(63);
         }
         else
         {
@@ -225,6 +244,11 @@ public class TilesetManager : MonoBehaviour
             availableSprites.Remove(53);
             availableSprites.Remove(54);
             availableSprites.Remove(55);
+
+            availableSprites.Remove(60);
+            availableSprites.Remove(61);
+            availableSprites.Remove(62);
+            availableSprites.Remove(63);
         }
         else
         {
@@ -264,6 +288,7 @@ public class TilesetManager : MonoBehaviour
 
             availableSprites.Remove(53);
             availableSprites.Remove(55);
+            availableSprites.Remove(63);
         }
         else
         {
@@ -272,6 +297,9 @@ public class TilesetManager : MonoBehaviour
             availableSprites.Remove(14);
             availableSprites.Remove(52);
             availableSprites.Remove(54);
+            availableSprites.Remove(60);
+            availableSprites.Remove(61);
+            availableSprites.Remove(62);
         }
 
         if (wallTR)
@@ -283,6 +311,7 @@ public class TilesetManager : MonoBehaviour
 
             availableSprites.Remove(52);
             availableSprites.Remove(55);
+            availableSprites.Remove(60);
         }
         else
         { 
@@ -291,6 +320,9 @@ public class TilesetManager : MonoBehaviour
             availableSprites.Remove(21);
             availableSprites.Remove(53);
             availableSprites.Remove(54);
+            availableSprites.Remove(61);
+            availableSprites.Remove(62);
+            availableSprites.Remove(63);
         }
 
         if (wallBL)
@@ -302,6 +334,7 @@ public class TilesetManager : MonoBehaviour
 
             availableSprites.Remove(53);
             availableSprites.Remove(54);
+            availableSprites.Remove(61);
         }
         else
         {
@@ -310,6 +343,9 @@ public class TilesetManager : MonoBehaviour
             availableSprites.Remove(14);
             availableSprites.Remove(52);
             availableSprites.Remove(55);
+            availableSprites.Remove(60);
+            availableSprites.Remove(62);
+            availableSprites.Remove(63);
         }
 
         if (wallBR)
@@ -321,6 +357,7 @@ public class TilesetManager : MonoBehaviour
 
             availableSprites.Remove(52);
             availableSprites.Remove(54);
+            availableSprites.Remove(62);
         }
         else
         {
@@ -329,6 +366,9 @@ public class TilesetManager : MonoBehaviour
             availableSprites.Remove(12);
             availableSprites.Remove(53);
             availableSprites.Remove(55);
+            availableSprites.Remove(60);
+            availableSprites.Remove(61);
+            availableSprites.Remove(63);
         }
 
         if (!wallTL || !wallTR || !wallBL || !wallBR)

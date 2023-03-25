@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c7470f7e609ed242a9a0ca3ee20356a, type: 3}
+  m_Name: LeverEvent
+  m_EditorClassIdentifier: 
+  roomType: 1
+  roomName: Lever
+  roomDescription: Pull Lever
+  rewards: []
+  EventTitle: Lever
+  EventDescription: You find a room with a lever on the other side. As you pull the
+    lever, you hear some rusty gears turning and more rooms of the dungeon open up

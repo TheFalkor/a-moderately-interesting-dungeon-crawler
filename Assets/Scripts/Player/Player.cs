@@ -504,6 +504,12 @@ public class Player : Entity
         InventoryUI.instance.UpdatePlayerStats(currentHealth, maxhealth, defense, meleeDamage);
     }
 
+    public void UpdateTownStats()
+    {
+        RecalculateStats();
+        TownManager.instance.UpdatePlayerStats(currentHealth, maxhealth, defense, meleeDamage);
+    }
+
     public int GetWeaponDamage()
     {
         return inventory.equippedWeapon.weaponDamage;

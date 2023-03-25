@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc0ec8b279f86b2418ae79389a56ed6f, type: 3}
+  m_Name: Treasure1
+  m_EditorClassIdentifier: 
+  roomType: 2
+  roomName: 
+  roomDescription: 
+  rewards:
+  - {fileID: 11400000, guid: 3ec03c11967b57f418e788f90f35ef3b, type: 2}

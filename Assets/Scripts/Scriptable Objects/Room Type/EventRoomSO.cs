@@ -6,7 +6,8 @@ using System.Collections.Generic;
 public class EventRoomSO : BaseRoomSO
 {
     [Header("Event")]
-    public uint eventID;
+    public string EventTitle;
+    public string EventDescription;
 
     public void Reset()
     {

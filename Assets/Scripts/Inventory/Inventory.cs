@@ -159,7 +159,7 @@ public class Inventory : MonoBehaviour
             HotbarUI.instance.UpdateUI();
     }
 
-    public Item CreateItem(ItemSO data, int stackCount = 1)
+    public static Item CreateItem(ItemSO data, int stackCount = 1)
     {
         Item item = null;
 
@@ -293,5 +293,34 @@ public class Inventory : MonoBehaviour
                 items[i + 1] = null;
             }
         }
+    }
+
+    public bool IsFull()
+    {
+        OrganizeInventory();
+        return items[15] != null;
+    }
+
+    public bool IsEmpty()
+    {
+        for (int i = 0; i < items.Length - 1; i++)
+        {
+            if (items[i] != null)
+                return false;
+        }
+
+        return true;
+    }
+
+    public int Count()
+    {
+        int count = 0;
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i] != null)
+                count++;
+        }
+
+        return count;
     }
 }

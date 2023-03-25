@@ -130,7 +130,7 @@ public class VictoryManager : MonoBehaviour
 
                 rewardIconList[i].gameObject.SetActive(true);
 
-                inventory.AddItem(inventory.CreateItem(item));
+                inventory.AddItem(Inventory.CreateItem(item));
 
             }
 

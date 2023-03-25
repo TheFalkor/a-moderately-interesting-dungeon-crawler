@@ -1,8 +1,8 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-#if UNITY_EDITOR
 using UnityEditor;
 
 public class RoomEditor : MonoBehaviour
@@ -146,5 +146,7 @@ public class RoomEditor : MonoBehaviour
 
         return a;
     }
+
 }
+
 #endif

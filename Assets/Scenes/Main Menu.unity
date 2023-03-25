@@ -14936,6 +14936,7 @@ GameObject:
   - component: {fileID: 1702972932}
   - component: {fileID: 1702972928}
   - component: {fileID: 1702972930}
+  - component: {fileID: 1702972931}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Manager
@@ -14996,6 +14997,24 @@ MonoBehaviour:
   classText: {fileID: 1576041599}
   raceDescription: {fileID: 270030134}
   classDescription: {fileID: 2119806206}
+--- !u!114 &1702972931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702972927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b381f7ea1e3c871488866950a8cb14a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicDatabase: {fileID: 11400000, guid: 8e64bceec6736462b9cee38f9d58f7c4, type: 2}
+  sfxDatabase: {fileID: 11400000, guid: a74731b1949394d7aade000e52a24b0c, type: 2}
+  masterVolume: 0.5
+  musicVolume: 0.5
+  sfxVolume: 0.5
+  musicTrackCount: 2
 --- !u!114 &1702972932
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -179,6 +179,7 @@ public class InventoryUI : MonoBehaviour
     {
         inventoryCanvas.SetActive(false);
         DungeonManager.instance.RemoveRestrictions();
+        OverworldManager.instance.SetAllowSelection(true);
     }
 
     public void UpdateInventoryUI()

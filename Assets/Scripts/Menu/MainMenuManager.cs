@@ -41,7 +41,7 @@ public class MainMenuManager : MonoBehaviour
 
         yield return new WaitForSeconds(1.05f);
 
-        SceneManager.LoadScene("main");
+        SceneManager.LoadScene("MarioOverworldTest");
     }
 
     public void QuitGame()

@@ -30,18 +30,6 @@ public class DungeonNode : MonoBehaviour
 
     private void Awake()
     {
-        List<Vector2> directionList = new List<Vector2> { new Vector2(0, 1), new Vector2(1, 0), new Vector2(0, -1), new Vector2(-1, 0) };
-        
-        foreach (Vector3 dir in directionList)
-        {
-            RaycastHit2D hit = Physics2D.Linecast(transform.position + dir / 1.2f, transform.position + dir * 2);
-
-            if (hit)
-            {
-                if (hit.transform.GetComponent<DungeonNode>())
-                    connectedNodes.Add(hit.transform.GetComponent<DungeonNode>());
-            }
-        }
     }
 
     void Start()
@@ -55,15 +43,23 @@ public class DungeonNode : MonoBehaviour
 
             transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = icons[(int)room.roomType];
         }
-        else
-        {
-            Initialize(room, this);
-            MarkCompleted();
-        }
     }
 
     public void Initialize(bool locked, DungeonNode parent)
     {
+        List<Vector2> directionList = new List<Vector2> { new Vector2(0, 1), new Vector2(1, 0), new Vector2(0, -1), new Vector2(-1, 0) };
+
+        foreach (Vector3 dir in directionList)
+        {
+            RaycastHit2D hit = Physics2D.Linecast(transform.position + dir / 1.2f, transform.position + dir * 2);
+
+            if (hit)
+            {
+                if (hit.transform.GetComponent<DungeonNode>())
+                    connectedNodes.Add(hit.transform.GetComponent<DungeonNode>());
+            }
+        }
+
         DungeonManager.instance.allNodes.Add(this);
 
         parentNode = parent;
@@ -73,11 +69,19 @@ public class DungeonNode : MonoBehaviour
             if (parent != node)
                 node.Initialize(room, this);
         }
-        DungeonManager.instance.AddRoom();
+
+        if (room)
+            if (room.roomType == RoomType.COMBAT)
+                DungeonManager.instance.AddCombatRoom();
+
+
         gameObject.SetActive(!locked);
 
         if (!render)
             SetupSprites();
+
+        if(!room)
+            MarkCompleted();
     }
 
     public void MarkCompleted()

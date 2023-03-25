@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc0ec8b279f86b2418ae79389a56ed6f, type: 3}
+  m_Name: TEST Treasure Room
+  m_EditorClassIdentifier: 
+  roomType: 2
+  roomName: Test Treasure Room
+  roomDescription: This is a fantastic super cool test treasure room
+  rewards:
+  - {fileID: 11400000, guid: ef7d11764fe36794583171165ed0f922, type: 2}
+  - {fileID: 11400000, guid: c0a48eea40ab8499888b766304e7aa35, type: 2}

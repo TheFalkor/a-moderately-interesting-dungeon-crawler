@@ -8,6 +8,8 @@ public class EndManager : MonoBehaviour
     [Header("End Screens")]
     [SerializeField] private GameObject winScreen;
     [SerializeField] private GameObject loseScreen;
+    [SerializeField] private GameObject dungeonCompletedPopup;
+    [SerializeField] private GameObject dungeonExitButton;
     [SerializeField] private Animator transitionAnimator;
 
 
@@ -42,6 +44,48 @@ public class EndManager : MonoBehaviour
         }
     }
 
+    public void SetExitDungeonPopup(bool active)
+    {
+        StartCoroutine(DelayExitDungeonPopup(active));
+    }
+
+    private IEnumerator DelayExitDungeonPopup(bool active)
+    {
+        yield return new WaitForSeconds(1.60f);
+        dungeonCompletedPopup.SetActive(active);
+        DungeonManager.instance.allowSelection = false;
+    }
+
+    public void OpenExitDungeonPopup()
+    {
+        dungeonCompletedPopup.SetActive(true);
+        DungeonManager.instance.allowSelection = false;
+    }
+
+    public void CloseExitDungeonPopup()
+    { 
+        dungeonCompletedPopup.SetActive(false);
+
+        if (dungeonExitButton.activeSelf == false)
+            dungeonExitButton.SetActive(true);
+
+        DungeonManager.instance.allowSelection = true;
+    }
+
+    public void CloseDungeon()
+    {
+        StartCoroutine(DelayCloseDungeon());
+        dungeonCompletedPopup.SetActive(false);
+    }
+
+    private IEnumerator DelayCloseDungeon()
+    {
+        yield return new WaitForSeconds(1.25f);
+
+        dungeonExitButton.SetActive(false);
+        dungeonCompletedPopup.SetActive(false);
+    }
+
     public void EndGame(bool win)
     {
         gameEnd = true;
@@ -62,6 +106,7 @@ public class EndManager : MonoBehaviour
         }
     }
 
+    // TODO: FIX NEW GAME PLUS (Dungeon Layout not updated for this)
     public void NewGamePlus()
     {
         gameEnd = false;
@@ -70,6 +115,7 @@ public class EndManager : MonoBehaviour
 
         ConsistentData.difficultyScale += 0.25f;
         DungeonManager.instance.ResetGame();
+        DungeonManager.instance.InitializeLayout();
 
         DungeonNode startNode = DungeonManager.instance.allNodes[0];
 
